@@ -15,7 +15,7 @@
 	<!-- default bean name is mongo -->
 	<mongo:mongo-client host="localhost" port="27017"></mongo:mongo-client>
 	
-	<mongo:db-factory dbname="database" mongo-ref="mongoCLient"/>
+	<mongo:db-factory dbname="database" mongo-ref="mongoClient"/>
 			
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"> 
         <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/> 
