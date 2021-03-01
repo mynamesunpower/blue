@@ -1,0 +1,11 @@
+package main.java.dao;
+
+import java.util.List;
+
+import main.java.vo.MongoVO;
+
+public interface MongoDAO {
+	
+	public List<MongoVO> test();
+	
+}

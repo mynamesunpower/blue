@@ -1,0 +1,17 @@
+package main.java.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class MariaController {
+	
+	@RequestMapping(value="/maria.do", method = RequestMethod.GET)
+	public String test(Model model) throws Exception {
+		List<MariaVO> list;
+		list = service.test();
+		model.addAttribute("list", list);
+		
+		return "test";
+	}
+	
+}
