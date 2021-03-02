@@ -1,0 +1,85 @@
+
+--------현재 버전 v1.4 (21/3/2) 입니다 ------- 
+----------슬랙으로 최신화 상태 확인필수 ---------
+show databases
+
+-- !반드시 !important 이 데이터베이스 이름으로 ----
+use database
+
+
+----------------- 테이블을 만들지 않아도 데이터를 넣으면 만들어집니다.
+
+db.festival.insertOne({
+    "host": "dd",
+    "festival_name": "좋은 축제",
+    "start_date": "2021. 3. 2",
+    "end_date": "2021. 3. 4",
+    "address": "서울시 즐거운 축제로 322",
+    "fee": "대인: 3000, 소인: 1000",
+    "tel": "02-3392-1111",
+    "homepage": "http://good.festival",
+    "image": ["image", "image2"],
+    "review": [{
+        "review_id": "daisy",
+        "review_score": 4,
+        "review_content": "너무 즐거워요"
+    }, {
+        "review_id": "babo",
+        "review_score": 3,
+        "review_content": "다신 안간다"
+    }]
+})
+db.restaurant.insertOne({
+    "name": "맛있는식당",
+    "address": "서울시 맛있는 식당가로 3332",
+    "open_time": "11:00",
+    "close_time": "19:00",
+    "rest_day": "월요일",
+    "tel": "02-3392-1111",
+    "image": ["image", "image2"],
+    "review": [{
+        "review_id": "daisy",
+        "review_score": 4,
+        "review_content": "맛있어요"
+    }, {
+        "review_id": "babo",
+        "review_score": 3,
+        "review_content": "다신 안간다"
+    }]
+})
+db.lodgment.insertOne({
+    "name": "따뜻한호텔",
+    "address": "서울시 따뜻한 호텔로 3332",
+    "tel": "02-3392-1111",
+    "homepage": "http://rest.in.peace",
+    "check_in": "15:00",
+    "check_out": "11:00",
+    "image": ["image", "image2"],
+    "review": [{
+        "review_id": "daisy",
+        "review_score": 4,
+        "review_content": "따뜻해요"
+    }, {
+        "review_id": "babo",
+        "review_score": 3,
+        "review_content": "다신 안간다"
+    }]
+})
+db.course.insertOne({
+    "id": "daisy",
+    "course": [{
+        "courseName": "무제1",
+        "coursePath": "별빛축제, 아만다축제, 스프라이트축제"
+    },
+    {
+        "courseName": "메인코스짜기",
+        "coursePath": "망둥어축제, 꼴뚜기축제, 즐거운축제"
+    }]
+})
+db.lost.insertOne({
+    "writing_date": "2021. 3. 2 11:24",
+    "content": "여기 분실물이 있더라구염",
+    "found_festival": "망둥어 축제",
+    "lost_status": "해결됨",
+    "image": ["image1", "image2"]
+})

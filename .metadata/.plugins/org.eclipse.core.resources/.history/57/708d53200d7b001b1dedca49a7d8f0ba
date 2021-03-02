@@ -1,0 +1,57 @@
+package main.java.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import main.java.model.MemberDAOImpl;
+import main.java.vo.MemberVO;
+
+@Service("memberService")
+public class MemberServiceImpl implements MemberService {
+
+	@Autowired
+	private MemberDAOImpl memberDao;
+
+	@Override
+	public MemberVO memberLogin(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int idCheck(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int memberInsert(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int memberUpdate(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int memberDelete(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public MemberVO memberIdFind(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberVO memberPassFind(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

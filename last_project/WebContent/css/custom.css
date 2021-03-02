@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.bigimage {
+    padding-bottom: 10px;
+}
+
+.main_description {
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.main_description > span {
+    color: gray;
+    font-size: 1.0rem;
+    font-weight: normal;
+}
+
+.list_ok > li > span {
+    margin-left: 5vh;
+}
+
+.main_title > h2 > span.month {
+    margin: 0 10vh;
+}
+
+hr.near-place-hr {
+    margin: 10px auto;
+}
+
+.near-place-image {
+    margin: 10px auto;
+}
+
+div.near-place-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: dodgerblue;
+    margin: 5px 0px;
+}
+
+div.near-place-name > span {
+    margin-left: 1vh;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #a7a7a7;
+}
+
+div.near-place-info > a {
+    color: #333;
+    text-decoration: none; !important
+}
+
+div.near-place-score {
+    color: #333;
+    font-size: 0.9rem;
+}
+
+div.near-place-score > .star {
+    color: orangered;
+    font-size: 1.2rem;
+}
+
+div.near-place-score > span.near-place-tel {
+    font-size: 0.8rem;
+    border-left: 1px solid #a7a7a7;
+    margin-left: 1vh;
+    padding-left: 1vh;
+}
+
+div.near-place-text {
+    text-align: center;
+}
+
+.basic_button {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.customer_info {
+    font-size: 1.2rem;
+}
+
+.customer_info > span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: cadetblue;
+    padding-left: 1vh;
+}
+
+.customer_question {
+    font-size: 1.05rem;
+    color: darkslategrey;
+    margin-bottom: 3vh;
+}
+
+.check_items {
+    text-align: left;
+}
+
+div.form-group > label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: darkslategrey;
+}

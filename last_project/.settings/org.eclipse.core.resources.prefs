@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
+encoding//WebContent/index.jsp=UTF-8
 encoding//src/main/java/model/MongoDAOImpl.java=UTF-8
 encoding//src/main/java/service/MongoServiceImpl.java=UTF-8

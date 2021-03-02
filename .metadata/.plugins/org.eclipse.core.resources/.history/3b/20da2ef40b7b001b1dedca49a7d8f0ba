@@ -1,0 +1,38 @@
+package main.java.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+@RequestMapping(value = "member/")
+public class MemberController {
+
+	// 어디든 보내버려
+	@RequestMapping(value = "{path}", method = RequestMethod.GET)
+	public String helloMember(@PathVariable("path") String path) {
+
+		System.out.println("[MemberController > " + path + " 요청]");
+		
+		return path;
+	}
+	
+	
+	@RequestMapping(value = "idCheck.do")
+	@ResponseBody
+	public String idCheck() {
+		
+		return "";
+	}
+	
+	
+	// 회원가입 요청
+	@RequestMapping(value = "memberRegister.do")
+	@ResponseBody
+	public String memberRegister() {
+		
+		return "memberRegister";
+	}
+}
