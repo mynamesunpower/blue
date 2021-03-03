@@ -1,3 +1,29 @@
 
 3월 03, 2021 12:48:48.298 NEW SESSION
 3월 03, 2021 12:48:48.298 [13164:5184:0303/124848.296:ERROR:device_event_log_impl.cc(211)] [12:48:48.297] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+
+3월 03, 2021 14:29:56.768 NEW SESSION
+3월 03, 2021 14:29:56.768 [6412:15232:0303/142956.767:ERROR:device_event_log_impl.cc(211)] [14:29:56.767] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 14:37:52.320 [12952:13768:0303/143752.320:ERROR:device_event_log_impl.cc(211)] [14:37:52.320] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 14:38:07.856 [6524:3000:0303/143807.855:ERROR:device_event_log_impl.cc(211)] [14:38:07.856] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 14:46:39.361 [15204:8996:0303/144639.361:ERROR:device_event_log_impl.cc(211)] [14:46:39.361] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 16:05:05.788 [11200:12932:0303/160505.788:ERROR:device_event_log_impl.cc(211)] [16:05:05.788] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 16:30:10.421 [11208:6040:0303/163010.421:ERROR:device_event_log_impl.cc(211)] [16:30:10.421] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 17:10:35.262 [13264:2940:0303/171035.262:ERROR:device_event_log_impl.cc(211)] [17:10:35.261] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 17:13:01.971 [5160:1808:0303/171301.971:ERROR:device_event_log_impl.cc(211)] [17:13:01.970] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 17:13:53.360 [7620:15964:0303/171353.360:ERROR:device_event_log_impl.cc(211)] [17:13:53.360] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 17:14:20.263 [16220:8844:0303/171420.263:ERROR:device_event_log_impl.cc(211)] [17:14:20.264] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 17:16:23.540 [5180:14528:0303/171623.540:ERROR:device_event_log_impl.cc(211)] [17:16:23.540] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 18:04:55.291 [14780:436:0303/180455.291:ERROR:device_event_log_impl.cc(211)] [18:04:55.291] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 18:52:43.219 [1656:1140:0303/185243.219:ERROR:device_event_log_impl.cc(211)] [18:52:43.219] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 18:55:22.195 [144:14384:0303/185522.195:ERROR:device_event_log_impl.cc(211)] [18:55:22.195] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 19:00:07.459 [6184:3764:0303/190007.459:ERROR:device_event_log_impl.cc(211)] [19:00:07.460] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 19:04:05.753 [11228:4296:0303/190405.753:ERROR:device_event_log_impl.cc(211)] [19:04:05.754] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 19:04:43.75 [4584:10484:0303/190443.075:ERROR:device_event_log_impl.cc(211)] [19:04:43.075] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 19:07:50.357 [13684:12420:0303/190750.357:ERROR:device_event_log_impl.cc(211)] [19:07:50.357] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 19:15:01.922 [13684:12420:0303/191501.922:ERROR:CONSOLE(0)] "TypeError: Cannot read property 'isAnonymousInlineStyleSheet' of null", source:  (0)
+3월 03, 2021 19:20:15.573 [3220:3420:0303/192015.573:ERROR:device_event_log_impl.cc(211)] [19:20:15.572] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 19:57:09.953 [4092:12732:0303/195709.953:ERROR:device_event_log_impl.cc(211)] [19:57:09.954] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 20:00:18.592 [14584:11876:0303/200018.592:ERROR:device_event_log_impl.cc(211)] [20:00:18.593] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+3월 03, 2021 20:18:59.386 [14584:11876:0303/201859.386:ERROR:CONSOLE(0)] "TypeError: Cannot read property 'isAnonymousInlineStyleSheet' of null", source:  (0)
+3월 03, 2021 20:19:27.936 [14584:11876:0303/201927.936:ERROR:CONSOLE(0)] "TypeError: Cannot read property 'isAnonymousInlineStyleSheet' of null", source:  (0)

@@ -20,6 +20,30 @@
      
 </insert>
 
+<!-- 관리자: 회원추가 -->
+<insert id="insertmember" parameterType="member">
+
+     INSERT INTO member   (id,	password, name, 	 tel, 	 address, 	email,	 birthday)
+     VALUES 			(#{id},	1, #{name}, #{tel}, #{address},#{email}, #{birthday})
+     
+</insert>
+
+<!-- 관리자: 회원정보 수정 -->
+<update id="modifyMember" parameterType="member">
+
+	UPDATE member 
+	SET id = #{id}, password = 1, name = #{name}, tel = #{tel}, address = #{address}, email = #{email}, birthday = #{birthday}
+	WHERE id=#{id}
+
+</update>
+
+<!-- 관리자: 회원정보 삭제 -->
+<delete id="deleteMember" parameterType="member">
+
+	DELETE FROM member
+	WHERE id = #{id}
+
+</delete>
 
 <!-- 로그인 -->
 <select id="login" parameterType="member" resultType="member">

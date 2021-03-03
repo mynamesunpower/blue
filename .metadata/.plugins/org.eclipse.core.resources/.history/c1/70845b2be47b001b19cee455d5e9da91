@@ -1,0 +1,28 @@
+package main.java.admin;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import main.java.service.MariaServiceImpl;
+import main.java.vo.MariaVO;
+
+@Controller
+public class AdminMemberController {
+	
+	
+	
+	@RequestMapping(value="/admin_member.do")
+	public String hello(@PathVariable String path) {
+		
+		System.out.println("AdminMemberController에서 admin_member요청");
+
+		return "admin_member";
+	}
+
+}

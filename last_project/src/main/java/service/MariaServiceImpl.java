@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import main.java.model.MariaDAOImpl;
 import main.java.vo.MariaVO;
+import main.java.vo.MemberVO;
 
 @Service("MariaService")
 public class MariaServiceImpl implements MariaService {
@@ -19,5 +20,7 @@ public class MariaServiceImpl implements MariaService {
 		// TODO Auto-generated method stub
 		return dao.test();
 	}
+	
+	
 
 }

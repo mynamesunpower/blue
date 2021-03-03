@@ -217,7 +217,8 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin/admin_member.jsp" class="nav-link">
+              <a href="admin/admin_member.do" class="nav-link">
+                <!--<a href="admin/admin_member.jsp" class="nav-link">  -->
                   <i class="far fa-circle nav-icon"></i>
                   <p>일반 회원 관리</p>
                 </a>

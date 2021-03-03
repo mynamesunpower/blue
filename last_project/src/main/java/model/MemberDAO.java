@@ -1,5 +1,7 @@
 package main.java.model;
 
+import java.util.List;
+
 import main.java.vo.MemberVO;
 
 public interface MemberDAO {
@@ -10,4 +12,7 @@ public interface MemberDAO {
 	public int idCheck(MemberVO vo);
 	public MemberVO memberIdFind(MemberVO vo);
 	public MemberVO memberPassFind(MemberVO vo);
+	public int insert_member(MemberVO vo);
+	public List<MemberVO> addtable();
+	public int modify_member(MemberVO vo);
 }
