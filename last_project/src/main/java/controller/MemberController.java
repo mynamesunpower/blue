@@ -168,8 +168,8 @@ public class MemberController {
 	
 	// 로그인
 	@RequestMapping(value = "memberLogin.do")
+	@ResponseBody
 	public String memberLogin(MemberVO vo, HttpSession session) {
-		
 		String inputPassword;
 		
 		if (session.getAttribute("inputPassword") == null) {
@@ -192,6 +192,15 @@ public class MemberController {
 			session.setAttribute("memberId", result.getId());
 		}
 		
-		return "redirect:index.jsp";
+//		return "redirect:index.jsp";
+		return "mainAfterLogin";
+// 왜 안되지		
+//		MemberVO result = memberService.memberLogin(vo);
+//		if(result==null || result.getId()==null) {
+//	         return "0"; 
+//	   }else {
+//	      session.setAttribute("memberId", result.getId());   
+//	         return "1";
+//	      }
 	}
 }

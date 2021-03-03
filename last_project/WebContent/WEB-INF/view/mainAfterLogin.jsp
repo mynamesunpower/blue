@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +20,7 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Go  chi+Hand|Lato:300,400|Montserrat:400,700|Roboto+Slab:400,100,300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Lato:300,400|Montserrat:400,700|Roboto+Slab:400,100,300,700" rel="stylesheet">
 
     <!-- COMMON CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -131,6 +132,7 @@
 
     <!-- Header================================================== -->
     <header id="plain">
+        <!-- 로그인 세션이 있으면 모든 페이지의 헤더 부분이 이 부분으로 나와야 함. -->
         <div id="top_line">
             <div class="container">
                 <div class="row">
@@ -138,18 +140,22 @@
                     <div class="col-6">
                         <ul id="top_links">
                             <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
-                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+                            <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            <li><a href="logout.do" class="icon-logout">로그아웃</a></li>
                         </ul>
                     </div>
                 </div><!-- End row -->
             </div><!-- End container-->
         </div><!-- End top line-->
+        <!-- 여기까지 -->
         
         <div class="container">
             <div class="row">
                 <div class="col-3">
                     <div id="logo_home">
-                    	<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
                     </div>
                 </div>
                 <nav class="col-9">
@@ -161,7 +167,7 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
                             <li class="submenu">
-                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
                             </li>
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
@@ -340,7 +346,6 @@
                                         <p>800 posted</p>
                                     </div>
                                 </a>
-                                
                             </div>
                         </div>
                     </div>
@@ -646,7 +651,7 @@
                     <ul>
                         <li><a href="#">축축빵빵은요!</a></li>
                         <li><a href="#">FAQ</a></li>
-                        <li><a href="#sign-in-dialog">로그인</a></li>
+                        <li><a href="#">로그인</a></li>
                         <li><a href="member/memberJoin.do">회원가입</a></li>
                          <li><a href="#">이용 약관</a></li>
                     </ul>
@@ -701,14 +706,14 @@
 		<form>
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" >
+                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.PNG); border: 0; outline: 0;" >
                     <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
-					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
-					<i class="icon_pencil"></i>
+					<label>Email</label>
+					<input type="email" class="form-control" name="email" id="email">
+					<i class="icon_mail_alt"></i>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
@@ -722,10 +727,7 @@
 					</div>
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
-				<div class="text-center">
-                    <!-- <input type="submit" value="로그인" class="btn_login"> -->
-                    <a href="" type="button" class="btn_login">로그인</a>
-                </div>
+				<div class="text-center"><input type="submit" value="로그인" class="btn_login"></div>
 				<div class="text-center">
 					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
 				</div>
@@ -744,52 +746,12 @@
 		</form>
 		<!--form -->
 	</div>
-	<!-- /Sign In Popup -->	
+	<!-- /Sign In Popup -->
 
     <!-- Common scripts -->
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/common_scripts_min.js"></script>
     <script src="js/functions.js"></script>
-    
-    <!-- 로그인 -->
-	<!-- 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn_login').click(function(){
-				if($.trim($('#loginId').val())==''){
-	        		alert('아이디를 입력해 주세요');
-	        		$('#loginId').focus();
-	        		return;
-	        	}
-	        	if($.trim($('#password').val())==''){
-	        		alert("비밀번호입력해주세요.");
-	        		$('#password').focus();
-	        		return;
-	        	}
-	        	
-	        	$.ajax({
-	        		type : 'post',
-	        		async : true,
-	        		url : "memberLogin.do",
-	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-	        		data : {
-	        			'loginId' : $('#loginId').val(),
-	        			'password' : $('#password').val()
-	        		},
-	        		success : function(result){
-	        			if(result==0){
-	        				$("#loginId").val("");
-	        				$("#password").val("");
-	        			}
-	        			else if(result==1){
-	        				location.replace("mainAfterLogin.do")
-	        			}
-	        		},
-	        		err : function(err){console.log(err)}
-	        	});				
-			});
-		});
-	</script> -->
 
     <!-- SLIDER REVOLUTION SCRIPTS  -->
     <script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.tools.min.js"></script>
@@ -891,6 +853,10 @@
 				}
 			});	/*ready*/
 	</script>
+	
+	<!-- NOTIFY BUBBLES  -->
+	<!-- <script src="js/notify_func.js"></script> -->
+
 </body>
 
 </html>
