@@ -184,40 +184,21 @@ public class MemberController {
 		}
 		
 		MemberVO result = memberService.memberLogin(vo);
-		if (result.getPassword() != null) {
-			
-			System.out.println(inputPassword + "/"+ result.getPassword());
-			boolean passwordMatch = passwordEncoder.matches(inputPassword, result.getPassword());
-			String message = "1";
-			System.out.println(passwordMatch);
-			
-			if (!passwordMatch) {
-				message = "0";
-			}
-			else {
-				session.removeAttribute("memberId");
-				session.setAttribute("memberId", result.getId());
-			}
-			
-			return message;
+		
+		System.out.println(inputPassword + "/"+ result.getPassword());
+		boolean passwordMatch = passwordEncoder.matches(inputPassword, result.getPassword());
+		String message = "1";
+		System.out.println(passwordMatch);
+		
+		if (!passwordMatch) {
+			message = "0";
 		}
 		else {
-			
-			return "0";
+			session.removeAttribute("memberId");
+			session.setAttribute("memberId", result.getId());
 		}
 		
-		
-//		return "redirect:index.jsp";
-
-		
-// 왜 안되지		
-//		MemberVO result = memberService.memberLogin(vo);
-//		if(result==null || result.getId()==null) {
-//	         return "0"; 
-//	   }else {
-//	      session.setAttribute("memberId", result.getId());   
-//	         return "1";
-//	      }
+		return message;
 	}
 	
 	

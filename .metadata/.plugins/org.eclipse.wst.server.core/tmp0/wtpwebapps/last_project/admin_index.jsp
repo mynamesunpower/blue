@@ -223,7 +223,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_mate.jsp" class="nav-link">
+                <a href="admin/admin_mate.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>

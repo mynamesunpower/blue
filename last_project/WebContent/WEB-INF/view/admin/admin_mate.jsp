@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -429,45 +432,21 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td><img src="../img/sample250_250.png"
-                             class="img-fluid"></td>
-                    <td>ddfsa</td>
-                    <td>꽃돌이</td>
-                    <td>24</td>
-                    <td>남자</td>
-                    <td>87.4</td>
-                    <td>1,2,3,7</td>
-                    <td>32000</td>
-                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#info_modify">수정</a>
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
-                  </tr>
-                  <tr>
-                    <td><img src="../img/sample250_250.png"
-                             class="img-fluid"></td>
-                    <td>ddfsa</td>
-                    <td>꽃돌이</td>
-                    <td>24</td>
-                    <td>남자</td>
-                    <td>87.4</td>
-                    <td>1,2,3,7</td>
-                    <td>32000</td>
-                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#info_modify">수정</a>
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
-                  </tr>
-                  <tr>
-                    <td><img src="../img/sample250_250.png"
-                             class="img-fluid"></td>
-                    <td>ddfsa</td>
-                    <td>꽃돌이</td>
-                    <td>24</td>
-                    <td>남자</td>
-                    <td>87.4</td>
-                    <td>1,2,3,7</td>
-                    <td>32000</td>
-                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#info_modify">수정</a>
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
-                  </tr>
+                  <c:forEach items="${mateList}" var="mate">
+                  		<tr>
+		                    <td><img src="../img/sample250_250.png"
+		                             class="img-fluid"></td>
+		                    <td>${mate.id}</td>
+		                    <td>${mate.nickname}</td>
+		                    <td>44</td>
+		                    <td>${mate.gender}</td>
+		                    <td>${mate.profile_score}</td>
+		                    <td>${mate.interest}</td>
+		                    <td>${mate.cash}</td>
+		                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#info_modify">수정</a>
+		                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
+                  		</tr>
+                  </c:forEach>
                   </tbody>
                   <tfoot>
                   <tr>
@@ -525,7 +504,7 @@
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="#" name="mate_modify" id="mate_modify">
+					<form method="post" action="mateRegister.do" name="mate_modify" id="mate_modify">
                         <input type="hidden" value="unique_id">
                         <div class="row">
 							<div class="col-md-12">
@@ -545,8 +524,8 @@
 								<div class="form-group">
                                     아이디 검증해야 함. 디비에 있는지.
                                     !있어야 추가가능!
-									<input name="mate_id" id="mate_id" type="text" placeholder="아이디" class="form-control"
-                                    value="아이디">
+									<input name="id" id="mate_id" type="text" placeholder="아이디" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -554,17 +533,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_nickname" id="mate_nickname" type="text" placeholder="닉네임" class="form-control"
-                                    value="닉네임">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="mate_age" id="mate_age" type="text" placeholder="나이" class="form-control"
-                                    value="나이">
+									<input name="nickname" id="mate_nickname" type="text" placeholder="닉네임" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -572,8 +542,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_sex" id="mate_sex" type="text" placeholder="성별" class="form-control"
-                                    value="성별">
+									<input name="gender" id="mate_sex" type="text" placeholder="성별" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -581,8 +551,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_score" id="mate_score" type="text" placeholder="메이트 점수" class="form-control"
-                                    value="메이트 점수">
+									<input name="photo_score" id="mate_score" type="text" placeholder="메이트 점수" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -590,8 +560,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_interest" id="mate_interest" type="text" placeholder="관심사" class="form-control"
-                                    value="관심사">
+									<input name="interest" id="mate_interest" type="text" placeholder="관심사" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -599,8 +569,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_cash" id="mate_cash" type="text" placeholder="캐시" class="form-control"
-                                    value="캐시">
+									<input name="cash" id="mate_cash" type="text" placeholder="캐시" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -815,6 +785,23 @@
           {orderable: false, targets: '_all'}
       ]
     });
+    
+	$('#mate_id').focusout(function(){
+		
+		$.ajax({
+			type: 'post', //전송방식
+	    	async : true, //비동기통신
+	    	url : 'mateIdCheck.do', // ***요청(request)
+	    	contentType : 'application/x-www-form-urlencoded;charset=euc-kr', // 한글처리
+	    	data :{'id': $('#mate_id').val()}, //보내는 데이타
+	    	success : function(result){
+	    		alert(result)
+	    	},
+	    	error: function(err){console.log(err);}
+		});
+
+	})
+    
   });
 </script>
 </body>
