@@ -196,12 +196,12 @@ $(function () {
 		hide_min_max: true,
 		keyboard: true,
 		min: 0,
-		max: 150,
-		from: 30,
-		to: 100,
+		max: 150000,
+		from: 20000,
+		to: 50000,
 		type: 'double',
 		step: 1,
-		prefix: "$",
+		prefix: "￦",
 		grid: true
 	});
 
