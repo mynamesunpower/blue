@@ -29,6 +29,7 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
+	<link href="css/realtime_inquire.css" rel="stylesheet">
 </head>
 
 <body>
@@ -457,8 +458,50 @@
 						</div>
 						<div id="inquire2Area">
 							<div class="step">
-							울랄라랄라
-							
+								<section class="msger">																  
+									<main class="msger-chat">
+									  <div class="msg left-msg">
+										<div
+										 class="msg-img"
+										 style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+										></div>
+								  
+										<div class="msg-bubble">
+										  <div class="msg-info">
+											<div class="msg-info-name">BOT</div>
+											<div class="msg-info-time">12:45</div>
+										  </div>
+								  
+										  <div class="msg-text">
+											안녕하세요, 무엇을 도와드릴까요? 😄
+										  </div>
+										</div>
+									  </div>
+								  
+									  <!-- <div class="msg right-msg">
+										<div
+										 class="msg-img"
+										 style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+										></div>
+								  
+										<div class="msg-bubble">
+										  <div class="msg-info">
+											<div class="msg-info-name">YOU</div>
+											<div class="msg-info-time">12:46</div>
+										  </div>
+								  
+										  <div class="msg-text">
+											You can change your name in JS section!
+										  </div>
+										</div>
+									  </div> -->
+									</main>
+								  
+									<form class="msger-inputarea">
+									  <input type="text" class="msger-input" placeholder="메시지를 입력해주세요.">
+									  <button type="submit" class="msger-send-btn">전송</button>
+									</form>
+								  </section>
 							</div>
 						</div>
 					</div>
@@ -564,6 +607,7 @@
 	});
 	</script>
 	
+	<script src="js/realtime_inquire.js"></script>
 	<!-- Cat nav mobile -->  <!--모바일 화면에서 메뉴 접어서 보여주는거-->
 	<!-- <script src="js/cat_nav_mobile.js"></script>
 	<script>
