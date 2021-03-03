@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -170,6 +171,8 @@ public class MemberController {
 	@RequestMapping(value = "memberLogin.do")
 	@ResponseBody
 	public String memberLogin(MemberVO vo, HttpSession session) {
+		
+		System.out.println(vo.getId() + "/" + vo.getPassword());
 		String inputPassword;
 		
 		if (session.getAttribute("inputPassword") == null) {
@@ -181,19 +184,32 @@ public class MemberController {
 		}
 		
 		MemberVO result = memberService.memberLogin(vo);
-		boolean passwordMatch = passwordEncoder.matches(inputPassword, result.getPassword());
-		String message = "성공";
-		
-		if (!passwordMatch) {
-			message = "실패";
+		if (result.getPassword() != null) {
+			
+			System.out.println(inputPassword + "/"+ result.getPassword());
+			boolean passwordMatch = passwordEncoder.matches(inputPassword, result.getPassword());
+			String message = "1";
+			System.out.println(passwordMatch);
+			
+			if (!passwordMatch) {
+				message = "0";
+			}
+			else {
+				session.removeAttribute("memberId");
+				session.setAttribute("memberId", result.getId());
+			}
+			
+			return message;
 		}
 		else {
-			session.removeAttribute("memberId");
-			session.setAttribute("memberId", result.getId());
+			
+			return "0";
 		}
 		
+		
 //		return "redirect:index.jsp";
-		return "mainAfterLogin";
+
+		
 // 왜 안되지		
 //		MemberVO result = memberService.memberLogin(vo);
 //		if(result==null || result.getId()==null) {
@@ -202,5 +218,12 @@ public class MemberController {
 //	      session.setAttribute("memberId", result.getId());   
 //	         return "1";
 //	      }
+	}
+	
+	
+	@RequestMapping("mainAfterLogin.do")
+	public String mainAfterLogin() {
+		System.out.println("mainAfterLogin.do 요청");
+		return "member/mainAfterLogin";
 	}
 }

@@ -723,8 +723,8 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <!-- <input type="submit" value="로그인" class="btn_login"> -->
-                    <a href="" type="button" class="btn_login">로그인</a>
+                    <input type="submit" value="로그인" class="btn_login">
+                    <!-- <a type="button" class="btn_login">로그인</a> -->
                 </div>
 				<div class="text-center">
 					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
@@ -752,10 +752,10 @@
     <script src="js/functions.js"></script>
     
     <!-- 로그인 -->
-	<!-- 
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.btn_login').click(function(){
+			$('.btn_login').on('click', function(){
 				if($.trim($('#loginId').val())==''){
 	        		alert('아이디를 입력해 주세요');
 	        		$('#loginId').focus();
@@ -773,23 +773,27 @@
 	        		url : "memberLogin.do",
 	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
 	        		data : {
-	        			'loginId' : $('#loginId').val(),
+	        			'id' : $('#loginId').val(),
 	        			'password' : $('#password').val()
 	        		},
 	        		success : function(result){
+	        			console.log(result)
 	        			if(result==0){
 	        				$("#loginId").val("");
 	        				$("#password").val("");
+	        				
 	        			}
 	        			else if(result==1){
-	        				location.replace("mainAfterLogin.do")
+	        				console.log("성공")
+	        				location.replace("member/mainAfterLogin.do");
+	        				
 	        			}
 	        		},
-	        		err : function(err){console.log(err)}
+	        		error : function(err){console.log("에러요" + err)}
 	        	});				
 			});
 		});
-	</script> -->
+	</script>
 
     <!-- SLIDER REVOLUTION SCRIPTS  -->
     <script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.tools.min.js"></script>
