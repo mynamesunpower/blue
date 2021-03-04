@@ -768,7 +768,12 @@
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
                     <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.PNG); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
+                    <!-- input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" > -->
+                    	<a href="https://kauth.kakao.com/oauth/authorize?client_id=41e45128f773156a833facd8e3b77b49&response_type=code&redirect_uri=http://localhost:8080/login2.do&response_type=code"><img src ="/img/login/kakao_login.png"></a>
+
+
+	
+	</script>
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">

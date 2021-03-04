@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%String kakaonickname = (String)request.getAttribute("kakaonickname"); %>
+     <%String navernickname = (String)request.getAttribute("navernickname"); %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,10 +143,33 @@
                     <div class="col-6">
                         <ul id="top_links">
                             <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
-                            <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
-                            <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+							<%if((kakaonickname ==null)&& (navernickname ==null)){ %>
+							<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+							 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
                             <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
                             <li><a href="logout.do" class="icon-logout">로그아웃</a></li>
+							<%} %>
+
+							<%if(kakaonickname !=null){ %>
+							<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
+							 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
+							<%} %>
+							
+							<%if(navernickname !=null){ %>
+							<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
+							 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            <li><a href="naverlogout.do" class="icon-logout">로그아웃</a></li>
+							<%} %>
+
+                            <!-- <li><span style="color: blue;">${sessionScope.memberId}<%=kakaonickname %></span>님 환영합니다 -->
+                           <!-- 
+                            <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
+                            -->
                         </ul>
                     </div>
                 </div><!-- End row -->

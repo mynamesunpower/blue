@@ -208,7 +208,8 @@ public class MemberController {
 		
 		
 //		return "redirect:index.jsp";
-
+		
+		
 		
 // 왜 안되지		
 //		MemberVO result = memberService.memberLogin(vo);
@@ -219,6 +220,17 @@ public class MemberController {
 //	         return "1";
 //	      }
 	}
+	
+	
+	
+	@RequestMapping("/logout.do")
+	public String logout(String code, HttpSession session) {
+		
+		System.out.println("LoginController 에서 logout.do 요청");
+		session.invalidate();	
+		return "redirect:main.jsp";
+	}
+
 	
 	
 	@RequestMapping("mainAfterLogin.do")

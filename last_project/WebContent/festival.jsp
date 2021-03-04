@@ -164,6 +164,7 @@
     
     <!-- 메인 이미지 슬라이더 -->
 	<section id="hero">
+	<img src ="/img/login/kakao_login2.png">
 		<div class="intro_title">
 			<h3 class="animated fadeInDown">삼척 <strong id="js-rotating">2021,달빛아래,소원하는,일상</strong> 정월대보름제</h3>
 			<p class="animated fadeInDown">달빛아래 소원해요, 함께하는 일상</p>
@@ -174,7 +175,7 @@
 	<main>
 
 	<div class="container margin_60">
-        
+         
         <!-- 월별 축제 이미지 -->
             <div class="main_title">
                 <h2><a href="#">◀</a><span class="month">2 월</span><a href="#">▶</a></h2>

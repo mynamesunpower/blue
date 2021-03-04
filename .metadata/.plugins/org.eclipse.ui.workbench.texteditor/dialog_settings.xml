@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="kakao"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="gson"/>
-			<item value="json"/>
-			<item value="memberJoin"/>
-			<item value="join.html"/>
+			<item value="kakao"/>
+			<item value="hero"/>
+			<item value="삼척"/>
+			<item value="kakaologin"/>
+			<item value="파라메터"/>
+			<item value="nick"/>
+			<item value="logout"/>
+			<item value="환영"/>
+			<item value="로그인"/>
+			<item value="delid"/>
+			<item value="deletebutton"/>
+			<item value="aria-hidden"/>
+			<item value="회원 정보 삭제"/>
+			<item value="info_modify"/>
+			<item value="insert_member"/>
 		</list>
 		<list key="replacehistory">
+			<item value="index.jsp"/>
+			<item value=".do"/>
+			<item value=".jsp"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="720"/>
-		<item key="DIALOG_Y_ORIGIN" value="223"/>
+		<item key="DIALOG_X_ORIGIN" value="990"/>
+		<item key="DIALOG_Y_ORIGIN" value="295"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

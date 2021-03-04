@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%String kakaonickname = (String)session.getAttribute("kakaonickname"); %>
+   <%String navernickname = (String)session.getAttribute("navernickname"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +13,7 @@
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
     <title>축축빵빵 - 전 국민 페스티벌 플랫폼</title>
+    
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -25,6 +30,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<link href="css/vendors.css" rel="stylesheet">
+	
 
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
@@ -138,7 +144,35 @@
                     <div class="col-6">
                         <ul id="top_links">
                             <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
-                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            <c:choose>
+                            	<c:when test="${sessionScope.memberId eq null}">
+                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            		<li><a href="mongo.do">몽고</a></li>
+                            	</c:when>
+                            	<c:when test="${sessionScope.memberId ne null}">
+                            		<%if((kakaonickname ==null)&& (navernickname ==null)){ %>
+										<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+			                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+			                            <li><a href="logout.do" class="icon-logout">로그아웃</a></li>
+									<%} %>
+		
+									<%if(kakaonickname !=null){ %>
+										<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
+										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+			                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+			                            <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
+									<%} %>
+									
+									<%if(navernickname !=null){ %>
+										<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
+										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+			                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+			                            <li><a href="naverlogout.do" class="icon-logout">로그아웃</a></li>
+									<%} %>
+                            	</c:when>
+                            </c:choose>
+                                                        
                         </ul>
                     </div>
                 </div><!-- End row -->
@@ -701,8 +735,12 @@
 		<form>
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
+                    <!-- <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" > -->
+                    <!--  <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" > -->
+                    <a href="naverlogin.do"><img src ="/img/login/naver_login2.PNG"></a>
+                    <br/>
+                    <br/>
+                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=41e45128f773156a833facd8e3b77b49&response_type=code&redirect_uri=http://localhost:8080/login2.do&response_type=code"><img src ="/img/login/kakao_login2.png"></a>
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">

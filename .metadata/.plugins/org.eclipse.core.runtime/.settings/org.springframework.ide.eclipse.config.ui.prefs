@@ -1,4 +1,5 @@
 //com.springsource.config.ui.prefs.activePageIndex\:/last_project/WebContent/WEB-INF/spring/common-servlet.xml=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<activePage index\="0"/>
+//com.springsource.config.ui.prefs.activePageIndex\:/last_project/WebContent/WEB-INF/spring/spring-security.xml=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<activePage index\="0"/>
 //com.springsource.config.ui.prefs.activePageIndex\:/last_project/WebContent/WEB-INF/spring/springMVC-context.xml=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<activePage index\="0"/>
 //com.springsource.config.ui.prefs.activePageIndex\:/last_project/WebContent/WEB-INF/spring/springMVC-servlet.xml=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<activePage index\="0"/>
 eclipse.preferences.version=1
