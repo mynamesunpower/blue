@@ -143,6 +143,7 @@
                             <c:choose>
                             	<c:when test="${sessionScope.memberId eq null}">
                             		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            		<li><a href="mongo.do">몽고</a></li>
                             	</c:when>
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>

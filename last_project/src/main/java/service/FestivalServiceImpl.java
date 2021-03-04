@@ -5,21 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.java.model.MongoDAO;
-import main.java.model.MongoDAOImpl;
-import main.java.vo.PersonVO;
+import main.java.model.FestivalDAO;
+import main.java.vo.FestivalVO;
 
-@Service("mongoService")
-public class MongoServiceImpl implements MongoService{
+@Service("festivalService")
+public class FestivalServiceImpl implements FestivalService {
 
 	@Autowired
-	private MongoDAOImpl mongoDAO;
+	private FestivalDAO festivalDao;
 	
 	@Override
-	public List<PersonVO> test() {
+	public List<FestivalVO> test() {
 		// TODO Auto-generated method stub
 		System.out.println("Service 접근");
-		return mongoDAO.test();
+		return festivalDao.test();
 	}
-
+	
 }
