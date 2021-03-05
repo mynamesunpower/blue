@@ -28,7 +28,7 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
-        
+        <link href="css/hmcss.css" rel="stylesheet">
 </head>
 <body>
     <div id="preloader">
@@ -164,12 +164,16 @@
     
     <!-- 메인 이미지 슬라이더 -->
 	<section id="hero">
-	<img src ="/img/login/kakao_login2.png">
-		<div class="intro_title">
+	
+		<div class="intro_title" >
+		 <img src="img/logo_sticky.png">
 			<h3 class="animated fadeInDown">삼척 <strong id="js-rotating">2021,달빛아래,소원하는,일상</strong> 정월대보름제</h3>
+			<h4 class="animated fadeInDown">삼척 <src id="js-rotating">2021,달빛아래,소원하는,일상</src> 정월대보름제</h4>
 			<p class="animated fadeInDown">달빛아래 소원해요, 함께하는 일상</p>
+			
 		   <a href="festival_detail.jsp" class="animated fadeInUp button_intro">더 보기</a>
 		</div>
+		
 	</section><!-- End 메인 이미지 슬라이더 -->
 
 	<main>
@@ -549,6 +553,20 @@
 		}
 	});
 	</script>
+	
+	<script>
+    window.onload = function(){
+    //반복제거, url
+    //document.getElementById("div").style.backgroundRepeat = "no-repeat";
+    //이미지 등록
+    
+    document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
+    //이미지 사이즈
+    //document.getElementById("div").style.backgroundSize = "200px";
+    }
+</script>
+
+
 	
 
   </body>
