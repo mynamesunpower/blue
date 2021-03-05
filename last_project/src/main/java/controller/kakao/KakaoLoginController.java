@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class KakaoLoginController {
 
-	httpConnection conn = httpConnection.getInstance();
+	
 	
 	@Autowired
 	private KakaoService kakaoService;
@@ -67,27 +67,6 @@ public class KakaoLoginController {
 	        return "redirect:main.jsp";
 	    }
 	  
-//	  @RequestMapping(value="/kakaologout.do")
-//	    public String logout(HttpSession session) {
-//		  session.invalidate();
-//		  return "redirect:main.jsp";
-//	    }
-	  
-//	  @RequestMapping(value="/kakaologout.do")
-//		public String access(HttpSession session) throws IOException {
-//			
-//			//String access_tokens = (String)session.getAttribute("access_token");
-//		   String access_tokens = (String) session.getAttribute("access_Token");
-//		  System.out.println("로그아웃 호출:"+access_tokens);
-//			Map<String, String> map = new HashMap<String, String>();
-//			map.put("Authorization", "Bearer "+ access_tokens);
-//			
-//		
-//			String result = conn.HttpPostConnection("https://kapi.kakao.com", map).toString();
-//			System.out.println(result);
-//			
-//			return "redirect:main.jsp";
-//		}
 	  	  
 
 }

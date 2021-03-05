@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -29,7 +30,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="../admin_index.jsp" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -152,7 +153,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="../admin_index.jsp" class="brand-link">
+    
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">축축빵빵</span>
     </a>
@@ -165,7 +167,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자1</a>
+          <a href="#" class="d-block">${sessionScope.adminName}</a>
         </div>
       </div>
 
@@ -186,7 +188,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- 대시보드 -->
           <li class="nav-item">
-            <a href="../admin_index.html" class="nav-link active">
+            <a href="../admin_index.jsp" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 대시보드
@@ -206,13 +208,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_member.html" class="nav-link">
+                <a href="admin_member.do" class="nav-link">
                   <i class="far fa-user-circle nav-icon"></i>
                   <p>일반 회원 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate.html" class="nav-link">
+                <a href="admin_mate.do" class="nav-link">
                   <i class="far fa-handshake nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>
@@ -231,19 +233,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival.html" class="nav-link">
+                <a href="admin_festival.do" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>축제 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment.html" class="nav-link">
+                <a href="admin_lodgment.do" class="nav-link">
                   <i class="far  nav-icon"></i>
                   <p>숙박 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant.html" class="nav-link">
+                <a href="admin_restaurant.do" class="nav-link">
                   <i class="far fa-coffee nav-icon"></i>
                   <p>식당 정보 관리</p>
                 </a>
@@ -262,13 +264,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_course.html" class="nav-link">
+                <a href="admin_course.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_course_statistic.html" class="nav-link">
+                <a href="admin_course_statistic.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 통계</p>
                 </a>
@@ -287,25 +289,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival_review.html" class="nav-link">
+                <a href="admin_festival_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant_review.html" class="nav-link">
+                <a href="admin_restaurant_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>식당 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment_review.html" class="nav-link">
+                <a href="admin_lodgment_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>숙박 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate_review.html" class="nav-link">
+                <a href="admin_mate_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 리뷰 관리</p>
                 </a>
@@ -324,19 +326,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./admin_customer_question.html" class="nav-link">
+                <a href="admin_customer_question.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 문의 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_customer_chat.html" class="nav-link">
+                <a href="admin_customer_chat.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 1:1 채팅</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lost.html" class="nav-link">
+                <a href="admin_lost.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>분실물 관리</p>
                 </a>
@@ -392,7 +394,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../admin_index.html">Home</a></li>
+              <li class="breadcrumb-item"><a href="../admin_index.jsp">Home</a></li>
               <li class="breadcrumb-item active">메이트 관리</li>
             </ol>
           </div>
@@ -423,7 +425,6 @@
                     <th>사진</th>
                     <th>아이디</th>
                     <th>닉네임</th>
-                    <th>나이</th>
                     <th>성별</th>
                     <th>프로필 점수</th>
                     <th>관심사</th>
@@ -438,13 +439,12 @@
 		                             class="img-fluid"></td>
 		                    <td>${mate.id}</td>
 		                    <td>${mate.nickname}</td>
-		                    <td>44</td>
 		                    <td>${mate.gender}</td>
 		                    <td>${mate.profile_score}</td>
 		                    <td>${mate.interest}</td>
 		                    <td>${mate.cash}</td>
-		                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#info_modify">수정</a>
-		                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
+		                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs modifybutton" data-toggle="modal" data-target="#info_modify">수정</a>
+		                          <a href="#" class="btn btn-danger btn-xs deletebutton" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
                   		</tr>
                   </c:forEach>
                   </tbody>
@@ -453,7 +453,6 @@
                     <th>사진</th>
                     <th>아이디</th>
                     <th>닉네임</th>
-                    <th>나이</th>
                     <th>성별</th>
                     <th>프로필 점수</th>
                     <th>관심사</th>
@@ -504,7 +503,7 @@
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="mateRegister.do" name="mate_modify" id="mate_modify">
+					<form method="post" action="mateRegister.do" name="mate_modify">
                         <input type="hidden" value="unique_id">
                         <div class="row">
 							<div class="col-md-12">
@@ -524,7 +523,7 @@
 								<div class="form-group">
                                     아이디 검증해야 함. 디비에 있는지.
                                     !있어야 추가가능!
-									<input name="id" id="mate_id" type="text" placeholder="아이디" class="form-control"
+									<input name="id" type="text" placeholder="아이디" class="form-control "
                                     >
 								</div>
 							</div>
@@ -533,7 +532,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="nickname" id="mate_nickname" type="text" placeholder="닉네임" class="form-control"
+									<input name="nickname" type="text" placeholder="닉네임" class="form-control "
                                     >
 								</div>
 							</div>
@@ -542,7 +541,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="gender" id="mate_sex" type="text" placeholder="성별" class="form-control"
+									<input name="gender" id="mate_gender" type="text" placeholder="성별" class="form-control "
                                     >
 								</div>
 							</div>
@@ -551,7 +550,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="photo_score" id="mate_score" type="text" placeholder="메이트 점수" class="form-control"
+									<input name="profile_score" id="mate_profile_score" type="text" placeholder="메이트 점수" class="form-control"
                                     >
 								</div>
 							</div>
@@ -560,7 +559,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="interest" id="mate_interest" type="text" placeholder="관심사" class="form-control"
+									<input name="interest" type="text" placeholder="관심사" class="form-control"
                                     >
 								</div>
 							</div>
@@ -569,7 +568,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="cash" id="mate_cash" type="text" placeholder="캐시" class="form-control"
+									<input name="cash" type="text" placeholder="캐시" class="form-control"
                                     >
 								</div>
 							</div>
@@ -596,7 +595,7 @@
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="#" name="mate_modify" id="mate_modify">
+					<form method="post" action="mateUpdate.do" name="mate_modify" id="mate_modify">
                         <input type="hidden" value="unique_id">
                         <div class="row">
 							<div class="col-md-12">
@@ -613,7 +612,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_id" id="mate_id" type="text" placeholder="아이디" class="form-control"
+									<input name="mate_id" id="mate_id" type="text" placeholder="아이디" class="form-control mate_id"
                                     value="아이디" disabled>
 								</div>
 							</div>
@@ -622,17 +621,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_nickname" id="mate_nickname" type="text" placeholder="닉네임" class="form-control"
+									<input name="mate_nickname" id="mate_nickname" type="text" placeholder="닉네임" class="form-control mate_nickname"
                                     value="닉네임">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="mate_age" id="mate_age" type="text" placeholder="나이" class="form-control"
-                                    value="나이">
 								</div>
 							</div>
 						</div>
@@ -640,7 +630,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_sex" id="mate_sex" type="text" placeholder="성별" class="form-control"
+									<input name="mate_sex" id="mate_sex" type="text" placeholder="성별" class="form-control mate_gender"
                                     value="성별">
 								</div>
 							</div>
@@ -649,7 +639,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_score" id="mate_score" type="text" placeholder="메이트 점수" class="form-control"
+									<input name="mate_score" id="mate_score" type="text" placeholder="메이트 점수" class="form-control mate_profile_score"
                                     value="메이트 점수">
 								</div>
 							</div>
@@ -658,7 +648,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_interest" id="mate_interest" type="text" placeholder="관심사" class="form-control"
+									<input name="mate_interest" id="mate_interest" type="text" placeholder="관심사" class="form-control mate_interest"
                                     value="관심사">
 								</div>
 							</div>
@@ -667,7 +657,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="mate_cash" id="mate_cash" type="text" placeholder="캐시" class="form-control"
+									<input name="mate_cash" id="mate_cash" type="text" placeholder="캐시" class="form-control mate_cash"
                                     value="캐시">
 								</div>
 							</div>
@@ -688,12 +678,12 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="info_deleteLabel">메이트 정보 삭제</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close delclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="#" name="festival_modify" id="festival_modify">
+					<form method="post" action="mateDelete.do" name="festival_modify" id="festival_modify">
                         
                         <!-- mariaDB 메이트 id -->
                         <input type="hidden" value="unique_id">
@@ -702,8 +692,8 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     다음 메이트 데이터가 삭제됩니다. <br/>
-									<input name="festival_id" id="festival_id" type="text" placeholder="아이디" class="form-control"
-                                    value="회원 아이디">
+									<input name="festival_id" id="festival_id" type="text" placeholder="아이디" class="form-control delid"
+                                    value="회원 아이디" disabled>
 								</div>
 							</div>
 						</div>
@@ -713,13 +703,13 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     삭제를 진행하기 위해서 <strong>삭제한다 </strong>를 입력해주세요
-									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control">
+									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control delete_confirm">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
                         
-						<input type="submit" value="삭제하기" class="btn btn-danger" id="submit-mate-delete">
+						<input type="submit" value="삭제하기" class="btn btn-danger delbutton" id="submit-mate-delete">
 					</form>
 				</div>
 			</div>
@@ -727,8 +717,7 @@
 	</div>
 	<!-- 삭제하기 끝 -->     
     
-    
-<!-- jQuery -->
+  <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -801,8 +790,104 @@
 		});
 
 	})
+	
+	$(".modifybutton").on('click', function(){
+		
+		var id = $(this).parent().parent().children("td:nth-child(2)").text();
+    	var nickname = $(this).parent().parent().children("td:nth-child(3)").text();
+    	var gender = $(this).parent().parent().children("td:nth-child(4)").text();
+    	var profile_score = $(this).parent().parent().children("td:nth-child(5)").text();
+    	var interest = $(this).parent().parent().children("td:nth-child(6)").text();
+    	var cash = $(this).parent().parent().children("td:nth-child(7)").text();
+    	
+		console.log(id +'/'+ nickname +'/'+ gender +'/'+ profile_score +'/'+ interest + '/' + cash)
+		
+    	$('.mate_id').val(id); 
+    	$('.mate_nickname').val(nickname);
+    	$('.mate_gender').val(gender); 
+    	$('.mate_profile_score').val(profile_score); 
+    	$('.mate_interest').val(interest); 
+    	$('.mate_cash').val(cash);
+    	        
+    });
     
+    $(".deletebutton").on('click', function(){
+        	
+		var id = $(this).parent().parent().children("td:nth-child(2)").text();
+      
+		console.log(id)
+      	$('.delid').val(id); 
+   		
+      	$('.delbutton').prop("disabled", true);
+      	$('.delete_confirm').on("keyup", action);
+      	
+      	function action() {
+			  if($('.delete_confirm').val()== "삭제한다") {
+			        $('.delbutton').prop("disabled", false);
+			     }
+			  else{
+				  $('.delbutton').prop("disabled", true);
+			  }
+      	}
+      	
+      });
+      
+    	  
+	  $(".delclose").on('click', function(){
+		  $('.delete_confirm').val("")
+		  
+	  });$(".modifybutton").on('click', function(){
+
+		var id = $(this).parent().parent().children("td:nth-child(2)").text();
+    	var nickname = $(this).parent().parent().children("td:nth-child(3)").text();
+    	var gender = $(this).parent().parent().children("td:nth-child(4)").text();
+    	var profile_score = $(this).parent().parent().children("td:nth-child(5)").text();
+    	var interest = $(this).parent().parent().children("td:nth-child(6)").text();
+    	var cash = $(this).parent().parent().children("td:nth-child(7)").text();
+    	
+		console.log(id +'/'+ nickname +'/'+ gender +'/'+ profile_score +'/'+ interest + '/' + cash)
+		
+    	$('.mate_id').val(id); 
+    	$('.mate_nickname').val(nickname);
+    	$('.mate_gender').val(gender); 
+    	$('.mate_profile_score').val(profile_score); 
+    	$('.mate_interest').val(interest); 
+    	$('.mate_cash').val(cash);
+    	        
+    });
+    
+    $(".deletebutton").on('click', function(){
+        	
+		var id = $(this).parent().parent().children("td:nth-child(2)").text();
+      
+		console.log(id)
+      	$('.delid').val(id); 
+   		
+      	$('.delbutton').prop("disabled", true);
+      	$('.delete_confirm').on("keyup", action);
+      	
+      	function action() {
+			  if($('.delete_confirm').val()== "삭제한다") {
+			        $('.delbutton').prop("disabled", false);
+			     }
+			  else{
+				  $('.delbutton').prop("disabled", true);
+			  }
+      	}
+      	
+      });
+      
+    	  
+	  $(".delclose").on('click', function(){
+		  $('.delete_confirm').val("")
+		  
+	  });
+	
+	
+  
   });
-</script>
+</script>    
+
+
 </body>
 </html>

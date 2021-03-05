@@ -6,6 +6,6 @@ import main.java.vo.FestivalVO;
 
 public interface FestivalDAO {
 
-	public List<FestivalVO> test();
+	public List<FestivalVO> selectAll();
 	
 }

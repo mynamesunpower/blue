@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,13 +129,13 @@
 
   <!-- 좌측 메인 사이드바 -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <!-- 사이드바 헤더 -->
+    <a href="admin_index.jsp" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">축축빵빵</span>
     </a>
 
-    <!-- Sidebar -->
+    <!-- 사이드바 -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -141,7 +143,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자1</a>
+          <a href="#" class="d-block">${sessionScope.adminName}</a>
         </div>
       </div>
 
@@ -162,7 +164,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- 대시보드 -->
           <li class="nav-item">
-            <a href="../admin_index.html" class="nav-link active">
+            <a href="admin_index.jsp" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 대시보드
@@ -182,13 +184,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_member.html" class="nav-link">
+                <a href="admin_member.do" class="nav-link">
                   <i class="far fa-user-circle nav-icon"></i>
                   <p>일반 회원 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate.html" class="nav-link">
+                <a href="admin_mate.do" class="nav-link">
                   <i class="far fa-handshake nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>
@@ -207,19 +209,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival.html" class="nav-link">
+                <a href="admin_festival.do" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>축제 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment.html" class="nav-link">
+                <a href="admin_lodgment.do" class="nav-link">
                   <i class="far  nav-icon"></i>
                   <p>숙박 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant.html" class="nav-link">
+                <a href="admin_restaurant.do" class="nav-link">
                   <i class="far fa-coffee nav-icon"></i>
                   <p>식당 정보 관리</p>
                 </a>
@@ -238,13 +240,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_course.html" class="nav-link">
+                <a href="admin_course.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_course_statistic.html" class="nav-link">
+                <a href="admin_course_statistic.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 통계</p>
                 </a>
@@ -263,25 +265,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival_review.html" class="nav-link">
+                <a href="admin_festival_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant_review.html" class="nav-link">
+                <a href="admin_restaurant_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>식당 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment_review.html" class="nav-link">
+                <a href="admin_lodgment_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>숙박 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate_review.html" class="nav-link">
+                <a href="admin_mate_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 리뷰 관리</p>
                 </a>
@@ -300,19 +302,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./admin_customer_question.html" class="nav-link">
+                <a href="admin_customer_question.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 문의 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_customer_chat.html" class="nav-link">
+                <a href="admin_customer_chat.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 1:1 채팅</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lost.html" class="nav-link">
+                <a href="admin_lost.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>분실물 관리</p>
                 </a>
@@ -365,12 +367,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>숙박 리뷰 관리</h1>
+            <h1>축제 리뷰 관리</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../admin_index.html">Home</a></li>
-              <li class="breadcrumb-item active">숙박 리뷰 관리</li>
+              <li class="breadcrumb-item active">축제 리뷰 관리</li>
             </ol>
           </div>
         </div>
@@ -387,7 +389,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                     <a class="btn btn-success"
-                       data-toggle="modal" data-target="#insert_lodgment_review"
+                       data-toggle="modal" data-target="#insert_festival_review"
                        >새 리뷰 추가</a>
                 </h3>
               </div>
@@ -396,8 +398,7 @@
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>숙박업소명</th>
-                    <th>주소</th>
+                    <th>축제명</th>
                     <th>아이디</th>
                     <th>평점</th>
                     <th>내용</th>
@@ -406,20 +407,18 @@
                   </thead>
                   <tbody>
                       <tr class="row_editable">
-                        <td>따스한호텔</td>
-                        <td>서울시 용산구 차가운로 27</td>
+                        <td>망둥어 잡기 대축제</td>
                         <td>reviewtest1</td>
-                        <td>3</td>  
-                        <td>침대가 너무 딱딱해서 허리가 부러지는 줄 알았어요~!</td>
+                        <td>4</td>
+                        <td>시간 가는 줄 모르고 놀았어요.. 잘 놀다 갑니다..^^</td>
                         <td class="text-center">
-                          <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_lodgment_review">수정</a>    
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_lodgment_review">삭제</a></td>
+                          <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_festival_review">수정</a>    
+                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_festival_review">삭제</a></td>
                       </tr>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>숙박업소명</th>
-                    <th>주소</th>
+                    <th>축제명</th>
                     <th>아이디</th>
                     <th>평점</th>
                     <th>내용</th>
@@ -461,11 +460,11 @@
 <!-- ./wrapper -->
     
     <!-- 추가하기 -->
-	<div class="modal fade" id="insert_lodgment_review" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
+	<div class="modal fade" id="insert_festival_review" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">숙박 리뷰 추가</h4>
+					<h4 class="modal-title" id="myReviewLabel">축제 리뷰 추가</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
@@ -473,7 +472,7 @@
 					</div>
                     
                     <!-- 추가 form <action값 확인 필수> -->
-					<form method="post" action="#" name="insert_lodgment_review_form" id="insert_lodgment_review_form">
+					<form method="post" action="#" name="insert_festival_review_form" id="insert_festival_review_form">
                         
                         <!-- mongoDB 고유 아이디 (필요없나?) -->
                         <input type="hidden" value="unique_id">
@@ -482,8 +481,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_name" id="lodgment_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소명">
+									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
+                                    value="축제명">
 								</div>
 							</div>
 						</div>
@@ -491,16 +490,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_address" id="lodgment_address" type="text" placeholder="주소" class="form-control"
-                                    value="숙박업소 주소">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_review_id" id="lodgment_review_id" type="text" placeholder="아이디" class="form-control"
+									<input name="festival_review_id" id="festival_review_id" type="text" placeholder="주최" class="form-control"
                                     value="아이디">
 								</div>
 							</div>
@@ -509,7 +499,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_review_score" id="lodgment_review_score" type="text" placeholder="평점" class="form-control"
+									<input name="festival_review_score" id="festival_review_score" type="text" placeholder="평점" class="form-control"
                                     value="평점">
 								</div>
 							</div>
@@ -518,15 +508,15 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_review_detail" id="lodgment_review_detail" type="text" placeholder="내용" class="form-control"
-                                    value="따뜻했어요">
+									<input name="festival_review_detail" id="festival_review_detail" type="text" placeholder="내용" class="form-control"
+                                    value="즐거워요">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
                         
 						<hr>
-						<input type="submit" value="추가하기" class="btn btn-success" id="submit-lodgment-review-insert">
+						<input type="submit" value="추가하기" class="btn btn-success" id="submit-festival-review-insert">
 					</form> <!-- 추가 form 끝 -->
 				</div>
 			</div>
@@ -535,7 +525,7 @@
 	<!-- 추가하기 끝 -->
     
     <!-- 수정하기 -->
-	<div class="modal fade" id="modify_lodgment_review" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
+	<div class="modal fade" id="modify_festival_review" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -547,17 +537,16 @@
 					</div>
                     
                     <!-- 수정 form -->
-					<form method="post" action="#" name="modify_lodgment_review_form" id="modify_lodgment_review_form">
-                        
-                        <!-- mongoDB 고유 아이디 (필요없나?) -->
+					<form method="post" action="#" name="modify_festival_review_form" id="modify_festival_review_form">
+                         <!-- mongoDB 고유 아이디 (필요없나?) -->
                         <input type="hidden" value="unique_id">
                         
                         
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_name" id="lodgment_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소명" disabled>
+									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
+                                    value="축제명" disabled>
 								</div>
 							</div>
 						</div>
@@ -565,8 +554,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_address" id="lodgment_address" type="text" placeholder="주소" class="form-control"
-                                    value="숙박업소 주소" disabled>
+									<input name="festival_review_id" id="festival_review_id" type="text" placeholder="아이디" class="form-control"
+                                    value="아이디" disabled>
 								</div>
 							</div>
 						</div>
@@ -574,16 +563,7 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_review_id" id="lodgment_review_id" type="text" placeholder="아이디" class="form-control"
-                                    value="아이디">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_review_score" id="lodgment_review_score" type="text" placeholder="평점" class="form-control"
+									<input name="festival_review_score" id="festival_review_score" type="text" placeholder="평점" class="form-control"
                                     value="평점">
 								</div>
 							</div>
@@ -592,15 +572,14 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_review_detail" id="lodgment_review_detail" type="text" placeholder="내용" class="form-control"
-                                    value="따뜻했어요">
+									<input name="festival_review_detail" id="festival_review_detail" type="text" placeholder="내용" class="form-control"
+                                    value="즐거워요">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
-                        
 						<hr>
-						<input type="submit" value="추가하기" class="btn btn-success" id="submit-lodgment-review-modify">
+						<input type="submit" value="수정하기" class="btn btn-success" id="submit-festival-review-modify">
 					</form> <!-- 수정 form 끝 -->
 				</div>
 			</div>
@@ -609,11 +588,11 @@
 	<!-- 수정하기 끝 -->
     
     <!-- 삭제하기 -->
-	<div class="modal fade" id="delete_lodgment_review" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
+	<div class="modal fade" id="delete_festival_review" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">숙박 리뷰 삭제</h4>
+					<h4 class="modal-title" id="myReviewLabel">축제 정보 삭제</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
@@ -621,7 +600,7 @@
 					</div>
                     
                     <!-- 삭제 form <action 확인 필수!> -->
-					<form method="post" action="#" name="delete_lodgment_review_form" id="delete_lodgment_review_form">
+					<form method="post" action="#" name="delete_festival_review_form" id="delete_festival_review_form">
                         
                         <!-- mongoDB 축제 고유 id -->
                         <input type="hidden" value="unique_id">
@@ -629,11 +608,11 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-                                    다음 숙박 리뷰가 삭제됩니다. <br/>
-									<input name="lodgment_name" id="lodgment_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소명" disabled>
-                                    <input name="lodgment_review_detail" id="lodgment_review_detail" type="text" placeholder="내용" class="form-control"
-                                    value="따뜻했어요" disabled>
+                                    다음 축제 리뷰가 삭제됩니다. <br/>
+									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
+                                    value="축제 이름" disabled>
+                                    <input name="festival_review_detail" id="festival_review_detail" type="text" placeholder="내용" class="form-control"
+                                    value="즐거워요" disabled>
 								</div>
 							</div>
 						</div>
@@ -649,7 +628,7 @@
 						</div>
 						<!-- End row -->
                         
-						<input type="submit" value="삭제" class="btn btn-danger" id="submit-lodgment-review-delete">
+						<input type="submit" value="삭제" class="btn btn-danger" id="submit-festival-review-delete">
 					</form> <!-- 삭제 form 끝 -->
 				</div>
 			</div>

@@ -191,9 +191,18 @@ public class MemberController {
 		System.out.println(passwordMatch);
 
 		if (!passwordMatch) {
+			
 			message = "0";
+			
 		}
 		else {
+			
+			if (result.getId().contains("admin")){
+				System.out.println("관리자 접근");
+				session.setAttribute("adminName", result.getName());
+				return "admin";
+			}
+			
 			session.removeAttribute("memberId");
 			session.setAttribute("memberId", result.getId());
 		}
@@ -211,11 +220,4 @@ public class MemberController {
 		return "redirect:main.jsp";
 	}
 
-
-
-	@RequestMapping("mainAfterLogin.do")
-	public String mainAfterLogin() {
-		System.out.println("mainAfterLogin.do 요청");
-		return "member/mainAfterLogin";
-	}
 }

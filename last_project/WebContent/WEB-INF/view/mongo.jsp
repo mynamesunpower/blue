@@ -33,9 +33,9 @@
 			리뷰 점수 : ${ review.review_score } <br>
 			리뷰 내용 : ${ review.review_content } <br>
 			</c:forEach>
-			<%-- <c:forEach items="${test.image}" var="image">
+			<c:forEach items="${test.image}" var="image">
 			이미지 : ${image} <br>
-			</c:forEach> --%>
+			</c:forEach>
 			<br>
 		</div>
 	</c:forEach>

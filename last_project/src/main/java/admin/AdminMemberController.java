@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import main.java.service.MariaServiceImpl;
 import main.java.service.MemberServiceImpl;
 import main.java.vo.MariaVO;
 import main.java.vo.MemberVO;

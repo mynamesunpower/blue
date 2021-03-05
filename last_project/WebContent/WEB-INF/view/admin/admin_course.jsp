@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>축축빵빵 | 일반 회원 관리</title>
+  <title>축축빵빵 | 코스 정보 관리</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -16,9 +18,10 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
+    
+    
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-  <!-- Navbar -->
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -27,7 +30,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../admin_index.html" class="nav-link">축축빵빵 Main</a>
+        <a href="../index.html" class="nav-link">축축빵빵 Main</a>
       </li>
     </ul>
 
@@ -122,16 +125,17 @@
       </li> <!-- 풀 스크린 끝 -->
     </ul>
   </nav> <!-- 상단 navbar 끝 -->
+  
 
-  <!-- Main Sidebar Container -->
+  <!-- 좌측 메인 사이드바 -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../admin_index.html" class="brand-link">
+    <!-- 사이드바 헤더 -->
+    <a href="admin_index.jsp" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">축축빵빵</span>
     </a>
 
-    <!-- Sidebar -->
+    <!-- 사이드바 -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -139,7 +143,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자1</a>
+          <a href="#" class="d-block">${sessionScope.adminName}</a>
         </div>
       </div>
 
@@ -160,7 +164,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- 대시보드 -->
           <li class="nav-item">
-            <a href="../admin_index.html" class="nav-link active">
+            <a href="admin_index.jsp" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 대시보드
@@ -180,13 +184,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_member.html" class="nav-link">
+                <a href="admin_member.do" class="nav-link">
                   <i class="far fa-user-circle nav-icon"></i>
                   <p>일반 회원 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate.html" class="nav-link">
+                <a href="admin_mate.do" class="nav-link">
                   <i class="far fa-handshake nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>
@@ -205,19 +209,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival.html" class="nav-link">
+                <a href="admin_festival.do" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>축제 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment.html" class="nav-link">
+                <a href="admin_lodgment.do" class="nav-link">
                   <i class="far  nav-icon"></i>
                   <p>숙박 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant.html" class="nav-link">
+                <a href="admin_restaurant.do" class="nav-link">
                   <i class="far fa-coffee nav-icon"></i>
                   <p>식당 정보 관리</p>
                 </a>
@@ -236,13 +240,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_course.html" class="nav-link">
+                <a href="admin_course.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_course_statistic.html" class="nav-link">
+                <a href="admin_course_statistic.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 통계</p>
                 </a>
@@ -261,25 +265,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival_review.html" class="nav-link">
+                <a href="admin_festival_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant_review.html" class="nav-link">
+                <a href="admin_restaurant_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>식당 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment_review.html" class="nav-link">
+                <a href="admin_lodgment_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>숙박 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate_review.html" class="nav-link">
+                <a href="admin_mate_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 리뷰 관리</p>
                 </a>
@@ -298,19 +302,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./admin_customer_question.html" class="nav-link">
+                <a href="admin_customer_question.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 문의 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_customer_chat.html" class="nav-link">
+                <a href="admin_customer_chat.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 1:1 채팅</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lost.html" class="nav-link">
+                <a href="admin_lost.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>분실물 관리</p>
                 </a>
@@ -353,28 +357,29 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-  </aside>
+  </aside> <!-- 좌측 메인 사이드바 끝 -->
 
-  <!-- Content Wrapper. Contains page content -->
+  <!-- 페이지 콘텐츠 -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+      
+    <!-- 페이지 헤더 -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>일반 회원 관리</h1>
+            <h1>코스 관리</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../admin_index.html">Home</a></li>
-              <li class="breadcrumb-item active">일반 회원 관리</li>
+              <li class="breadcrumb-item active">코스 관리</li>
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+      </div>
+    </section> <!-- 페이지 헤더 끝 -->
 
-    <!-- Main content -->
+    <!-- 페이지 메인 콘텐츠 -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -384,9 +389,9 @@
               <div class="card-header">
                 <h3 class="card-title">
                     <a class="btn btn-success"
-                       data-toggle="modal" data-target="#insert_member"
-                       >새 회원 추가</a>
-                    <a id="insert_dummy_member" class="btn btn-success">더미 회원 추가</a>
+                       data-toggle="modal" data-target="#insert_course"
+                       >뭐할지</a>
+                    <a id="insert_dummy_course" class="btn btn-success">고민중</a>  
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -395,36 +400,28 @@
                   <thead>
                   <tr>
                     <th>아이디</th>
-                    <th>이름</th>
-                    <th>생년월일</th>
-                    <th>전화번호</th>
-                    <th>주소</th>
-                    <th>이메일</th>
+                    <th>코스정보</th>
+                    <th>좋아요</th>
                     <th>관리</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>daisysdfl</td>
-                    <td>데이지
-                    </td>
-                    <td>1996.01.02</td>
-                    <td>010-4439-8891</td>
-                    <td>서울시 맛있구</td>
-                    <td>daisyl@naver.com</td>
-                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#info_modify">수정</a>
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
-                  </tr>    
+                      <tr class="row_editable">
+                        <td>coursetest1</td>
+                        <td>코스1: 응암폭포 축제<br>
+                          코스2: 망둥어 축제<br>코스3: 별빛축제</td>
+                        <td>211</td>
+                        <td class="text-center">
+                          <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_course">수정</a>    
+                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_course">삭제</a></td>
+                      </tr>
                   </tbody>
                   <tfoot>
                   <tr>
                     <th>아이디</th>
-                    <th>이름</th>
-                    <th>생년월일</th>
-                    <th>전화번호</th>
-                    <th>주소</th>
-                    <th>이메일</th>
-                    <th>관리</th>  
+                    <th>코스정보</th>
+                    <th>좋아요</th>
+                    <th>관리</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -441,14 +438,17 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- 페이지 메인 콘텐츠 끝 -->
+    
+  <!-- 푸터 -->    
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="festival.html">축축빵빵</a>. </strong>All rights reserved.
+    <strong>Copyright &copy; 2021 <a href="../festival.html">축축빵빵</a>. </strong>All rights reserved.
     
     <div class="float-right d-none d-sm-inline-block">
       <b>밥은 먹으면서 합시다!</b> 행복해져야죠
     </div>
   </footer>
+  <!-- 푸터 끝 -->    
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -457,204 +457,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-    
-    <!-- 추가하기 -->
-	<div class="modal fade" id="insert_member" tabindex="-1" role="dialog" aria-labelledby="info_insertLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="info_insertLabel">일반 회원 추가</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div id="message-review">
-					</div>
-					<form method="post" action="#" name="festival_modify" id="festival_modify">
-                        <input type="hidden" value="unique_id">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_id" id="member_id" type="text" placeholder="아이디" class="form-control"
-                                    value="아이디">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_name" id="member_name" type="text" placeholder="이름" class="form-control"
-                                    value="이름">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_birthday" id="member_birthday" type="text" placeholder="생일" class="form-control"
-                                    value="생일">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_tel" id="member_tel" type="text" placeholder="전화번호" class="form-control"
-                                    value="전화번호">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_address" id="member_address" type="text" placeholder="주소" class="form-control"
-                                    value="주소">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_email" id="member_email" type="text" placeholder="이메일" class="form-control"
-                                    value="이메일">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<hr>
-						<input type="submit" value="추가하기" class="btn btn-success" id="submit-member-insert">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 추가하기 끝 -->
-    
-    
-    <!-- 수정하기 -->
-<div class="modal fade" id="info_modify" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="info_modifyLabel">일반 회원 수정</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div id="message-review">
-					</div>
-					<form method="post" action="#" name="festival_modify" id="festival_modify">
-                        <input type="hidden" value="unique_id">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_id" id="member_id" type="text" placeholder="아이디" class="form-control"
-                                    value="아이디">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_name" id="member_name" type="text" placeholder="이름" class="form-control"
-                                    value="이름">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_birthday" id="member_birthday" type="text" placeholder="생일" class="form-control"
-                                    value="생일">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_tel" id="member_tel" type="text" placeholder="전화번호" class="form-control"
-                                    value="전화번호">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_address" id="member_address" type="text" placeholder="주소" class="form-control"
-                                    value="주소">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="member_email" id="member_email" type="text" placeholder="이메일" class="form-control"
-                                    value="이메일">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<hr>
-						<input type="submit" value="수정하기" class="btn btn-success" id="submit-member-modify">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 수정하기 끝 -->
-    
-    <!-- 삭제하기 -->
-	<div class="modal fade" id="info_delete" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">회원 정보 삭제</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div id="message-review">
-					</div>
-					<form method="post" action="#" name="festival_modify" id="festival_modify">
-                        
-                        <!-- mariaDB 회원 id -->
-                        <input type="hidden" value="unique_id">
-                        
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-                                    다음 회원 데이터가 삭제됩니다. <br/>
-									<input name="festival_id" id="festival_id" type="text" placeholder="아이디" class="form-control"
-                                    value="회원 아이디">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<hr>
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-                                    삭제를 진행하기 위해서 <strong>삭제한다 </strong>를 입력해주세요
-									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        
-						<input type="submit" value="삭제하기" class="btn btn-danger" id="submit-festival-modify">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 삭제하기 끝 -->     
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -707,6 +509,7 @@
       "autoWidth": false,
       "responsive": true,
     });
+    
   });
 </script>
 </body>

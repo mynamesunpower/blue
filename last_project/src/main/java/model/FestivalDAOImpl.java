@@ -18,9 +18,9 @@ public class FestivalDAOImpl implements FestivalDAO {
 	private final String restaurant = "restaurant"; // Collection_name
 	
 	@Override
-	public List<FestivalVO> test() {
-		System.out.println("DAO 접근");
-
+	public List<FestivalVO> selectAll() {
+		System.out.println("축제 DAO 접근");
+		
 		//Query query = new Query(Criteria.where(key));
 		//query.addCriteria(Criteria.where("text").regex("Joe"));
 		

@@ -15,10 +15,10 @@ public class FestivalServiceImpl implements FestivalService {
 	private FestivalDAO festivalDao;
 	
 	@Override
-	public List<FestivalVO> test() {
+	public List<FestivalVO> selectAll() {
 		// TODO Auto-generated method stub
 		System.out.println("Service 접근");
-		return festivalDao.test();
+		return festivalDao.selectAll();
 	}
 	
 }

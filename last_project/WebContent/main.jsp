@@ -838,6 +838,9 @@
 	        			else if(result==1){
 	        				location.replace('main.jsp')
 	        			}
+	        			else {
+	        				location.replace('admin_index.jsp')
+	        			}
 	        		},
 	        		error : function(err){console.log("에러요" + err)}
 	        	});

@@ -23,19 +23,31 @@ private final String namespace = "mateMapper.";
 		
 		System.out.println(vo.getNickname() + "님 mateDAO INSERT");
 		
-		return sqlSession.insert(namespace + "insert", vo);
+		return sqlSession.insert(namespace + "mateInsert", vo);
 	}
 
 	@Override
 	public List<MateVO> mateSelectAll() {
 		
-		return sqlSession.selectList(namespace + "selectAll");
+		return sqlSession.selectList(namespace + "mateSelectAll");
 	}
 
 	@Override
 	public int mateIdCheck(MateVO vo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "idCheck", vo).size();
+	}
+
+	@Override
+	public int mateUpdate(MateVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "mateUpdate", vo);
+	}
+
+	@Override
+	public int mateDelete(MateVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "mateDelete", vo);
 	}
 	
 	

@@ -13,4 +13,8 @@ public interface MateService {
 	
 	public int mateIdCheck(MateVO vo);
 	
+	public int mateUpdate(MateVO vo);
+	
+	public int mateDelete(MateVO vo);
+	
 }

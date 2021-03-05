@@ -13,6 +13,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+last_project/target/
+Servers/
 
 # External tool builders
 .externalToolBuilders/
@@ -56,4 +58,4 @@ local.properties
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
 *.class
-*.class
+last_project/.classpath

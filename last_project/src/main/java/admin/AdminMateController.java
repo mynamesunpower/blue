@@ -2,6 +2,7 @@ package main.java.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,19 +47,56 @@ public class AdminMateController {
 	}
 	
 	
+	// 메이트 가입하기
 	@RequestMapping(value = "admin/mateRegister.do")
-	public String mateRegister(MateVO vo, HttpSession session) {
+	public String mateRegister(MateVO vo) {
 		
-		System.out.println("--- 메이트 가입 요청 ---");
-		System.out.println(vo.getId() + " | " + vo.getGender() + " | " + vo.getNickname());
+		System.out.println("관리자 --->[" + vo.getId() +"] 메이트 가입 요청");
 		
 		mateService.mateInsert(vo);
 		
 		return "admin/admin_mate";
-		// 메이트가입
-		//int result = adminMateService.memberInsert(vo);
-		//memberLogin(vo, session);
-		//return Integer.toString(result);
+	}
+	
+	
+	@RequestMapping(value="admin/mateUpdate.do")
+	public String mateUpdate(MateVO vo, Model model) {
+		
+		System.out.println("관리자 --->[" + vo.getId() +"] 메이트 수정 요청");
+		
+		//관리자 페이지에서 메이트 정보 수정
+		int result = mateService.mateUpdate(vo);
+		
+		//관리자 페이지에서 회원테이블 생성
+		List<MateVO> list = mateService.mateSelectAll();
+		
+		// 뷰에 실어보낸다
+		model.addAttribute("memberlist", list);
+		
+		return "admin/admin_mate";
+	}
+	
+	
+	// 삭제 작업
+	@RequestMapping(value="admin/mateDelete.do")
+	public String mateDelete(MateVO vo, Model model, HttpServletRequest request) {
+				
+		System.out.println("관리자 --->[" + vo.getId() +"] 메이트 삭제 요청");
+		
+		//delete_confirm
+		//관리자 페이지에서 일반 회원 정보 수정
+		String del_check = request.getParameter("delete_confirm");
+		
+		System.out.println("삭제하기");
+	
+		int result = mateService.mateDelete(vo);
+		
+		//관리자 페이지에서 회원테이블 생성
+		List<MateVO> list = mateService.mateSelectAll();
+			
+		model.addAttribute("memberlist", list);
+			
+		return "admin/admin_mate";
 	}
 	
 }

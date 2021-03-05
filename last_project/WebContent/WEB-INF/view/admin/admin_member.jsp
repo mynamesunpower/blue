@@ -144,7 +144,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자1</a>
+          <a href="#" class="d-block">${sessionScope.adminName}</a>
         </div>
       </div>
 
@@ -583,7 +583,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<input name="id" type="text" placeholder="아이디" class="form-control member_id"
-                                    value=>
+                                    disabled>
 								</div>
 							</div>
 						</div>
@@ -725,7 +725,7 @@
 								<div class="form-group">
                                     다음 회원 데이터가 삭제됩니다. <br/>
 									<input name="id" id="festival_id" type="text" placeholder="아이디" class="form-control delid"
-                                    >
+                                    disabled>
 								</div>
 							</div>
 						</div>

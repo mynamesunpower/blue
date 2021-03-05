@@ -6,5 +6,5 @@ import main.java.vo.FestivalVO;
 
 public interface FestivalService {
 
-	public List<FestivalVO> test();
+	public List<FestivalVO> selectAll();
 }

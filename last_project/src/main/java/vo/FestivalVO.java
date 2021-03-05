@@ -21,7 +21,7 @@ public class FestivalVO {
 	private String fee;
 	private String tel;
 	private String homepage;
-	//private ArrayList<Binary> image;
+	private ArrayList<Binary> image;
 	private ArrayList<HashMap<String, String>> review;
 	
 	
@@ -79,12 +79,12 @@ public class FestivalVO {
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
 	}
-//	public ArrayList<Binary> getImage() {
-//		return image;
-//	}
-//	public void setImage(ArrayList<Binary> image) {
-//		this.image = image;
-//	}
+	public ArrayList<Binary> getImage() {
+		return image;
+	}
+	public void setImage(ArrayList<Binary> image) {
+		this.image = image;
+	}
 	public ArrayList<HashMap<String, String>> getReview() {
 		return review;
 	}

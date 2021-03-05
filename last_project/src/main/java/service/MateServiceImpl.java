@@ -32,6 +32,20 @@ public class MateServiceImpl implements MateService {
 		// TODO Auto-generated method stub
 		return mateDao.mateIdCheck(vo);
 	}
+
+	@Override
+	public int mateUpdate(MateVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int mateDelete(MateVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
 	
 	
 	

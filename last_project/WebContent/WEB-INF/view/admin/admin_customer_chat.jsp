@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>축축빵빵 | 숙박 정보 관리</title>
+  <title>축축빵빵 | 고객 1:1 채팅</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -127,13 +129,13 @@
 
   <!-- 좌측 메인 사이드바 -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <!-- 사이드바 헤더 -->
+    <a href="admin_index.jsp" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">축축빵빵</span>
     </a>
 
-    <!-- Sidebar -->
+    <!-- 사이드바 -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -141,7 +143,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자1</a>
+          <a href="#" class="d-block">${sessionScope.adminName}</a>
         </div>
       </div>
 
@@ -162,7 +164,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- 대시보드 -->
           <li class="nav-item">
-            <a href="../admin_index.html" class="nav-link active">
+            <a href="admin_index.jsp" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 대시보드
@@ -182,13 +184,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_member.html" class="nav-link">
+                <a href="admin_member.do" class="nav-link">
                   <i class="far fa-user-circle nav-icon"></i>
                   <p>일반 회원 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate.html" class="nav-link">
+                <a href="admin_mate.do" class="nav-link">
                   <i class="far fa-handshake nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>
@@ -207,19 +209,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival.html" class="nav-link">
+                <a href="admin_festival.do" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>축제 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment.html" class="nav-link">
+                <a href="admin_lodgment.do" class="nav-link">
                   <i class="far  nav-icon"></i>
                   <p>숙박 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant.html" class="nav-link">
+                <a href="admin_restaurant.do" class="nav-link">
                   <i class="far fa-coffee nav-icon"></i>
                   <p>식당 정보 관리</p>
                 </a>
@@ -238,13 +240,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_course.html" class="nav-link">
+                <a href="admin_course.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_course_statistic.html" class="nav-link">
+                <a href="admin_course_statistic.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 통계</p>
                 </a>
@@ -263,25 +265,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin_festival_review.html" class="nav-link">
+                <a href="admin_festival_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_restaurant_review.html" class="nav-link">
+                <a href="admin_restaurant_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>식당 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lodgment_review.html" class="nav-link">
+                <a href="admin_lodgment_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>숙박 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_mate_review.html" class="nav-link">
+                <a href="admin_mate_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 리뷰 관리</p>
                 </a>
@@ -300,19 +302,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./admin_customer_question.html" class="nav-link">
+                <a href="admin_customer_question.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 문의 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_customer_chat.html" class="nav-link">
+                <a href="admin_customer_chat.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 1:1 채팅</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin_lost.html" class="nav-link">
+                <a href="admin_lost.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>분실물 관리</p>
                 </a>
@@ -365,12 +367,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>숙박 정보 관리</h1>
+            <h1>고객 채팅</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../admin_index.html">Home</a></li>
-              <li class="breadcrumb-item active">숙박 정보 관리</li>
+              <li class="breadcrumb-item active">고객 채팅</li>
             </ol>
           </div>
         </div>
@@ -386,10 +388,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                    <a class="btn btn-success"
-                       data-toggle="modal" data-target="#insert_lodgment"
-                       >새 숙박 추가</a>
-                    <a id="insert_dummy_lodgment" class="btn btn-success">더미 숙박 추가</a>  
+                    관리자와 채팅 문의를 원하는 고객이 ___ 명 있습니다.
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -397,36 +396,27 @@
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>이름</th>
-                    <th>주소</th>
-                    <th>전화번호</th>
-                    <th>홈페이지</th>
-                    <th>입실시간</th>
-                    <th>퇴실시간</th>
+                    <th>채팅 대기 시작</th>
+                    <th>현재 대기 시간</th>
+                    <th>아이디</th>  
                     <th>관리</th>
                   </tr>
                   </thead>
                   <tbody>
                       <tr class="row_editable">
-                        <td>좋은호텔</td>
-                        <td>서울시 숙박구 호텔로 334</td>
-                        <td>02-3339-3391</td>
-                          <td><a href='#'>http://good.hotel</a></td>
-                        <td>12:00</td>
-                        <td>19:00</td>
+                        <td>2021. 2. 26 12:11</td>
+                        <td>7분 32초</td>  
+                        <td>angry_customer</td>
                         <td class="text-center">
-                          <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_lodgment">수정</a>    
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_lodgment">삭제</a></td>
+                          <a href="#" class="btn btn-light btn-xs" data-toggle="modal" data-target="#chat_customer">채팅하기</a>    
+                          <a href="#" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#send_customer">메시지 보내기</a></td>
                       </tr>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>이름</th>
-                    <th>주소</th>
-                    <th>전화번호</th>
-                    <th>홈페이지</th>
-                    <th>입실시간</th>
-                    <th>퇴실시간</th>
+                    <th>채팅 대기 시작</th>
+                    <th>현재 대기 시간</th>
+                    <th>아이디</th>  
                     <th>관리</th>
                   </tr>
                   </tfoot>
@@ -464,216 +454,27 @@
 </div>
 <!-- ./wrapper -->
     
-    <!-- 추가하기 -->
-	<div class="modal fade" id="insert_lodgment" tabindex="-1" role="dialog" aria-labelledby="info_insertLabel" aria-hidden="true">
+    <!-- 채팅하기 -->
+	<div class="modal fade" id="chat_customer" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="info_insertLabel">숙박 정보 추가</h4>
+					<h4 class="modal-title" id="myReviewLabel">채팅</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-                    
-                    <!-- 추가 form <action값 확인 필수> -->
-					<form method="post" action="#" name="insert_lodgment_form" id="insert_lodgment_form">
-                        
-                        <!-- mongoDB 고유 아이디 (필요없나?) -->
-                        <input type="hidden" value="unique_id">
-                        
-                        
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_name" id="lodgment_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소 이름">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_address" id="lodgment_address" type="text" placeholder="주소" class="form-control"
-                                    value="숙박업소 주소">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_tel" id="lodgment_tel" type="text" placeholder="숙박업소 전화번호" class="form-control"
-                                    value="숙박업소 전화번호">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_website" id="lodgment_website" type="text" placeholder="홈페이지" class="form-control"
-                                    value="홈페이지">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_intime" id="lodgment_intime" type="text" placeholder="입실시간" class="form-control"
-                                    value="입실시간">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_outtime" id="lodgment_outtime" type="text" placeholder="퇴실시간" class="form-control"
-                                    value="퇴실시간">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<hr>
-						<input type="submit" value="추가하기" class="btn btn-success" id="submit-lodgment-insert">
-					</form> <!-- 추가 form 끝 -->
+                   뭐가 들어갈진 모르겠습니다 
+                   
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 추가하기 끝 -->
+	<!-- 채팅하기 끝 -->
     
-    <!-- 수정하기 -->
-	<div class="modal fade" id="modify_lodgment" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="info_modifyLabel">숙박 정보 수정</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div id="message-review">
-					</div>
-                    
-                    <!-- 수정 form -->
-					<form method="post" action="#" name="insert_lodgment_form" id="modify_lodgment_form">
-                        
-                        <!-- mongoDB 고유 아이디 (필요없나?) -->
-                        <input type="hidden" value="unique_id">
-                        
-                        
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_name" id="lodgment_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소 이름">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_address" id="lodgment_address" type="text" placeholder="주소" class="form-control"
-                                    value="숙박업소 주소">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_tel" id="lodgment_tel" type="text" placeholder="숙박업소 전화번호" class="form-control"
-                                    value="숙박업소 전화번호">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_website" id="lodgment_website" type="text" placeholder="홈페이지" class="form-control"
-                                    value="홈페이지">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_intime" id="lodgment_intime" type="text" placeholder="입실시간" class="form-control"
-                                    value="입실시간">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="lodgment_outtime" id="lodgment_outtime" type="text" placeholder="퇴실시간" class="form-control"
-                                    value="퇴실시간">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<hr>
-						<input type="submit" value="수정하기" class="btn btn-success" id="submit-lodgment-modify">
-					</form> <!-- 수정 form 끝 -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 수정하기 끝 -->
+
     
-    <!-- 삭제하기 -->
-	<div class="modal fade" id="delete_lodgment" tabindex="-1" role="dialog" aria-labelledby="info_deleteLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="info_deleteLabel">숙박 정보 삭제</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div id="message-review">
-					</div>
-                    
-                    <!-- 삭제 form <action 확인 필수!> -->
-					<form method="post" action="#" name="delete_lodgment_form" id="delete_lodgment_form">
-                        
-                        <!-- mongoDB 숙박 고유 id -->
-                        <input type="hidden" value="unique_id">
-                        
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-                                    다음 숙박 데이터가 삭제됩니다. <br/>
-									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소 이름">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<hr>
-                        <div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-                                    삭제를 진행하기 위해서 <strong>삭제한다 </strong>를 입력해주세요
-									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-                        
-						<input type="submit" value="삭제" class="btn btn-danger" id="submit-lodgment-delete">
-					</form> <!-- 삭제 form 끝 -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 삭제하기 끝 --> 
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -702,19 +503,7 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "pdf", "print", "colvis"],
-      "language": {
-          buttons: {
-              copy: '복사',
-              print: '인쇄',
-              colvis: '컬럼 보이기',
-              copyTitle: '복사 성공',
-              copyKeys: '이건 뭐죠',
-              copySuccess: {
-                  _: '%d개 데이터를 클립보드에 복사했습니다.',
-                  1: '1개 데이터를 클립보드에 복사했습니다.'
-              }
-          }
+      
       }    
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

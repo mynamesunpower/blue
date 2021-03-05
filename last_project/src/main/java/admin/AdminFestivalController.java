@@ -1,4 +1,4 @@
-package main.java.controller;
+package main.java.admin;
 
 import java.util.List;
 
@@ -11,20 +11,19 @@ import main.java.service.FestivalService;
 import main.java.vo.FestivalVO;
 
 @Controller
-public class FestivalController {
+public class AdminFestivalController {
 
 	@Autowired
 	private FestivalService festivalService;
 	
-	// admin_festival.do 요청이 들어오면
-	@RequestMapping(value = "/mongo.do")
-	public String test2(Model model) {
+	@RequestMapping(value="admin/admin_festival.do")
+	public String helloAdminFestival(Model model) {
+		System.out.println("관리자 ---> 축제 관리");
 		
 		List<FestivalVO> list = festivalService.selectAll();
-		
 		model.addAttribute("list", list);
 		
-		return "mongo";
+		return "admin/admin_festival";
 	}
 	
 }
