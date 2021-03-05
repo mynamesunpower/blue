@@ -168,23 +168,22 @@ public class MemberController {
 	}
 	
 	// 로그인
-	@RequestMapping(value = "memberLogin.do")
-	@ResponseBody
-	public String memberLogin(MemberVO vo, HttpSession session) {
-		
-		System.out.println(vo.getId() + "/" + vo.getPassword());
-		String inputPassword;
-		
-		if (session.getAttribute("inputPassword") == null) {
-			inputPassword = vo.getPassword();
-		}
-		else {
-			inputPassword = (String) session.getAttribute("inputPassword");
-			session.removeAttribute("inputPassword");
-		}
-		
-		MemberVO result = memberService.memberLogin(vo);
-		if (result.getPassword() != null) {
+		@RequestMapping(value = "memberLogin.do")
+		@ResponseBody
+		public String memberLogin(MemberVO vo, HttpSession session) {
+			
+			System.out.println(vo.getId() + "/" + vo.getPassword());
+			String inputPassword;
+			
+			if (session.getAttribute("inputPassword") == null) {
+				inputPassword = vo.getPassword();
+			}
+			else {
+				inputPassword = (String) session.getAttribute("inputPassword");
+				session.removeAttribute("inputPassword");
+			}
+			
+			MemberVO result = memberService.memberLogin(vo);
 			
 			System.out.println(inputPassword + "/"+ result.getPassword());
 			boolean passwordMatch = passwordEncoder.matches(inputPassword, result.getPassword());
@@ -201,24 +200,6 @@ public class MemberController {
 			
 			return message;
 		}
-		else {
-			
-			return "0";
-		}
-		
-		
-//		return "redirect:index.jsp";
-
-		
-// 왜 안되지		
-//		MemberVO result = memberService.memberLogin(vo);
-//		if(result==null || result.getId()==null) {
-//	         return "0"; 
-//	   }else {
-//	      session.setAttribute("memberId", result.getId());   
-//	         return "1";
-//	      }
-	}
 	
 	
 	@RequestMapping("mainAfterLogin.do")

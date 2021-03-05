@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,7 +139,17 @@
                     <div class="col-6">
                         <ul id="top_links">
                             <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
-                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            <c:choose>
+                            	<c:when test="${sessionScope.memberId eq null}">
+                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            	</c:when>
+                            	<c:when test="${sessionScope.memberId ne null}">
+                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+                            		<li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
+	                            	<li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            		<li><a href="#" class="icon-logout">로그아웃</a></li>
+                            	</c:when>
+                            </c:choose>
                         </ul>
                     </div>
                 </div><!-- End row -->
@@ -191,7 +202,7 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="course_main.jsp">코스 자랑 마당</a></li>
+                                    <li><a href="mongoCourse.do">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <li><a href="course_list.jsp">나의 코스 목록</a></li>
                                 </ul>
@@ -723,7 +734,7 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <input type="submit" value="로그인" class="btn_login">
+                    <input type="button" value="로그인" class="btn_login">
                     <!-- <a type="button" class="btn_login">로그인</a> -->
                 </div>
 				<div class="text-center">
@@ -752,25 +763,41 @@
     <script src="js/functions.js"></script>
     
     <!-- 로그인 -->
-	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.btn_login').on('click', function(){
-				if($.trim($('#loginId').val())==''){
-	        		alert('아이디를 입력해 주세요');
-	        		$('#loginId').focus();
-	        		return;
-	        	}
-	        	if($.trim($('#password').val())==''){
-	        		alert("비밀번호입력해주세요.");
-	        		$('#password').focus();
-	        		return;
-	        	}
-	        	
-	        	$.ajax({
+			$('.btn_login').on('click', login);
+			$('#password').on('keydown', function(evt) {
+				//evt.preventDefault();
+				//evt.stopPropagation();
+				if (evt.KeyCode == 13) {
+					login();
+				}
+			});
+		});
+		
+		function login() {
+			alert('로그인 버튼 클릭')
+			
+			if($.trim($('#loginId').val())==''){
+        		alert('아이디를 입력해 주세요');
+        		$('#loginId').focus();
+        		return;
+        	}
+			
+			if($.trim($('#password').val())==''){
+        		alert("비밀번호입력해주세요.");
+        		$('#password').focus();
+        		return;
+        	}
+			
+			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
+				
+				alert('진입 확인' + $('#loginId').val() + '/' + $('#password').val());
+				
+				$.ajax({
 	        		type : 'post',
 	        		async : true,
-	        		url : "memberLogin.do",
+	        		url : "member/memberLogin.do",
 	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
 	        		data : {
 	        			'id' : $('#loginId').val(),
@@ -778,21 +805,21 @@
 	        		},
 	        		success : function(result){
 	        			console.log(result)
-	        			if(result==0){
+	        			if(result == 0){
+	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
 	        				$("#loginId").val("");
 	        				$("#password").val("");
 	        				
 	        			}
 	        			else if(result==1){
-	        				console.log("성공")
-	        				location.replace("member/mainAfterLogin.do");
-	        				
+	        				location.replace('main.jsp')
 	        			}
 	        		},
 	        		error : function(err){console.log("에러요" + err)}
-	        	});				
-			});
-		});
+	        	});	
+			}
+        		
+		}
 	</script>
 
     <!-- SLIDER REVOLUTION SCRIPTS  -->

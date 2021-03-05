@@ -347,17 +347,18 @@
 									<a href="course_detail.jsp">
 										<img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&amp;id=97d0de07-b3ae-4b03-a04d-69b50ea29d5d" width="800" height="533" class="img-fluid" alt="Image">
 										<div class="short_info">
-											<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>작은</sup>문구</span>
+											<i class="icon_set_1_icon-44"></i>나홀로 코스
 										</div>
 									</a>
 								</div>
 								<div class="tour_title">
-									<h3><strong>광명의 종합문화공간과 식물원에서 꽃구경하기</strong></h3>
+									<h3><strong>코스명</strong></h3>
 									<ul style="list-style: none;">			
-										<li>지역 : 경기 광명시</li>			
-										<li>코스 총거리 : 9.82km</li>		
+										<li>지역 : <span>경기 광명시</span></li>			
+										<li>코스 총거리 : <span>9.82</span>km</li>		
 									</ul>
-									<ul class="course_route">   
+									<h3><strong>코스 경로</strong></h3>
+									<ul class="course_route">
 										<li><span>광명스피돔</span></li>   
 										<li><span>온수공원</span></li>   
 										<li><span>부천식물원</span></li>
@@ -367,7 +368,7 @@
 									</div>
 									<!-- end rating -->
 									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
+										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">내 코스에 담기</span></span></a>
 									</div>
 									<!-- End wish list-->
 								</div>

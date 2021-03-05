@@ -19,10 +19,10 @@ public class CourseVO {
 	private String distnace;   // 코스 총 거리
 	private String schedule;   // 일정
 	private String theme;      // 테마
-	private ArrayList<HashMap<String, ArrayList<Binary>>> coursePath; // 코스 경로
+	private HashMap<String, ArrayList<Binary>> coursePath; // 코스 경로
 	private ArrayList<HashMap<String, String>> review; // 리뷰
-
-	//	private ArrayList<ArrayList<HashMap<String, String>>> content;
+	
+//	private ArrayList<ArrayList<HashMap<String, String>>> content;
 	
 	public ObjectId get_id() {
 		return _id;
@@ -78,10 +78,10 @@ public class CourseVO {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
-	public ArrayList<HashMap<String, ArrayList<Binary>>> getCoursePath() {
+	public HashMap<String, ArrayList<Binary>> getCoursePath() {
 		return coursePath;
 	}
-	public void setCoursePath(ArrayList<HashMap<String, ArrayList<Binary>>> coursePath) {
+	public void setCoursePath(HashMap<String, ArrayList<Binary>> coursePath) {
 		this.coursePath = coursePath;
 	}
 	public ArrayList<HashMap<String, String>> getReview() {
@@ -90,7 +90,5 @@ public class CourseVO {
 	public void setReview(ArrayList<HashMap<String, String>> review) {
 		this.review = review;
 	}
-	
-	
 	
 }
