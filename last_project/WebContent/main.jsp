@@ -155,7 +155,7 @@
               										 <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
               										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
               			               <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-              			               <li><a href="logout.do" class="icon-logout">로그아웃</a></li>
+              			               <li><a href="member/logout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
 
               									<%if(kakaonickname !=null){ %>
@@ -770,14 +770,13 @@
 				</div>
 				<div id="forgot_pw">
 					<div class="form-group">
-						<!-- <label>Please confirm login email below</label> -->
-                        <label>하단에 로그인 이메일을 작성해주세요.</label>
+                        <label>하단에 이메일을 작성해주세요.</label>
 						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
 						<i class="icon_mail_alt"></i>
 					</div>
-					<!-- <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p> -->
+					
                     <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
-					<div class="text-center"><input type="submit" value="비밀번호 재설정" class="btn_1"></div>
+					<div class="text-center"><input type="button" id="findPassBtn" class="btn_1" value="비밀번호 재설정"></div>
 				</div>
 			</div>
 		</form>
@@ -795,6 +794,34 @@
 				//evt.stopPropagation();
 				if (evt.KeyCode == 13) {
 					login();
+				}
+			});
+			
+			$('#findPassBtn').off().on('click', function(evt) {
+				
+				evt.stopPropagation();
+				
+				if ($('#email_forgot').val().length <= 0) {
+					alert('이메일 주소를 입력해 주세요.')
+					return;
+				}
+				else {
+					$.ajax({
+						type: 'post',
+						url: 'member/memberPassFind.do',
+						contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+						data: {'email': $('#email_forgot').val()},
+						success: function(result) {
+							const msg = result.split('/')
+							alert(msg[0])
+							const url = msg[1].split('@')[1]
+							console.log(url)
+							location.replace('https://'+url)
+						},
+						error: function(err) {
+							console.log(err)
+						}
+					})	
 				}
 			});
 		});
@@ -845,7 +872,9 @@
 	        		error : function(err){console.log("에러요" + err)}
 	        	});
 			}
-
+			
+			
+			
 		}
 	</script>
 

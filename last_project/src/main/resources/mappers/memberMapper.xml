@@ -53,7 +53,7 @@
 </select>
 
 
-
+<!-- 회원가입 ID 중복체크 -->
 <select id="idCheck" parameterType="member" resultType="member">
 
      SELECT * 
@@ -62,5 +62,23 @@
      
 </select>
 
+<!-- 회원가입 후 비번 찾기 -->
+<select id="memberPassFind" resultType="member">
+	SELECT *
+	FROM member
+	WHERE email = #{email}
+</select>
+
+<!-- 비번 찾을 때 정보 바꾸기 -->
+<update id="memberUpdate" parameterType="member">
+    UPDATE MEMBER
+    SET password = #{password},
+	    name = #{name},
+	    tel = #{tel},
+	    email = #{email},
+	    address = #{address},
+	    birthday = #{birthday}
+	WHERE id = #{id}
+</update>
 
 </mapper>

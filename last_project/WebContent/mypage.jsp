@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-3">
                     <div id="logo_home">
-                    	<h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
                     </div>
                 </div>
                 <nav class="col-9">
