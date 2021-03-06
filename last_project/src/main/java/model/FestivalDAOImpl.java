@@ -15,7 +15,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	private MongoTemplate mongoTemplate;
 	
 	private final String festival = "festival"; // Collection_name
-	private final String restaurant = "restaurant"; // Collection_name
+	
 	
 	@Override
 	public List<FestivalVO> selectAll() {

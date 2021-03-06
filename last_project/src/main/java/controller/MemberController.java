@@ -294,10 +294,10 @@ public class MemberController {
         member.setPassword(passwordEncoder.encode(password));
         memberService.memberUpdate(member);
 
-        String title = "";
+        String title = "[축축빵빵] " + member.getName() + "님의 비밀번호 재설정 안내";
         String mailTxt = "";
-        mailTxt += "안녕하세요. \n";
-        mailTxt += "Booktrain.ing 입니다. \n";
+        mailTxt += "안녕하세요. 전 국민 페스티벌 플랫폼!\n";
+        mailTxt += "!! 축축빵빵 !! 입니다. \n";
         mailTxt += member.getName() + " 회원님의 비밀번호는 \n";
         mailTxt += password + "로 초기화되었습니다. \n";
         mailTxt += "변경된 비밀번호로 로그인하시고, 새로운 비밀번호로 변경을 부탁드립니다. \n";
