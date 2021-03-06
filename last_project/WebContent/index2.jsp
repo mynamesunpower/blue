@@ -9,7 +9,7 @@
 <body>
 <h4>인덱스쩜제이에스피</h4>
 <a href="hello.do">헬로</a><br>
-<a href="mongo.do">몽고</a><br>
+<a href="mongotest.do">몽고</a><br>
 <a href="maria.do">머리아</a><br>
 <a href="CustomerService/memberChat.do">유저 채팅 입장</a><br>
 <a href="admin/adminChat.do">운영자 채팅 입장</a>

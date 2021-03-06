@@ -7,23 +7,22 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class CourseVO {
-// 코스 DB 컬렉션 구조 3 에 따른 VO	
+	
 	@Id
 	private ObjectId _id;
 	
 	private String writer;     // 코스 작성자 id
 	private String courseName; // 코스명
 	private String district;   // 코스 대표 지역
-	private String mainImage;  // 코스 대표 이미지
+	private String mainImage;  // 코스 대표 이미지      // 일단은 스트링으로..
+	private String summary;    // 코스 설명
 	private ArrayList<String> keyword; // #태그(키워드)
-	private String distnace;   // 코스 총 거리
+	private int distance;   // 코스 총 거리
 	private String schedule;   // 일정
 	private String theme;      // 테마
-	private HashMap<String, ArrayList<Binary>> coursePath; // 코스 경로
+	private ArrayList<HashMap<String, String>> coursePath; // 코스 경로
 	private ArrayList<HashMap<String, String>> review; // 리뷰
-	
-//	private ArrayList<ArrayList<HashMap<String, String>>> content;
-	
+
 	public ObjectId get_id() {
 		return _id;
 	}
@@ -54,17 +53,23 @@ public class CourseVO {
 	public void setMainImage(String mainImage) {
 		this.mainImage = mainImage;
 	}
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 	public ArrayList<String> getKeyword() {
 		return keyword;
 	}
 	public void setKeyword(ArrayList<String> keyword) {
 		this.keyword = keyword;
 	}
-	public String getDistnace() {
-		return distnace;
+	public int getDistance() {
+		return distance;
 	}
-	public void setDistnace(String distnace) {
-		this.distnace = distnace;
+	public void setDistance(int distance) {
+		this.distance = distance;
 	}
 	public String getSchedule() {
 		return schedule;
@@ -78,10 +83,10 @@ public class CourseVO {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
-	public HashMap<String, ArrayList<Binary>> getCoursePath() {
+	public ArrayList<HashMap<String, String>> getCoursePath() {
 		return coursePath;
 	}
-	public void setCoursePath(HashMap<String, ArrayList<Binary>> coursePath) {
+	public void setCoursePath(ArrayList<HashMap<String, String>> coursePath) {
 		this.coursePath = coursePath;
 	}
 	public ArrayList<HashMap<String, String>> getReview() {
@@ -89,6 +94,5 @@ public class CourseVO {
 	}
 	public void setReview(ArrayList<HashMap<String, String>> review) {
 		this.review = review;
-	}
-	
+	}	
 }

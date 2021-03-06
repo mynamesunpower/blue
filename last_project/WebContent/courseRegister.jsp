@@ -296,13 +296,14 @@
 									<h4>코스 테마 <i class="icon_camera_alt"></i></h4>
 									<select id="" class="form-control" name="">
 										<option value="" selected>테마 선택</option>
-										<option value="">가족 코스</option>
-										<option value="">도보 코스</option>
-										<option value="">힐링 코스</option>
-										<option value="">먹보 코스</option>
-										<option value="">캠핑 코스</option>
+										<option value="">가족과 함께</option>
+										<option value="">연인과 함께</option>
+										<option value="">메이트와 함께</option>
 										<option value="">반려동물과 함께</option>
-										<option value="">축제 코스</option>
+										<option value="">오감만족 코스</option>
+										<option value="">눈 정화 코스</option>
+										<option value="">귀 정화 코스</option>
+										<option value="">나홀로 YOLO</option>
 									</select>
 									<hr/>
 								</div>
@@ -311,7 +312,7 @@
 									<h4>코스 일정 <i class="icon-clock-1"></i></h4>
 									<select id="" class="form-control" name="">
 										<option value="" selected>일정 선택</option>
-										<option value="">당일 코스</option>
+										<option value="">당일</option>
 										<option value="">1박 2일</option>
 										<option value="">2박 3일 이상</option>
 									</select>

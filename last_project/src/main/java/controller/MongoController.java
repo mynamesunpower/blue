@@ -19,7 +19,7 @@ public class MongoController {
 	@Autowired
 	private MongoServiceImpl mongoService;
 	
-	@RequestMapping(value = "/mongo.do")
+	@RequestMapping(value = "/mongotest.do")
 	public String test2(Model model) {
 		List<PersonVO> list = mongoService.test();
 		for (PersonVO personVO : list) {

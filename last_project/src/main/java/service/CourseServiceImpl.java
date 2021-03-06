@@ -15,10 +15,17 @@ public class CourseServiceImpl implements CourseService {
 	private CourseDAO courseDao;
 
 	@Override
-	public List<CourseVO> test() {
-		// TODO Auto-generated method stub
-		System.out.println("코스 서비스 접근");
-		return courseDao.test();
+	public List<CourseVO> viewAllcourse() {
+		System.out.println("viewAllcourse 서비스 접근");
+		return courseDao.viewAllcourse();
 	}
+
+	@Override
+	public CourseVO courseSelect(CourseVO vo, String _id) {
+		System.out.println("viewOnecourse 서비스 접근");
+		return courseDao.courseSelect(vo, _id);
+	}
+
+	
 
 }
