@@ -17,6 +17,12 @@ public class CourseDAOImpl implements CourseDAO {
 	private MongoTemplate mongoTemplate;
 	
 	private final String course = "course"; // Collection_name
+	
+	@Override
+	public List<CourseVO> test() {
+		System.out.println("test DAO 접근");
+		return mongoTemplate.findAll(CourseVO.class, course);
+	}
 
 	@Override
 	public List<CourseVO> viewAllcourse() {
@@ -30,4 +36,6 @@ public class CourseDAOImpl implements CourseDAO {
 		Query query = new Query(Criteria.where("_id").is(_id));
 		return mongoTemplate.findOne(query, CourseVO.class, course);
 	}
+
+	
 }

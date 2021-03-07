@@ -13,6 +13,12 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	private CourseDAO courseDao;
+	
+	@Override
+	public List<CourseVO> test() {
+		System.out.println("test 서비스 접근");
+		return courseDao.test();
+	}
 
 	@Override
 	public List<CourseVO> viewAllcourse() {
@@ -25,7 +31,4 @@ public class CourseServiceImpl implements CourseService {
 		System.out.println("viewOnecourse 서비스 접근");
 		return courseDao.courseSelect(vo, _id);
 	}
-
-	
-
 }

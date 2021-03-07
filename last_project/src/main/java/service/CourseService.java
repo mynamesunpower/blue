@@ -6,6 +6,8 @@ import main.java.vo.CourseVO;
 
 public interface CourseService {
 	
+	public List<CourseVO> test();
+	
 	public List<CourseVO> viewAllcourse();
 	
 	public CourseVO courseSelect(CourseVO vo, String _id);

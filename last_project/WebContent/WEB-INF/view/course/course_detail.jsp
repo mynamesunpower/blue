@@ -63,7 +63,7 @@
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
                             		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
                             		<li><a href="#" class="icon-logout">로그아웃</a></li>
                             	</c:when>
                             </c:choose>
@@ -121,7 +121,14 @@
                                 <ul>
                                     <li><a href="course_main.do">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <li><a href="course_list.do">나의 코스 목록</a></li>
+                                    <c:choose>
+                                    	<c:when test="${sessionScope.memberId ne null}">
+                                    		<li><a href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
+                                    	</c:otherwise>
+                                    </c:choose>
                                 </ul>
                             </li>                            
                         </ul>
@@ -250,7 +257,9 @@
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a></p>
 					<!-- Map button for tablets/mobiles -->
 					
+					<!-- 이 부분 빼는 거 고려 -->
 					<div id="Img_carousel" class="slider-pro">
+					여기는 그냥 뺄까봐
 						<c:forEach items="${detail.coursePath}" var="coursePath">	
 							<div class="sp-slides">
 								<div class="sp-slide">
@@ -264,66 +273,59 @@
 						<div class="sp-thumbnails">
 							<img alt="Image" data-rel="1" id="thumbimg1" class="sp-thumbnail" src="../img/slider_single_tour/1_medium.jpg">
 						</div>
-							
 					</div>
 					<hr>
+					<!-- 여기까지 -->
 					<div class="row">
 						<div class="col-lg-12">
 							<h3>코스 설명</h3>
 							<textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="코스에 대한 설명." style="height:100px; margin-bottom: 5%;" disabled>${detail.summary}</textarea>
 						</div>
-					</div>	
-						<div class="col-lg-12">
-							<div class="relation_cos">
-								<!-- tab cont -->
-								<div id="tabCont">
-									<c:forEach items="${detail.coursePath}" var="coursePath">
-										<div class="cos_cont" id="cosTab01">
-											<div class="detail_box">
-												<div class="title">
-													<div class="tit_wrap">
-														<h5><i class="icon-flag-1"></i>${coursePath.title}</h5>
-													</div>
-													<i class="icon-location-7"> ${coursePath.address}</i><br>
-													<i class="icon-road-1"> 내 위치에서 333.3km</i><br>
-													<i class="icon-phone-3"> ${coursePath.tel}</i><br>
-												</div>
-												<div class="col-lg-9">												
-													<div class="row">
-														<div class="col-md-6">
-															<ul class="list_ok">
-																<li>#가족과함께</li>
-																<li>#경륜장</li>
-																<li>#광명스피돔</li>
-																<li>#남녀노소</li>
-																<li>#레포츠</li>
-																<li>#복합레저스포츠</li>																	
-																<li>#생활스포츠</li>	
-															</ul>
-														</div>
-														<div class="col-md-6">
-															<ul class="list_ok">
-																<li>#서울근교여행</li>
-																<li>#스포츠체험</li>
-																<li>#아이와함께</li>
-																<li>#익스트림스포츠</li>
-																<li>#휴식공간</li>
-																<li>#휴식하기</li>
-																<li>#휴식하기좋은곳</li>												
-															</ul>
-														</div>
-													</div>
-													<!-- End row  -->
-												</div>
-											</div>
-										</div>
-									</c:forEach>
-								<!-- //tab cont -->
-							</div>
-						</div>
 					</div>
 					<hr>
-					
+					<div class="row">
+						<div class="col-lg-3">
+							<h3>경로</h3>
+						</div>
+							<div class="col-lg-9">
+								<c:forEach items="${detail.coursePath}" var="coursePath">
+									<h4><i class="icon-flag-1"></i>${coursePath.title }</h4>							
+									<div class="row">
+										<div class="col-md-12">
+											<ul class="list_icons">
+												<li><i class="icon-location-7"></i> ${coursePath.address}</li>
+												<li><i class="icon-road-1"></i> 내 위치에서 333.3km</li>
+												<li><i class="icon-phone-3"></i> ${coursePath.tel}</li>
+											</ul>
+										</div>									
+									</div>
+									<!-- End row  -->
+									<div class="owl-carousel owl-theme carousel-thumbs-2 magnific-gallery">
+										<div class="item">
+											<a href="../img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/1.jpg" alt="Image">
+											</a>
+										</div>
+										<div class="item">
+											<a href="../img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/2.jpg" alt="Image">
+											</a>
+										</div>
+										<div class="item">
+											<a href="../img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/3.jpg" alt="Image">
+											</a>
+										</div>
+										<div class="item">
+											<a href="../img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/4.jpg" alt="Image">
+											</a>
+										</div>
+									</div>
+									<!-- End photo carousel  -->
+									<hr>
+								</c:forEach>
+							</div>
+						<!-- End col-md-9  -->
+					</div>
+					<!-- End row  -->
+					<hr>
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
@@ -368,44 +370,20 @@
 							</div>
 							<!-- End row -->
 							<hr>
-							<div class="review_strip_single">
-								<img src="../img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+							<c:forEach items="${detail.review }" var="review">
+								<div class="review_strip_single">
+									<img src="../img/avatar1.jpg" alt="Image" class="rounded-circle">
+									<small> - 10 March 2015 -</small>
+									<h4>${review.reviewWriter }</h4>
+									<p>
+										${review.reviewContent }
+									</p>
+									<div class="rating">
+										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+									</div>
 								</div>
-							</div>
 							<!-- End review strip -->
-
-							<div class="review_strip_single">
-								<img src="../img/avatar3.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single last">
-								<img src="../img/avatar2.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
+							</c:forEach>							
 						</div>
 					</div>
 				</div>
@@ -774,6 +752,28 @@
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
+	</script>
+	
+	<!-- Carousel -->
+	<script>
+		$('.carousel-thumbs-2').owlCarousel({
+		loop:false,
+		margin:5,
+		responsiveClass:true,
+		nav:false,
+		responsive:{
+			0:{
+				items:1
+			},
+			600:{
+				items:3
+			},
+			1000:{
+				items:4,
+				nav:false
+			}
+		}
+	});
 	</script>
 	
 </body>

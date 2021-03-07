@@ -1,7 +1,10 @@
 package main.java.controller;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +22,22 @@ public class CourseController {
 	private CourseService courseService;
 
 	// DB내용 가져오기 테스트용
-	/*
-	@RequestMapping(value = "/mongoCourse.do")
+	@RequestMapping(value = "mongoCourse.do")
 	public String coursetest(Model model) {
 		List<CourseVO> list = courseService.test();
+		/*
+		for(CourseVO vo : list) {
+			ArrayList<String> imageList = new ArrayList<String>();
+			for(Binary img : vo.getImage()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setCoursePath(imageList);
+		}
+		*/
 		model.addAttribute("list", list);
-		return "mongoCourse";
+		return "course/mongoCourse";
 	}
-	*/
 	
 	// 코스 메인 진입 
 	@RequestMapping(value = "course_main.do")
@@ -40,17 +51,13 @@ public class CourseController {
 	@RequestMapping(value = "courseSelect.do")
 	public String courseDetail(CourseVO vo, Model model, @RequestParam String _id) {
 		CourseVO cvo = courseService.courseSelect(vo, _id);
-//		System.out.println(_id);
-		
 		model.addAttribute("detail", cvo);
-		
 		return "course/course_detail";
 	}
 	
 	// 나의 코스 목록 진입
 	@RequestMapping(value = "course_list.do")
 	public String courseList(CourseVO vo, Model model) {
-		
 		
 		return "course/course_list";
 	}

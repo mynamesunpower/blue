@@ -20,9 +20,10 @@ public class CourseVO {
 	private int distance;   // 코스 총 거리
 	private String schedule;   // 일정
 	private String theme;      // 테마
-	private ArrayList<HashMap<String, String>> coursePath; // 코스 경로
+	private ArrayList<Binary> image;  // 어케 써먹지
+	private ArrayList<HashMap<String, String>> coursePath; // 코스 경로    // 요 안에 이미지가 배열로 있어.. 어케 이미지 파일로 빼와 보여주지..
 	private ArrayList<HashMap<String, String>> review; // 리뷰
-
+	
 	public ObjectId get_id() {
 		return _id;
 	}
@@ -83,6 +84,12 @@ public class CourseVO {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
+	public ArrayList<Binary> getImage() {
+		return image;
+	}
+	public void setImage(ArrayList<Binary> image) {
+		this.image = image;
+	}
 	public ArrayList<HashMap<String, String>> getCoursePath() {
 		return coursePath;
 	}
@@ -94,5 +101,7 @@ public class CourseVO {
 	}
 	public void setReview(ArrayList<HashMap<String, String>> review) {
 		this.review = review;
-	}	
+	}
+
+	
 }

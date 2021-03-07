@@ -64,7 +64,7 @@
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
                             		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
                             		<li><a href="#" class="icon-logout">로그아웃</a></li>
                             	</c:when>
                             </c:choose>
@@ -118,11 +118,19 @@
                                 </ul>
                             </li>
                              <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a><ul>
+                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a>
+                               	<ul>
                                     <li><a href="course_main.do">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <li><a href="course_list.do">나의 코스 목록</a></li>
-                                    </ul>
+                                    <c:choose>
+                                    	<c:when test="${sessionScope.memberId ne null}">
+                                    		<li><a href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
+                                    	</c:otherwise>
+                                    </c:choose>
+                                </ul>
                             </li>
                         </ul>
                     </div><!-- End main-menu -->
