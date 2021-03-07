@@ -21,4 +21,24 @@ public class FestivalServiceImpl implements FestivalService {
 		return festivalDao.test();
 	}
 	
+	@Override
+	public List<FestivalVO> month(String month) {
+		// TODO Auto-generated method stub
+		System.out.println("Service 접근: month()");
+		return festivalDao.month(month);
+	}
+	
+	@Override
+	public List<FestivalVO> recommand(){
+		return festivalDao.recommand();
+	}
+
+	@Override
+	public List<FestivalVO> detail(String tel) {
+		
+		return festivalDao.detail(tel);
+	}
+	
+	
+
 }

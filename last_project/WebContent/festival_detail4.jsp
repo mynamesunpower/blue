@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <% String tel = request.getParameter("tel"); %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+ <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"></script>
+ 
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,6 +31,8 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
+	
+	
 
 </head>
 
@@ -169,13 +174,16 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>국립민속박물관 정월대보름 한마당 2021</h1>
-						<span>서울특별시 종로구 삼청로 37</span>
+				
+
+
+						<h1><%out.print(tel);%></h1>
+						<span class='fesaddress'>서울특별시 종로구 삼청로 37</span>
 						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
-							<span style="color: #FFFFFF;">2/1 ~ 3/3</span>
+							<span style="color: #AABBFF;" class='fesdate'>2/1 ~ 3/3</span>
 						</div>
 					</div>
 				</div>
@@ -195,14 +203,16 @@
 					</li> -->
 					<li><a href="festival.jsp">축제</a>
 					</li>
-					<li>국립민속박물관 정월대보름 한마당 2021</li>
+					<li class='fesname'>국립민속박물관 정월대보름 한마당 2021</li>
 				</ul>
 			</div>
 		</div>
 		<!-- End Position -->
 
 		<div class="collapse" id="collapseMap">
-			<div id="map" class="map"></div>
+		
+			<div id="maps" class="maps"></div>
+			
 		</div>
 		<!-- End Map -->
 
@@ -244,23 +254,23 @@
                             <div class="row">
 								<div class="col-md-6">
 									<ul class="list_ok">
-										<li>시작일<span>2021.02.01</span></li>
-										<li>전화번호<span>02-3704-3142</span></li>
-										<li>주소<span>서울특별시 종로구 삼청로 37</span></li>
-										<li>주최<span>국립민속박물관</span></li>
+										<li>시작일<span class='fesstartdate'>2021.02.01</span></li>
+										<li>전화번호<span class='festel'>02-3704-3142</span></li>
+										<li>주소<span class='fesaddress'>서울특별시 종로구 삼청로 37</span></li>
+										<li>주최<span class='feshost'>국립민속박물관</span></li>
 									</ul>
 								</div>
 								<div class="col-md-6">
 									<ul class="list_ok">
-										<li>종료일<span>2021.03.03</span></li>
-										<li>홈페이지<span><a href="https://www.nfm.go.kr">https://www.nfm.go.kr</a></span></li>
-										<li>행사장소<span>온라인개최</span></li>
+										<li>종료일<span class='fesenddate'>2021.03.03</span></li>
+										<li>홈페이지<span><a href="https://www.nfm.go.kr" class=feshomepage>https://www.nfm.go.kr</a></span></li>
+										<li>가격<span class='fesfee'>온라인개최</span></li>
 									</ul>
 								</div>
 							</div>
 							<!-- End row  -->
 							<h4>상세정보</h4>
-							<p>
+							<p class='fesdetail'>
 								국립민속박물관은 2021 신축년 정월 대보름을 맞아 “2021 신축년 정월 대보름맞이 한마당” 세시 행사를 운영한다. 이번 행사는 국립민속박물관 홈페이지, 유튜브 및 SNS를 통한 비대면 행사와 정월 대보름(2/26) 대면 행사로 진행된다. 정월 대보름을 맞아 집에서 가족과 함께 즐길 수 있는 ‘정월 대보름맞이 선물 꾸러미’ 이벤트는 2월 5일까지 신청 접수하며, ‘정월 대보름 소개 영상(신축년 정월대보름)’과 ‘온라인 특별공연(정월 대보름맞이 북청사자놀음, 전통타악 아작의 장구프리)’은 국립민속박물관 유튜브에서 2월 24일~26일 공개된다. 2월 26일 정월 대보름날에는 ‘풍년 기원 볏가릿대 세우기’와 ‘풍물 공연’, '짚풀 소 세우기'를 박물관에서 진행한다. 국립민속박물관에서 준비한 ‘정월 대보름맞이 한마당’을 통해 풍성한 정월 대보름을 보내시길 기원한다.
 							</p>
 							
@@ -272,6 +282,9 @@
 					<div class="row">
 						<div class="col-lg-12">
                             <h4>길찾기</h4>
+                           <div id="map" style="width:100%;height:380px;"></div>
+
+    
 						</div>
 					</div>
 
@@ -848,8 +861,11 @@
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"></script>
 	<!-- Date and time pickers -->
+	
+	
+	
 	<script>
 		$('input.date-pick').datepicker('setDate', 'today');
 		$('input.time-pick').timepicker({
@@ -862,12 +878,302 @@
 	<script src="assets/validate.js"></script>
 
 	<!-- Map -->
+	<!--  
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/map.js"></script>
 	<script src="js/infobox.js"></script>
+	-->
 
 	<!-- NOTIFY BUBBLES  -->
 	<script src="js/notify_func.js"></script>	
+	
+	<!-- 추가 script -->
+	<!-- 축제 정보 불러오기 -->
+	
+
+	
+	<script>
+	$(document).ready(function() {
+		
+	document.write('<link href="css/custom.css" rel="stylesheet">');
+
+			
+		detailfestival()
+	})
+	
+	function detailfestival() {
+		var tel = "<%out.print(tel);%>"
+	
+		$.ajax({
+			url: "detail.do",
+			dataType: 'json',
+			type: "POST",
+			data: {"tel" : tel},
+			success: function(data) {
+				console.log(data)
+				//console.log(data.latitude)
+				
+				//var latitude=null;
+				//var longitude=null;
+				
+				
+				
+				//console.log(address)
+				 $.each(data, function (i, item) {
+						$('.fesaddress').html(item.address);
+						$('.fesdate').html(item.start_date+'~'+item.end_date)
+						$('.fesstartdate').html(item.start_date);
+						$('.fesenddate').html(item.end_date);
+						$('.fesfee').html(item.fee);
+						$('.feshomepage').html(item.homepage);
+						$('.festel').html(item.tel);
+						$('.fesdetail').html(item.detail);
+						$('.fesname').html(item.festival_name);
+						alert(item.latitude+','+ item.longitude)
+					var latitude = item.latitude;
+					var longitude = item.longitude;
+					var name = item.festival_name
+		
+					 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"
+		
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						    mapOption = {
+						        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+						        level: 3, // 지도의 확대 레벨
+						        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+						    }; 
+
+						// 지도를 생성한다 
+						var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+						// 지도에 마커를 생성하고 표시한다
+						var marker = new kakao.maps.Marker({
+						    position: new kakao.maps.LatLng(latitude, longitude), // 마커의 좌표
+						    map: map // 마커를 표시할 지도 객체
+						});
+						
+						////////////////////////////////////////////////////////
+						
+						//지도열기
+						var mapContainer = document.getElementById('maps'), // 지도를 표시할 div  
+					    mapOption = { 
+					        center: new kakao.maps.LatLng(37.498004414546934, 127.02770621963765), // 지도의 중심좌표 
+					        level: 3 // 지도의 확대 레벨 
+					    }; 
+
+					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+					// 커피숍 마커가 표시될 좌표 배열입니다
+					var coffeePositions = [ 
+					    new kakao.maps.LatLng(37.499590490909185, 127.0263723554437),
+					    new kakao.maps.LatLng(37.499427948430814, 127.02794423197847),
+					    new kakao.maps.LatLng(37.498553760499505, 127.02882598822454),
+					    new kakao.maps.LatLng(37.497625593121384, 127.02935713582038),
+					    new kakao.maps.LatLng(37.49646391248451, 127.02675574250912),
+					    new kakao.maps.LatLng(37.49629291770947, 127.02587362608637),
+					    new kakao.maps.LatLng(37.49754540521486, 127.02546694890695)                
+					];
+
+					// 편의점 마커가 표시될 좌표 배열입니다
+					var storePositions = [
+					    new kakao.maps.LatLng(37.497535461505684, 127.02948149502778),
+					    new kakao.maps.LatLng(37.49671536281186, 127.03020491448352),
+					    new kakao.maps.LatLng(37.496201943633714, 127.02959405469642),
+					    new kakao.maps.LatLng(37.49640072567703, 127.02726459882308),
+					    new kakao.maps.LatLng(37.49640098874988, 127.02609983175294),
+					    new kakao.maps.LatLng(37.49932849491523, 127.02935780247945),
+					    new kakao.maps.LatLng(37.49996818951873, 127.02943721562295)
+					];
+
+					// 주차장 마커가 표시될 좌표 배열입니다
+					var carparkPositions = [
+					    new kakao.maps.LatLng(37.49966168796031, 127.03007039430118),
+					    new kakao.maps.LatLng(37.499463762912974, 127.0288828824399),
+					    new kakao.maps.LatLng(37.49896834100913, 127.02833986892401),
+					    new kakao.maps.LatLng(37.49893267508434, 127.02673400572665),
+					    new kakao.maps.LatLng(37.49872543597439, 127.02676785815386),
+					    new kakao.maps.LatLng(37.49813096097184, 127.02591949495914),
+					    new kakao.maps.LatLng(37.497680616783086, 127.02518427952202)                       
+					];    
+
+					var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';  // 마커이미지의 주소입니다. 스프라이트 이미지 입니다
+					    coffeeMarkers = [], // 커피숍 마커 객체를 가지고 있을 배열입니다
+					    storeMarkers = [], // 편의점 마커 객체를 가지고 있을 배열입니다
+					    carparkMarkers = []; // 주차장 마커 객체를 가지고 있을 배열입니다
+
+					    
+					createCoffeeMarkers(); // 커피숍 마커를 생성하고 커피숍 마커 배열에 추가합니다
+					createStoreMarkers(); // 편의점 마커를 생성하고 편의점 마커 배열에 추가합니다
+					createCarparkMarkers(); // 주차장 마커를 생성하고 주차장 마커 배열에 추가합니다
+
+					changeMarker('coffee'); // 지도에 커피숍 마커가 보이도록 설정합니다    
+
+
+					// 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수입니다
+					function createMarkerImage(src, size, options) {
+					    var markerImage = new kakao.maps.MarkerImage(src, size, options);
+					    return markerImage;            
+					}
+
+					// 좌표와 마커이미지를 받아 마커를 생성하여 리턴하는 함수입니다
+					function createMarker(position, image) {
+					    var marker = new kakao.maps.Marker({
+					        position: position,
+					        image: image
+					    });
+					    
+					    return marker;  
+					}   
+					   
+					// 커피숍 마커를 생성하고 커피숍 마커 배열에 추가하는 함수입니다
+					function createCoffeeMarkers() {
+					    
+					    for (var i = 0; i < coffeePositions.length; i++) {  
+					        
+					        var imageSize = new kakao.maps.Size(22, 26),
+					            imageOptions = {  
+					                spriteOrigin: new kakao.maps.Point(10, 0),    
+					                spriteSize: new kakao.maps.Size(36, 98)  
+					            };     
+					        
+					        // 마커이미지와 마커를 생성합니다
+					        var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
+					            marker = createMarker(coffeePositions[i], markerImage);  
+					        
+					        // 생성된 마커를 커피숍 마커 배열에 추가합니다
+					        coffeeMarkers.push(marker);
+					    }     
+					}
+
+					// 커피숍 마커들의 지도 표시 여부를 설정하는 함수입니다
+					function setCoffeeMarkers(map) {        
+					    for (var i = 0; i < coffeeMarkers.length; i++) {  
+					        coffeeMarkers[i].setMap(map);
+					    }        
+					}
+
+					// 편의점 마커를 생성하고 편의점 마커 배열에 추가하는 함수입니다
+					function createStoreMarkers() {
+					    for (var i = 0; i < storePositions.length; i++) {
+					        
+					        var imageSize = new kakao.maps.Size(22, 26),
+					            imageOptions = {   
+					                spriteOrigin: new kakao.maps.Point(10, 36),    
+					                spriteSize: new kakao.maps.Size(36, 98)  
+					            };       
+					     
+					        // 마커이미지와 마커를 생성합니다
+					        var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
+					            marker = createMarker(storePositions[i], markerImage);  
+
+					        // 생성된 마커를 편의점 마커 배열에 추가합니다
+					        storeMarkers.push(marker);    
+					    }        
+					}
+
+					// 편의점 마커들의 지도 표시 여부를 설정하는 함수입니다
+					function setStoreMarkers(map) {        
+					    for (var i = 0; i < storeMarkers.length; i++) {  
+					        storeMarkers[i].setMap(map);
+					    }        
+					}
+
+					// 주차장 마커를 생성하고 주차장 마커 배열에 추가하는 함수입니다
+					function createCarparkMarkers() {
+					    for (var i = 0; i < carparkPositions.length; i++) {
+					        
+					        var imageSize = new kakao.maps.Size(22, 26),
+					            imageOptions = {   
+					                spriteOrigin: new kakao.maps.Point(10, 72),    
+					                spriteSize: new kakao.maps.Size(36, 98)  
+					            };       
+					     
+					        // 마커이미지와 마커를 생성합니다
+					        var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
+					            marker = createMarker(carparkPositions[i], markerImage);  
+
+					        // 생성된 마커를 주차장 마커 배열에 추가합니다
+					        carparkMarkers.push(marker);        
+					    }                
+					}
+
+					// 주차장 마커들의 지도 표시 여부를 설정하는 함수입니다
+					function setCarparkMarkers(map) {        
+					    for (var i = 0; i < carparkMarkers.length; i++) {  
+					        carparkMarkers[i].setMap(map);
+					    }        
+					}
+
+					// 카테고리를 클릭했을 때 type에 따라 카테고리의 스타일과 지도에 표시되는 마커를 변경합니다
+					function changeMarker(type){
+					    
+					    var coffeeMenu = document.getElementById('coffeeMenu');
+					    var storeMenu = document.getElementById('storeMenu');
+					    var carparkMenu = document.getElementById('carparkMenu');
+					    
+					    // 커피숍 카테고리가 클릭됐을 때
+					    if (type === 'coffee') {
+					    
+					        // 커피숍 카테고리를 선택된 스타일로 변경하고
+					        coffeeMenu.className = 'menu_selected';
+					        
+					        // 편의점과 주차장 카테고리는 선택되지 않은 스타일로 바꿉니다
+					        storeMenu.className = '';
+					        carparkMenu.className = '';
+					        
+					        // 커피숍 마커들만 지도에 표시하도록 설정합니다
+					        setCoffeeMarkers(map);
+					        setStoreMarkers(null);
+					        setCarparkMarkers(null);
+					        
+					    } else if (type === 'store') { // 편의점 카테고리가 클릭됐을 때
+					    
+					        // 편의점 카테고리를 선택된 스타일로 변경하고
+					        coffeeMenu.className = '';
+					        storeMenu.className = 'menu_selected';
+					        carparkMenu.className = '';
+					        
+					        // 편의점 마커들만 지도에 표시하도록 설정합니다
+					        setCoffeeMarkers(null);
+					        setStoreMarkers(map);
+					        setCarparkMarkers(null);
+					        
+					    } else if (type === 'carpark') { // 주차장 카테고리가 클릭됐을 때
+					     
+					        // 주차장 카테고리를 선택된 스타일로 변경하고
+					        coffeeMenu.className = '';
+					        storeMenu.className = '';
+					        carparkMenu.className = 'menu_selected';
+					        
+					        // 주차장 마커들만 지도에 표시하도록 설정합니다
+					        setCoffeeMarkers(null);
+					        setStoreMarkers(null);
+					        setCarparkMarkers(map);  
+					    }    
+					} 
+						
+						
+						
+
+				 
+				 });
+				 //alert(latitude+'/'+longitude)
+			
+ 			
+				
+				
+			  },
+			  errer : function(err) {
+			   alert(err);
+			  }
+			  
+			 })
+		};
+		
+
+	
+	
+	</script>
 
 </body>
 

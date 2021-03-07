@@ -23,9 +23,12 @@ public class MariaDAOImpl implements MariaDAO {
 		return sqlSession.selectList("TestMapper.test");
 	}
 	
+	
 	public List<MemberVO> insert_member() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("memberMapper.memberJoin");
 	}
+	
+	
 	
 }

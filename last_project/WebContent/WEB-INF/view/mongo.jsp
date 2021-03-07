@@ -28,10 +28,14 @@
 			요금 : ${test.fee} <br>
 			전화번호 : ${test.tel} <br>
 			홈피 : ${test.homepage} <br>
+			이미지1:${test.image}
+			이미지2:${test.images}
+			나는 왜안뜨니
 			<c:forEach items="${test.review}" var="review">
 			리뷰 ID : ${ review.review_id } <br>
 			리뷰 점수 : ${ review.review_score } <br>
 			리뷰 내용 : ${ review.review_content } <br>
+			
 			</c:forEach>
 			<%-- <c:forEach items="${test.image}" var="image">
 			이미지 : ${image} <br>
