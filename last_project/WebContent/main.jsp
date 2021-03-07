@@ -200,7 +200,8 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="festival.jsp">축제</a></li>
+                                    <!-- <li><a href="festival.jsp">축제</a></li> -->
+                                    <li><a href="/mongomonth.do">축제</a></li>
                                     <li><a href="accommodations_list.jsp">숙박</a></li>
                                     <li><a href="restaurants_list.jsp">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>

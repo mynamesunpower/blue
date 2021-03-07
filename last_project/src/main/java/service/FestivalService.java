@@ -10,4 +10,6 @@ public interface FestivalService {
 	public List<FestivalVO> month(String month);
 	public List<FestivalVO> recommand();
 	public List<FestivalVO> detail(int tel);
+	
+	public List<FestivalVO> months();
 }

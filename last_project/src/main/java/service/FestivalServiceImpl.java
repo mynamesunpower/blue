@@ -38,6 +38,12 @@ public class FestivalServiceImpl implements FestivalService {
 		
 		return festivalDao.detail(tel);
 	}
+
+	@Override
+	public List<FestivalVO> months() {
+		
+		return null;
+	}
 	
 	
 

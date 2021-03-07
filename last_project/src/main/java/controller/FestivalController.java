@@ -2,6 +2,7 @@ package main.java.controller;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.List;
 
 import org.bson.types.Binary;
@@ -31,30 +32,104 @@ public class FestivalController {
 		return "mongo";
 	}
 	
-	//월별 축제
-	@RequestMapping(value = "/mongomonth.do")
-	@ResponseBody
-	public List<FestivalVO> month(Model model,String month) {
-		System.out.println("FestivalController 에서 month요청2");
-		List<FestivalVO> list = festivalService.month(month);
+//	//월별 축제
+//	@RequestMapping(value = "/mongomonth.do")
+//	@ResponseBody
+//	public List<FestivalVO> month(Model model,String month) {
+//		System.out.println("FestivalController 에서 month요청2");
+//		List<FestivalVO> list = festivalService.month(month);
+//	
+//		
+//		// 축제마다 for문 돌기
+//		for (FestivalVO vo : list) {
+//			// 축제에 있는 ArrayList<Binary> image를
+//			ArrayList<String> imageList = new ArrayList<String>();
+//			for (Binary img : vo.getImage()) {
+//				String image = Base64.getEncoder().encodeToString(img.getData());
+//				imageList.add(image);
+//			}
+//			vo.setImages(imageList);
+//		}
+//		
+//		System.out.println("나도"+list);
+//		
+//		
+//		return list;
+//	}
 	
+	
+	//월별 축제
+		@RequestMapping(value = "/mongomonth.do")
+		public String month(Model model,String month) {
+			System.out.println("FestivalController 에서 month요청");
+			
+			Calendar cal = Calendar.getInstance();
+			 
+		//현재년,월, 일 구하기
+			int year = cal.get ( cal.YEAR );
+			int months = cal.get ( cal.MONTH ) + 1 ;
+			int date = cal.get ( cal.DATE ) ;			 
+			String mon = Integer.toString(months);
+			
+			List<FestivalVO> list = festivalService.month(mon);
 		
-		// 축제마다 for문 돌기
-		for (FestivalVO vo : list) {
-			// 축제에 있는 ArrayList<Binary> image를
-			ArrayList<String> imageList = new ArrayList<String>();
-			for (Binary img : vo.getImage()) {
-				String image = Base64.getEncoder().encodeToString(img.getData());
-				imageList.add(image);
+			
+			// 축제마다 for문 돌기
+			for (FestivalVO vo : list) {
+				// 축제에 있는 ArrayList<Binary> image를
+				ArrayList<String> imageList = new ArrayList<String>();
+				for (Binary img : vo.getImage()) {
+					String image = Base64.getEncoder().encodeToString(img.getData());
+					imageList.add(image);
+				}
+				vo.setImages(imageList);
 			}
-			vo.setImages(imageList);
+			
+			System.out.println("나도"+list);
+			String name = list.get(0).getFestival_name();
+			String startdate = list.get(0).getStart_date();
+			String enddate = list.get(0).getEnd_date();
+			
+			model.addAttribute("list",list);
+			
+			model.addAttribute("name", name);
+			model.addAttribute("startdate", startdate);
+			model.addAttribute("enddate", enddate);
+			
+			System.out.println(name);
+			
+			
+			return "festival_reset";
 		}
-		
-		System.out.println("나도"+list);
-		
-		
-		return list;
-	}
+	
+	
+	
+//	//월별 축제
+//		@RequestMapping(value = "/mongomonth.do")
+//		@ResponseBody
+//		public List<FestivalVO> months(Model model) {
+//			System.out.println("FestivalController 에서 month요청2");
+//			List<FestivalVO> list = festivalService.months();
+//		
+//			
+//			// 축제마다 for문 돌기
+//			for (FestivalVO vo : list) {
+//				// 축제에 있는 ArrayList<Binary> image를
+//				ArrayList<String> imageList = new ArrayList<String>();
+//				for (Binary img : vo.getImage()) {
+//					String image = Base64.getEncoder().encodeToString(img.getData());
+//					imageList.add(image);
+//				}
+//				vo.setImages(imageList);
+//			}
+//			
+//			System.out.println("나도"+list);
+//			
+//			
+//			return list;
+//		}
+	
+	
 	
 	//추천축제
 	@RequestMapping("value=/mongorecommand.do")
