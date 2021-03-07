@@ -1,7 +1,10 @@
 package main.java.controller;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +25,21 @@ public class FestivalController {
 		
 		List<FestivalVO> list = festivalService.selectAll();
 		
-		model.addAttribute("list", list);
+		// 축제마다 for문 돌기
+		for (FestivalVO vo : list) {
+			
+			// 축제에 있는 ArrayList<Binary> image를
+			ArrayList<String> imageList = new ArrayList<String>();
+			for (Binary img : vo.getImage()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setImages(imageList);
+			
+		}
 		
+		model.addAttribute("list", list);
+
 		return "mongo";
 	}
 	

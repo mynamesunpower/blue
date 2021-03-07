@@ -22,7 +22,15 @@ public class FestivalVO {
 	private String tel;
 	private String homepage;
 	private ArrayList<Binary> image;
+	private ArrayList<String> images;
 	private ArrayList<HashMap<String, String>> review;
+	
+	public ArrayList<String> getImages() {
+		return images;
+	}
+	public void setImages(ArrayList<String> images) {
+		this.images = images;
+	}
 	
 	
 	public ObjectId get_id() {
