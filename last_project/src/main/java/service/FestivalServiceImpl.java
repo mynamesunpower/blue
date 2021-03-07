@@ -34,7 +34,7 @@ public class FestivalServiceImpl implements FestivalService {
 	}
 
 	@Override
-	public List<FestivalVO> detail(String tel) {
+	public List<FestivalVO> detail(int tel) {
 		
 		return festivalDao.detail(tel);
 	}

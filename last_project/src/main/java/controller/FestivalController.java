@@ -1,7 +1,10 @@
 package main.java.controller;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,10 +37,19 @@ public class FestivalController {
 	public List<FestivalVO> month(Model model,String month) {
 		System.out.println("FestivalController 에서 month요청2");
 		List<FestivalVO> list = festivalService.month(month);
-		//model.addAttribute("list", list);
+	
 		
-		//model.addAttribute("list", list);
-		//System.out.println(list);
+		// 축제마다 for문 돌기
+		for (FestivalVO vo : list) {
+			// 축제에 있는 ArrayList<Binary> image를
+			ArrayList<String> imageList = new ArrayList<String>();
+			for (Binary img : vo.getImage()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setImages(imageList);
+		}
+		
 		System.out.println("나도"+list);
 		
 		
@@ -55,24 +67,49 @@ public class FestivalController {
 	
 	
 	//축제 상세 페이지 축제 정보
-	@RequestMapping(value = "/detail.do")
-	@ResponseBody
-	public List<FestivalVO> detail(Model model,String tel) {
-		System.out.println("FestivalController 에서 detail요청");
-		List<FestivalVO> list = festivalService.detail(tel);
-		
-		System.out.println("detail()list"+list);
-		
-		
-		return list;
-	}
+//	@RequestMapping(value = "/detail.do")
+//	@ResponseBody
+//	public List<FestivalVO> detail(Model model,String tel) {
+//		System.out.println("FestivalController 에서 detail요청");
+//		List<FestivalVO> list = festivalService.detail(tel);
+//		
+//		System.out.println("detail()lists"+list);
+//		
+//		
+//		
+//		return list;
+//	}
 	
+	
+	//축제 상세페이지 축제정보
 	@RequestMapping(value = "/details.do")
-	public String details(Model model,String tel) {
-		System.out.println("FestivalController 에서 details요청");
+	public String details(Model model,int tel) {
+		System.out.println(tel);
+		System.out.println("FestivalController 에서 details.do요청");
 		List<FestivalVO> list = festivalService.detail(tel);
 		
-		System.out.println("detail()list"+list);
+		// 축제마다 for문 돌기
+				for (FestivalVO vo : list) {
+					// 축제에 있는 ArrayList<Binary> image를
+					ArrayList<String> imageList = new ArrayList<String>();
+					for (Binary img : vo.getImage()) {
+						String image = Base64.getEncoder().encodeToString(img.getData());
+						imageList.add(image);
+					}
+					vo.setImages(imageList);
+				}
+		
+		
+		String[] adr = list.get(0).getAddress().split(" ");
+		String addr = adr[1];
+		
+		
+		
+		
+		
+		
+			
+		
 		model.addAttribute("list", list);
 		
 		

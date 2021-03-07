@@ -553,7 +553,9 @@ marker.setMap(map);
 
 					<div id="carousel-home">
                         <div class="owl-carousel owl-theme">
-                            <div class="owl-slide cover" style="background-image: url(img/700_470_test_image_1.jpg);">
+                        <c:forEach items="${list.images}" var="image">
+			
+                            <div><img class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
                                 <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.0)">
                                     <div class="container">
                                         <div class="row justify-content-center justify-content-md-start">
@@ -562,14 +564,9 @@ marker.setMap(map);
                                 </div>
                             </div>
                         <!--/owl-slide-->
-                        <div class="owl-slide cover" style="background-image: url(img/700_470_test_image_2.jpg);">
-                            <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.0)">
-                                <div class="container">
-                                    <div class="row justify-content-center justify-content-md-end">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        	
+					</c:forEach>
                         <!--/owl-slide-->
                     </div>
                     <div id="icon_drag_mobile"></div>

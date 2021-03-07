@@ -101,16 +101,16 @@ public class FestivalDAOImpl implements FestivalDAO {
 	//축제 상세 정보 뽑아오기
 
 	@Override
-	public List<FestivalVO> detail(String tel) {
-		
+	public List<FestivalVO> detail(int tel) {
+	     System.out.println("넘어왔어여2"+tel);
 		 Query query = new Query();
 	     Criteria criteria = new Criteria();
-	   
-	     query.addCriteria(criteria.where("festival_name").regex(tel));
+	
+	     query.addCriteria(criteria.where("postcode").is(tel));
 	    
 	     List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
 
-	     System.out.println("여기는DAO detail"+list);
+	     System.out.println("여기는DAO detail입니다"+list);
 	   
 		
 		return list;
