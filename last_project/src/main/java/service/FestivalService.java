@@ -6,5 +6,10 @@ import main.java.vo.FestivalVO;
 
 public interface FestivalService {
 
-	public List<FestivalVO> selectAll();
+	public List<FestivalVO> test();
+	public List<FestivalVO> month(String month);
+	public List<FestivalVO> recommand();
+	public List<FestivalVO> detail(int tel);
+	
+	public List<FestivalVO> months();
 }

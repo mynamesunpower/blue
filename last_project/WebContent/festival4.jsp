@@ -616,14 +616,11 @@ $(document).ready(function() {
 				//alert("iss = "+count.length);
 				 $.each(data, function (i, item) {
 					 //console.log(item.image)
-					 console.log("나는"+item.festival_name)
+					 console.log("나는s"+item.tel)
 					festivals = '';
 					festivals += '<div>'
-					festivals +='<a href="/details.do?tel='+item.postcode+'">'
+					festivals +='<a href="/details.do?tel='+item.festival_name+'">'
 					//festivals +='<a href="javascript:" onclick="festivaldetail('+item.tel+')">'
-					
-					//festivals +='<img src="data:image/jpg;base64,'+item.image+'" alt="" class="img-fluid">'	
-					
 					festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'	
 					///festivals +='<img src="D:/Temp/test.png" alt="" class="img-fluid">'
 					//festivals +='<img src="'+item.image+'" alt="" class="img-fluid">'

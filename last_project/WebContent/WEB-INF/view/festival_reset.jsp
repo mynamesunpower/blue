@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <%String name = (String)request.getAttribute("name"); %>
+    <%String startdate = (String)request.getAttribute("startdate"); %>
+   <%String enddate = (String)request.getAttribute("enddate"); %>
+ 
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -197,80 +201,60 @@
                
             </div>
             <p class="main_description">겨울이 끝나기 전에 <span>계절이 지나면 경험하기 힘들죠</span></p>
+          
+           
             <div class="row small-gutters categories_grid">
               
+          
+              
                 <div class="col-sm-12 col-md-12 bigimage">
+                
                 <div id = 'a1'>
+                   
                 <div>
-                    <a href="festival_detail.jsp".jsp">
+                    <a href="/festival_detail.do">
+                
                         <img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">
+                       
                         <div class="wrapper areas1">
-                            <h2>국립민속박물관 정월대보름 한마당</h2>
-                            <p>(02.01~03.03)</p>
+                        
+                        
+                        
+                            <h2><%=name %></h2>
+                            <p>$<%=enddate %> </p>
+                         
+                     
+                        
                         </div>
                     </a>
                     </div>
                 </div>
+                
                 </div>
-                
-                
+                 
+                 
                 <div class="col-sm-12 col-md-12">
                     <div class="row small-gutters mt-md-0 mt-sm-2">
+                     <c:forEach items="${list}" var="list"  varStatus="status" begin="1">  
                         <div class="col-sm-3">
+                        
                         <div id = 'a2'>
+                       
+ 
                         <div>
                             <a href="all_tours_list.jsp">
                                 <img src="img/img_cat_home_2.jpg" alt="" class="img-fluid">
                                 <div class="wrapper areas2">
-                                    <h2>홍성 남당항 새조개 온라인축제</h2>
-                                    <p>(3.3~4.1)</p>
+                                    <h2>${list.festival_name }</h2>
+                                    <p>${list.end_date }</p>
                                 </div>
                             </a>
                             </div>
+                         
                         </div>
-                        </div>
-                             
-                        <div class="col-sm-3">
-                        <div id = 'a3'>
-                        <div>
-                            <a href="all_hotels_list.jsp">
-                                <img src="img/img_cat_home_3.jpg" alt="" class="img-fluid">
-                                <div class="wrapper areas3">
-                                    <h2>어딘지 모르겠다~</h2>
-                                    <p>아무데서나 놀자~</p>
-                                </div>
-                            </a>
-                            </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                        <div id = 'a4'>
-                        <div>
-                            <a href="all_hotels_list.jsp">
-                                <img src="img/img_cat_home_3.jpg" alt="" class="img-fluid">
-                                <div class="wrapper areas4">
-                                    <h2>축제3</h2>
-                                    <p>재미있을지도</p>
-                                </div>
-                            </a>
-                            </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                        <div id = 'a5'>
-                        <div>
-                            <a href="all_hotels_list.jsp">
-                                <img src="img/img_cat_home_3.jpg" alt="" class="img-fluid">
-                                <div class="wrapper areas5">
-                                    <h2>축제4</h2>
-                                    <p>재미있을지도</p>
-                                </div>
-                            </a>
-                            </div>
-                            </div>
-                        </div>
+                                          </div>
+                         </c:forEach>    
+                      
                     </div>
                 </div>
             </div> <br><br>
@@ -591,238 +575,6 @@
 		}
 	});
 
-$(document).ready(function() {
-		
-		var cur_month = 0;
-		var fes_oMonth = new Date();
-		fes_oMonth.setDate(1);
-		cur_month = (fes_oMonth.getMonth()+1);
-		getMonthData()
-	})
-	
-	
-	
-	//달에 해당하는 데이타 가져오기
- 	function getMonthData() {
- 		//alert("118로들옴")
-		$.ajax({
-			url: "mongomonth.do",
-			dataType: 'json',
-			type: "POST",
-			data: {"month" : cur_month},
-			success: function(data) {
-				//setMonthData(data);
-				var count = data;
-				//alert("iss = "+count.length);
-				 $.each(data, function (i, item) {
-					 //console.log(item.image)
-					 console.log("나는"+item.festival_name)
-					festivals = '';
-					festivals += '<div>'
-					festivals +='<a href="/details.do?tel='+item.postcode+'">'
-					//festivals +='<a href="javascript:" onclick="festivaldetail('+item.tel+')">'
-					
-					//festivals +='<img src="data:image/jpg;base64,'+item.image+'" alt="" class="img-fluid">'	
-					
-					festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'	
-					///festivals +='<img src="D:/Temp/test.png" alt="" class="img-fluid">'
-					//festivals +='<img src="'+item.image+'" alt="" class="img-fluid">'
-					festivals +='<div class="wrapper">'
-					festivals +='<h2>'+item.festival_name+'</h2>'
-					festivals +='<p>'+item.start_date+'~'+item.end_date+'</p>'
-					festivals +='</div>'
-					festivals +='</a>'
-					festivals +='</div>'
-					
-						//alert(count.length)
-					if(count.length <2){
-						//alert(count.length)
-						//alert("지워")
-						$("#a2>div ").remove();
-						$("#a3 >div").remove();
-						$("#a4 >div").remove();
-						$("#a5 >div").remove();
-					}else if(count.length <3){
-						$("#a3 >div").remove();
-						$("#a4 >div").remove();
-						$("#a5 >div").remove();
-					}else if(count.length <4){
-						
-						$("#a4>div").remove();
-						$("#a5>div").remove();
-					}else if(count.length <5){
-						
-						$("#a5 >div").remove();
-					}
-					
-					
-					
-					
-					
-						
-                    //alert("items : "+item.size);
-                    
-                    if(i ==0){
-                    ///$('.areas1 > h2').html(item.festival_name);
-                    $('#a1').html(festivals);
-                    //alert(i)
-                    }else if(i ==1){
-                    	//alert(i)
-                        //$('.areas2 > h2').html(item.festival_name);
-                    	$('#a2').html(festivals);
-                    }else if(i ==2){
-                    	//alert(i)
-                        //$('.areas3 > h2').html(item.festival_name);
-                    	$('#a3').html(festivals);
-                    }else if(i ==3){
-                    	//alert(i)
-                        //$('.areas4 > h2').html(item.festival_name);
-                    	$('#a4').html(festivals);
-                    }else if(i ==4){
-                    	//alert(i)
-                        //$('.areas5 > h2').html(item.festival_name);
-                    	$('#a5').html(festivals);
-                    }
-                    //alert("item : "+item.festival_name);
-                    //alert("item : "+item.start_date);
-                });
-				
-				console.log(data)
-			},
-			complete: function(d) {
-			},
-			error: function(xhr, textStatus, errorThrown) {
-			}
-		});
- 	}
-
-
-	
-	
-	//월 좌우 클릭시
-	var cur_month = 0;
-	
-	var fes_oMonth = new Date();
-	fes_oMonth.setDate(1);
-	cur_month = (fes_oMonth.getMonth()+1);
- 	function setFestivalNewMonth(radd) {
- 	
- 		var chkmonth = ( cur_month + radd );
-
- 		if( chkmonth == 0 || chkmonth == 13 ) {
- 			 			
- 		} else {
-	
- 			cur_month += radd;
- 			
- 	 		$('.month').html(cur_month + ' 월');
-
- 	 		getMonthData();
- 	 		//recommandfestival();
- 		}
- 	}
- 	
- 	function recommandfestival() {
- 		$.ajax({
-			url: "mongorecommand.do",
-			dataType: 'json',
-			type: "POST",
-			data: {"month" : cur_month},
-			success: function(data) {
-				//setMonthData(data);
-				alert("성공?")
-				
-				 $.each(data, function (i, item) {
-                    alert("i : "+i);
-                    alert("item : "+item.festival_name);
-                    alert("item : "+item.start_date);
-                });
-				
-				console.log(data)
-			},
-			complete: function(d) {
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				console.log(';;')
-			}
-		});
- 	}
- 	
- 	//축제 상세
- 	function festivaldetail(iduso){
- 		location.href="festival_detail.jsp?id="+iduso;
- 		console.log("왔다"+id)
- 	}
- 	
- 	
- 	//월별 축제 불러오기
- 	function setMonthData(data) {
-
-		uid = data.header.id;
-
-		var remshow = '';
-		var compid = '';
-		var sun = -1;
-
-		var subHtml = '';
-
-		//월 콘텐츠 영역 초기화.
-		$("#area0 div").remove();
-		$("#area1 div").remove();
-		$("#area2 div").remove();
-		$("#area3 div").remove();
-		$("#area4 div").remove();
-		$("#area5 div").remove();
-
-		if( data.body.subMainList != undefined ) {
-
-			$.each(data.body.subMainList, function (index, items) {
-
-				subHtml = '';
-
-				subHtml += '<div class="wrap_contView">';
-
-				subHtml += '		<h3 class="tit_atc" tabindex="0"></h3>';
-				subHtml += '		<span class="date" id="fesmain'+items.compOrder+'" tabindex="0"></span>';
-				subHtml += '		<div class="box_remPhoto" id="fesmainList'+items.compOrder+'">';
-				subHtml += '		</div>';
-				subHtml += '	</div>';
-
-				if( items.compOrder == 0 ) {
-					$("#area0").html(subHtml);
-				} else if( items.compOrder == 1 ) {
-					$("#area1").html(subHtml);
-				} else if( items.compOrder == 2 ) {
-					$("#area2").html(subHtml);
-				} else if( items.compOrder == 3 ) {
-					$("#area3").html(subHtml);
-				} else if( items.compOrder == 4 ) {
-					$("#area4").html(subHtml);
-				} else if( items.compOrder == 5 ) {
-					$("#area5").html(subHtml);
-				}
-			});
-		}
-
-		if( data.body.result != undefined ) {
-			$.each(data.body.result, function (index, items) {
-
-				if( compid != items.compId ) {
-
-					compid = items.compId;
-					var compId = items.compId;
-					var compOrder = items.compOrder;
-
-					remshow = '';
-
-					remshow = getFesShowcase(data, compId, compOrder);
-
-					$('#fesmainList'+compOrder).html(remshow);
-				}
-			});
-		}
-		swiperBanner();
-	}
 
 	
 	</script>
@@ -857,6 +609,29 @@ $(document).ready(function() {
 		container.style.backgroundImage = "url('" + background_img + "')";
 
 	}-->
+	
+<script>	
+	//월 좌우 클릭시
+	var cur_month = 0;
+	
+	var fes_oMonth = new Date();
+	fes_oMonth.setDate(1);
+	cur_month = (fes_oMonth.getMonth()+1);
+ 	function setFestivalNewMonth(radd) {
+ 	
+ 		var chkmonth = ( cur_month + radd );
+
+ 		if( chkmonth == 0 || chkmonth == 13 ) {
+ 			 			
+ 		} else {
+	
+ 			cur_month += radd;
+ 			
+ 	 		$('.month').html(cur_month + ' 월');
+
+ 	 	 	
+ 		}
+ 	}
 
 </script> 
 
