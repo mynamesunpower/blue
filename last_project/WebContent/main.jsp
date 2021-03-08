@@ -819,7 +819,7 @@
 	        				
 	        			}
 	        			else if(result==1){
-	        				location.replace('main.jsp')
+	        				location.replace('/main.jsp')
 	        			}
 	        		},
 	        		error : function(err){console.log("에러요" + err)}

@@ -90,7 +90,7 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                          <ul>
                             <li class="submenu">
-                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
                             </li>
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
@@ -330,7 +330,9 @@
 									</div>
 									<div class="img_container">
 										<a href="courseSelect.do?_id=${course._id}">
-											<img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&amp;id=97d0de07-b3ae-4b03-a04d-69b50ea29d5d" width="800" height="533" class="img-fluid" alt="Image">
+											<c:forEach items="${course.coursePath}" var="coursePath" begin="0" end="0">
+												<img src="${coursePath.image}" width="800" height="533" class="img-fluid" alt="Image">
+											</c:forEach>
 											<div class="short_info">
 												<c:choose>
 													<c:when test="${course.theme eq '가족과 함께'}">
@@ -605,6 +607,66 @@
 		   checkboxClass: 'icheckbox_square-grey',
 		   radioClass: 'iradio_square-grey'
 		 });
+	</script>
+	
+	<!-- 로그인 -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.btn_login').on('click', login);
+			$('#password').on('keydown', function(evt) {
+				//evt.preventDefault();
+				//evt.stopPropagation();
+				if (evt.KeyCode == 13) {
+					login();
+				}
+			});
+		});
+		
+		function login() {
+			alert('로그인 버튼 클릭')
+			
+			if($.trim($('#loginId').val())==''){
+        		alert('아이디를 입력해 주세요');
+        		$('#loginId').focus();
+        		return;
+        	}
+			
+			if($.trim($('#password').val())==''){
+        		alert("비밀번호입력해주세요.");
+        		$('#password').focus();
+        		return;
+        	}
+			
+			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
+				
+				alert('진입 확인' + $('#loginId').val() + '/' + $('#password').val());
+				
+				$.ajax({
+	        		type : 'post',
+	        		async : true,
+	        		url : "../member/memberLogin.do",
+	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+	        		data : {
+	        			'id' : $('#loginId').val(),
+	        			'password' : $('#password').val()
+	        		},
+	        		success : function(result){
+	        			console.log(result)
+	        			if(result == 0){
+	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
+	        				$("#loginId").val("");
+	        				$("#password").val("");
+	        				
+	        			}
+	        			else if(result==1){
+	        				location.replace('../main.jsp')
+	        			}
+	        		},
+	        		error : function(err){console.log("에러요" + err)}
+	        	});	
+			}
+        		
+		}
 	</script>
 	
 

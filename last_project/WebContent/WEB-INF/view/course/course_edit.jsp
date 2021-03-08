@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,25 +13,25 @@
 	<title>축축빵빵 - 코스 편집하기</title>
 
 	<!-- Favicons-->
-	<link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
-	<link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+	<link rel="shortcut icon" href="../img/logo_img.PNG" type="image/x-icon">
+	<link rel="apple-touch-icon" type="image/x-icon" href="../img/apple-touch-icon-57x57-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="../img/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="../img/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="../img/apple-touch-icon-144x144-precomposed.png">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	
 	<!-- COMMON CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<link href="css/vendors.css" rel="stylesheet">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+	<link href="../css/vendors.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
-	<link href="css/custom.css" rel="stylesheet">
+	<link href="../css/custom.css" rel="stylesheet">
 
 	<!-- REVOLUTION SLIDER CSS -->
-	<link href="layerslider/css/layerslider.css" rel="stylesheet">
+	<link href="../layerslider/css/layerslider.css" rel="stylesheet">
 </head>
 
 <body>
@@ -56,10 +57,18 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><span style="color: blue;">홍길동</span>님 환영합니다</li>
-                            <li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-                            <li><a href="#" class="icon-logout">로그아웃</a></li>
+                            <c:choose>
+                            	<c:when test="${sessionScope.memberId eq null}">
+                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            	</c:when>
+                            	<c:when test="${sessionScope.memberId ne null}">
+                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+                            		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
+	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                            		<li><a href="#" class="icon-logout">로그아웃</a></li>
+                            	</c:when>
+                            </c:choose>
+                        </ul>
                     </div>
                 </div><!-- End row -->
             </div><!-- End container-->
@@ -69,26 +78,26 @@
 			<div class="row">
 				<div class="col-3">
 					<div id="logo_home">
-                    	<h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
 					</div>
 				</div>
 				<nav class="col-9">
                     <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                     <div class="main-menu">
                         <div id="header_menu">
-                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">
+                            <img src="../img/logo_sticky.png" width="160" height="34" alt="City tours">
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
                             <li class="submenu">
-                                <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
                             </li>
                             <li class="submenu">
-                                <a href="festival.jsp" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
+                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="festival.jsp">축제</a></li>
-                                    <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.jsp">식당</a></li>
+                                    <li><a href="../festival.jsp">축제</a></li>
+                                    <li><a href="../accommodations_list.jsp">숙박</a></li>
+                                    <li><a href="../restaurants_list.jsp">식당</a></li>
                                     <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>
@@ -107,10 +116,10 @@
                                 </ul>
                             </li>
                             <li class="submenu">
-                                <a href="course_main.jsp" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
+                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
                                 <ul>
-									<li><a href="course_main.jsp">코스 자랑 마당</a></li>
-                                    <li><a href="course_list.jsp">나의 코스 목록</a></li>
+									<li><a href="course_main.do">코스 자랑 마당</a></li>
+                                    <li><a href="course_list.do">나의 코스 목록</a></li>
                                 </ul>
                             </li>                            
                         </ul>
@@ -126,17 +135,17 @@
                                 <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
                                 <ul class="dropdown-menu" id="cart_items">
                                     <li>
-                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
+                                        <div class="image"><img src="../img/thumb_cart_1.jpg" alt="image"></div>
                                         <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
                                     <li>
-                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
+                                        <div class="image"><img src="../img/thumb_cart_2.jpg" alt="image"></div>
                                         <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
                                     <li>
-                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
+                                        <div class="image"><img src="../img/thumb_cart_3.jpg" alt="image"></div>
                                         <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
@@ -170,7 +179,7 @@
 
 				<!-- second slide -->
 				<div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;">
-					<img src="img/slides/slide_2.jpg" class="ls-bg" alt="Slide background">
+					<img src="../img/slides/slide_2.jpg" class="ls-bg" alt="Slide background">
 					<h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">캐러셀로</h3>
 					<p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">스윽 보여주면</p>
 					<a class="ls-l button_intro_2 outline" style="top:370px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='all_tour_list.jsp'>자세히 보기</a>
@@ -178,7 +187,7 @@
 
 				<!-- third slide -->
 				<div class="ls-slide" data-ls="slidedelay:5000; transition2d:103;">
-					<img src="img/slides/slide_3.jpg" class="ls-bg" alt="Slide background">
+					<img src="../img/slides/slide_3.jpg" class="ls-bg" alt="Slide background">
 					<h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">어떨깝쇼</h3>
 					<p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">하하</p>
 					<a class="ls-l button_intro_2 outline" style="top:370px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='all_tour_list.jsp'>자세히 보기</a>
@@ -186,7 +195,7 @@
 
 				<!-- fourth slide -->
 				<div class="ls-slide" data-ls="slidedelay: 5000; transition2d:14;">
-					<img src="img/slides/slide_4.jpg" class="ls-bg" alt="Slide background">
+					<img src="../img/slides/slide_4.jpg" class="ls-bg" alt="Slide background">
 					<h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">예예</h3>
 					<p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">그러십죠</p>
 					<a class="ls-l button_intro_2 outline" style="top:370px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='all_tour_list.jsp'>자세히 보기</a>
@@ -199,11 +208,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main.jsp">Home</a>
+					<li><a href="../main.jsp">Home</a>
 					</li>
-					<li><a href="course_main.jsp">코스</a>
+					<li><a href="course_main.do">코스</a>
 					</li>
-					<li><a href="course_list.jsp">나의 코스 목록</a>
+					<li><a href="course_list.do">나의 코스 목록</a>
 					</li>
 					<li>코스 편집하기</li>
 				</ul>
@@ -223,7 +232,7 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<p>코스명</p>
-									<input type="text" class="form-control" id="name_contact" name="name_contact" placeholder="코스 만들었을 때 이름 가져와 채우기. (편집 가능)"><hr/>
+									<input type="text" class="form-control" id="name_contact" name="name_contact" placeholder="코스 만들었을 때 이름 가져와 채우기. (편집 가능하게)"><hr/>
 								</div>
 							</div>
 						</div>
@@ -239,7 +248,7 @@
 									<i class="icon-trash-7" style="cursor: pointer;"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
 								</div>
 								<a class="box_news" href="blog.jsp">
-									<figure><img src="img/news_home_1.jpg" alt="">
+									<figure><img src="../img/news_home_1.jpg" alt="">
 										<figcaption><strong>1</strong></figcaption>  <!-- figcaption 넘 큰뎅.. 작게하고 싶다-->
 									</figure>
 									<ul>
@@ -261,7 +270,7 @@
 									<i class="icon-trash-7 style="cursor: pointer;"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
 								</div>
 								<a class="box_news" href="blog.jsp">
-									<figure><img src="img/news_home_1.jpg" alt="">
+									<figure><img src="../img/news_home_1.jpg" alt="">
 										<figcaption><strong>2</strong></figcaption>
 									</figure>
 									<ul>
@@ -296,7 +305,7 @@
 									<h4>코스 테마 <i class="icon_camera_alt"></i></h4>
 									<select id="" class="form-control" name="">
 										<option value="" selected>테마 선택</option>
-										<option value="">가족과 함께</option>
+										<option value="" >가족과 함께</option>
 										<option value="">연인과 함께</option>
 										<option value="">메이트와 함께</option>
 										<option value="">반려동물과 함께</option>
@@ -372,7 +381,7 @@
                         <li><a href="#">축축빵빵은요!</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#sign-in-dialog">로그인</a></li>
-                        <li><a href="member/memberJoin.do">회원가입</a></li>
+                        <li><a href="../member/memberJoin.do">회원가입</a></li>
                          <li><a href="#">이용 약관</a></li>
                     </ul>
                 </div>
@@ -426,14 +435,14 @@
 		<form>
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.PNG); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
+                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/naver_login.png); border: 0; outline: 0;" >
+                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/kakao_login.png); border: 0; outline: 0;" >
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
-					<label>Email</label>
-					<input type="email" class="form-control" name="email" id="email">
-					<i class="icon_mail_alt"></i>
+					<label>ID</label>
+					<input type="text" class="form-control" name="loginId" id="loginId">
+					<i class="icon_pencil"></i>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
@@ -448,11 +457,11 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <!-- <input type="submit" value="로그인" class="btn_login"> -->
-                    <a href="mainAfterLogin.jsp" type="button" class="btn_login">로그인</a>
+                    <input type="button" value="로그인" class="btn_login">
+                    <!-- <a type="button" class="btn_login">로그인</a> -->
                 </div>
 				<div class="text-center">
-					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
+					계정이 없으신가요? <a href="../member/memberJoin.do">회원가입</a>
 				</div>
 				<div id="forgot_pw">
 					<div class="form-group">
@@ -472,21 +481,21 @@
 	<!-- /Sign In Popup -->
 
 	<!-- Common scripts -->
-	<script src="js/jquery-3.5.1.min.js"></script>
-	<script src="js/common_scripts_min.js"></script>
-	<script src="js/functions.js"></script>
+	<script src="../js/jquery-3.5.1.min.js"></script>
+	<script src="../js/common_scripts_min.js"></script>
+	<script src="../js/functions.js"></script>
 
 	<!-- Specific scripts -->
-	<script src="assets/validate.js"></script>
+	<script src="../assets/validate.js"></script>
 	<!-- Map -->
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
-	<script type="text/javascript" src="js/map_home.js"></script>
-	<script type="text/javascript" src="js/infobox.js"></script>
+	<script type="text/javascript" src="../js/map_home.js"></script>
+	<script type="text/javascript" src="../js/infobox.js"></script>
 	<!-- 상단 캐러셀-->
-	<script src="js/jquery-migrate.min.js"></script>
-	<script src="layerslider/js/greensock.js"></script>
-	<script src="layerslider/js/layerslider.transitions.js"></script>
-	<script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+	<script src="../js/jquery-migrate.min.js"></script>
+	<script src="../layerslider/js/greensock.js"></script>
+	<script src="../layerslider/js/layerslider.transitions.js"></script>
+	<script src="../layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
 			'use strict';
@@ -495,14 +504,14 @@
 				responsive: true,
 				responsiveUnder: 1280,
 				layersContainer: 1170,
-				skinsPath: 'layerslider/skins/'
+				skinsPath: '../layerslider/skins/'
 					// Please make sure that you didn't forget to add a comma to the line endings
 					// except the last line!
 			});
 		});
 	</script>
 	<!-- Fixed sidebar -->
-	<script src="js/theia-sticky-sidebar.js"></script>
+	<script src="../js/theia-sticky-sidebar.js"></script>
 	<script>
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80

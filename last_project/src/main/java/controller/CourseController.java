@@ -64,5 +64,9 @@ public class CourseController {
 	
 	
 	// 코스 편집하기 진입
-	
+	@RequestMapping(value = "course_edit.do")
+	public String courseEdit(CourseVO vo, Model model) {
+		
+		return "course/course_edit";
+	}
 }

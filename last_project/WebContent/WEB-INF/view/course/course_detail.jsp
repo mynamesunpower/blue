@@ -30,7 +30,7 @@
 	<!-- CUSTOM CSS -->
 	<link href="../css/custom.css" rel="stylesheet">
 	<link href="../css/tourDetail.css" rel="stylesheet">
-
+	<link href="../css/Maptest.css" rel="stylesheet">
 </head>
 
 <body>
@@ -173,22 +173,23 @@
 		<!-- container -->
 	</header>
 	<!-- End Header -->
-
-	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/single_tour_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
-		<div class="parallax-content-2">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8">
-						<h1>${detail.courseName }</h1>
-						<i class="pe-7s-map-marker"></i><span> ${detail.district}</span><br>
-						<i class="pe-7s-graph1"></i> 코스 총 거리 :<span style="font-size: large;"> ${detail.distance}</span> km<br>
-						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+	<c:forEach items="${detail.coursePath }" var="coursePath" begin="0" end="0"> <!-- 첫 번째 장소의 이미지가 대문 이미지가 되게 -->
+		<section class="parallax-window" data-parallax="scroll" data-image-src="${coursePath.image}" data-natural-width="1400" data-natural-height="470"> 
+			<div class="parallax-content-2">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<h1>${detail.courseName }</h1>
+							<i class="pe-7s-map-marker"></i><span> ${detail.district}</span><br>
+							<i class="pe-7s-graph1"></i> 코스 총 거리 :<span style="font-size: large;"> ${detail.distance}</span> km<br>
+							<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!-- End section -->
+		</section>
+		<!-- End section -->
+	</c:forEach>
 
 	<main>
 		<div id="position">
@@ -205,14 +206,226 @@
 		<!-- End Position -->
 
 		<div class="collapse" id="collapseMap">
-			<div id="map" class="map"></div>
+			<!-- <div id="map" class="map"></div> -->
+			<!-- 지표 -->
+			<p style="margin-top:-12px">
+			    <em class="link">
+			       <!--  <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>--> 
+			    </em>
+			</p>
+			<div class="map_wrap">
+			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+			    <ul id="category">
+			        <li id="AT4" data-order="0"> 
+			            <span class="category_bg bank"></span>
+			            관광명소
+			        </li>       
+			        <li id="MT1" data-order="1"> 
+			            <span class="category_bg mart"></span>
+			            마트
+			        </li>  
+			        <li id="FD6" data-order="2"> 
+			            <span class="category_bg pharmacy"></span>
+			            음식점
+			        </li>  
+			        <li id="AD5" data-order="3"> 
+			            <span class="category_bg oil"></span>
+			            숙박
+			        </li>  
+			        <li id="CE7" data-order="4"> 
+			            <span class="category_bg cafe"></span>
+			            카페
+			        </li>  
+			        <li id="CS2" data-order="5"> 
+			            <span class="category_bg store"></span>
+			            편의점
+			        </li>      
+			    </ul>
+			</div>
+			
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b&libraries=services,clusterer,drawing"></script>
+			<script>
+			// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+			var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+			    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+			    markers = [], // 마커를 담을 배열입니다
+			    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+			 
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+					//<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0">
+			        //	center: new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude}), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소)   
+			        	center: new kakao.maps.LatLng("35.145875431025004", "126.92333732691111"), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소) _ 중심을 제대로 못 잡네.
+			        //</c:forEach>
+			        level: 5, // 지도의 확대 레벨
+			        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+			    };  
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			// 장소 검색 객체를 생성합니다
+			var ps = new kakao.maps.services.Places(map); 
+			// 지도에 idle 이벤트를 등록합니다
+			kakao.maps.event.addListener(map, 'idle', searchPlaces);
+			// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+			contentNode.className = 'placeinfo_wrap';
+			// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
+			// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+			addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
+			addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
+			// 커스텀 오버레이 컨텐츠를 설정합니다
+			placeOverlay.setContent(contentNode);  
+			// 각 카테고리에 클릭 이벤트를 등록합니다
+			addCategoryClickEvent();
+			// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
+			function addEventHandle(target, type, callback) {
+			    if (target.addEventListener) {
+			        target.addEventListener(type, callback);
+			    } else {
+			        target.attachEvent('on' + type, callback);
+			    }
+			}
+			// 카테고리 검색을 요청하는 함수입니다
+			function searchPlaces() {
+			    if (!currCategory) {
+			        return;
+			    }
+			    
+			    // 커스텀 오버레이를 숨깁니다 
+			    placeOverlay.setMap(null);
+			    // 지도에 표시되고 있는 마커를 제거합니다
+			    removeMarker();
+			    
+			    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+			}
+			// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+			function placesSearchCB(data, status, pagination) {
+			    if (status === kakao.maps.services.Status.OK) {
+			        // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+			        displayPlaces(data);
+			    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+			        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
+			    } else if (status === kakao.maps.services.Status.ERROR) {
+			        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
+			        
+			    }
+			}
+			// 지도에 마커를 표출하는 함수입니다
+			function displayPlaces(places) {
+			    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+			    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+			    var order = document.getElementById(currCategory).getAttribute('data-order');
+			    
+			    for ( var i=0; i<places.length; i++ ) {
+			            // 마커를 생성하고 지도에 표시합니다
+			            var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
+			            // 마커와 검색결과 항목을 클릭 했을 때
+			            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+			            (function(marker, place) {
+			                kakao.maps.event.addListener(marker, 'click', function() {
+			                    displayPlaceInfo(place);
+			                });
+			            })(marker, places[i]);
+			    }
+			}
+			// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+			function addMarker(position, order) {
+			    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+			    //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			    //var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';
+			        imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
+			        imgOptions =  {
+			            spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
+			            spriteOrigin : new kakao.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+			            offset: new kakao.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+			        },
+			        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+			            marker = new kakao.maps.Marker({
+			            position: position, // 마커의 위치
+			            image: markerImage 
+			        });
+			    marker.setMap(map); // 지도 위에 마커를 표출합니다
+			    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+			    return marker;
+			}
+			// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+			function removeMarker() {
+			    for ( var i = 0; i < markers.length; i++ ) {
+			        markers[i].setMap(null);
+			    }   
+			    markers = [];
+			}
+			// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
+			function displayPlaceInfo (place) {
+			    var content = '<div class="placeinfo">' +
+			                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+			    if (place.road_address_name) {
+			        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+			                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+			    }  else {
+			        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+			    }                
+			   
+			    content += '    <span class="tel">' + place.phone + '</span>' + 
+			                '</div>' + 
+			                '<div class="after"></div>';
+			    contentNode.innerHTML = content;
+			    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
+			    placeOverlay.setMap(map);  
+			}
+			// 각 카테고리에 클릭 이벤트를 등록합니다
+			function addCategoryClickEvent() {
+			    var category = document.getElementById('category'),
+			        children = category.children;
+			    for (var i=0; i<children.length; i++) {
+			        children[i].onclick = onClickCategory;
+			    }
+			}
+			// 카테고리를 클릭했을 때 호출되는 함수입니다
+			function onClickCategory() {
+			    var id = this.id,
+			        className = this.className;
+			    placeOverlay.setMap(null);
+			    if (className === 'on') {
+			        currCategory = '';
+			        changeCategoryClass();
+			        removeMarker();
+			    } else {
+			        currCategory = id;
+			        changeCategoryClass(this);
+			        searchPlaces();
+			    }
+			}
+			// 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
+			function changeCategoryClass(el) {
+			    var category = document.getElementById('category'),
+			        children = category.children,
+			        i;
+			    for ( i=0; i<children.length; i++ ) {
+			        children[i].className = '';
+			    }
+			    if (el) {
+			        el.className = 'on';
+			    } 
+			}
+							
+			//<c:forEach items="${detail.coursePath}" var="coursePath">
+//				var markerPosition  = new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude});  // 이 부분이 뭔가 배열 처리가 되고, 413행 부터 코딩을 바꿔줘야 할 것 같은데  
+				var markerPosition  = new kakao.maps.LatLng("35.145875431025004", "126.92333732691111");  // 이 부분이 뭔가 배열 처리가 되고, 413행 부터 코딩을 바꿔줘야 할 것 같은데 _ 장소 마커를 여러개 찍으려면 어케 해줘야 할까.. 
+			//</c:forEach>
+			// 마커를 생성합니다
+			var marker = new kakao.maps.Marker({
+			    position: markerPosition
+			});
+			// 마커가 지도 위에 표시되도록 설정합니다
+			marker.setMap(map);
+			</script>
 		</div>
 		<!-- End Map -->
 
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
-					<div id="single_tour_feat">
+					<div id="single_tour_feat" style="text-align: center;">
 						<ul>
 							<c:choose>
 								<c:when test="${detail.schedule eq '당일'}">
@@ -256,26 +469,21 @@
 
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a></p>
 					<!-- Map button for tablets/mobiles -->
-					
-					<!-- 이 부분 빼는 거 고려 -->
 					<div id="Img_carousel" class="slider-pro">
-					여기는 그냥 뺄까봐
 						<c:forEach items="${detail.coursePath}" var="coursePath">	
 							<div class="sp-slides">
 								<div class="sp-slide">
-									<img alt="Image" class="sp-image" src="../css/images/blank.gif" data-src="../img/slider_single_tour/1_medium.jpg" data-small="../img/slider_single_tour/1_small.jpg" data-medium="../img/slider_single_tour/1_medium.jpg" data-large="../img/slider_single_tour/1_large.jpg" data-retina="../img/slider_single_tour/1_large.jpg">
-									<div class="carousel-caption">
-										<h4>${coursePath.title}</h4>			  
-							  		</div>						  
-								</div>								
+									<img alt="Image" class="sp-image" src="../css/images/blank.gif" data-src="${coursePath.image}" data-small="${coursePath.image}" data-medium="${coursePath.image}" data-large="${coursePath.image}" data-retina="${coursePath.image}">
+								</div>												
 							</div>
 						</c:forEach>
 						<div class="sp-thumbnails">
-							<img alt="Image" data-rel="1" id="thumbimg1" class="sp-thumbnail" src="../img/slider_single_tour/1_medium.jpg">
+							<c:forEach items="${detail.coursePath}" var="coursePath">
+								<img alt="Image" data-rel="1" id="thumbimg1" class="sp-thumbnail" src="${coursePath.image}">
+							</c:forEach>
 						</div>
 					</div>
 					<hr>
-					<!-- 여기까지 -->
 					<div class="row">
 						<div class="col-lg-12">
 							<h3>코스 설명</h3>
@@ -301,22 +509,14 @@
 									</div>
 									<!-- End row  -->
 									<div class="owl-carousel owl-theme carousel-thumbs-2 magnific-gallery">
-										<div class="item">
-											<a href="../img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/1.jpg" alt="Image">
+										<div class="item">											
+											<a href="${coursePath.image}" data-effect="mfp-zoom-in"><img src="${coursePath.image}" alt="Image">
 											</a>
 										</div>
-										<div class="item">
+										<!--<div class="item">
 											<a href="../img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/2.jpg" alt="Image">
 											</a>
-										</div>
-										<div class="item">
-											<a href="../img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/3.jpg" alt="Image">
-											</a>
-										</div>
-										<div class="item">
-											<a href="../img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/4.jpg" alt="Image">
-											</a>
-										</div>
+										</div> -->
 									</div>
 									<!-- End photo carousel  -->
 									<hr>
@@ -426,15 +626,15 @@
 										</c:forEach>
 									</div>
 								</div>
-							<br>
-							<div class="col-sm-12">
-								<div style="text-align: center;">
-									<input type="button" value="코스 저장하기" class="btn_1" data-toggle="modal" data-target="#put_into_course">
-									<!-- 비로그인 상태면 로그인을 하게 할거고, 로그인 상태면 코스 생성, 저장 팝업 띄울거임.-->
+								<br>
+								<div class="col-sm-12">
+									<div style="text-align: center;">
+										<input type="button" value="코스 저장하기" class="btn_1" data-toggle="modal" data-target="#put_into_course">
+										<!-- 비로그인 상태면 로그인을 하게 할거고, 로그인 상태면 코스 생성, 저장 팝업 띄울거임.-->
+									</div>
 								</div>
 							</div>
-						</div>
-						<!--/box_style_1 -->
+						</div> <!-- /box_style_1 -->
 					</div>
 					<!--/sticky -->
 				</aside>
@@ -563,25 +763,26 @@
 	<!-- /Sign In Popup -->
 	
 	<!-- Modal put_into_course-->
-	<div class="modal fade" id="put_into_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div>
-						<h4>- 내 코스 1<span style="padding-left: 250px;"><input type="button" value="선택" class="btn_1" id=""></span></h4>
-						<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-					</div>
-					<div style="text-align: center;">
-						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+			<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body" style="text-align: center;">
+							<div>
+								<h4>- 내 코스 1<span style="padding-left: 250px;"><input type="button" value="선택" class="btn_1" id=""></span></h4>
+								<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
+							</div>
+							<div style="text-align: center;">
+								<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div> <!-- End of Modal put_into_course-->
+ 	<!-- End of Modal put_into_course-->
 
 	<!-- Modal add_course-->
 	<div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -741,10 +942,10 @@
 	<!--Review modal validation -->
 	<script src="../assets/validate.js"></script>
 
-	<!-- Map -->
+	<!-- Map 
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="../js/map.js"></script>
-	<script src="../js/infobox.js"></script>
+	<script src="../js/infobox.js"></script> -->
 
 	<!-- Fixed sidebar -->
 	<script src="../js/theia-sticky-sidebar.js"></script>
@@ -774,6 +975,66 @@
 			}
 		}
 	});
+	</script>
+	
+	<!-- 로그인 -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.btn_login').on('click', login);
+			$('#password').on('keydown', function(evt) {
+				//evt.preventDefault();
+				//evt.stopPropagation();
+				if (evt.KeyCode == 13) {
+					login();
+				}
+			});
+		});
+		
+		function login() {
+			alert('로그인 버튼 클릭')
+			
+			if($.trim($('#loginId').val())==''){
+        		alert('아이디를 입력해 주세요');
+        		$('#loginId').focus();
+        		return;
+        	}
+			
+			if($.trim($('#password').val())==''){
+        		alert("비밀번호입력해주세요.");
+        		$('#password').focus();
+        		return;
+        	}
+			
+			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
+				
+				alert('진입 확인' + $('#loginId').val() + '/' + $('#password').val());
+				
+				$.ajax({
+	        		type : 'post',
+	        		async : true,
+	        		url : "../member/memberLogin.do",
+	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+	        		data : {
+	        			'id' : $('#loginId').val(),
+	        			'password' : $('#password').val()
+	        		},
+	        		success : function(result){
+	        			console.log(result)
+	        			if(result == 0){
+	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
+	        				$("#loginId").val("");
+	        				$("#password").val("");
+	        				
+	        			}
+	        			else if(result==1){
+	        				location.replace('../main.jsp')
+	        			}
+	        		},
+	        		error : function(err){console.log("에러요" + err)}
+	        	});	
+			}
+        		
+		}
 	</script>
 	
 </body>
