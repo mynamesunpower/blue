@@ -203,7 +203,7 @@
                                 <ul>
                                     <li><a href="festival.jsp">축제</a></li>
                                     <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.jsp">식당</a></li>
+                                    <li><a href="restaurant/restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>

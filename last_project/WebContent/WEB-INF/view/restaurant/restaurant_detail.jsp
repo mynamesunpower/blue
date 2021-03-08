@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,12 +23,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- COMMON CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<link href="css/vendors.css" rel="stylesheet">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+	<link href="../../css/vendors.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
-	<link href="css/custom.css" rel="stylesheet">
+	<link href="../../css/custom.css" rel="stylesheet">
 
 </head>
 
@@ -70,7 +71,7 @@
             <div class="row">
                 <div class="col-3">
                     <div id="logo_home">
-                    	<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
                         <!-- 로그인 세션이 있으면, 로고 클릭 시 mainAfterLogin.jsp로 이동되게-->
                         <!-- <h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1> -->
                     </div>
@@ -84,7 +85,7 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                          <ul>
                             <li class="submenu">
-                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
                                 <!-- 로그인 세션이 있으면, 홈 버튼 클릭 시 mainAfterLogin.jsp로 이동되게-->
                                 <!-- <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i> -->
                                     
@@ -94,7 +95,7 @@
                                 <ul>
                                     <li><a href="festival.jsp">축제</a></li>
                                     <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.jsp">식당</a></li>
+                                    <li><a href="restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>
@@ -116,7 +117,7 @@
                             </li>
                              <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a><ul>
-                                    <li><a href="course_main.jsp">코스 자랑 마당</a></li>
+                                    <li><a href="course_../main.jsp">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <li><a href="course_list.jsp">나의 코스 목록</a></li>
                                     </ul>
@@ -163,13 +164,13 @@
         </div><!-- container -->
     </header><!-- ====================헤더 끝 ====================== -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/restaurant_top_in.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${restaurantVO.images.get(0)}" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>지식당</h1>
-						<span>서울시 양천구 남부순환로 52길 45</span>						
+						<h1>${restaurantVO.restaurant_name}</h1>
+						<span>${restaurantVO.address}</span>						
 						<span class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i><small>(75)</small></span>
 					</div>					
 				</div>
@@ -182,14 +183,14 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main.jsp">Home</a>
+					<li><a href="../main.jsp">Home</a>
 					</li>
 					<!-- 로그인 세션이 있다면, Home 클릭 시 mainAfterLogin.jsp로 이동되게-->
 					<!-- <li><a href="mainAfterLogin.jsp">Home</a>
 					</li> -->
 					<li><a href="festival.jsp">축제</a>
 					</li>
-					<li><a href="restaurants_list.jsp">식당</a>
+					<li><a href="restaurants_list.do">식당</a>
 					<li>지식당</li>
 				</ul>
 			</div>
@@ -219,132 +220,30 @@
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
 					</p>					
 					<!-- Map button for tablets/mobiles -->
+
 					<div id="Img_carousel" class="slider-pro">
 						<div class="sp-slides">
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/1_medium.jpg" data-small="img/slider_single_tour/1_small.jpg" data-medium="img/slider_single_tour/1_medium.jpg" data-large="img/slider_single_tour/1_large.jpg" data-retina="img/slider_single_tour/1_large.jpg">
-							</div>
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/2_medium.jpg" data-small="img/slider_single_tour/2_small.jpg" data-medium="img/slider_single_tour/2_medium.jpg" data-large="img/slider_single_tour/2_large.jpg" data-retina="img/slider_single_tour/2_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/3_medium.jpg" data-small="img/slider_single_tour/3_small.jpg" data-medium="img/slider_single_tour/3_medium.jpg" data-large="img/slider_single_tour/3_large.jpg" data-retina="img/slider_single_tour/3_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/4_medium.jpg" data-small="img/slider_single_tour/4_small.jpg" data-medium="img/slider_single_tour/4_medium.jpg" data-large="img/slider_single_tour/4_large.jpg" data-retina="img/slider_single_tour/4_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/5_medium.jpg" data-small="img/slider_single_tour/5_small.jpg" data-medium="img/slider_single_tour/5_medium.jpg" data-large="img/slider_single_tour/5_large.jpg" data-retina="img/slider_single_tour/5_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/6_medium.jpg" data-small="img/slider_single_tour/6_small.jpg" data-medium="img/slider_single_tour/6_medium.jpg" data-large="img/slider_single_tour/6_large.jpg" data-retina="img/slider_single_tour/6_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/7_medium.jpg" data-small="img/slider_single_tour/7_small.jpg" data-medium="img/slider_single_tour/7_medium.jpg" data-large="img/slider_single_tour/7_large.jpg" data-retina="img/slider_single_tour/7_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/8_medium.jpg" data-small="img/slider_single_tour/8_small.jpg" data-medium="img/slider_single_tour/8_medium.jpg" data-large="img/slider_single_tour/8_large.jpg" data-retina="img/slider_single_tour/8_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/9_medium.jpg" data-small="img/slider_single_tour/9_small.jpg" data-medium="img/slider_single_tour/9_medium.jpg" data-large="img/slider_single_tour/9_large.jpg" data-retina="img/slider_single_tour/9_large.jpg">
-							</div>
+							<c:forEach items="${restaurantVO.images}" var="image">
+								<div class="sp-slide">
+									<img alt="Image" class="sp-image" src="data:image/jpg;base64,${image}" data-src="data:image/jpg;base64,${image}">
+								</div>
+							</c:forEach>
 						</div>
 						<div class="sp-thumbnails">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/1_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/2_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/3_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/4_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/5_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/6_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/7_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/8_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/9_medium.jpg">
+							<c:forEach items="${restaurantVO.images}" var="image">
+							<img alt="Image" class="sp-thumbnail" src="data:image/jpg;base64,${image}">
+							</c:forEach>
 						</div>
 					</div>
 					<hr>
 					<div class="row">
-						<div class="col-lg-3">
+						<div class="col-lg-6">
 							<h3>영업시간</h3>
+							<h4>${restaurantVO.open_time} ~ ${restaurantVO.close_time}</h4>
 						</div>
-						<div class="col-lg-9">
-							<div class="table-responsive">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th colspan="2">
-												1st March to 31st October
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												Monday
-											</td>
-											<td>
-												10.00 - 17.30
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Tuesday
-											</td>
-											<td>
-												09.00 - 17.30
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Wednesday
-											</td>
-											<td>
-												09.00 - 17.30
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Thursday
-											</td>
-											<td>
-												<span class="label label-danger">Closed</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Friday
-											</td>
-											<td>
-												09.00 - 17.30
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Saturday
-											</td>
-											<td>
-												09.00 - 17.30
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Sunday
-											</td>
-											<td>
-												10.00 - 17.30
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
+						<div class="col-lg-6">
+							<h3>휴일</h3>
+							<h4>${restaurantVO.rest_day}</h4>
 						</div>
 					</div>
 
@@ -449,11 +348,10 @@
 						<h3 class="inner">- 예약 문의 -</h3>
 						<div class="box_style_4">
 							<i class="icon_set_1_icon-90"></i>
-							<a href="tel://004542344599" class="phone" style="color:black;"><br/>010-1234-5678</a>
+							<a href="tel://${restaurantVO.tel}" class="phone" style="color:black;"><br/>${restaurantVO.tel}</a>
 							<!-- <small>Monday to Friday 9.00am - 7.30pm</small> -->
 						</div> <!--/box_style_4 -->
 						<hr>
-						<a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
 					</div>
 					<!--/box_style_1 -->
 				</aside>
@@ -729,13 +627,13 @@
 	<!-- End modal review -->
 
 	<!-- Common scripts -->
-	<script src="js/jquery-3.5.1.min.js"></script>
-	<script src="js/common_scripts_min.js"></script>
-	<script src="js/functions.js"></script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script src="../../js/common_scripts_min.js"></script>
+	<script src="../../js/functions.js"></script>
 
 	<!-- Date and time pickers -->
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/bootstrap-timepicker.js"></script>	
+	<script src="../../js/bootstrap-datepicker.js"></script>
+	<script src="../../js/bootstrap-timepicker.js"></script>	
 	<script>
 		$('input.date-pick').datepicker('setDate', 'today');
 		$('input.time-pick').timepicker({
@@ -744,7 +642,7 @@
 		})
 	</script>
 	<!-- Carousel -->
-	<script src="js/jquery.sliderPro.min.js"></script>
+	<script src="../../js/jquery.sliderPro.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function ($) {
 			$('#Img_carousel').sliderPro({
@@ -765,12 +663,12 @@
 	</script>
 
 	<!--Review modal validation -->
-	<script src="assets/validate.js"></script>
+	<script src="../../assets/validate.js"></script>
 
 	<!-- Map -->
 	<script src="http://maps.googleapis.com/maps/api/js"></script>                                   
-	<script src="js/map_single_restaurant.js"></script>
-	<script src="js/infobox.js"></script>
+	<script src="../../js/map_single_restaurant.js"></script>
+	<script src="../../js/infobox.js"></script>
 	
 </body>
 

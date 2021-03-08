@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,12 +23,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	
 	<!-- COMMON CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<link href="css/vendors.css" rel="stylesheet">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+	<link href="../../css/vendors.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
-	<link href="css/custom.css" rel="stylesheet">
+	<link href="../../css/custom.css" rel="stylesheet">
 
 </head>
 
@@ -94,7 +95,7 @@
                                 <ul>
                                     <li><a href="festival.jsp">축제</a></li>
                                     <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.jsp">식당</a></li>
+                                    <li><a href="restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>
@@ -321,444 +322,87 @@
 						</div>
 					</div>
 					<!--/tools -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>인기</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="restaurant_detail.jsp"><img src="img/restaurant_box_1.jpg" alt="Image">
-										<div class="short_info"><i class="icon_set_3_restaurant-2"></i> Fast food</div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i>
+					
+					<c:forEach items="${list}" var="list">
+						<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
+							<div class="row">
+								<div class="col-lg-4 col-md-4">
+									<div class="ribbon_3 popular"><span>인기</span>
 									</div>
-									<h3><strong>지</strong> 식당</h3>
-									<p>먹고 살아돌아오면 500원</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Disabled</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-47"></i></span>
-												<div class="tooltip-content">
-													<h4>No smoking area</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
-												<div class="tooltip-content">
-													<h4>Parking</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
-												<div class="tooltip-content">
-													<h4>Transport</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-									</ul>
+									<div class="wishlist">
+										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
+									</div>
+									<div class="img_list">
+										<a href="restaurant_detail.do?_id=${list._id}">
+										
+											<c:if test="${list.images.size() gt 0}">
+												<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.restaurant_name}">
+											</c:if>
+											
+											<div class="short_info"><i class="icon_set_3_restaurant-2"></i> Fast food</div>
+										</a>
+									</div>
 								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div>
-										<p>
-											<a href="restaurant_detail.jsp" class="btn_1">상세 정보</a>
-										</p>
+								<div class="col-lg-6 col-md-6">
+									<div class="tour_list_desc">
+										<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i>
+										</div>
+										<h3>${list.restaurant_name}</h3>
+										<p>${list.address}</p>
+										<ul class="add_info">
+											<li>
+												<div class="tooltip_styled tooltip-effect-4">
+													<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
+													<div class="tooltip-content">
+														<h4>Disabled</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
+														<br>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="tooltip_styled tooltip-effect-4">
+													<span class="tooltip-item"><i class="icon_set_1_icon-47"></i></span>
+													<div class="tooltip-content">
+														<h4>No smoking area</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
+														<br>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="tooltip_styled tooltip-effect-4">
+													<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
+													<div class="tooltip-content">
+														<h4>Parking</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
+														<br>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="tooltip_styled tooltip-effect-4">
+													<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
+													<div class="tooltip-content">
+														<h4>Transport</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
+														<br>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<div class="price_list">
+										<div>
+											<p>
+												<a href="restaurant_detail.do?_id=${list._id}" class="btn_1">상세 정보</a>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.2s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_restaurant.jsp"><img src="img/restaurant_box_2.jpg" alt="Image">
-										<div class="short_info"><i class="icon_set_3_restaurant-2"></i> Fast food</div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i>
-									</div>
-									<h3><strong>Catrine</strong> restaurant</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Disabled</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-47"></i></span>
-												<div class="tooltip-content">
-													<h4>No smoking area</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
-												<div class="tooltip-content">
-													<h4>Parking</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
-												<div class="tooltip-content">
-													<h4>Transport</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div>
-										<p><a href="single_restaurant.jsp" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.3s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_restaurant.jsp"><img src="img/restaurant_box_3.jpg" alt="Image">
-										<div class="short_info"><i class="icon_set_3_restaurant-1"></i> Pizza / Italian</div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Bella Napoli</strong> restaurant</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Disabled</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-47"></i></span>
-												<div class="tooltip-content">
-													<h4>No smoking area</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
-												<div class="tooltip-content">
-													<h4>Parking</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
-												<div class="tooltip-content">
-													<h4>Transport</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>39*<span class="normal_price_list">$99</span><small>*Per person</small>
-										<p><a href="single_restaurant.jsp" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.4s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_restaurant.jsp"><img src="img/restaurant_box_4.jpg" alt="Image">
-										<div class="short_info"><i class="icon_set_3_restaurant-4"></i> Chinese</div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Dragon tower</strong> restaurant</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Disabled</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-47"></i></span>
-												<div class="tooltip-content">
-													<h4>No smoking area</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
-												<div class="tooltip-content">
-													<h4>Parking</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
-												<div class="tooltip-content">
-													<h4>Transport</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>69*<span class="normal_price_list">$59</span><small>*Per person</small>
-										<p><a href="single_restaurant.jsp" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.5s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_restaurant.jsp"><img src="img/restaurant_box_5.jpg" alt="Image">
-										<div class="short_info"><i class="icon_set_3_restaurant-7"></i> Fish</div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Sea food</strong> restaurant</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Disabled</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-47"></i></span>
-												<div class="tooltip-content">
-													<h4>No smoking area</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
-												<div class="tooltip-content">
-													<h4>Parking</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
-												<div class="tooltip-content">
-													<h4>Transport</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>49*<span class="normal_price_list">$59</span><small>*Per person</small>
-										<p><a href="single_restaurant.jsp" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.7s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_restaurant.jsp"><img src="img/restaurant_box_6.jpg" alt="Image">
-										<div class="short_info"><i class="icon_set_3_restaurant-5"></i> International</div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Alfredo</strong> restaurant</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Disabled</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-47"></i></span>
-												<div class="tooltip-content">
-													<h4>No smoking area</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
-												<div class="tooltip-content">
-													<h4>Parking</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
-												<div class="tooltip-content">
-													<h4>Transport</h4> Usu in novum nostrud disputando, ei quo aperiri omittam vidit fastidii.
-													<br>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>49*<span class="normal_price_list">$59</span><small>*Per person</small>
-										<p><a href="single_restaurant.jsp" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
+						<!--End strip -->
+					</c:forEach>
+					
 
 					<hr>
 
@@ -904,21 +548,21 @@
 	<!-- /Sign In Popup -->
 
 	<!-- Common scripts -->
-	<script src="js/jquery-3.5.1.min.js"></script>
-	<script src="js/common_scripts_min.js"></script>
-	<script src="js/functions.js"></script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script src="../../js/common_scripts_min.js"></script>
+	<script src="../../js/functions.js"></script>
 
 	<!-- Specific scripts -->
 	<!-- Cat nav mobile -->
-	<script src="js/cat_nav_mobile.js"></script>
+	<script src="../../js/cat_nav_mobile.js"></script>
 	<script>
 		$('#cat_nav').mobileMenu();
 	</script>
 
 	<!-- Map -->
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
-	<script src="js/map_restaurants.js"></script>
-	<script src="js/infobox.js"></script>
+	<script src="../../js/map_restaurants.js"></script>
+	<script src="../../js/infobox.js"></script>
 	
 	<!-- Check box and radio style iCheck -->
 	<script>
