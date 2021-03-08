@@ -2,6 +2,7 @@ package main.java.controller;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.RestaurantServiceImpl;
 import main.java.vo.RestaurantVO;
@@ -50,6 +52,23 @@ public class RestaurantController {
 		model.addAttribute("restaurantVO", restaurantVO);
 		
 		return "restaurant/restaurant_detail";
+	}
+	
+	@RequestMapping(value = "restaurant/insert_restaurant_review.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int insertRestaurantReview(RestaurantVO vo, String _id) {
+		
+		System.out.println(_id);
+		System.out.println(vo.getReview().get("id"));
+		System.out.println(vo.getReview().get("content"));
+		System.out.println(vo.getReview().get("food"));
+		System.out.println(vo.getReview().get("service"));
+		System.out.println(vo.getReview().get("price"));
+		System.out.println(vo.getReview().get("quality"));
+		
+		int result = restaurantService.insertRestaurantReview(vo.getReview(), _id);
+		
+		return result;
 	}
 	
 	public void BinaryImageToString(RestaurantVO restaurantVO) {

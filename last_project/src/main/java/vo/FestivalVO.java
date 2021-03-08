@@ -26,6 +26,7 @@ public class FestivalVO {
 	private String longitude;
 	private int postcode;
 	private ArrayList<String> images;
+	
 	public int getPostcode() {
 		return postcode;
 	}

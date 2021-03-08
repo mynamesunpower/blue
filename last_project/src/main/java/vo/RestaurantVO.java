@@ -20,7 +20,8 @@ public class RestaurantVO {
 	private String tel;
 	private ArrayList<Binary> image;
 	private ArrayList<String> images;
-	private ArrayList<HashMap<String, String>> review;
+	private HashMap<String, String> review;
+	private ArrayList<HashMap<String, String>> reviews;
 	
 	
 	public String getAddress() {
@@ -78,12 +79,19 @@ public class RestaurantVO {
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
 	}
-	public ArrayList<HashMap<String, String>> getReview() {
+	public HashMap<String, String> getReview() {
 		return review;
 	}
-	public void setReview(ArrayList<HashMap<String, String>> review) {
+	public void setReview(HashMap<String, String> review) {
 		this.review = review;
 	}
+	public ArrayList<HashMap<String, String>> getReviews() {
+		return reviews;
+	}
+	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
+		this.reviews = reviews;
+	}
+	
 	
 	
 	

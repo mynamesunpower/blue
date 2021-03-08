@@ -219,7 +219,7 @@ $(document).ready(function() {
 				success: function(result){
 					
 					if (result == 1) {
-						location.replace("main.jsp");
+						location.replace("../main.jsp");
 					}
 				},
 				error : function(err){console.log(err)}

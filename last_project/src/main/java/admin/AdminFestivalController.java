@@ -20,7 +20,7 @@ public class AdminFestivalController {
 	public String helloAdminFestival(Model model) {
 		System.out.println("관리자 ---> 축제 관리");
 		
-		List<FestivalVO> list = festivalService.selectAll();
+		List<FestivalVO> list = festivalService.test();
 		model.addAttribute("list", list);
 		
 		return "admin/admin_festival";

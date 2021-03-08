@@ -1,5 +1,6 @@
 package main.java.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public RestaurantVO selectOne(String _id) {
 		// TODO Auto-generated method stub
 		return restaurantDAO.selectOne(_id);
+	}
+
+	@Override
+	public int insertRestaurantReview(HashMap<String, String> review, String _id) {
+		// TODO Auto-generated method stub
+		return restaurantDAO.insertRestaurantReview(review, _id);
 	}
 	
 }

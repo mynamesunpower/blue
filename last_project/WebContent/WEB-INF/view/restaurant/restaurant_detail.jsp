@@ -252,10 +252,12 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
-							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							<c:if test="${sessionScope.memberId ne null}">
+								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							</c:if>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">11 Reviews
+							<div id="general_rating">'후기 리스트의 사이즈()' 개의 후기
 								<div class="rating">
 									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 								</div>
@@ -531,51 +533,50 @@
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="#" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
+					<form method="post" action="insert_restaurant_review.do" name="review_tour" id="review_tour">
+						<input name="_id" id="_id" type="hidden" value="${restaurantVO._id}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="name_review" id="name_review" type="text" placeholder="이름" class="form-control">
+									<input name="review_userId" id="review_userId" type="text" placeholder="이름" class="form-control" value="${sessionScope.memberId}">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
+						<!-- 
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
 									<input name="email_review" id="email_review" type="email" placeholder="이메일" class="form-control">
 								</div>
 							</div>
-						</div>
+						</div>  -->
 						<!-- End row -->
 						<hr>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>음식</label>
-									<select class="form-control" name="position_review" id="position_review">
+									<select class="form-control" name="position_review" id="food_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>서비스</label>
-									<select class="form-control" name="guide_review" id="guide_review">
+									<select class="form-control" name="guide_review" id="service_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
@@ -587,12 +588,11 @@
 									<label>가격</label>
 									<select class="form-control" name="price_review" id="price_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
@@ -601,24 +601,20 @@
 									<label>분위기</label>
 									<select class="form-control" name="quality_review" id="quality_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
 						<div class="form-group">
-							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="숙소에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
+							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="식당에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
 						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="인간이라면 답을 적어주세요 4 + 1 = ?">
-						</div>
-						<input type="submit" value="작성" class="btn_1" id="submit-review">
+						<input type="button" value="작성" class="btn_1" id="submit-review">
 					</form>
 				</div>
 			</div>
@@ -659,6 +655,43 @@
 				thumbnailArrows: true,
 				autoplay: false
 			});
+			
+			$('#submit-review').on('click', function() {
+				const id = $('#review_userId').val();
+				
+				const review = {
+					'id' : id,
+        			'content' : $('#review_text').val(),
+        			'food': $('#food_review').val(),
+        			'service': $('#service_review').val(),
+        			'price': $('#price_review').val(),
+        			'quality': $('#quality_review').val()
+        			
+				}
+				
+				const _id :	$('#_id').val()
+				
+				console.log(_id)
+				console.log(review['id'] + '/' + review['content'] + '/' + review['food'] + '/' + review['service'] + '/' + review['price'] + '/' + review['quality'])
+				
+				$.ajax({
+					type : 'post',
+	        		async : true,
+	        		url : "insert_restaurant_review.do",
+	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+	        		data : {
+	        			'_id': _id,
+	     				'review': review
+	        		},
+					success: function(data) {
+						console.log('성공 ' + data)
+					},
+					error: function(error) {
+						console.log('에러' + error)
+					}
+				})
+				
+			})
 		});
 	</script>
 

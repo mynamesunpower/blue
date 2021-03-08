@@ -597,7 +597,7 @@ $(document).ready(function() {
 		var fes_oMonth = new Date();
 		fes_oMonth.setDate(1);
 		cur_month = (fes_oMonth.getMonth()+1);
-		getMonthData()
+		getMonthData(cur_month)
 	})
 	
 	
@@ -616,15 +616,20 @@ $(document).ready(function() {
 				//alert("iss = "+count.length);
 				 $.each(data, function (i, item) {
 					 //console.log(item.image)
+					 console.log(item._id)
 					 console.log("나는"+item.festival_name)
+					 console.log("이미지는"+item.image)
+					 console.log(item.image[0])
 					festivals = '';
 					festivals += '<div>'
 					festivals +='<a href="/details.do?tel='+item.postcode+'">'
 					//festivals +='<a href="javascript:" onclick="festivaldetail('+item.tel+')">'
-					
-					//festivals +='<img src="data:image/jpg;base64,'+item.image+'" alt="" class="img-fluid">'	
-					
-					festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'	
+					if(item.image!=null){
+					festivals +='<img src="data:image/jpg;base64,'+item.image[0].data+'" alt="" class="img-fluid">'	
+					}else{
+						festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'	
+					}
+					//festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'	
 					///festivals +='<img src="D:/Temp/test.png" alt="" class="img-fluid">'
 					//festivals +='<img src="'+item.image+'" alt="" class="img-fluid">'
 					festivals +='<div class="wrapper">'
