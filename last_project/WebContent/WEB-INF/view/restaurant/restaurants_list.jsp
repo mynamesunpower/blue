@@ -323,7 +323,7 @@
 					</div>
 					<!--/tools -->
 					
-					<c:forEach items="${list}" var="list">
+					<c:forEach items="${list}" var="list" varStatus="var">
 						<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 							<div class="row">
 								<div class="col-lg-4 col-md-4">
@@ -345,7 +345,8 @@
 								</div>
 								<div class="col-lg-6 col-md-6">
 									<div class="tour_list_desc">
-										<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i>
+										<div class="rating">
+											
 										</div>
 										<h3>${list.restaurant_name}</h3>
 										<p>${list.address}</p>

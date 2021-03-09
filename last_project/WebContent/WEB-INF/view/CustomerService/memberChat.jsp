@@ -19,13 +19,13 @@
 	<script type="text/javascript">
 		// 서버의 broadsocket의 서블릿으로 웹 소켓을 한다.
 		var webSocket = new WebSocket(
-				"ws://175.210.170.183:8080/broadsocket");
+				"ws://localhost:8080/broadsocket");
 		// 콘솔 텍스트 영역
 		var messageTextArea = document.getElementById("messageTextArea");
 		// 접속이 완료되면
 		webSocket.onopen = function(message) {
 			// 콘솔에 메시지를 남긴다.
-			messageTextArea.value += "Server connect...\n";
+			messageTextArea.value += "연결 중입니다.\n";
 		};
 		// 접속이 끝기는 경우는 브라우저를 닫는 경우이기 떄문에 이 이벤트는 의미가 없음.
 		webSocket.onclose = function(message) {
@@ -33,7 +33,7 @@
 		// 에러가 발생하면
 		webSocket.onerror = function(message) {
 			// 콘솔에 메시지를 남긴다.
-			messageTextArea.value += "error...\n";
+			messageTextArea.value += "에러\n";
 		};
 		// 서버로부터 메시지가 도착하면 콘솔 화면에 메시지를 남긴다.
 		webSocket.onmessage = function(message) {

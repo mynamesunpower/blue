@@ -1,5 +1,6 @@
 package main.java.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,16 +39,26 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 	@Override
-	public int insertRestaurantReview(HashMap<String, String> review, String _id) {
+	public int updateRestaurantReview(ArrayList<HashMap<String, String>> reviews, String _id) {
 		// TODO Auto-generated method stub
 		
 		Query query = new Query(Criteria.where("_id").is(_id));
+		
 		Update update = new Update();
-		update.set("review", review);
+		update.set("reviews", reviews);
 		
 		UpdateResult result = mongoTemplate.updateFirst(query, update, collectionName);
 	
 		return (int)result.getModifiedCount();
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		// TODO Auto-generated method stub
+		
+		RestaurantVO vo = mongoTemplate.findById(_id, RestaurantVO.class, collectionName);
+		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
+		return vo.getReviews();
 	}
 	
 }

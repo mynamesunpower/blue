@@ -117,4 +117,31 @@ div.form-group > label {
 .category .ico_coffee {background-position:-10px 0;}  
 .category .ico_store {background-position:-10px -36px;}   
 .category .ico_carpark {background-position:-10px -72px;} 
+
+.rating_summary ul {
+	list-style: none;
+	margin: 0 0 -5px 0;
+	padding: 0;
+}
+
+.rating_summary li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.rating_summary ul li .rating {
+    display: inline-block;
+    font-size: 14px;
+    float: right;
+}
+
+.review_strip_single h4 {
+    font-size: 18px;
+    margin: -12px 0 35px 0px;
+    margin-top: -12px;
+    margin-right: 0px;
+    margin-bottom: 35px;
+
+    padding: 0;
+}
 	 

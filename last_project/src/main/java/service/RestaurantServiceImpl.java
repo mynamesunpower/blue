@@ -1,5 +1,6 @@
 package main.java.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,9 +28,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public int insertRestaurantReview(HashMap<String, String> review, String _id) {
+	public int updateRestaurantReview(ArrayList<HashMap<String, String>> reviews, String _id) {
 		// TODO Auto-generated method stub
-		return restaurantDAO.insertRestaurantReview(review, _id);
+		return restaurantDAO.updateRestaurantReview(reviews, _id);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		// TODO Auto-generated method stub
+		return restaurantDAO.getReviews(_id);
 	}
 	
 }

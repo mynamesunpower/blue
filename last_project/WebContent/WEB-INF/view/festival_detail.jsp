@@ -133,7 +133,7 @@
             <div class="row">
                 <div class="col-3">
                     <div id="logo_home">
-                    	<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
                         <!-- 로그인 세션이 있으면, 로고 클릭 시 mainAfterLogin.jsp로 이동되게-->
                         <!-- <h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1> -->
                     </div>
@@ -147,7 +147,7 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                          <ul>
                             <li class="submenu">
-                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
                                 <!-- 로그인 세션이 있으면, 홈 버튼 클릭 시 mainAfterLogin.jsp로 이동되게-->
                                 <!-- <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i> -->
                                     
@@ -155,9 +155,9 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
                                 <ul>
-                                    <li><a href="festival.jsp">축제</a></li>
-                                    <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.jsp">식당</a></li>
+                                    <li><a href="../festival.jsp">축제</a></li>
+                                    <li><a href="../accommodations_list.jsp">숙박</a></li>
+                                    <li><a href="restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>
@@ -173,15 +173,15 @@
                                 <ul>
                                     <!-- 메이트서비스 아닌 회원은 mate_index_default -->
                                     <!-- 메이트서비스 회원은 mate_index -->
-                                    <li><a href="mate/mate_index_default.jsp">메이트 서비스는?</a></li>
+                                    <li><a href="../mate/mate_index_default.jsp">메이트 서비스는?</a></li>
                                     <li><a href="#">나의 메이트 </a></li>
                                 </ul>
                             </li>
                              <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a><ul>
-                                    <li><a href="course_main.jsp">코스 자랑 마당</a></li>
+                                    <li><a href="../course/course_main.jsp">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <li><a href="course_list.jsp">나의 코스 목록</a></li>
+                                    <li><a href="../course/course_list.jsp">나의 코스 목록</a></li>
                                     </ul>
                             </li>
                         </ul>
@@ -253,7 +253,7 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main.jsp">Home</a>
+					<li><a href="../main.jsp">Home</a>
 					</li>
 					<!-- 로그인 세션이 있다면, Home 클릭 시 mainAfterLogin.jsp로 이동되게-->
 					<!-- <li><a href="mainAfterLogin.jsp">Home</a>
@@ -1288,14 +1288,18 @@ function getTimeHTML(distance) {
 		<form>
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.PNG); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
+                    <!-- <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" > -->
+                    <!--  <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" > -->
+                    <a href="naverlogin.do"><img src ="/img/login/naver_login2.PNG"></a>
+                    <br/>
+                    <br/>
+                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=41e45128f773156a833facd8e3b77b49&response_type=code&redirect_uri=http://localhost:8080/login2.do&response_type=code"><img src ="/img/login/kakao_login2.png"></a>
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
-					<label>Email</label>
-					<input type="email" class="form-control" name="email" id="email">
-					<i class="icon_mail_alt"></i>
+					<label>ID</label>
+					<input type="text" class="form-control" name="loginId" id="loginId">
+					<i class="icon_pencil"></i>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
@@ -1309,20 +1313,22 @@ function getTimeHTML(distance) {
 					</div>
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
-				<div class="text-center"><input type="submit" value="로그인" class="btn_login"></div>
+				<div class="text-center">
+                    <input type="button" value="로그인" class="btn_login">
+                    <!-- <a type="button" class="btn_login">로그인</a> -->
+                </div>
 				<div class="text-center">
 					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
 				</div>
 				<div id="forgot_pw">
 					<div class="form-group">
-						<!-- <label>Please confirm login email below</label> -->
-                        <label>하단에 로그인 이메일을 작성해주세요.</label>
+                        <label>하단에 이메일을 작성해주세요.</label>
 						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
 						<i class="icon_mail_alt"></i>
 					</div>
-					<!-- <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p> -->
+					
                     <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
-					<div class="text-center"><input type="submit" value="비밀번호 재설정" class="btn_1"></div>
+					<div class="text-center"><input type="button" id="findPassBtn" class="btn_1" value="비밀번호 재설정"></div>
 				</div>
 			</div>
 		</form>
