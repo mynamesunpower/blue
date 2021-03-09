@@ -2,6 +2,7 @@ package main.java.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +18,14 @@ public class FestivalServiceImpl implements FestivalService {
 	@Override
 	public List<FestivalVO> test() {
 		// TODO Auto-generated method stub
-		System.out.println("Service 접근");
+		System.out.println("Service �젒洹�");
 		return festivalDao.test();
 	}
 	
 	@Override
 	public List<FestivalVO> month(String month) {
 		// TODO Auto-generated method stub
-		System.out.println("Service 접근: month()");
+		System.out.println("Service �젒洹�: month()");
 		return festivalDao.month(month);
 	}
 	
@@ -44,6 +45,16 @@ public class FestivalServiceImpl implements FestivalService {
 		
 		return null;
 	}
+
+	
+	@Override
+	public List<FestivalVO> near(ObjectId objectId) {
+	
+		return festivalDao.near(objectId);
+	}
+
+
+	
 	
 	
 

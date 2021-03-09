@@ -5,6 +5,7 @@
 <html lang="ko">
 
 <head>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"></script>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -259,7 +260,7 @@
                         </div>
                         
                         <div class="col-sm-3">
-                        <div id = 'a5'>
+                        <div id = 'a5'  width="300px" height="196px">
                         <div>
                             <a href="all_hotels_list.jsp">
                                 <img src="img/img_cat_home_3.jpg" alt="" class="img-fluid">
@@ -286,17 +287,19 @@
         <div class="owl-carousel owl-theme list_carousel add_bottom_30">
                 <div class="item">
                     <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>인기</span></div>
+                        <div class="ribbon_3 popular"><span>근처축제</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
-                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="image">
+                         
+                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
+                                
                                 <div class="short_info">
                                     <span class="price">꼴뚜기.jpeg</span>
                                 </div>
                             </a>
                         </div>
                         <div class="tour_title">
-                            <h3><strong>꼴뚜기</strong> 투어</h3>
+                            <h3><strong>꼴뚜기 투어</strong></h3>
                             <div class="rating">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><small>(75)</small>
                             </div>
@@ -322,7 +325,7 @@
                             </a>
                         </div>
                         <div class="tour_title">
-                            <h3><strong>매운탕</strong> 투어</h3>
+                            <h3><strong>매운탕 투어</strong></h3>
                             <div class="rating">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
                             </div>
@@ -343,12 +346,12 @@
                             <a href="single_tour.jsp">
                                 <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="image">
                                 <div class="short_info">
-                                    <span class="price">망둥어 잡기</span>
+                                    <span class="price" >망둥어 잡기</span>
                                 </div>
                             </a>
                         </div>
                         <div class="tour_title">
-                            <h3><strong>매운탕</strong> 투어</h3>
+                            <h3><strong>매운탕 투어</strong></h3>
                             <div class="rating">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
                             </div>
@@ -370,9 +373,16 @@
         </p> <br><br>
         
         <!-- 내 근처의 축제 -->
+        
+        <div id="map" style="width:100%;height:350px;"></div>
+<p><em>지도를 클릭해주세요!</em></p> 
+<div id="clickLatlng"></div>
+
+
+        
         <div class="main_title">
-            <h2>근처 축제: <span> 오랑우탄 조련 축제 </span></h2>
-            <p>근처에 사는데 주변 축제 정도는 놀러 가봐야죠! 정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애정신나갈거같애</p>
+            <h2>근처 축제: <span> 내가 찍은 위치 </span></h2>
+            <p>이근처??</p>
             <a href="#" class="btn_1">자세히 보기</a>
         </div>
         
@@ -383,14 +393,18 @@
                         <div class="ribbon_3 popular"><span>인기</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
-                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="image">
+                            <div class="aa1">
+                            <div>
+                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
+                                </div>
+                                </div>
                                 <div class="short_info">
-                                    <span class="price">꼴뚜기.jpeg</span>
+                                    <span class="price"></span>
                                 </div>
                             </a>
                         </div>
                         <div class="tour_title">
-                            <h3><strong>꼴뚜기</strong> 투어</h3>
+                            <h3><strong class="nearname1">꼴뚜기 투어</strong></h3>
                             <div class="rating">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><small>(75)</small>
                             </div>
@@ -409,14 +423,18 @@
                         <div class="ribbon_3 popular"><span>한달 남음</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
-                                <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="image">
+                            <div class="aa2">
+                            <div>
+                                <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
+                                </div>
+                                </div>
                                 <div class="short_info">
-                                    <span class="price">망둥어 사냥꾼</span>
+                                    <span class="price"></span>
                                 </div>
                             </a>
                         </div>
                         <div class="tour_title">
-                            <h3><strong>매운탕</strong> 투어</h3>
+                            <h3><strong class="nearname2">매운탕 투어</strong></h3>
                             <div class="rating">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
                             </div>
@@ -435,14 +453,18 @@
                         <div class="ribbon_3"><span>평가 좋음</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
-                                <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="image">
+                            <div class="aa3">
+                            <div>
+                                <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
+                                </div>
+                                </div>
                                 <div class="short_info">
-                                    <span class="price">망둥어 잡기</span>
+                                    <span class="price"></span>
                                 </div>
                             </a>
                         </div>
                         <div class="tour_title">
-                            <h3><strong>매운탕</strong> 투어</h3>
+                            <h3><strong class="nearname3">매운탕 투어</strong></h3>
                             <div class="rating">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
                             </div>
@@ -575,9 +597,12 @@
 	<!-- /Sign In Popup -->
 
  	<!-- Common scripts -->
+ 	
+
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 
  	<!-- Specific scripts -->
 	<script src="js/morphext.min.js"></script>
@@ -616,20 +641,27 @@ $(document).ready(function() {
 				//alert("iss = "+count.length);
 				 $.each(data, function (i, item) {
 					 //console.log(item.image)
-					 console.log("나는"+item.festival_name)
+					 console.log("나는ss"+item.image)
 					festivals = '';
 					festivals += '<div>'
 					festivals +='<a href="/details.do?tel='+item.postcode+'">'
 					//festivals +='<a href="javascript:" onclick="festivaldetail('+item.tel+')">'
+					if(item.image==''){
+						festivals += '<div><img class="owl-slide cover img-fluid" src="img/img_cat_home_1.jpg"/></div>'
+						//festivals +='<img src="img/img_cat_home_1.jpg" class="img-fluid">'
+						//festivals +='<img src="data:image/jpg;base64,'+item.image[0].data+'" alt="" class="img-fluid">'	
+						}else{
+							festivals += '<div><img class="owl-slide cover img-fluid" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
+							//festivals +='<img  src="data:image/jpg;base64,'+item.image[0].data+'" class="img-fluid">'
+						}
 					
-					//festivals +='<img src="data:image/jpg;base64,'+item.image+'" alt="" class="img-fluid">'	
 					
-					festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'	
+					//festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'	
 					///festivals +='<img src="D:/Temp/test.png" alt="" class="img-fluid">'
 					//festivals +='<img src="'+item.image+'" alt="" class="img-fluid">'
 					festivals +='<div class="wrapper">'
 					festivals +='<h2>'+item.festival_name+'</h2>'
-					festivals +='<p>'+item.start_date+'~'+item.end_date+'</p>'
+					festivals +='<p>'+item.startDate+'~'+item.endDate+'</p>'
 					festivals +='</div>'
 					festivals +='</a>'
 					festivals +='</div>'
@@ -735,7 +767,7 @@ $(document).ready(function() {
 				 $.each(data, function (i, item) {
                     alert("i : "+i);
                     alert("item : "+item.festival_name);
-                    alert("item : "+item.start_date);
+                    alert("item : "+item.starDate);
                 });
 				
 				console.log(data)
@@ -822,21 +854,104 @@ $(document).ready(function() {
 			});
 		}
 		swiperBanner();
+				
 	}
+ 	
+ 	
+ 	
+
+ 	
+ 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+ 	    mapOption = { 
+ 	        center: new kakao.maps.LatLng(37.56582395976361, 126.9779054965128), // 지도의 중심좌표
+ 	        level: 10 // 지도의 확대 레벨
+ 	    };
+
+ 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+ 	// 지도를 클릭한 위치에 표출할 마커입니다
+ 	var marker = new kakao.maps.Marker({ 
+ 	    // 지도 중심좌표에 마커를 생성합니다 
+ 	    position: map.getCenter() 
+ 	}); 
+ 	// 지도에 마커를 표시합니다
+ 	marker.setMap(map);
+
+ 	// 지도에 클릭 이벤트를 등록합니다
+ 	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+ 	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+ 	    
+ 	    // 클릭한 위도, 경도 정보를 가져옵니다 
+ 	    var latlng = mouseEvent.latLng; 
+ 	    
+ 	    // 마커 위치를 클릭한 위치로 옮깁니다
+ 	    marker.setPosition(latlng);
+ 	    
+ 	    var a= latlng.getLat();
+ 	    var b = latlng.getLng();
+ 	    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+ 	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+ 	    
+ 	    var resultDiv = document.getElementById('clickLatlng'); 
+ 	    resultDiv.innerHTML = message;
+ 	    
+ 	    
+ 	    //클릭한 위도 경도 넘겨주기
+ 	    $.ajax({
+ 			url: "/nearnear.do",
+ 			dataType: 'json',
+ 			type: "POST",
+ 			data: {"latitude" : latlng.getLat(), "longitude" : latlng.getLng() },
+ 			success: function(data) {
+ 				//alert(data)
+ 				//data:image/jpg;base64,'+item.image[0].data
+ 				festivals1=''
+ 				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 				festivals2=''
+ 	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 	 			festivals3=''
+ 	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 	 	 				
+ 				
+ 				//$('.aa1 div').remove()
+ 				//$('.aa2 div').remove()
+ 				//$('.aa3 div').remove()
+ 				
+ 				$(".aa1").html(festivals1);
+ 				$(".aa2").html(festivals2);
+ 				$(".aa3").html(festivals3);
+ 				
+ 				
+ 				$(".nearname1").text(data[0][0].festival_name);
+ 				$(".nearname2").text(data[1][0].festival_name);
+ 			$(".nearname3").text(data[2][0].festival_name);
+ 				
+// 			
+ 			},
+ 			complete: function(d) {
+ 			},
+ 			error: function(xhr, textStatus, errorThrown) {
+ 				console.log(';;')
+ 			}
+ 		});
+ 	    
+ 	    
+ 	});
+ 	
 
 	
 	</script>
 	
  <script>
-    window.onload = function(){
+    //window.onload = function(){
     //반복제거, url
     //document.getElementById("div").style.backgroundRepeat = "no-repeat";
     //이미지 등록
     
-    document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
+    //document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
     //이미지 사이즈
     //document.getElementById("div").style.backgroundSize = "200px";
-    }
+   // }
 </script>
 
 <!--  <script type="text/javascript"> /* 사용자가 새로고침, F5 눌럿을 때만, 배경화면이 자동 변경 자바스크립트 함수*/

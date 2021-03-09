@@ -234,13 +234,13 @@
 				
 							       <c:forEach items="${list}" var="list">
 						
-						<h1>나는<%=tel%></h1>
+						<h1>${list.festival_name }</h1>
 						<span class='fesaddress'>${list.address}</span>
 						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
-							<span class='fesdate'><h2 style="color: #AABBFF;">${list.start_date} ~ ${list.end_date }</h2></span>
+							<span class='fesdate'><h2 style="color: #AABBFF;">${list.startDate} ~ ${list.endDate }</h2></span>
 						</div>
 					</div>
 				</div>
@@ -582,7 +582,7 @@ marker.setMap(map);
                             <div class="row">
 								<div class="col-md-6">
 									<ul class="list_ok">
-										<li>시작일<span class='fesstartdate'>${list.start_date }</span></li>
+										<li>시작일<span class='fesstartdate'>${list.startDate }</span></li>
 										<li>전화번호<span class='festel'>${list.tel }</span></li>
 										<li>주소<span class='fesaddress'>${list.address }</span></li>
 										<li>주최<span class='feshost'>${list.host}</span></li>
@@ -590,7 +590,7 @@ marker.setMap(map);
 								</div>
 								<div class="col-md-6">
 									<ul class="list_ok">
-										<li>종료일<span class='fesenddate'>${list.end_date }</span></li>
+										<li>종료일<span class='fesenddate'>${list.endDate }</span></li>
 										<li>홈페이지<span><a href="https://www.nfm.go.kr" class=feshomepage>${list.homepage }</a></span></li>
 										<li>가격<span class='fesfee'>${list.fee }</span></li>
 									</ul>
