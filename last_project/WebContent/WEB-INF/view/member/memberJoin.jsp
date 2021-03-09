@@ -218,7 +218,7 @@ $(document).ready(function() {
 				success: function(result){
 					
 					if (result == 1) {
-						location.replace("http://localhost:8080/index.jsp");
+						location.replace("../main.jsp");
 					}
 				},
 				error : function(err){console.log(err)}

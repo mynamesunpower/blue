@@ -49,7 +49,7 @@
 	<!-- Mobile menu overlay mask -->
 
 	<!-- Header================================================== -->
-	<header>
+	<header id="plain">
 		<div id="top_line">
             <div class="container">
                 <div class="row">
@@ -63,7 +63,7 @@
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
                             		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+	                            	<li><a id="wishlist_link" href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                             		<li><a href="#" class="icon-logout">로그아웃</a></li>
                             	</c:when>
                             </c:choose>
@@ -89,7 +89,7 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
                             <li class="submenu">
-                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
                             </li>
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
@@ -123,7 +123,7 @@
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <c:choose>
                                     	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    		<li><a href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                                     	</c:when>
                                     	<c:otherwise>
                                     		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
@@ -173,16 +173,16 @@
 		<!-- container -->
 	</header>
 	<!-- End Header -->
-	<c:forEach items="${detail.coursePath }" var="coursePath" begin="0" end="0"> <!-- 첫 번째 장소의 이미지가 대문 이미지가 되게 -->
+	<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0"> <!-- 첫 번째 장소의 이미지가 대문 이미지가 되게 -->
 		<section class="parallax-window" data-parallax="scroll" data-image-src="${coursePath.image}" data-natural-width="1400" data-natural-height="470"> 
 			<div class="parallax-content-2">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-8">
 							<h1>${detail.courseName }</h1>
-							<i class="pe-7s-map-marker"></i><span> ${detail.district}</span><br>
+							<i class="pe-7s-map-marker"></i><span> ${coursePath.address}</span><br>
 							<i class="pe-7s-graph1"></i> 코스 총 거리 :<span style="font-size: large;"> ${detail.distance}</span> km<br>
-							<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+							<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><medium>(${detail.reviews.size()}개의 리뷰)</medium></span>
 						</div>
 					</div>
 				</div>
@@ -205,14 +205,14 @@
 		</div>
 		<!-- End Position -->
 
-		<div class="collapse" id="collapseMap">
+		<div class="collapse show" id="collapseMap">
 			<!-- <div id="map" class="map"></div> -->
-			<!-- 지표 -->
+			<!-- 지표 
 			<p style="margin-top:-12px">
 			    <em class="link">
-			       <!--  <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>--> 
+			         <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>
 			    </em>
-			</p>
+			</p> -->
 			<div class="map_wrap">
 			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 			    <ul id="category">
@@ -253,11 +253,10 @@
 			 
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
-					//<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0">
-			        //	center: new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude}), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소)   
-			        	center: new kakao.maps.LatLng("35.145875431025004", "126.92333732691111"), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소) _ 중심을 제대로 못 잡네.
-			        //</c:forEach>
-			        level: 5, // 지도의 확대 레벨
+					<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0">
+			        	center: new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude}), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소)   
+			        </c:forEach>
+			        level: 7, // 지도의 확대 레벨
 			        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 			    };  
 			// 지도를 생성합니다    
@@ -407,17 +406,21 @@
 			        el.className = 'on';
 			    } 
 			}
-							
-			//<c:forEach items="${detail.coursePath}" var="coursePath">
-//				var markerPosition  = new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude});  // 이 부분이 뭔가 배열 처리가 되고, 413행 부터 코딩을 바꿔줘야 할 것 같은데  
-				var markerPosition  = new kakao.maps.LatLng("35.145875431025004", "126.92333732691111");  // 이 부분이 뭔가 배열 처리가 되고, 413행 부터 코딩을 바꿔줘야 할 것 같은데 _ 장소 마커를 여러개 찍으려면 어케 해줘야 할까.. 
-			//</c:forEach>
+			var arr = new Array(); // 장소 별 위도, 경도를 담을 배열 생성				
+			<c:forEach items="${detail.coursePath}" var="coursePath">
+				var markerPosition = new kakao.maps.LatLng("${coursePath.latitude}", "${coursePath.longitude}");
+				arr.push(markerPosition); // 배열에 위도, 경도 데이터 넣어줌.
+			</c:forEach>
+//			console.log("last_arr:"+arr); // 최종적으로 배열에 담긴 데이터 값 확인.
+			
 			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-			    position: markerPosition
-			});
-			// 마커가 지도 위에 표시되도록 설정합니다
-			marker.setMap(map);
+			for(var i=0; i<arr.length; i++){
+				var marker = new kakao.maps.Marker({
+					position:arr[i]
+				});
+				// 마커가 지도 위에 표시되도록 설정합니다
+				marker.setMap(map);
+			}
 			</script>
 		</div>
 		<!-- End Map -->
@@ -467,7 +470,7 @@
 						</ul>
 					</div>
 
-					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a></p>
+					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 열기" data-text-original="지도 숨기기">지도 숨기기</a></p>
 					<!-- Map button for tablets/mobiles -->
 					<div id="Img_carousel" class="slider-pro">
 						<c:forEach items="${detail.coursePath}" var="coursePath">	
@@ -497,7 +500,7 @@
 						</div>
 							<div class="col-lg-9">
 								<c:forEach items="${detail.coursePath}" var="coursePath">
-									<h4><i class="icon-flag-1"></i>${coursePath.title }</h4>							
+									<h4><i class="icon-flag-1"></i>${coursePath.title}</h4>							
 									<div class="row">
 										<div class="col-md-12">
 											<ul class="list_icons">
@@ -532,7 +535,7 @@
 							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">11 Reviews
+							<div id="general_rating">${detail.reviews.size()} Reviews
 								<div class="rating">
 									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 								</div>
@@ -570,7 +573,7 @@
 							</div>
 							<!-- End row -->
 							<hr>
-							<c:forEach items="${detail.review }" var="review">
+							<c:forEach items="${detail.reviews }" var="review">
 								<div class="review_strip_single">
 									<img src="../img/avatar1.jpg" alt="Image" class="rounded-circle">
 									<small> - 10 March 2015 -</small>
@@ -582,7 +585,7 @@
 										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 									</div>
 								</div>
-							<!-- End review strip -->
+								<!-- End review strip -->
 							</c:forEach>							
 						</div>
 					</div>
@@ -591,7 +594,7 @@
 
 				<aside class="col-lg-4" id="sidebar">
 					<p class="d-none d-xl-block d-lg-block d-xl-none">
-						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
+						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 열기" data-text-original="지도 숨기기">지도 숨기기</a>
 					</p>
 					<div class="theiaStickySidebar">
 						<div class="box_style_1 expose">
@@ -772,7 +775,7 @@
 						</div>
 						<div class="modal-body" style="text-align: center;">
 							<div>
-								<h4>- 내 코스 1<span style="padding-left: 250px;"><input type="button" value="선택" class="btn_1" id=""></span></h4>
+								<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1"><span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span></h4>
 								<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
 							</div>
 							<div style="text-align: center;">

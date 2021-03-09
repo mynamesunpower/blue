@@ -199,12 +199,5 @@ public class MemberController {
 			}
 			
 			return message;
-		}
-	
-	
-	@RequestMapping("mainAfterLogin.do")
-	public String mainAfterLogin() {
-		System.out.println("mainAfterLogin.do 요청");
-		return "member/mainAfterLogin";
-	}
+		}	
 }

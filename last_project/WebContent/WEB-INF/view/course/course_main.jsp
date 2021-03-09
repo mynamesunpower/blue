@@ -64,7 +64,7 @@
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
                             		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+	                            	<li><a id="wishlist_link" href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                             		<li><a href="#" class="icon-logout">로그아웃</a></li>
                             	</c:when>
                             </c:choose>
@@ -124,7 +124,7 @@
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <c:choose>
                                     	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    		<li><a href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                                     	</c:when>
                                     	<c:otherwise>
                                     		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
@@ -367,8 +367,10 @@
 									</div>
 									<div class="tour_title">
 										<h3><strong>${course.courseName}</strong></h3>
-										<ul style="list-style: none;">			
-											<li>지역 : <span>${course.district}</span></li>			
+										<ul style="list-style: none;">
+											<c:forEach items="${course.coursePath}" var="coursePath" begin="0" end="0">
+												<li>시작 지역 : <span>${coursePath.address}</span></li>
+											</c:forEach>			
 											<li>코스 총거리 : <span>${course.distance}</span>km</li>		
 										</ul>
 										<h3><strong>코스 경로</strong></h3>
@@ -379,8 +381,8 @@
 											</c:forEach>
 										</ul>
 										<div class="rating">
-											리뷰 갯수 같은거 가져오는 거 어렵당.. 잠시 패쓰<br> 
-											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
+											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
+											<br><medium> ${course.reviews.size()}개의 리뷰가 있어요!<medium>
 										</div>
 										<!-- end rating -->
 										<div class="wishlist">

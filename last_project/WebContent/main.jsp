@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%String kakaonickname = (String)session.getAttribute("kakaonickname"); %>
+<%String navernickname = (String)session.getAttribute("navernickname"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,7 +148,7 @@
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
                             		<li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course/course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+	                            	<li><a id="wishlist_link" href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                             		<li><a href="#" class="icon-logout">로그아웃</a></li>
                             	</c:when>
                             </c:choose>
@@ -206,7 +208,7 @@
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <c:choose>
                                     	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course/course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    		<li><a href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                                     	</c:when>
                                     	<c:otherwise>
                                     		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
@@ -819,7 +821,7 @@
 	        				
 	        			}
 	        			else if(result==1){
-	        				location.replace('/main.jsp')
+	        				location.replace('main.jsp')
 	        			}
 	        		},
 	        		error : function(err){console.log("에러요" + err)}

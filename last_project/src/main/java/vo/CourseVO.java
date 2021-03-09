@@ -13,7 +13,7 @@ public class CourseVO {
 	
 	private String writer;     // 코스 작성자 id       // = 유저 id
 	private String courseName; // 코스명
-	private String district;   // 코스 대표 지역    
+//	private String district;   // 코스 대표 지역	    // 코스 경로 첫번째 장소의 주소로 쓰기     
 //	private String mainImage;  // 코스 대표 이미지      // 코스 경로의 첫번째 장소의 이미지 중 첫번째꺼로 쓰기.
 	private String summary;    // 코스 설명
 	private ArrayList<String> keyword; // #태그(키워드)
@@ -22,7 +22,7 @@ public class CourseVO {
 	private String theme;      // 테마
 	private ArrayList<Binary> image;  // 어케 써먹지
 	private ArrayList<HashMap<String, String>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
-	private ArrayList<HashMap<String, String>> review; // 리뷰
+	private ArrayList<HashMap<String, String>> reviews; // 리뷰
 	
 	public ObjectId get_id() {
 		return _id;
@@ -42,13 +42,13 @@ public class CourseVO {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
+	/*
 	public String getDistrict() {
 		return district;
 	}
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-	/*
 	public String getMainImage() {
 		return mainImage;
 	}
@@ -98,12 +98,10 @@ public class CourseVO {
 	public void setCoursePath(ArrayList<HashMap<String, String>> coursePath) {
 		this.coursePath = coursePath;
 	}
-	public ArrayList<HashMap<String, String>> getReview() {
-		return review;
+	public ArrayList<HashMap<String, String>> getReviews() {
+		return reviews;
 	}
-	public void setReview(ArrayList<HashMap<String, String>> review) {
-		this.review = review;
+	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
+		this.reviews = reviews;
 	}
-
-	
 }

@@ -16,7 +16,7 @@
 			코스 작성자 id : ${course.writer} <br><br>
 			코스명 : ${course.courseName} <br><br>
 			코스 대표 지역 : ${course.district} <br><br>
-			코스 대표 이미지 : <div><img src="${course.mainImage}"></div><br><br>
+			<%-- 코스 대표 이미지 : <div><img src="${course.mainImage}"></div><br><br>--%>
 			코스 설명 : ${course.summary} <br><br>
 			<c:forEach items="${course.keyword}" var="keyword">
 				#태그(키워드) : ${keyword} <br>
@@ -35,7 +35,7 @@
 				경도 : ${coursePath.longitude }<br>
 				전화번호 : ${coursePath.tel } <br>
 				<c:forEach items="${coursePath.image }" var="image">
-					이미지 : ${image } <br>
+					이미지 : <img src="${image }"> <br>
 				</c:forEach>
 			</c:forEach>
 			<br>
