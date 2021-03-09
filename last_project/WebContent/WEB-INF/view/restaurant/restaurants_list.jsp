@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-3">
                     <div id="logo_home">
-                    	<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
                         <!-- 로그인 세션이 있으면, 로고 클릭 시 mainAfterLogin.jsp로 이동되게-->
                         <!-- <h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1> -->
                     </div>
@@ -85,7 +85,7 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                          <ul>
                             <li class="submenu">
-                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
                                 <!-- 로그인 세션이 있으면, 홈 버튼 클릭 시 mainAfterLogin.jsp로 이동되게-->
                                 <!-- <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i> -->
                                     
@@ -93,8 +93,8 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
                                 <ul>
-                                    <li><a href="festival.jsp">축제</a></li>
-                                    <li><a href="accommodations_list.jsp">숙박</a></li>
+                                    <li><a href="../festival.jsp">축제</a></li>
+                                    <li><a href="../accommodations_list.jsp">숙박</a></li>
                                     <li><a href="restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
@@ -178,12 +178,12 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main.jsp">Home</a>
+					<li><a href="../main.jsp">Home</a>
 					</li>
 					<!-- 로그인 세션이 있다면, Home 클릭 시 mainAfterLogin.jsp로 이동되게-->
 					<!-- <li><a href="mainAfterLogin.jsp">Home</a>
 					</li> -->
-					<li><a href="festival.jsp">축제</a>
+					<li><a href="../festival.jsp">축제</a>
 					</li>
 					<li>식당</li>
 				</ul>

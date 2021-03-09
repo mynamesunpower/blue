@@ -203,7 +203,15 @@
 					<div class="col-md-8">
 						<h1>${restaurantVO.restaurant_name}</h1>
 						<span>${restaurantVO.address}</span>						
-						<span class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i><small>(75)</small></span>
+						<div class="rating">
+						<c:forEach begin="1" end="${scores[4]}">
+							<i class="icon-star voted"></i>
+						</c:forEach>
+						<c:forEach begin="1" end="${5-scores[4]}">
+							<i class="icon-star-empty"></i>
+						</c:forEach>
+						<small>(${restaurantVO.reviews.size()})</small>
+						</div>
 					</div>					
 				</div>
 			</div>
@@ -223,7 +231,7 @@
 					<li><a href="festival.jsp">축제</a>
 					</li>
 					<li><a href="restaurants_list.do">식당</a>
-					<li>지식당</li>
+					<li>${restaurantVO.restaurant_name}</li>
 				</ul>
 			</div>
 		</div>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import main.java.model.RestaurantDAOImpl;
 import main.java.service.RestaurantServiceImpl;
 import main.java.vo.RestaurantVO;
 
@@ -32,6 +33,8 @@ public class RestaurantController {
 		
 		int[] scores = new int[restaurant_list.size()];
 		
+		restaurantService.findData("restaurant_name", "점");
+		
 		// 식당마다 for문 돌기
 		for (int i = 0; i < restaurant_list.size(); i++) {
 			RestaurantVO vo = restaurant_list.get(i);
@@ -40,7 +43,7 @@ public class RestaurantController {
 			BinaryImageToString(vo);
 			
 			// 리뷰에 있는 각 점수 평균을 가져오는 함수, (식당평균, 서비스평균, 맛평균, 분위기평균, 전체평균) 그 중 [4]번 요소 (전체 평균)
-			scores[i] = scoresAverage(vo.getReviews())[4];
+			
 		}
 		
 		model.addAttribute("scores", scores);

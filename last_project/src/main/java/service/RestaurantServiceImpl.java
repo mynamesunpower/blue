@@ -38,5 +38,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		return restaurantDAO.getReviews(_id);
 	}
+
+	public void findData(String string, String string2) {
+		
+		restaurantDAO.findData(string, string2);
+		
+	}
 	
 }

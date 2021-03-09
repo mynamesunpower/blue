@@ -5,7 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.LimitOperation;
+import org.springframework.data.mongodb.core.aggregation.MatchOperation;
+import org.springframework.data.mongodb.core.aggregation.SkipOperation;
+import org.springframework.data.mongodb.core.aggregation.SortOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -59,6 +68,31 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		RestaurantVO vo = mongoTemplate.findById(_id, RestaurantVO.class, collectionName);
 		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
 		return vo.getReviews();
+	}
+	
+	
+	public void findData(String key, String value) {
+		System.out.println("진입");
+		Criteria criteria = new Criteria(key);
+		criteria.is(value);
+		
+		MatchOperation match = Aggregation.match(criteria);
+		SortOperation sort = Aggregation.sort(Sort.Direction.DESC, "_id");
+		SkipOperation skip = Aggregation.skip(0);
+		LimitOperation limit = Aggregation.limit(2);
+		
+		Aggregation aggregation = Aggregation.newAggregation(match);
+		AggregationResults<RestaurantVO> result = mongoTemplate.aggregate(aggregation, collectionName, RestaurantVO.class);
+		
+		List<RestaurantVO> dataList = result.getMappedResults();
+		System.out.println(dataList.size());
+		
+		for (RestaurantVO restaurantVO : dataList) {
+			System.out.println(restaurantVO.get_id());
+			System.out.println(restaurantVO.getRestaurant_name());
+			System.out.println(restaurantVO.getAddress());
+		}
+		
 	}
 	
 }
