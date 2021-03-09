@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%String kakaonickname = (String)session.getAttribute("kakaonickname"); %>
+   <%String navernickname = (String)session.getAttribute("navernickname"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +13,7 @@
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
     <title>축축빵빵 - 전 국민 페스티벌 플랫폼</title>
+
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -25,6 +30,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<link href="css/vendors.css" rel="stylesheet">
+
 
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
@@ -113,6 +119,7 @@
 			height: 100%
 		}
 	</style>
+
 </head>
 <body>
     <div id="preloader">
@@ -138,13 +145,41 @@
                     <div class="col-6">
                         <ul id="top_links">
                             <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
-                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            <c:choose>
+                            	<c:when test="${sessionScope.memberId eq null}">
+                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            		<li><a href="mongo.do">몽고</a></li>
+                            	</c:when>
+                            	<c:when test="${sessionScope.memberId ne null}">
+                            		<%if((kakaonickname ==null)&& (navernickname ==null)){ %>
+              										 <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+              										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+              			               <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+              			               <li><a href="member/logout.do" class="icon-logout">로그아웃</a></li>
+              									<%} %>
+
+              									<%if(kakaonickname !=null){ %>
+              										<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
+              										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+              			              <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
+              									<%} %>
+
+              									<%if(navernickname !=null){ %>
+              										<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
+              										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+              			              <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a href="naverlogout.do" class="icon-logout">로그아웃</a></li>
+              									<%} %>
+                            	</c:when>
+                            </c:choose>
+
                         </ul>
                     </div>
                 </div><!-- End row -->
             </div><!-- End container-->
         </div><!-- End top line-->
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-3">
@@ -161,14 +196,15 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
                             <li class="submenu">
-                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
                             </li>
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
                                 <ul>
                                     <li><a href="festival.jsp">축제</a></li>
+                                    <li><a href="/mongomonths.do">축제쓰</a></li> 
                                     <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.jsp">식당</a></li>
+                                    <li><a href="restaurant/restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>
@@ -183,7 +219,7 @@
                                 <!-- 메이트서비스 아닌 회원은 mate_index_default -->
                                 <!-- 메이트서비스 회원은 mate_index -->
                                 <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a> <!--클릭하면 메이트 메인 페이지로 이동하게-->
-                                <ul> 
+                                <ul>
                                     <li><a href="mate/mate_index_default.jsp">메이트 서비스는?</a></li>
                                     <li><a href="#">나의 메이트 </a></li>
                                 </ul>
@@ -191,13 +227,20 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="course_main.jsp">코스 자랑 마당</a></li>
+                                    <li><a href="course/course_main.do">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <li><a href="course_list.jsp">나의 코스 목록</a></li>
+                                    <c:choose>
+                                    	<c:when test="${sessionScope.memberId ne null}">
+                                    		<li><a href="course/course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
+                                    	</c:otherwise>
+                                    </c:choose>
                                 </ul>
-                            </li>                            
+                            </li>
                         </ul>
-                    </div>                    
+                    </div>
                     <!-- End main-menu -->
 
                     <!-- 헤더 메뉴 아이콘 -->
@@ -240,7 +283,7 @@
         </div><!-- container -->
     </header>
     <!-- End Header -->
-	
+
 	<main>
         <!-- Slider -->
 		<div id="rev_slider_13_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="highlight-carousel1" data-source="gallery" style="margin:0px auto;background:#000000;padding:0px;margin-top:0px;margin-bottom:0px;">
@@ -263,7 +306,7 @@
 						<div class="tp-caption News-Subtitle   tp-resizeme" id="slide-30-layer-3" data-x="['left','left','left','left']" data-hoffset="['81','81','41','41']" data-y="['top','top','top','top']" data-voffset="['605','605','401','401']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"},{"frame":"hover","speed":"300","ease":"Power3.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 0.65);br:0 0 0px 0;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:pointer;">전국 모든 축제 정보와 주변 숙소, 식당을<br> 확인해보세요. </div>
 
 						<!-- LAYER NR. 4 -->
-                        <div class="tp-caption -   tp-resizeme" id="slide-30-layer-4" data-x="['left','left','left','left']" data-hoffset="['360','423','383','383']" data-y="['top','top','top','top']" data-voffset="['607','607','403','403']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(0,210,255,1);"><div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="festival.jsp" role="button">더 알아보기</a></div></div>
+                        <div class="tp-caption -   tp-resizeme" id="slide-30-layer-4" data-x="['left','left','left','left']" data-hoffset="['360','423','383','383']" data-y="['top','top','top','top']" data-voffset="['607','607','403','403']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(0,210,255,1);"><div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="course/course_main.do" role="button">더 알아보기</a></div></div>
 					</li>
 					<!-- SLIDE  -->
 					<li data-index="rs-31" data-transition="slideoverhorizontal" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="assets/100x50_newspaper_bg3.jpg" data-rotate="0" data-saveperformance="off" data-title="Beach" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
@@ -302,7 +345,7 @@
 						<div class="tp-caption News-Subtitle   tp-resizeme" id="slide-32-layer-3" data-x="['left','left','left','left']" data-hoffset="['81','81','41','41']" data-y="['top','top','top','top']" data-voffset="['605','605','401','401']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"},{"frame":"hover","speed":"300","ease":"Power3.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 0.65);br:0 0 0px 0;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:pointer;">어디를 가야할지 모르겠다구요? </div>
 
 						<!-- LAYER NR. 12 -->
-                        <div class="tp-caption -   tp-resizeme" id="slide-30-layer-4" data-x="['left','left','left','left']" data-hoffset="['360','423','383','383']" data-y="['top','top','top','top']" data-voffset="['607','607','403','403']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(0,210,255,1);"><div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="course_main.jsp" role="button">더 알아보기</a></div></div>
+                        <div class="tp-caption -   tp-resizeme" id="slide-30-layer-4" data-x="['left','left','left','left']" data-hoffset="['360','423','383','383']" data-y="['top','top','top','top']" data-voffset="['607','607','403','403']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(0,210,255,1);"><div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="course/course_main.do" role="button">더 알아보기</a></div></div>
 					</li>
 				</ul>
 				<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
@@ -333,14 +376,14 @@
                                 </a>
                             </div>
                             <div class="col-sm-12 mt-sm-2">
-                                <a href="course_main.jsp"> <!--클릭하면 코스 메인 페이지로 이동하게-->
+                                <a href="course/course_main.do"> <!--클릭하면 코스 메인 페이지로 이동하게-->
                                     <img src="img/main/main_course.png" alt="" class="img-fluid" width="800" height="343">
                                     <div class="wrapper">
                                         <h2>코스</h2>
                                         <p>800 posted</p>
                                     </div>
                                 </a>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -362,16 +405,16 @@
                         <div class="ribbon_3 popular"><span>Popular</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
-                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="image">                                
+                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="image">
                             </a>
-                        </div>                        
+                        </div>
                     </div>
                     <!-- End box tour -->
                 </div>
                 <!-- /item -->
             </div>
             <!-- /carousel -->
-			
+
 			<p class="text-center add_bottom_30">
 				<a href="festival.jsp" class="btn_1">축제 더 보기</a>
 			</p>
@@ -528,7 +571,7 @@
                         <p>
                             프로계획러들의 코스 추천
                         </p>
-                        <a href="course_main.jsp" class="btn_1 outline">더 알아보기</a>
+                        <a href="course/course_main.do" class="btn_1 outline">더 알아보기</a>
                     </div>
                 </div>
 
@@ -577,7 +620,7 @@
                                 <span>지역명</span>
                         </div>
                     </div>
-    
+
                     <div class="col-lg-3">
                         <div class="main_title">
                             <h3><span>ㅣ</span>신나는 놀이 축제</h3>
@@ -593,7 +636,7 @@
                             <span>지역명</span>
                         </div>
                     </div>
-    
+
                     <div class="col-lg-3">
                         <div class="main_title">
                             <h3><span>ㅣ</span>입안가득 맛의 축제</h3>
@@ -609,7 +652,7 @@
                             <span>지역명</span>
                         </div>
                     </div>
-    
+
                     <div class="col-lg-3">
                         <div class="main_title">
                             <h3><span>ㅣ</span>과거로 시간여행 축제</h3>
@@ -629,10 +672,10 @@
             </div>
             <!-- End container -->
         </div>
-        <!-- End white_bg -->                        
+        <!-- End white_bg -->
 	</main>
 	<!-- End main -->
-    
+
     <footer class="revealed">
         <div class="container">
             <div class="row">
@@ -682,7 +725,7 @@
     </footer><!-- End footer -->
 
 	<div id="toTop"></div><!-- Back to top button -->
-	
+
 	<!-- Search Menu -->
 	<div class="search-overlay-menu">
 		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
@@ -692,7 +735,7 @@
 			</button>
 		</form>
 	</div><!-- End Search Menu -->
-	
+
 	<!-- Sign In Popup -->
 	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
 		<div class="small-dialog-header">
@@ -701,8 +744,12 @@
 		<form>
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
+                    <!-- <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" > -->
+                    <!--  <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" > -->
+                    <a href="naverlogin.do"><img src ="/img/login/naver_login2.PNG"></a>
+                    <br/>
+                    <br/>
+                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=41e45128f773156a833facd8e3b77b49&response_type=code&redirect_uri=http://localhost:8080/login2.do&response_type=code"><img src ="/img/login/kakao_login2.png"></a>
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
@@ -723,7 +770,7 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <input type="submit" value="로그인" class="btn_login">
+                    <input type="button" value="로그인" class="btn_login">
                     <!-- <a type="button" class="btn_login">로그인</a> -->
                 </div>
 				<div class="text-center">
@@ -731,20 +778,19 @@
 				</div>
 				<div id="forgot_pw">
 					<div class="form-group">
-						<!-- <label>Please confirm login email below</label> -->
-                        <label>하단에 로그인 이메일을 작성해주세요.</label>
+                        <label>하단에 이메일을 작성해주세요.</label>
 						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
 						<i class="icon_mail_alt"></i>
 					</div>
-					<!-- <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p> -->
+					
                     <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
-					<div class="text-center"><input type="submit" value="비밀번호 재설정" class="btn_1"></div>
+					<div class="text-center"><input type="button" id="findPassBtn" class="btn_1" value="비밀번호 재설정"></div>
 				</div>
 			</div>
 		</form>
 		<!--form -->
 	</div>
-	<!-- /Sign In Popup -->	
+	<!-- /Sign In Popup -->
 
     <!-- Common scripts -->
     <script src="js/jquery-3.5.1.min.js"></script>
@@ -752,25 +798,68 @@
     <script src="js/functions.js"></script>
     
     <!-- 로그인 -->
-	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.btn_login').on('click', function(){
-				if($.trim($('#loginId').val())==''){
-	        		alert('아이디를 입력해 주세요');
-	        		$('#loginId').focus();
-	        		return;
-	        	}
-	        	if($.trim($('#password').val())==''){
-	        		alert("비밀번호입력해주세요.");
-	        		$('#password').focus();
-	        		return;
-	        	}
-	        	
-	        	$.ajax({
+			$('.btn_login').on('click', login);
+			$('#password').on('keydown', function(evt) {
+				//evt.preventDefault();
+				//evt.stopPropagation();
+				if (evt.KeyCode == 13) {
+					login();
+				}
+			});
+			
+			$('#findPassBtn').off().on('click', function(evt) {
+				
+				evt.stopPropagation();
+				
+				if ($('#email_forgot').val().length <= 0) {
+					alert('이메일 주소를 입력해 주세요.')
+					return;
+				}
+				else {
+					$.ajax({
+						type: 'post',
+						url: 'member/memberPassFind.do',
+						contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+						data: {'email': $('#email_forgot').val()},
+						success: function(result) {
+							const msg = result.split('/')
+							alert(msg[0])
+							const url = msg[1].split('@')[1]
+							console.log(url)
+							location.replace('https://'+url)
+						},
+						error: function(err) {
+							console.log(err)
+						}
+					})	
+				}
+			});
+		});
+
+		function login() {
+			alert('로그인 버튼 클릭')
+
+			if($.trim($('#loginId').val())==''){
+        		alert('아이디를 입력해 주세요');
+        		$('#loginId').focus();
+        		return;
+        	}
+			if($.trim($('#password').val())==''){
+        		alert("비밀번호입력해주세요.");
+        		$('#password').focus();
+        		return;
+        	}
+
+			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
+
+				alert('진입 확인' + $('#loginId').val() + '/' + $('#password').val());
+
+				$.ajax({
 	        		type : 'post',
 	        		async : true,
-	        		url : "memberLogin.do",
+	        		url : "member/memberLogin.do",
 	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
 	        		data : {
 	        			'id' : $('#loginId').val(),
@@ -778,22 +867,35 @@
 	        		},
 	        		success : function(result){
 	        			console.log(result)
-	        			if(result==0){
+	        			if(result == 0){
+	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
 	        				$("#loginId").val("");
 	        				$("#password").val("");
-	        				
+
 	        			}
 	        			else if(result==1){
-	        				console.log("성공")
-	        				location.replace("member/mainAfterLogin.do");
-	        				
+	        				location.replace('main.jsp')
+	        			}
+	        			else {
+	        				location.replace('admin_index.jsp')
 	        			}
 	        		},
 	        		error : function(err){console.log("에러요" + err)}
-	        	});				
-			});
-		});
+	        	});
+			}
+			
+			
+			
+		}
 	</script>
+
+
+    <script src="js/common_scripts_min.js"></script>
+    <script src="js/functions.js"></script>
+
+    <!-- 로그인 -->
+
+
 
     <!-- SLIDER REVOLUTION SCRIPTS  -->
     <script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.tools.min.js"></script>

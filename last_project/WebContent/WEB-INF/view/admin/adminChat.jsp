@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Web Socket Example</title>
+<title>고객센터 채팅 (운영자)</title>
 <style>
 /* 여러 채팅창 간의 간격과 배열 위치*/
 .float-left {
@@ -30,7 +30,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
 		// 서버의 admin의 서블릿으로 웹 소켓을 한다.
-		var webSocket = new WebSocket("ws://175.210.170.183:8080/adminChat");
+		var webSocket = new WebSocket("ws://localhost:8080/adminChat");
 		// 운영자에서의 open, close, error는 의미가 없어서 형태만 선언
 		webSocket.onopen = function(message) {
 		};

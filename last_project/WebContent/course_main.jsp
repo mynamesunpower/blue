@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,12 +57,17 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
-                            <!-- 로그인 세션이 있으면, 모든 페이지의 헤더 부분이 56~59행 처럼 나와야 함. -->
-                            <!-- <li><span style="color: blue;">홍길동</span>님 환영합니다</li>
-                            <li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-                            <li><a href="#" class="icon-logout">로그아웃</a></li> -->
+                            <c:choose>
+                            	<c:when test="${sessionScope.memberId eq null}">
+                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            	</c:when>
+                            	<c:when test="${sessionScope.memberId ne null}">
+                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+                            		<li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
+	                            	<li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            		<li><a href="#" class="icon-logout">로그아웃</a></li>
+                            	</c:when>
+                            </c:choose>
                         </ul>
                     </div>
                 </div><!-- End row -->
@@ -73,8 +79,6 @@
                 <div class="col-3">
                     <div id="logo_home">
                     	<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
-                        <!-- 로그인 세션이 있으면, 로고 클릭 시 mainAfterLogin.jsp로 이동되게-->
-                        <!-- <h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1> -->
                     </div>
                 </div>
                 <nav class="col-9">
@@ -87,9 +91,6 @@
                          <ul>
                             <li class="submenu">
                                 <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
-                                <!-- 로그인 세션이 있으면, 홈 버튼 클릭 시 mainAfterLogin.jsp로 이동되게-->
-                                <!-- <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i> -->
-                                    
                             </li>
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
@@ -347,17 +348,18 @@
 									<a href="course_detail.jsp">
 										<img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&amp;id=97d0de07-b3ae-4b03-a04d-69b50ea29d5d" width="800" height="533" class="img-fluid" alt="Image">
 										<div class="short_info">
-											<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>작은</sup>문구</span>
+											<i class="icon_set_1_icon-44"></i>코스 테마
 										</div>
 									</a>
 								</div>
 								<div class="tour_title">
-									<h3><strong>광명의 종합문화공간과 식물원에서 꽃구경하기</strong></h3>
+									<h3><strong>코스명</strong></h3>
 									<ul style="list-style: none;">			
-										<li>지역 : 경기 광명시</li>			
-										<li>코스 총거리 : 9.82km</li>		
+										<li>지역 : <span>대표 지역</span></li>			
+										<li>코스 총거리 : <span>거리</span>km</li>		
 									</ul>
-									<ul class="course_route">   
+									<h3><strong>코스 경로</strong></h3>
+									<ul class="course_route">
 										<li><span>광명스피돔</span></li>   
 										<li><span>온수공원</span></li>   
 										<li><span>부천식물원</span></li>
@@ -367,7 +369,7 @@
 									</div>
 									<!-- end rating -->
 									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
+										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">내 코스에 담기</span></span></a>
 									</div>
 									<!-- End wish list-->
 								</div>

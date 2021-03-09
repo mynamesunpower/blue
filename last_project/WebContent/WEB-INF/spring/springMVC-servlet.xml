@@ -7,11 +7,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
 
-    <context:component-scan base-package="main.java.controller"/>
-    <context:component-scan base-package="main.java.model"/>
-    <context:component-scan base-package="main.java.service"/>
-    <context:component-scan base-package="main.java.vo"/>
+    <context:component-scan base-package="main.java.*" />
 
+
+    
 	<!-- default bean name is mongo -->
 	<mongo:mongo-client host="localhost" port="27017"></mongo:mongo-client>
 	
@@ -37,8 +36,14 @@
     </bean>
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+        
+      
+   
     </bean>
 
+   <!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<bean id="naverLoginBO" class="main.java.controller.naver.NaverLoginBO" />
+    
     <!--TODO 연결설정이 안됨-->
     <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>-->
 

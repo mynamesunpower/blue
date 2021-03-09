@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -163,7 +164,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.jsp" class="brand-link">
+    <a href="admin_index.jsp" class="brand-link">
+    
+    	<!-- TODO 우리 로고 이미지로 바꾸기 -->
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">축축빵빵</span>
     </a>
@@ -176,7 +179,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자1</a>
+          <a href="#" class="d-block">${sessionScope.adminName}</a>
         </div>
       </div>
 
@@ -217,13 +220,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin/admin_member.jsp" class="nav-link">
+              <a href="admin/admin_member.do" class="nav-link">
+                <!--<a href="admin/admin_member.jsp" class="nav-link">  -->
                   <i class="far fa-circle nav-icon"></i>
                   <p>일반 회원 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_mate.jsp" class="nav-link">
+                <a href="admin/admin_mate.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>
