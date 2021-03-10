@@ -46,7 +46,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberServiceImpl memberService;
-	
+
 	private final String user = "bitter.lemonseed@gmail.com";
 	private final String pass = "java12345!";
 
@@ -161,7 +161,7 @@ public class MemberController {
 	@ResponseBody
 	public String memberRegister(MemberVO vo, HttpSession session) {
 
-		
+
 		System.out.println("--- 회원가입 요청 ---");
 		System.out.println(vo.getId() + " | " + vo.getPassword() + " | " + vo.getAddress());
 		System.out.println(vo.getName() + " | " + vo.getTel() + " | " + vo.getEmail() + " | " + vo.getBirthday());
@@ -176,16 +176,16 @@ public class MemberController {
 
 		// 회원가입
 		int result = memberService.memberInsert(vo);
-		
+
 		String title = "[축축빵빵] " + vo.getName() + " 님의 회원가입을 환영합니다.";
 		String mailTxt = "";
         mailTxt += "안녕하세요. 전 국민 페스티벌 플랫폼!\n";
         mailTxt += "!! 축축빵빵 !! 입니다. \n";
         mailTxt += "회원가입을 축하드리며, 즐거운 축제 잘 다녀오시길 바랍니다. \n";
         mailTxt += "감사합니다. 즐거운 하루 되세요.\n";
-        
+
 		sendEmail(vo, title, mailTxt);
-		
+
 		memberLogin(vo, session);
 		return Integer.toString(result);
 	}
@@ -196,7 +196,7 @@ public class MemberController {
 	public String memberLogin(MemberVO vo, HttpSession session) {
 
 		System.out.println(vo.getId() + "/" + vo.getPassword());
-		
+
 		// 유저가 입력한 비밀번호
 		String inputPassword;
 
@@ -207,27 +207,27 @@ public class MemberController {
 		// 회원가입하고 로그인 시도라면 (세션에 inputPassword를 잠시 넣어둠, 1회성)
 		else {
 			inputPassword = (String) session.getAttribute("inputPassword");
-			
+
 			// 바로 제거해준다
 			session.removeAttribute("inputPassword");
 		}
 
-		
+
 		// DB에서 정보를 확인한다. id로 검색하여 SELECT *을 검색. 비번 일치 여부는 뒤에서 확인.
 		MemberVO result = memberService.memberLogin(vo);
-		
+
 		// TODO result.getPassword() null이면 널포인터인데. 이거 어떻게 막지.
 		boolean passwordMatch = passwordEncoder.matches(inputPassword, result.getPassword());
-		
-		
+
+
 		String message = "1";
 		System.out.println(passwordMatch);
 
 		// 실패(false)라면 message는 0
 		if (!passwordMatch) {
-			
+
 			message = "0";
-			
+
 		}
 		// 성공이라면
 		else {
@@ -237,11 +237,11 @@ public class MemberController {
 				session.setAttribute("adminName", result.getName());
 				return "admin";
 			}
-			
+
 			session.removeAttribute("memberId");
 			session.setAttribute("memberId", result.getId());
 		}
-		
+
 		return message;
 	}
 
@@ -251,10 +251,10 @@ public class MemberController {
 	public String logout(String code, HttpSession session) {
 
 		System.out.println("MemberController 에서 logout.do 요청");
-		
+
 		// 세션 만료
 		session.invalidate();
-		
+
 		return "redirect:../main.jsp";
 	}
 
@@ -265,9 +265,9 @@ public class MemberController {
     public String memberPassFind(MemberVO vo) {
 
     	System.out.println(vo.getEmail());
-    	
+
         MemberVO member = memberService.memberPassFind(vo);
-        
+
         // 난수 비밀번호 생성 (12자)
         StringBuffer temp = new StringBuffer();
         Random rnd = new Random();
@@ -302,20 +302,20 @@ public class MemberController {
         mailTxt += password + "로 초기화되었습니다. \n";
         mailTxt += "변경된 비밀번호로 로그인하시고, 새로운 비밀번호로 변경을 부탁드립니다. \n";
         mailTxt += "감사합니다. 즐거운 하루 되세요.\n";
-        
+
         sendEmail(vo, title, mailTxt);
-       
+
         System.out.println("나의 패스워드: " + password);
-        
+
         String returnmsg = "고객님의 임시 비밀번호를 입력하신 메일로 발송했습니다. 리다이렉트됩니다./";
-        
+
         return returnmsg + vo.getEmail();
     } // end of memberPassFind()
 
-    
+
     // 메일 보내기.
     public void sendEmail(MemberVO vo, String title, String mailTxt) {
-    	
+
     	String email = vo.getEmail();
 
         Properties prop = new Properties();
@@ -330,7 +330,7 @@ public class MemberController {
                 return new PasswordAuthentication(user, pass);
             }
         });
-        
+
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress("chookchook@festi.val"));
@@ -341,10 +341,10 @@ public class MemberController {
 
             Transport.send(message);
             System.out.println("메일을 성공적으로 보냈습니다.");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
 }

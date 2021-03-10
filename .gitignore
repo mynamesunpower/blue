@@ -13,9 +13,9 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-last_project/target/
 Servers/
-
+last_project/target/
+*.class
 # External tool builders
 .externalToolBuilders/
 

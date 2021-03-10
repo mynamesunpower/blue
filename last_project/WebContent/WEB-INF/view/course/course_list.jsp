@@ -62,7 +62,7 @@
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
                             		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+	                            	<li><a id="wishlist_link" href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                             		<li><a href="#" class="icon-logout">로그아웃</a></li>
                             	</c:when>
                             </c:choose>
@@ -119,11 +119,11 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="course_main.jsp">코스 자랑 마당</a></li>
+                                    <li><a href="course_main.do">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <c:choose>
                                     	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    		<li><a href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                                     	</c:when>
                                     	<c:otherwise>
                                     		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
@@ -176,7 +176,7 @@
     </header>
     <!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>나의 코스 목록</h1>
@@ -208,93 +208,136 @@
 					</div>
                     <div class="step">
                     	<!-- 여기서부터 이제 데이터 받아서 보여줄 코딩 필요. -->
-                        <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3">
-                                    <div class="img_list">
-                                        <a href="courseSelect.do?_id=${course._id}">
-                                            <img src="../img/tour_box_1.jpg" alt="Image">
-                                            <div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7 col-md-7">
-                                    <div class="tour_list_desc">
-                                        <div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-                                        </div>
-                                        <h3><strong>오랑우탄과 함께</strong> 우가가</h3>
-                                        <p>코스 설명 따오기~</p>
-                                        <ul class="add_info">
-                                            <li>
-                                                <div class="tooltip_styled tooltip-effect-4">
-                                                    <span class="tooltip-item"><i class="icon_set_1_icon-83"></i></span>
-                                                    <div class="tooltip-content">
-                                                        <h4>Schedule</h4>
-                                                        <strong>Monday to Friday</strong> 09.00 AM - 5.30 PM
-                                                        <br>
-                                                        <strong>Saturday</strong> 09.00 AM - 5.30 PM
-                                                        <br>
-                                                        <strong>Sunday</strong> <span class="label label-danger">Closed</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tooltip_styled tooltip-effect-4">
-                                                    <span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>
-                                                    <div class="tooltip-content">
-                                                        <h4>Address</h4> Musée du Louvre, 75058 Paris - France
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tooltip_styled tooltip-effect-4">
-                                                    <span class="tooltip-item"><i class="icon_set_1_icon-97"></i></span>
-                                                    <div class="tooltip-content">
-                                                        <h4>Languages</h4> English - French - Chinese - Russian - Italian
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tooltip_styled tooltip-effect-4">
-                                                    <span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>
-                                                    <div class="tooltip-content">
-                                                        <h4>Parking</h4> 1-3 Rue Elisée Reclus
-                                                        <br> 76 Rue du Général Leclerc
-                                                        <br> 8 Rue Caillaux 94923
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tooltip_styled tooltip-effect-4">
-                                                    <span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>
-                                                    <div class="tooltip-content">
-                                                        <h4>Transport</h4>
-                                                        <strong>Metro: </strong>Musée du Louvre station (line 1)
-                                                        <br>
-                                                        <strong>Bus:</strong> 21, 24, 27, 39, 48, 68, 69, 72, 81, 95
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="price_list">
-                                        <div>
-                                            <p><a href="courseSelect.do?_id=${course._id}" class="btn_1">자세히 보기</a>
-                                            </p><br/>
-                                            <p><a href="course_edit.do?_id=${course._id}" class="btn btn-success btn-sm">편집하기</a>
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End strip -->
+                    	<c:forEach items="${list}" var="course">
+	                        <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
+	                            <div class="row">
+	                                <div class="col-lg-3 col-md-3">
+	                                    <div class="img_list">
+	                                        <a href="courseSelect.do?_id=${course._id}">
+	                                        	<c:forEach items="${course.coursePath}" var="coursePath" begin="0" end="0">
+	                                            	<img src="${coursePath.image}" alt="Image">
+	                                            </c:forEach>
+	                                            <%-- <div class="short_info">
+	                                            	<c:choose>
+														<c:when test="${course.theme eq '가족과 함께'}">
+															<i class="icon-users"></i>
+														</c:when>
+														<c:when test="${course.theme eq '연인과 함께'}">
+															<i class="icon-heart-8"></i>
+														</c:when>
+														<c:when test="${course.theme eq '메이트와 함께'}">
+															<i class="icon-school"></i>
+														</c:when>
+														<c:when test="${course.theme eq '반려동물과 함께'}">
+															<i class="icon-guidedog"></i>
+														</c:when>
+														<c:when test="${course.theme eq '오감만족 코스'}">
+															<i class="icon-thumbs-up-5"></i>
+														</c:when>
+														<c:when test="${course.theme eq '눈 정화 코스'}">
+															<i class="icon-picture-1"></i>
+														</c:when>
+														<c:when test="${course.theme eq '귀 정화 코스'}">
+															<i class="icon-headphones-3"></i>
+														</c:when>
+														<c:when test="${course.theme eq '나홀로 YOLO'}">
+															<i class="icon-adult"></i>
+														</c:when>
+													</c:choose>
+													${course.theme}
+                                            	</div>--%>
+	                                        </a>
+	                                    </div>
+	                                </div>
+	                                <div class="col-lg-7 col-md-7">
+	                                    <div class="tour_list_desc">
+	                                        <div class="rating">
+	                                        	<i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><medium>(${course.reviews.size()})</medium>
+		                                        <span style="font-size: larger;">
+													<i class="icon-trash-7" style="cursor: pointer;"></i>우측 끝으로 밀어버리고 싶어  <!-- 쓰레기통 클릭 시 해당 칸 삭제, 우측 끝으로 밀고 싶어--> 
+												</span>
+	                                        </div>
+	                                        <h3><strong>${course.courseName}</strong></h3>
+	                                        <c:forEach items="${course.keyword}" var="keyword">
+												<span>${keyword}</span>
+											</c:forEach>
+											<br><br>
+	                                        <p>${course.summary}</p>
+	                                        <ul class="add_info">
+	                                            <li>
+	                                                <div class="tooltip_styled tooltip-effect-4">
+	                                                    <span class="tooltip-item"><i class="icon_set_1_icon-83"></i></span>
+	                                                    <div class="tooltip-content">
+	                                                        <h4><strong>일정</strong></h4>
+	                                                        ${course.schedule} 코스	                                                        
+	                                                    </div>
+	                                                </div>
+	                                            </li>
+	                                            <li>
+	                                                <div class="tooltip_styled tooltip-effect-4">
+	                                                    <span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>
+	                                                    <div class="tooltip-content">
+	                                                    	<c:forEach items="${course.coursePath}" var="coursePath" begin="0" end="0">
+	                                                    		<h4><strong>지역</strong></h4>
+	                                                    		${coursePath.address}
+	                                            			</c:forEach>
+	                                                    </div>
+	                                                </div>
+	                                            </li>
+	                                            <li>
+	                                                <div class="tooltip_styled tooltip-effect-4">
+	                                                    <span class="tooltip-item">
+	                                                    	<c:choose>
+																<c:when test="${course.theme eq '가족과 함께'}">
+																	<i class="icon-users"></i>
+																</c:when>
+																<c:when test="${course.theme eq '연인과 함께'}">
+																	<i class="icon-heart-8"></i>
+																</c:when>
+																<c:when test="${course.theme eq '메이트와 함께'}">
+																	<i class="icon-school"></i>
+																</c:when>
+																<c:when test="${course.theme eq '반려동물과 함께'}">
+																	<i class="icon-guidedog"></i>
+																</c:when>
+																<c:when test="${course.theme eq '오감만족 코스'}">
+																	<i class="icon-thumbs-up-5"></i>
+																</c:when>
+																<c:when test="${course.theme eq '눈 정화 코스'}">
+																	<i class="icon-picture-1"></i>
+																</c:when>
+																<c:when test="${course.theme eq '귀 정화 코스'}">
+																	<i class="icon-headphones-3"></i>
+																</c:when>
+																<c:when test="${course.theme eq '나홀로 YOLO'}">
+																	<i class="icon-adult"></i>
+																</c:when>
+															</c:choose>
+	                                                    </span>
+	                                                    <div class="tooltip-content">
+	                                                        <h4><strong>테마</strong></h4>
+	                                                        ${course.theme}
+	                                                    </div>
+	                                                </div>
+	                                            </li>	                                            
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                                <div class="col-lg-2 col-md-2">
+	                                    <div class="price_list">
+	                                        <div>
+	                                            <p><a href="courseSelect.do?_id=${course._id}" class="btn_1">자세히 보기</a>
+	                                            </p><br/>
+	                                            <p><a href="course_edit.do?memberId=${sessionScope.memberId}&_id=${course._id}" class="btn btn-success btn-sm">편집하기</a>
+	                                            </p>
+	                                        </div>
+	
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+                        	<!--End strip -->
+                        </c:forEach>
                         <hr>
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center">
