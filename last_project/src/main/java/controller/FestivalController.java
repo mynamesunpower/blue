@@ -139,7 +139,7 @@ public class FestivalController {
 			System.out.println("여기는"+i.getFestival_name());
 		}
 			
-			return "festival_reset";
+			return "festival/festival_reset";
 		}
 	
 	
@@ -264,7 +264,7 @@ public class FestivalController {
 					
 		model.addAttribute("list", list);
 			
-		return "festival_detail";
+		return "festival/festival_detail";
 	}
 	
 	//근처축제

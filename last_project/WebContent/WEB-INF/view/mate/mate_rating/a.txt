@@ -1,0 +1,16 @@
+// 파라미터 받는 페이지
+b.jsp
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%
+ String dayofs = request.getParameter("dayofs");
+%>   
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>dayof</title>
+</head>
+<body>
+ <%=dayofs %>
+</body>
+</html>
