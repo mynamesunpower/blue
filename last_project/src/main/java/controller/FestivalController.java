@@ -32,8 +32,7 @@ public class FestivalController {
 	
 	
 	 public static Double distance(Double lat1, Double lon1, Double lat2, Double lon2, String unit) {
-         //System.out.println("이 함수는 들어온거야???");
-	        Double theta = lon1 - lon2;
+      	        Double theta = lon1 - lon2;
 	        Double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
 	         
 	        dist = Math.acos(dist);
@@ -46,8 +45,6 @@ public class FestivalController {
 	            dist = dist * 1609.344;
 	        }
 	        
-	        //Map<Double, Integer> map= new HashMap<Double, Integer>();
-	        //map.put(dist, postcode );
 	        
 	        return (dist);
 	    }
@@ -63,7 +60,7 @@ public class FestivalController {
 	        return (rad * 180 / Math.PI);
 	    }
 	
-	// mongo.do �슂泥��씠 �뱾�뼱�삤硫�
+	// mongo.do
 	@RequestMapping(value = "/mongo.do")
 	public String test2(Model model) {
 		
@@ -218,8 +215,7 @@ public class FestivalController {
 				}
 		
 		System.out.println("위도"+list.get(0).getLatitude());
-		//String[] adr = list.get(0).getAddress().split(" ");
-		//String addr = adr[1];
+	
 		
 		
 		Map<Double, ObjectId> map= new HashMap<Double, ObjectId>();
@@ -227,15 +223,13 @@ public class FestivalController {
 		System.out.println("FestivalController 에서 details.do 요청");
 		List<AccomVO> lists = AccomService.test();
 		
-		System.out.println("여기는 뭐와"+lists);
+	
 		for(AccomVO vo : lists) {
-			System.out.println("for문은 도니??");
+			
 			double latitude = vo.getLatitude();
-			System.out.println("나는");
-			System.out.println(latitude);
+		
 			double longitude = vo.getLongitude();
-			System.out.println("너는");
-			System.out.println(longitude);
+		
 			ObjectId id = vo.get_id();
 			
 			System.out.println("double 변수 지정하자");
@@ -267,38 +261,9 @@ public class FestivalController {
 		            System.out.println(String.format("Key : %s, Value : %s", key, map.get(key)));
 			
 		}
-		
-			
-		 // 마일(Mile) 단위
-       // double distanceMile =
-       //     distance(list.get(0).getLatitude(), list.get(0).getLongitude(), 37.501025, 127.037701, "",1);
-         
-        // 미터(Meter) 단위
-      //  double distanceMeter =
-        //    distance(list.get(0).getLatitude(), list.get(0).getLongitude(), 37.501025, 127.037701, "meter", 1);
-         
-        // 킬로미터(Kilo Meter) 단위
-       // double distanceKiloMeter =
-       //     distance(37.504198, 127.047967, 37.501025, 127.037701, "kilometer",1);
-        
-        //Map<Double, ObjectId> map= new HashMap<Double, ObjectId>();
-        //map.put(distanceMeter, id );
-         
-     //   System.out.println(distanceMile) ;
-    //    System.out.println(distanceMeter) ;
-     //   System.out.println(distanceKiloMeter) ;
-		
-		
-		
-		
-			
-		
+					
 		model.addAttribute("list", list);
-		
-		
-		
-		
-		
+			
 		return "festival_detail";
 	}
 	
@@ -321,27 +286,25 @@ public class FestivalController {
 	
 			map.put(distanceMeter, vo.get_id() );
 	}
-		//System.out.println("list는?????"+list);
 	
 		 List<Double> keySet = new ArrayList<>(map.keySet());
 
 	        System.out.println("==Key 값 기준으로 오름차순 정렬==");
 	        List<Double> keys = new ArrayList<>(map.keySet());
 	        Collections.sort(keys);
-	       // System.out.println("<<<<<<<<<<<<<<<<<"+map);
-	        //System.out.println(">>>>>>>>>"+keys.get(0));
+	      
 	        
 	        List<FestivalVO> lists= null;
 	        List<List<FestivalVO>> result = new ArrayList<>();
 	        for(int i=0; i<=2; i++) {
 	        	System.out.println("<><<><><><><><><>"+(map.get(keys.get(i))));
-	        	//System.out.println("<<<<<<<<<<<<<<<<<<"+map.get(i));
-	        	System.out.println(i);
+	        	
+	        	
 	        	lists = festivalService.near(map.get(keys.get(i)));
 	        	
 	        	for (FestivalVO vo : lists) {
 	    			// 異뺤젣�뿉 �엳�뒗 ArrayList<Binary> image瑜�
-	    			//System.out.println(vo.get_id());
+	    			
 	    			ArrayList<String> imageList = new ArrayList<String>();
 	    			for (Binary img : vo.getImage()) {
 	    				String image = Base64.getEncoder().encodeToString(img.getData());
@@ -352,10 +315,10 @@ public class FestivalController {
 	        	
 	        	result.add(lists);
 	        	
-	        	System.out.println(result);
+	       
 	        }
-	        System.out.println("제제제제젲제ㅔ"+lists);
-	     System.out.println(result);
+	      
+	
 	 
 	       //정렬된 키밸류 뽑기 
 //	        for (Double key : keys) {
@@ -363,11 +326,30 @@ public class FestivalController {
 //	         
 //	        }
 	       
-			System.out.println(result.get(0).get(0).getFestival_name());
-			System.out.println(result.get(1).get(0).getFestival_name());
-			System.out.println(result.get(2).get(0).getFestival_name());
 			
 		return result;
+	}
+	
+	
+	@RequestMapping(value="/mongotime.do")
+	@ResponseBody
+	public List<FestivalVO> tosss(int interval){
+		System.out.println("일정시간 돈다");
+		List<FestivalVO> list = festivalService.test();
+		System.out.println(list);
+		
+		for (FestivalVO vo : list) {
+			// 異뺤젣�뿉 �엳�뒗 ArrayList<Binary> image瑜�
+			
+			ArrayList<String> imageList = new ArrayList<String>();
+			for (Binary img : vo.getImage()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setImages(imageList);
+		}
+		
+		return list;
 	}
 	
 	

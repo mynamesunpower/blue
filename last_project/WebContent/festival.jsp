@@ -177,11 +177,11 @@
 	<section id="hero">
 	
 		<div class="intro_title">
-		 <!-- <img src="img/logo_sticky.png"> -->
-			<h3 class="animated fadeInDown">삼척 <strong id="js-rotating">2021,달빛아래,소원하는,일상,</strong> 정월대보름제</h3>
-			<p class="animated fadeInDown">달빛아래 소원해요, 함께하는 일상</p>
+		 <!-- <img src="img/logo_sticky.png"> --> 
+			<h3 class="animated fadeInDown ctitles">축제로 축제 <strong id="js-rotating ctitle" class="ctitle"></strong></h3>
+			<p class="animated fadeInDown">함께해요</p>
 			
-		   <a href="festival_detail.jsp" class="animated fadeInUp button_intro">더 보기</a>
+		<!--   <a href="festival_detail.jsp" class="animated fadeInUp button_intro">더 보기</a> -->
 		</div>
 		
 	</section><!-- End 메인 이미지 슬라이더 -->
@@ -197,7 +197,7 @@
               
                
             </div>
-            <p class="main_description">겨울이 끝나기 전에 <span>계절이 지나면 경험하기 힘들죠</span></p>
+            <p class="main_description mine">축제로의 축제 <p class="submine">함께 즐기실래요?</p></p>
             <div class="row small-gutters categories_grid">
               
                 <div class="col-sm-12 col-md-12 bigimage">
@@ -278,103 +278,16 @@
         <!-- 월별 축제 이미지 끝 -->
     
         <!-- 추천 축제 -->
-        <div class="main_title">
-            <h2>추천 축제: <span>꼴뚜기 잡기 대★소★동</span></h2>
-            <p>솔직히 이 축제가 재밌을거라곤 말 못하겠어요.</p>
-        </div>
         
-        <!-- 추천 축제 캐러셀 -->
-        <div class="owl-carousel owl-theme list_carousel add_bottom_30">
-                <div class="item">
-                    <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>근처축제</span></div>
-                        <div class="img_container">
-                            <a href="single_tour.jsp">
-                         
-                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
-                                
-                                <div class="short_info">
-                                    <span class="price">꼴뚜기.jpeg</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="tour_title">
-                            <h3><strong>꼴뚜기 투어</strong></h3>
-                            <div class="rating">
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><small>(75)</small>
-                            </div>
-                            <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">코스에 추가하기</span></span></a>
-                            </div>
-                            <!-- End 코스에 추가하기-->
-                        </div>
-                    </div>
-                    <!-- End box tour -->
-                </div>
-                <!-- /item -->
-                <div class="item">
-                    <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>한달 남음</span></div>
-                        <div class="img_container">
-                            <a href="single_tour.jsp">
-                                <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="image">
-                                <div class="short_info">
-                                    <span class="price">망둥어 사냥꾼</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="tour_title">
-                            <h3><strong>매운탕 투어</strong></h3>
-                            <div class="rating">
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-                            </div>
-                            <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">코스에 추가하기</span></span></a>
-                            </div>
-                            <!-- End wish list-->
-                        </div>
-                    </div>
-                    <!-- End box tour -->
-                </div>
-                <!-- /item -->
-                <div class="item">
-                    <div class="tour_container">
-                        <div class="ribbon_3"><span>평가 좋음</span></div>
-                        <div class="img_container">
-                            <a href="single_tour.jsp">
-                                <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="image">
-                                <div class="short_info">
-                                    <span class="price" >망둥어 잡기</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="tour_title">
-                            <h3><strong>매운탕 투어</strong></h3>
-                            <div class="rating">
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-                            </div>
-                            <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">코스에 추가하기</span></span></a>
-                            </div>
-                            <!-- End wish list-->
-                        </div>
-                    </div>
-                    <!-- End box tour -->
-                </div>
-                <!-- /item -->
-            </div>
+        <div class="main_title">
             <!-- 추천 축제 캐러셀 끝 -->
 		
-        <p class="text-center nopadding">
-            <a href="#" class="btn_1 medium"><i class="icon-eye-7"></i> 모든 축제 보기 (144) </a>
-        </p> <br><br>
+       <br><br> 
         
         <!-- 내 근처의 축제 -->
         
         <div id="map" style="width:100%;height:350px;"></div>
+        <br>
 <p><em>지도를 클릭해주세요!</em></p> 
 <div id="clickLatlng"></div>
 
@@ -383,14 +296,14 @@
         <div class="main_title">
             <h2>근처 축제: <span> 내가 찍은 위치 </span></h2>
             <p>이근처??</p>
-            <a href="#" class="btn_1">자세히 보기</a>
+           <!--  <a href="#" class="btn_1">자세히 보기</a> -->
         </div>
         
         <!-- 추천 축제 캐러셀 -->
         <div class="owl-carousel owl-theme list_carousel add_bottom_30">
                 <div class="item">
                     <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>인기</span></div>
+                        <div class="ribbon_3 popular"><span>축제로</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
                             <div class="aa1">
@@ -420,7 +333,7 @@
                 <!-- /item -->
                 <div class="item">
                     <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>한달 남음</span></div>
+                        <div class="ribbon_3 popular"><span>축제로</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
                             <div class="aa2">
@@ -450,7 +363,7 @@
                 <!-- /item -->
                 <div class="item">
                     <div class="tour_container">
-                        <div class="ribbon_3"><span>평가 좋음</span></div>
+                        <div class="ribbon_3 popular"><span>축제로:</span></div>
                         <div class="img_container">
                             <a href="single_tour.jsp">
                             <div class="aa3">
@@ -623,6 +536,8 @@ $(document).ready(function() {
 		fes_oMonth.setDate(1);
 		cur_month = (fes_oMonth.getMonth()+1);
 		getMonthData()
+		
+		
 	})
 	
 	
@@ -636,7 +551,31 @@ $(document).ready(function() {
 			type: "POST",
 			data: {"month" : cur_month},
 			success: function(data) {
-				//setMonthData(data);
+		//근처축제 기본값
+		
+ 				festivalss1=''
+ 				festivalss1 += '<div><img src="data:image/jpg;base64,'+data[0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 				festivalss2=''
+ 	 			festivalss2 += '<div><img src="data:image/jpg;base64,'+data[1].image[1].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 	 			festivalss3=''
+ 	 	 		festivalss3 += '<div><img src="data:image/jpg;base64,'+data[2].image[1].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 	 	 				
+ 				
+ 				//$('.aa1 div').remove()
+ 				//$('.aa2 div').remove()
+ 				//$('.aa3 div').remove()
+ 				
+ 				$(".aa1").html(festivalss1);
+ 				$(".aa2").html(festivalss2);
+ 				$(".aa3").html(festivalss3);
+ 				
+ 				
+ 				$(".nearname1").text(data[0].festival_name);
+ 				$(".nearname2").text(data[1].festival_name);
+	 			$(".nearname3").text(data[2].festival_name);
+		
+		
+		///기본값 끝 (근처축제)
 				var count = data;
 				//alert("iss = "+count.length);
 				 $.each(data, function (i, item) {
@@ -748,6 +687,44 @@ $(document).ready(function() {
  			cur_month += radd;
  			
  	 		$('.month').html(cur_month + ' 월');
+ 	 		
+ 	 		if( cur_month == 1 ) {
+				$(".mine").html("집에서 즐기는 문화생활!");
+				$(".submine").html("지금 아니면 안돼! 쇼핑부터 공연까지!");
+			} else if( cur_month == 2  ) {
+				$(".mine").html("겨울이 끝나기 전에");
+				$(".submine").html("계절이 지나면 경험하기 힘든 먹거리, 놀거리, 볼거리");
+			} else if( cur_month == 3  ) {
+				$(".mine").html("한 해 진짜 시작!");
+				$(".submine").html("굳었던 몸을 펴고, 힘차게 시작!");
+			} else if( cur_month == 4  ) {
+				$(".mine").html("씨앗이 움트고, 꽃이 피고");
+				$(".submine").html("따뜻한 날씨에 봄꽃이 만개하는");
+			} else if( cur_month == 5 ) {
+				$(".mine").html("가족과 함께, 축제와 함께");
+				$(".submine").html("매 해 돌아오는 가정의 달, 올해는 특별하게!");
+			} else if( cur_month == 6  ) {
+				$(".mine").html("여름의 시작, 축제의 시작");
+				$(".submine").html("점점 더워지는 날씨, 지치지 말자구요!");
+			}else if( cur_month == 7  ) {
+				$(".mine").html("태양이 내리쬐는 계절");
+				$(".submine").html("낮에도 즐기고, 밤에도 즐기고!");
+			}else if( cur_month == 8  ) {
+				$(".mine").html("찌는듯한 더위, 지친 몸을 식혀줄");
+				$(".submine").html("축제에서 찾아보는 시원함!");
+			}else if( cur_month == 9  ) {
+				$(".mine").html("선선해지는 날씨");
+				$(".submine").html("더운날씨에 제대로 즐기지 못했다면 바로 지금");
+			}else if( cur_month == 10  ) {
+				$(".mine").html("빨강, 노랑 알록달록");
+				$(".submine").html("여름의 푸릇함과는 또 다른 매력");
+			}else if( cur_month == 11  ) {
+				$(".mine").html("찬바람이, 불어오면");
+				$(".submine").html("지치지않고, 한층 더 즐길 수 있는");
+			}else if( cur_month == 12  ) {
+				$(".mine").html("하얀 입김과 잘 어우러지는");
+				$(".submine").html("12월의 분위기, 크리스마스와 반짝반짝 조명들");
+			}
 
  	 		getMonthData();
  	 		//recommandfestival();
@@ -887,10 +864,8 @@ $(document).ready(function() {
  	    // 마커 위치를 클릭한 위치로 옮깁니다
  	    marker.setPosition(latlng);
  	    
- 	    var a= latlng.getLat();
- 	    var b = latlng.getLng();
- 	    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
- 	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+ 	     var message = ''//'클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+ 	    //message += '경도는 ' + latlng.getLng() + ' 입니다';
  	    
  	    var resultDiv = document.getElementById('clickLatlng'); 
  	    resultDiv.innerHTML = message;
@@ -903,8 +878,7 @@ $(document).ready(function() {
  			type: "POST",
  			data: {"latitude" : latlng.getLat(), "longitude" : latlng.getLng() },
  			success: function(data) {
- 				//alert(data)
- 				//data:image/jpg;base64,'+item.image[0].data
+ 		
  				festivals1=''
  				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
  				festivals2=''
@@ -924,9 +898,9 @@ $(document).ready(function() {
  				
  				$(".nearname1").text(data[0][0].festival_name);
  				$(".nearname2").text(data[1][0].festival_name);
- 			$(".nearname3").text(data[2][0].festival_name);
+	 			$(".nearname3").text(data[2][0].festival_name);
  				
-// 			
+	
  			},
  			complete: function(d) {
  			},
@@ -943,6 +917,76 @@ $(document).ready(function() {
 	</script>
 	
  <script>
+ document.getElementById("hero").style.backgroundImage = "url('img/main/main_festa.jpg')";
+ var k =1;
+ playAlert = setInterval(function() {
+	   //alert('이게 되니안되니');
+	 $.ajax({
+			url: "mongotime.do",
+			dataType: 'json',
+			type: "POST",
+			data:{"interval": 3000},
+			success: function(data) {
+				k=k+1;
+				if(k==12){
+					k=1;
+				}
+ 
+ 
+    	
+    	for(var j=0; j<40; j++){
+    		if(data.image==''){
+       		 document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
+       		//${"#ctitle"}.text(data[k].festival_name);
+       		$(".ctitles").text(data[k].festival_name);
+       		//이미지 사이즈
+       		document.getElementById("hero").style.backgroundSize = "1150px";
+       		var na = data[k].festival_name;
+       		
+       	 }else{
+       		 
+      
+       		var img = "url('data:image/jpg;base64, "+data[k].image[1].data+"')";
+       	
+       		//이미지 등록
+       	document.getElementById("hero").style.backgroundImage = img;
+        //이미지 사이즈
+        document.getElementById("hero").style.backgroundSize = "1150px";
+   
+       		$(".ctitles").text(data[k].festival_name);
+       	
+       	 }
+    	}
+    	//console.log(item.image[0].data)
+    	//document.getElementById("hero").style.backgroundImage; src="/img/login/testfile.png";
+    	
+    	//document.getElementById("hero").style.backgroundImage = "url('data:image/jpg;base64,"+data.image[0].data+')";
+    	//'<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+    	//"'data:image/jpg;base64,"+data[2][0].image[0].data+"'"
+   // });
+    
+    //이미지 사이즈
+    //document.getElementById("div").style.backgroundSize = "200px";
+    
+    //반복제거, url
+    //document.getElementById("div").style.backgroundRepeat = "no-repeat";
+    //이미지 등록
+    
+    //document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
+    //이미지 사이즈
+   // document.getElementById("div").style.backgroundSize = "200px";
+				
+				
+			},
+			complete: function(d) {
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				console.log(';;')
+			}
+		});
+	
+	}, 3000);
+ 
     //window.onload = function(){
     //반복제거, url
     //document.getElementById("div").style.backgroundRepeat = "no-repeat";

@@ -226,7 +226,7 @@
         </div><!-- container -->
     </header><!-- ====================헤더 끝 ====================== -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/700_470_test_image_1.jpg" data-natural-width="700" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
