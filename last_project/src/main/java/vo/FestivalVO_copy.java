@@ -8,7 +8,7 @@ import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public class FestivalVO {
+public class FestivalVO_copy {
 
 	@Id
 	private ObjectId _id;
@@ -22,8 +22,8 @@ public class FestivalVO {
 	private String tel;
 	private String homepage;
 	private String detail;
-	private Double latitude;
-	private Double longitude;
+	private String latitude;
+	private String longitude;
 	private int postcode;
 	private ArrayList<Binary> image;
 	private ArrayList<String> images;
@@ -120,17 +120,16 @@ public class FestivalVO {
 		this.review = review;
 	}
 	
-	
-	public Double getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(Double latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public Double getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(Double longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 	public String getDetail() {

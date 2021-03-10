@@ -201,8 +201,8 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="festival.jsp">축제</a></li>
-                                    <li><a href="/mongomonths.do">축제쓰</a></li> 
+                                     <li><a href="festival.jsp">축제</a></li>
+                                     <li><a href="/mongomonths.do">축제스</a></li>
                                     <li><a href="accommodations_list.jsp">숙박</a></li>
                                     <li><a href="restaurant/restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
@@ -782,7 +782,7 @@
 						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
 						<i class="icon_mail_alt"></i>
 					</div>
-					
+
                     <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
 					<div class="text-center"><input type="button" id="findPassBtn" class="btn_1" value="비밀번호 재설정"></div>
 				</div>
@@ -796,7 +796,7 @@
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/common_scripts_min.js"></script>
     <script src="js/functions.js"></script>
-    
+
     <!-- 로그인 -->
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -808,11 +808,11 @@
 					login();
 				}
 			});
-			
+
 			$('#findPassBtn').off().on('click', function(evt) {
-				
+
 				evt.stopPropagation();
-				
+
 				if ($('#email_forgot').val().length <= 0) {
 					alert('이메일 주소를 입력해 주세요.')
 					return;
@@ -833,7 +833,7 @@
 						error: function(err) {
 							console.log(err)
 						}
-					})	
+					})
 				}
 			});
 		});
@@ -883,9 +883,9 @@
 	        		error : function(err){console.log("에러요" + err)}
 	        	});
 			}
-			
-			
-			
+
+
+
 		}
 	</script>
 

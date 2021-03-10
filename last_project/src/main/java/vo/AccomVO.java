@@ -8,37 +8,42 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class AccomVO {
-	
+
 	@Id
 	private ObjectId _id;
-	
+
 	private String lodgment_name;
 	private String address;
 	private String tel;
 	private String check_in;
 	private String check_out;
 	private String homepage;
+	private double latitude;
+	private double longitude;
 	private ArrayList<String> images;
 	private ArrayList<Binary> image;
-	
-
 	private ArrayList<HashMap<String, String>> review;
-	
-	
+
+
+
+
+
+
+
 	public ObjectId get_id() {
 		return _id;
 	}
 	public void set_id(ObjectId _id) {
 		this._id = _id;
 	}
-	
+
 	public String getLodgment_name() {
 		return lodgment_name;
 	}
 	public void setLodgment_name(String lodgment_name) {
 		this.lodgment_name = lodgment_name;
 	}
-	
+
 	public String getAddress() {
 		return address;
 	}
@@ -87,5 +92,19 @@ public class AccomVO {
 	public void setReview(ArrayList<HashMap<String, String>> review) {
 		this.review = review;
 	}
-	
+
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+
 }
