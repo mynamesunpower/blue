@@ -37,22 +37,5 @@ public class CourseDAOImpl implements CourseDAO {
 		return mongoTemplate.findOne(query, CourseVO.class, course);
 	}
 
-	@Override
-	public List<CourseVO> viewMycourse(CourseVO vo, String memberId) {
-		System.out.println("viewMycourse DAO 접근");
-		Query query = new Query(Criteria.where("writer").is(memberId));
-		return mongoTemplate.find(query, CourseVO.class, course);
-	}
-
-	@Override
-	public CourseVO courseEdit(CourseVO vo, String memberId, String _id) {
-		System.out.println("courseEdit DAO 접근");
-		Query query = new Query(Criteria.where("writer").is(memberId));  // 조건1
-		query.addCriteria(Criteria.where("_id").is(_id));  // 조건2
-		return mongoTemplate.findOne(query, CourseVO.class, course);
-	}
-	
-	
-
 	
 }

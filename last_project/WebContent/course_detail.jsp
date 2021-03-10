@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,27 +12,29 @@
     <title>축축빵빵 - 코스 상세 보기</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="../img/logo_img.PNG" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="../img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="../img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="../img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- COMMON CSS -->
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-	<link href="../css/vendors.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	<link href="css/vendors.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
-	<link href="../css/custom.css" rel="stylesheet">
-	<link href="../css/tourDetail.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+
+	<link href="css/tourDetail.css" rel="stylesheet">
 
 </head>
 
 <body>
+
 	<div id="preloader">
 		<div class="sk-spinner sk-spinner-wave">
 			<div class="sk-rect1"></div>
@@ -56,17 +57,7 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <c:choose>
-                            	<c:when test="${sessionScope.memberId eq null}">
-                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
-                            	</c:when>
-                            	<c:when test="${sessionScope.memberId ne null}">
-                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
-                            		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
-                            		<li><a href="#" class="icon-logout">로그아웃</a></li>
-                            	</c:when>
-                            </c:choose>
+                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
                         </ul>
                     </div>
                 </div><!-- End row -->
@@ -77,26 +68,26 @@
 			<div class="row">
 				<div class="col-3">
 					<div id="logo_home">
-						<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+						<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
 					</div>
 				</div>
 				<nav class="col-9">
                     <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                     <div class="main-menu">
                         <div id="header_menu">
-                            <img src="../img/logo_sticky.png" width="160" height="34" alt="City tours">
+                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
                             <li class="submenu">
-                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
                             </li>
                             <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
+                                <a href="festival.jsp" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="../festival.jsp">축제</a></li>
-                                    <li><a href="../accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="../restaurants_list.jsp">식당</a></li>
+                                    <li><a href="festival.jsp">축제</a></li>
+                                    <li><a href="accommodations_list.jsp">숙박</a></li>
+                                    <li><a href="restaurants_list.jsp">식당</a></li>
                                     <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>
@@ -110,25 +101,17 @@
                             <li class="submenu">
                                 <!-- 메이트서비스 아닌 회원은 mate_index_default -->
                                 <!-- 메이트서비스 회원은 mate_index -->
-                                <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a>
+                                <a href="mate/mate_index_default.jsp" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a> <!--클릭하면 메이트 메인 페이지로 이동하게-->
                                 <ul> 
-                                    <li><a href="../mate/mate_index_default.jsp">메이트 서비스는?</a></li>
+                                    <li><a href="mate/mate_index_default.jsp">메이트 서비스는?</a></li>
                                     <li><a href="#">나의 메이트 </a></li>
                                 </ul>
                             </li>
                             <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a>
+                                <a href="course_main.jsp" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
                                 <ul>
-                                    <li><a href="course_main.do">코스 자랑 마당</a></li>
-                                    <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <c:choose>
-                                    	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
-                                    	</c:otherwise>
-                                    </c:choose>
+                                    <li><a href="course_main.jsp">코스 자랑 마당</a></li>
+                                    <li><a href="course_list.jsp">나의 코스 목록</a></li>
                                 </ul>
                             </li>                            
                         </ul>
@@ -144,17 +127,17 @@
                                 <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
                                 <ul class="dropdown-menu" id="cart_items">
                                     <li>
-                                        <div class="image"><img src="../img/thumb_cart_1.jpg" alt="image"></div>
+                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
                                         <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
                                     <li>
-                                        <div class="image"><img src="../img/thumb_cart_2.jpg" alt="image"></div>
+                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
                                         <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
                                     <li>
-                                        <div class="image"><img src="../img/thumb_cart_3.jpg" alt="image"></div>
+                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
                                         <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
@@ -174,14 +157,14 @@
 	</header>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/single_tour_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="img/single_tour_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>${detail.courseName }</h1>
-						<i class="pe-7s-map-marker"></i><span> ${detail.district}</span><br>
-						<i class="pe-7s-graph1"></i> 코스 총 거리 :<span style="font-size: large;"> ${detail.distance}</span> km<br>
+						<h1>코스명</h1>
+						<i class="pe-7s-map-marker"></i><span> 지역(경기도 광명시)</span><br>
+						<i class="pe-7s-graph1"></i> 코스 총 거리 :<span style="font-size: large; color: cadetblue;"> n</span> km<br>
 						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
 					</div>
 				</div>
@@ -194,9 +177,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="../main.jsp">Home</a>
+					<li><a href="main.jsp">Home</a>
 					</li>
-					<li><a href="course_main.do">코스</a>
+					<li><a href="course_main.jsp">코스</a>
 					</li>
 					<li>코스 상세보기</li>
 				</ul>
@@ -214,118 +197,182 @@
 				<div class="col-lg-8" id="single_tour_desc">
 					<div id="single_tour_feat">
 						<ul>
-							<c:choose>
-								<c:when test="${detail.schedule eq '당일'}">
-									<li><i class=" icon-calendar-5"></i>당일</li>
-								</c:when>
-								<c:when test="${detail.schedule eq '1박 2일'}">
-									<li><i class=" icon-calendar-5"></i>1박 2일</li>
-								</c:when>
-								<c:when test="${detail.schedule eq '2박 3일 이상'}">
-									<li><i class=" icon-calendar-5"></i>2박 3일 이상</li>
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${detail.theme eq '가족과 함께'}">
-									<li><i class="icon-users"></i>가족과 함께</li>
-								</c:when>
-								<c:when test="${detail.theme eq '연인과 함께'}">
-									<li><i class="icon-heart-8"></i>연인과 함께</li>
-								</c:when>
-								<c:when test="${detail.theme eq '메이트와 함께'}">
-									<li><i class="icon-school"></i>메이트와 함께</li>
-								</c:when>
-								<c:when test="${detail.theme eq '반려동물과 함께'}">
-									<li><i class="icon-guidedog"></i>반려동물과 함께</li>
-								</c:when>
-								<c:when test="${detail.theme eq '오감만족 코스'}">
-									<li><i class="icon-thumbs-up-5">오감만족 코스</i></li>
-								</c:when>
-								<c:when test="${detail.theme eq '눈 정화 코스'}">
-									<li><i class="icon-picture-1"></i>눈 정화 코스</li>
-								</c:when>
-								<c:when test="${detail.theme eq '귀 정화 코스'}">
-									<li><i class="icon-headphones-3"></i>귀 정화 코스</li>
-								</c:when>
-								<c:when test="${detail.theme eq '나홀로 YOLO'}">
-									<li><i class="icon-adult"></i>나홀로 YOLO</li>
-								</c:when>	
-							</c:choose>
+							<li><i class="icon_set_1_icon-4"></i>Museum</li>
+							<li><i class="icon_set_1_icon-83"></i>3 Hours</li>
+							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
+							<li><i class="icon_set_1_icon-82"></i>144 Likes</li>
+							<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
+							<li><i class="icon_set_1_icon-97"></i>Audio guide</li>
+							<li><i class="icon_set_1_icon-29"></i>Tour guide</li>
 						</ul>
 					</div>
 
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a></p>
 					<!-- Map button for tablets/mobiles -->
-					
-					<!-- 이 부분 빼는 거 고려 -->
+
 					<div id="Img_carousel" class="slider-pro">
-					여기는 그냥 뺄까봐
-						<c:forEach items="${detail.coursePath}" var="coursePath">	
-							<div class="sp-slides">
-								<div class="sp-slide">
-									<img alt="Image" class="sp-image" src="../css/images/blank.gif" data-src="../img/slider_single_tour/1_medium.jpg" data-small="../img/slider_single_tour/1_small.jpg" data-medium="../img/slider_single_tour/1_medium.jpg" data-large="../img/slider_single_tour/1_large.jpg" data-retina="../img/slider_single_tour/1_large.jpg">
-									<div class="carousel-caption">
-										<h4>${coursePath.title}</h4>			  
-							  		</div>						  
-								</div>								
+						<div class="sp-slides">
+
+							<div class="sp-slide">
+								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/1_medium.jpg" data-small="img/slider_single_tour/1_small.jpg" data-medium="img/slider_single_tour/1_medium.jpg" data-large="img/slider_single_tour/1_large.jpg" data-retina="img/slider_single_tour/1_large.jpg">
+								<div class="carousel-caption">
+									<h4>광명스피돔</h4>			  
+						  		</div>						  
 							</div>
-						</c:forEach>
+							<div class="sp-slide">
+								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/2_medium.jpg" data-small="img/slider_single_tour/2_small.jpg" data-medium="img/slider_single_tour/2_medium.jpg" data-large="img/slider_single_tour/2_large.jpg" data-retina="img/slider_single_tour/2_large.jpg">
+								<div class="carousel-caption">
+									<h4>온수공원</h4>							  
+						  		</div>
+							</div>
+
+							<div class="sp-slide">
+								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/3_medium.jpg" data-small="img/slider_single_tour/3_small.jpg" data-medium="img/slider_single_tour/3_medium.jpg" data-large="img/slider_single_tour/3_large.jpg" data-retina="img/slider_single_tour/3_large.jpg">
+								<div class="carousel-caption">
+									<h4>부천식물원</h4>							  
+						  		</div>
+							</div>
+
+							<!-- <div class="sp-slide">
+								<img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/4_medium.jpg" data-small="img/slider_single_tour/4_small.jpg" data-medium="img/slider_single_tour/4_medium.jpg" data-large="img/slider_single_tour/4_large.jpg" data-retina="img/slider_single_tour/4_large.jpg">
+							</div> -->
+						</div>
 						<div class="sp-thumbnails">
-							<img alt="Image" data-rel="1" id="thumbimg1" class="sp-thumbnail" src="../img/slider_single_tour/1_medium.jpg">
+							<img alt="Image" data-rel="1" id="thumbimg1" class="sp-thumbnail" src="img/slider_single_tour/1_medium.jpg">
+							<img alt="Image" data-rel="2" id="thumbimg2" class="sp-thumbnail" src="img/slider_single_tour/2_medium.jpg">
+							<img alt="Image" data-rel="3" id="thumbimg3" class="sp-thumbnail" src="img/slider_single_tour/3_medium.jpg">
+							<!-- <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/4_medium.jpg"> -->
 						</div>
 					</div>
 					<hr>
-					<!-- 여기까지 -->
 					<div class="row">
 						<div class="col-lg-12">
 							<h3>코스 설명</h3>
-							<textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="코스에 대한 설명." style="height:100px; margin-bottom: 5%;" disabled>${detail.summary}</textarea>
+							<textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="코스에 대한 설명." style="height:100px; margin-bottom: 5%;"></textarea>
 						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-lg-3">
-							<h3>경로</h3>
-						</div>
-							<div class="col-lg-9">
-								<c:forEach items="${detail.coursePath}" var="coursePath">
-									<h4><i class="icon-flag-1"></i>${coursePath.title }</h4>							
-									<div class="row">
-										<div class="col-md-12">
-											<ul class="list_icons">
-												<li><i class="icon-location-7"></i> ${coursePath.address}</li>
-												<li><i class="icon-road-1"></i> 내 위치에서 333.3km</li>
-												<li><i class="icon-phone-3"></i> ${coursePath.tel}</li>
-											</ul>
-										</div>									
+					</div>	
+						<div class="col-lg-12">
+							<div class="relation_cos">
+								<!-- tab cont -->
+								<div id="tabCont">
+									<div class="cos_cont" id="cosTab01">
+										<div class="detail_box">
+											<div class="title">
+												<div class="tit_wrap"> <h5><em>1.</em> <strong>
+													광명스피돔</h5></strong>
+												</div> <span>경기도 광명시 광명로 721</span><span>내 위치에서 13159.5km</span>
+											</div>
+
+											<div class="col-lg-9">												
+												<div class="row">
+													<div class="col-md-6">
+														<ul class="list_ok">
+															<li>#가족과함께</li>
+															<li>#경륜장</li>
+															<li>#광명스피돔</li>
+															<li>#남녀노소</li>
+															<li>#레포츠</li>
+															<li>#복합레저스포츠</li>																	
+															<li>#생활스포츠</li>	
+														</ul>
+													</div>
+													<div class="col-md-6">
+														<ul class="list_ok">
+															<li>#서울근교여행</li>
+															<li>#스포츠체험</li>
+															<li>#아이와함께</li>
+															<li>#익스트림스포츠</li>
+															<li>#휴식공간</li>
+															<li>#휴식하기</li>
+															<li>#휴식하기좋은곳</li>												
+														</ul>
+													</div>
+												</div>
+												<!-- End row  -->
+											</div>
+										</div>
 									</div>
-									<!-- End row  -->
-									<div class="owl-carousel owl-theme carousel-thumbs-2 magnific-gallery">
-										<div class="item">
-											<a href="../img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/1.jpg" alt="Image">
-											</a>
-										</div>
-										<div class="item">
-											<a href="../img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/2.jpg" alt="Image">
-											</a>
-										</div>
-										<div class="item">
-											<a href="../img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/3.jpg" alt="Image">
-											</a>
-										</div>
-										<div class="item">
-											<a href="../img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="../img/carousel/4.jpg" alt="Image">
-											</a>
+
+									<div class="cos_cont" id="cosTab02">
+										<div class="detail_box">
+											<div class="title">
+												<div class="tit_wrap"> <h5><em>2.</em> <strong>
+													온수공원</h5></strong>
+												</div> <span>서울특별시 구로구 오류동</span><span>내 위치에서 13157.3km</span>
+											</div>
+
+											<div class="col-lg-9">												
+												<div class="row">
+													<div class="col-md-6">
+														<ul class="list_ok">
+															<li>#가족과함께</li>
+															<li>#관광지</li>
+															<li>#산책</li>
+															<li>#산책길</li>
+															<li>#산책하기</li>
+															<li>#산책하기좋은곳</li>
+															<li>#서울근교여행</li>	
+														</ul>
+													</div>
+													<div class="col-md-6">
+														<ul class="list_ok">														
+															<li>#수도권</li>
+															<li>#온수공원</li>
+															<li>#휴식공간</li>
+															<li>#휴식여행</li>
+															<li>#휴식하기</li>
+															<li>#휴식하기좋은곳</li>													
+														</ul>
+													</div>
+												</div>
+												<!-- End row  -->
+											</div>											
 										</div>
 									</div>
-									<!-- End photo carousel  -->
-									<hr>
-								</c:forEach>
+
+									<div class="cos_cont active" id="cosTab03">
+										<div class="detail_box">
+											<div class="title">
+												<div class="tit_wrap"> <h5><em>3.</em> <strong>
+													부천식물원</h5></strong>
+												</div> <span>경기도 부천시 길주로 660</span><span>내 위치에서 13155.5km</span>
+											</div>
+
+											<div class="col-lg-9">												
+												<div class="row">
+													<div class="col-md-6">
+														<ul class="list_ok">
+															<li>#2019년4월_Tmap추천_여행예보</li>
+															<li>#가족여행</li>
+															<li>#관광지</li>
+															<li>#산책</li>
+															<li>#산책길</li>
+															<li>#산책하기</li>
+															<li>#산책하기좋은곳</li>	
+														</ul>
+													</div>
+													<div class="col-md-6">
+														<ul class="list_ok">
+															<li>#서울근교여행</li>
+															<li>#수도권</li>
+															<li>#온수공원</li>
+															<li>#휴식공간</li>
+															<li>#휴식여행</li>
+															<li>#휴식하기</li>
+															<li>#휴식하기좋은곳</li>													
+														</ul>
+													</div>
+												</div>
+												<!-- End row  -->
+											</div>											
+									</div>
+								</div>
+								<!-- //tab cont -->
 							</div>
-						<!-- End col-md-9  -->
+						</div>
 					</div>
-					<!-- End row  -->
 					<hr>
+					
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
@@ -370,20 +417,44 @@
 							</div>
 							<!-- End row -->
 							<hr>
-							<c:forEach items="${detail.review }" var="review">
-								<div class="review_strip_single">
-									<img src="../img/avatar1.jpg" alt="Image" class="rounded-circle">
-									<small> - 10 March 2015 -</small>
-									<h4>${review.reviewWriter }</h4>
-									<p>
-										${review.reviewContent }
-									</p>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-									</div>
+							<div class="review_strip_single">
+								<img src="img/avatar1.jpg" alt="Image" class="rounded-circle">
+								<small> - 10 March 2015 -</small>
+								<h4>Jhon Doe</h4>
+								<p>
+									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+								</p>
+								<div class="rating">
+									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 								</div>
+							</div>
 							<!-- End review strip -->
-							</c:forEach>							
+
+							<div class="review_strip_single">
+								<img src="img/avatar3.jpg" alt="Image" class="rounded-circle">
+								<small> - 10 March 2015 -</small>
+								<h4>Jhon Doe</h4>
+								<p>
+									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+								</p>
+								<div class="rating">
+									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+								</div>
+							</div>
+							<!-- End review strip -->
+
+							<div class="review_strip_single last">
+								<img src="img/avatar2.jpg" alt="Image" class="rounded-circle">
+								<small> - 10 March 2015 -</small>
+								<h4>Jhon Doe</h4>
+								<p>
+									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+								</p>
+								<div class="rating">
+									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+								</div>
+							</div>
+							<!-- End review strip -->
 						</div>
 					</div>
 				</div>
@@ -396,40 +467,32 @@
 					<div class="theiaStickySidebar">
 						<div class="box_style_1 expose">
 							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label><i class="icon-map-1"></i> 코스명</label>
-										<div>${detail.courseName}</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-5">
+								<div class="col-sm-6">
 									<div class="form-group">
 										<label><i class="icon-calendar-7"></i> 일정</label>
-										<div>${detail.schedule}</div>
+										<div>당일 코스</div>
 									</div>
 								</div>
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<div class="form-group">
 										<label><i class="icon_camera_alt"></i> 테마</label>
-										<div>${detail.theme }</div>
+										<div>나홀로 코스</div>
 									</div>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-12">
+								<div class="col-sm-6">
 									<div class="form-group">
-										<label><i class=" icon_tags_alt"></i> 태그</label><br>
-										<c:forEach items="${detail.keyword}" var="keyword">
-											<span>${keyword} </span>
-										</c:forEach>
+										<label style="padding-top: 30px;"><i class=" icon_tags_alt"></i>&nbsp 태그</label>
+										<div class="text-right" style="padding-bottom: 10px;">
+											# 여행 # 힐링
+										</div>
 									</div>
 								</div>
 							<br>
 							<div class="col-sm-12">
 								<div style="text-align: center;">
-									<input type="button" value="코스 저장하기" class="btn_1" data-toggle="modal" data-target="#put_into_course">
+									<input type="button" value="코스 저장하기" class="btn_1" id="">
 									<!-- 비로그인 상태면 로그인을 하게 할거고, 로그인 상태면 코스 생성, 저장 팝업 띄울거임.-->
 								</div>
 							</div>
@@ -463,7 +526,7 @@
                         <li><a href="#">축축빵빵은요!</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#sign-in-dialog">로그인</a></li>
-                        <li><a href="../member/memberJoin.do">회원가입</a></li>
+                        <li><a href="member/memberJoin.do">회원가입</a></li>
                          <li><a href="#">이용 약관</a></li>
                     </ul>
                 </div>
@@ -517,14 +580,14 @@
 		<form>
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/naver_login.png); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/kakao_login.png); border: 0; outline: 0;" >
+                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.PNG); border: 0; outline: 0;" >
+                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
-					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
-					<i class="icon_pencil"></i>
+					<label>Email</label>
+					<input type="email" class="form-control" name="email" id="email">
+					<i class="icon_mail_alt"></i>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
@@ -539,11 +602,11 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <input type="button" value="로그인" class="btn_login">
-                    <!-- <a type="button" class="btn_login">로그인</a> -->
+                    <!-- <input type="submit" value="로그인" class="btn_login"> -->
+                    <a href="mainAfterLogin.jsp" type="button" class="btn_login">로그인</a>
                 </div>
 				<div class="text-center">
-					계정이 없으신가요? <a href="../member/memberJoin.do">회원가입</a>
+					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
 				</div>
 				<div id="forgot_pw">
 					<div class="form-group">
@@ -561,50 +624,6 @@
 		<!--form -->
 	</div>
 	<!-- /Sign In Popup -->
-	
-	<!-- Modal put_into_course-->
-	<div class="modal fade" id="put_into_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div>
-						<h4>- 내 코스 1<span style="padding-left: 250px;"><input type="button" value="선택" class="btn_1" id=""></span></h4>
-						<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-					</div>
-					<div style="text-align: center;">
-						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> <!-- End of Modal put_into_course-->
-
-	<!-- Modal add_course-->
-	<div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">새 코스 추가</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div id="message-review">
-					</div>
-					<div class="form-group">
-						<input type="text" placeholder="코스명을 입력해주세요.">
-					</div>
-					<div style="text-align: center;">
-						<input type="button" value="추가" class="btn btn-success">
-						<!-- 추가 누르면 창이 닫히고, 입력한 코스명으로 부모 페이지에 코스가 추가 입력 되어져야함.-->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> <!-- End of Modal add_course-->
 
 	<!-- Modal Review -->
 	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -713,12 +732,12 @@
 	<!-- End modal review -->
 
 	<!-- Common scripts -->
-	<script src="../js/jquery-3.5.1.min.js"></script>
-	<script src="../js/common_scripts_min.js"></script>
-	<script src="../js/functions.js"></script>
+	<script src="js/jquery-3.5.1.min.js"></script>
+	<script src="js/common_scripts_min.js"></script>
+	<script src="js/functions.js"></script>
 
 	<!-- 이미지 캐러셀 -->
-	<script src="../js/jquery.sliderPro.min.js"></script>
+	<script src="js/jquery.sliderPro.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function ($) {
 			$('#Img_carousel').sliderPro({
@@ -739,41 +758,19 @@
 	</script>
 	
 	<!--Review modal validation -->
-	<script src="../assets/validate.js"></script>
+	<script src="assets/validate.js"></script>
 
 	<!-- Map -->
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
-    <script src="../js/map.js"></script>
-	<script src="../js/infobox.js"></script>
+    <script src="js/map.js"></script>
+	<script src="js/infobox.js"></script>
 
 	<!-- Fixed sidebar -->
-	<script src="../js/theia-sticky-sidebar.js"></script>
+	<script src="js/theia-sticky-sidebar.js"></script>
 	<script>
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
-	</script>
-	
-	<!-- Carousel -->
-	<script>
-		$('.carousel-thumbs-2').owlCarousel({
-		loop:false,
-		margin:5,
-		responsiveClass:true,
-		nav:false,
-		responsive:{
-			0:{
-				items:1
-			},
-			600:{
-				items:3
-			},
-			1000:{
-				items:4,
-				nav:false
-			}
-		}
-	});
 	</script>
 	
 </body>

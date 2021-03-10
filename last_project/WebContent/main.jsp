@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%String kakaonickname = (String)session.getAttribute("kakaonickname"); %>
-<%String navernickname = (String)session.getAttribute("navernickname"); %>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%String kakaonickname = (String)session.getAttribute("kakaonickname"); %>
+   <%String navernickname = (String)session.getAttribute("navernickname"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -230,7 +231,7 @@
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <c:choose>
                                     	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    		<li><a href="course/course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
                                     	</c:when>
                                     	<c:otherwise>
                                     		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>

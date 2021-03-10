@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,22 +12,22 @@
     <title>축축빵빵 - 나의 코스 목록</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="../img/logo_img.PNG" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="../img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="../img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="../img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- COMMON CSS -->
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-	<link href="../css/vendors.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	<link href="css/vendors.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
-	<link href="../css/custom.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -55,17 +54,11 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <c:choose>
-                            	<c:when test="${sessionScope.memberId eq null}">
-                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
-                            	</c:when>
-                            	<c:when test="${sessionScope.memberId ne null}">
-                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
-                            		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
-                            		<li><a href="#" class="icon-logout">로그아웃</a></li>
-                            	</c:when>
-                            </c:choose>
+                            <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
+                            <li><span style="color: blue;">홍길동</span>님 환영합니다</li>
+                            <li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
+                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            <li><a href="#" class="icon-logout">로그아웃</a></li>
                         </ul>
                     </div>
                 </div><!-- End row -->
@@ -77,22 +70,22 @@
             <div class="row">
                 <div class="col-3">
                     <div id="logo_home">
-                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
                     </div>
                 </div>
                 <nav class="col-9">
                     <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                     <div class="main-menu">
                         <div id="header_menu">
-                            <img src="../img/logo_sticky.png" width="160" height="34" alt="City tours">  <!--모바일 화면 우측 서랍 아이콘 눌렀을 때 로고 나오는 거-->
+                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">  <!--모바일 화면 우측 서랍 아이콘 눌렀을 때 로고 나오는 거-->
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
                             <li class="submenu">
-                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
                             </li>
                             <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
+                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
                                 <ul>
                                     <li><a href="festival.jsp">축제</a></li>
                                     <li><a href="accommodations_list.jsp">숙박</a></li>
@@ -112,7 +105,7 @@
                                 <!-- 메이트서비스 회원은 mate_index -->
                                 <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a> <!--클릭하면 메이트 메인 페이지로 이동하게-->
                                 <ul> 
-                                    <li><a href="../mate/mate_index_default.jsp">메이트 서비스는?</a></li>
+                                    <li><a href="mate/mate_index_default.jsp">메이트 서비스는?</a></li>
                                     <li><a href="#">나의 메이트 </a></li>
                                 </ul>
                             </li>
@@ -121,14 +114,7 @@
                                 <ul>
                                     <li><a href="course_main.jsp">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <c:choose>
-                                    	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course_list.do?id=${sessionScope.memberId}">나의 코스 목록</a></li>
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
-                                    	</c:otherwise>
-                                    </c:choose>
+                                    <li><a href="course_list.jsp">나의 코스 목록</a></li>
                                 </ul>
                             </li>                            
                         </ul>
@@ -146,17 +132,17 @@
                                 <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
                                 <ul class="dropdown-menu" id="cart_items">
                                     <li>
-                                        <div class="image"><img src="../img/thumb_cart_1.jpg" alt="image"></div>
+                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
                                         <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
                                     <li>
-                                        <div class="image"><img src="../img/thumb_cart_2.jpg" alt="image"></div>
+                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
                                         <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
                                     <li>
-                                        <div class="image"><img src="../img/thumb_cart_3.jpg" alt="image"></div>
+                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
                                         <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                                         <a href="#" class="action"><i class="icon-trash"></i></a>
                                     </li>
@@ -190,9 +176,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="../main.jsp">Home</a>
+					<li><a href="mainAfterLogin.jsp">Home</a>
 					</li>
-					<li><a href="course_main.do">코스</a>
+					<li><a href="course_main.jsp">코스</a>
 					</li>
 					<li>나의 코스 목록</li>
 				</ul>
@@ -207,13 +193,12 @@
 						<h3><strong><i class="icon-pencil"></i></strong>나의 코스 목록</h3>						
 					</div>
                     <div class="step">
-                    	<!-- 여기서부터 이제 데이터 받아서 보여줄 코딩 필요. -->
                         <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3">
                                     <div class="img_list">
-                                        <a href="courseSelect.do?_id=${course._id}">
-                                            <img src="../img/tour_box_1.jpg" alt="Image">
+                                        <a href="course_detail.jsp">
+                                            <img src="img/tour_box_1.jpg" alt="Image">
                                             <div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>
                                         </a>
                                     </div>
@@ -284,12 +269,137 @@
                                 <div class="col-lg-2 col-md-2">
                                     <div class="price_list">
                                         <div>
-                                            <p><a href="courseSelect.do?_id=${course._id}" class="btn_1">자세히 보기</a>
+                                            <p><a href="course_detail.jsp" class="btn_1">자세히 보기</a>
                                             </p><br/>
-                                            <p><a href="course_edit.do?_id=${course._id}" class="btn btn-success btn-sm">편집하기</a>
+                                            <p><a href="courseRegister.jsp" class="btn btn-success btn-sm">편집하기</a>
                                             </p>
                                         </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End strip -->
+
+                        <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <div class="img_list">
+                                        <a href="course_detail.jsp">
+                                            <img src="img/hotel_2.jpg" alt="Image">
+                                            <div class="short_info"><i class="icon_set_1_icon-6"></i>Hotel </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7">
+                                    <div class="tour_list_desc">
+                                        <!-- <div class="score">Superb<span>9.0</span>
+                                        </div> -->
+                                        <div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i>
+                                        </div>
+                                        <h3><strong>보령 머드 축제</strong> 가보고 싶다</h3>
+                                        <p>코스 설명 따오기</p>
+                                        <ul class="add_info">
+                                            <li>
+                                                <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <div class="price_list">
+                                        <div>
+                                            <p><a href="course_detail.jsp" class="btn_1">자세히 보기</a>
+                                            </p><br/>
+                                            <p><a href="courseRegister.jsp" class="btn btn-success btn-sm">편집하기</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End strip -->
+
+                        <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <div class="img_list">
+                                        <a href="single_transfer.jsp">
+                                            <img src="img/transfer_3.jpg" alt="Image">
+                                        </a>
+                                        <div class="short_info"><i class="icon_set_1_icon-26"></i>Transfer</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7">
+                                    <div class="tour_list_desc">
+                                        <div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
+                                        </div>
+                                        <h3><strong>망둥어 잡으러</strong> 떠나용</h3>
+                                        <p>코스 설명 따오기</p>
+                                        <ul class="add_info">
+                                            <li>
+                                                <div class="tooltip_styled tooltip-effect-4">
+                                                    <span class="tooltip-item"><i class="icon_set_1_icon-70"></i></span>
+                                                    <div class="tooltip-content">
+                                                        <h4>Passengers</h4> Up to 40 passengers.
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="tooltip_styled tooltip-effect-4">
+                                                    <span class="tooltip-item"><i class="icon_set_1_icon-6"></i></span>
+                                                    <div class="tooltip-content">
+                                                        <h4>Pick up</h4> Hotel pick up or different place with an extra cost.
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="tooltip_styled tooltip-effect-4">
+                                                    <span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
+                                                    <div class="tooltip-content">
+                                                        <h4>Accessibility</h4> On request accessibility available.
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="tooltip_styled tooltip-effect-4">
+                                                    <span class="tooltip-item"><i class="icon_set_1_icon-22"></i></span>
+                                                    <div class="tooltip-content">
+                                                        <h4>Pet allowed</h4> On request pet allowed.
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="tooltip_styled tooltip-effect-4">
+                                                    <span class="tooltip-item"><i class="icon_set_1_icon-33"></i></span>
+                                                    <div class="tooltip-content">
+                                                        <h4>Baggage</h4> Large baggage drop available.
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <div class="price_list">
+                                        <div>
+                                            <p><a href="course_detail.jsp" class="btn_1">자세히 보기</a>
+                                            </p><br/>
+                                            <p><a href="courseRegister.jsp" class="btn btn-success btn-sm">편집하기</a>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -341,7 +451,7 @@
                         <li><a href="#">축축빵빵은요!</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#sign-in-dialog">로그인</a></li>
-                        <li><a href="../member/memberJoin.do">회원가입</a></li>
+                        <li><a href="member/memberJoin.do">회원가입</a></li>
                          <li><a href="#">이용 약관</a></li>
                     </ul>
                 </div>
@@ -395,14 +505,14 @@
 		<form>
 			<div class="sign-in-wrapper">
                 <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/naver_login.png); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/kakao_login.png); border: 0; outline: 0;" >
+                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.PNG); border: 0; outline: 0;" >
+                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" >
                 </div>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
-					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
-					<i class="icon_pencil"></i>
+					<label>Email</label>
+					<input type="email" class="form-control" name="email" id="email">
+					<i class="icon_mail_alt"></i>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
@@ -417,11 +527,11 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <input type="button" value="로그인" class="btn_login">
-                    <!-- <a type="button" class="btn_login">로그인</a> -->
+                    <!-- <input type="submit" value="로그인" class="btn_login"> -->
+                    <a href="mainAfterLogin.jsp" type="button" class="btn_login">로그인</a>
                 </div>
 				<div class="text-center">
-					계정이 없으신가요? <a href="../member/memberJoin.do">회원가입</a>
+					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
 				</div>
 				<div id="forgot_pw">
 					<div class="form-group">
@@ -441,16 +551,36 @@
 	<!-- /Sign In Popup -->
 
 	<!-- Common scripts -->
-	<script src="../js/jquery-3.5.1.min.js"></script>
-	<script src="../js/common_scripts_min.js"></script>
-	<script src="../js/functions.js"></script>
+	<script src="js/jquery-3.5.1.min.js"></script>
+	<script src="js/common_scripts_min.js"></script>
+	<script src="js/functions.js"></script>
 
 	<!-- Specific scripts -->
 	<!-- Cat nav mobile -->
-	<script src="../js/cat_nav_mobile.js"></script>
+	<script src="js/cat_nav_mobile.js"></script>
 	<script>
 		$('#cat_nav').mobileMenu();
 	</script>
+
+	<!-- Map -->
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="js/map.js"></script>
+	<script src="js/infobox.js"></script>
+	<script>
+		$('.wishlist_close').on('click', function (c) {
+			$(this).parent().parent().fadeOut('slow', function (c) {});
+		});
+	</script>
+	
+	<!-- Check box and radio style iCheck -->
+	<script>
+		$('input').iCheck({
+		   checkboxClass: 'icheckbox_square-grey',
+		   radioClass: 'iradio_square-grey'
+		 });
+	</script>
+	
+	
 </body>
 
 </html>
