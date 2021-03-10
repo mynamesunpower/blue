@@ -775,8 +775,10 @@
 						</div>
 						<div class="modal-body" style="text-align: center;">
 							<div>
-								<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1"><span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span></h4>
-								<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
+								<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
+									<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
+									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
+								</h4>
 							</div>
 							<div style="text-align: center;">
 								<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
@@ -1038,6 +1040,39 @@
 			}
         		
 		}
+	</script>
+	
+	<script type="text/javascript">
+		
+		$(document).ready(function () {
+			$("#choice").click(function () {
+				$.ajax({
+					traditional : true,
+					type : "POST",
+					data : {
+						'writer' : "${sessionScope.memberId}",
+						'courseName' : $('#courseName').val(),
+						'summary' : "${detail.summary}",						
+						'keyword' : "${detail.keyword}",
+						'distance' : ${detail.distance},
+						'schedule' : "${detail.schedule}",									
+						'theme' : "${detail.theme}",
+//						'coursePath' : "${detail.coursePath}"
+					},
+					dataType : "json",
+					url : "addMycourse.do?_id=${detail._id}",
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					success : function (data) {
+						alert("코스에 담기 완료")
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
+						console.log(err)
+					}
+				})
+			})
+		})
+	
 	</script>
 	
 </body>

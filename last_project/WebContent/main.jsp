@@ -140,16 +140,27 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
                             <c:choose>
                             	<c:when test="${sessionScope.memberId eq null}">
                             		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
                             	</c:when>
                             	<c:when test="${sessionScope.memberId ne null}">
-                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
-                            		<li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
-                            		<li><a href="#" class="icon-logout">로그아웃</a></li>
+                            		<%if((kakaonickname ==null)&&(navernickname ==null)){ %>
+	                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
+	                            		<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+	                            		<li><a href="course/course_list.do?memberId=${sessionScope.memberId}" id="wishlist_link">나의 코스 목록</a></li>
+	                            		<li><a href="member/logout.do" class="icon-logout">로그아웃</a></li>
+                            		<%} %>
+                            		<%if(kakaonickname !=null){ %>
+                            			<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
+                            			<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+                            			<li><a href="course/course_list.do?memberId=${sessionScope.memberId}" id="wishlist_link">나의 코스 목록</a></li>
+                           			<%} %>
+                          			<%if(navernickname !=null){ %>
+                           				<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
+                           				<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
+                           				<li><a href="course/course_list.do?memberId=${sessionScope.memberId}" id="wishlist_link">나의 코스 목록</a></li>
+                           			<%} %>
                             	</c:when>
                             </c:choose>
                         </ul>

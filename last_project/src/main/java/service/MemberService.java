@@ -1,5 +1,7 @@
 package main.java.service;
 
+import java.util.List;
+
 import main.java.vo.MemberVO;
 
 public interface MemberService {
@@ -17,5 +19,13 @@ public interface MemberService {
 	public MemberVO memberIdFind(MemberVO vo);
 	
 	public MemberVO memberPassFind(MemberVO vo);
+	
+	public int insert_member(MemberVO vo);
+
+	public List<MemberVO> addtable();
+
+	public int modify_member(MemberVO vo);
+
+	public int delete_member(MemberVO vo);
 	
 }
