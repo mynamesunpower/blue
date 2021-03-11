@@ -22,6 +22,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 	
 	@Override
+	public int getTotalSize() {
+		return restaurantDAO.selectAll().size();
+	}
+	
+	@Override
 	public RestaurantVO selectOne(String _id) {
 		// TODO Auto-generated method stub
 		return restaurantDAO.selectOne(_id);
@@ -39,10 +44,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.getReviews(_id);
 	}
 
-	public void findData(String string, String string2) {
-		
-		restaurantDAO.findData(string, string2);
-		
+	@Override
+	public List<RestaurantVO> selectPageList(int pageNumber) {
+		// TODO Auto-generated method stub
+		return restaurantDAO.selectPageList(pageNumber);
 	}
 	
 }

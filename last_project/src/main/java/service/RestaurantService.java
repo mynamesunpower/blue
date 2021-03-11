@@ -16,4 +16,7 @@ public interface RestaurantService {
 
 	public ArrayList<HashMap<String, String>> getReviews(String _id);
 	
+	public List<RestaurantVO> selectPageList(int pageNumber);
+
+	public int getTotalSize();
 }

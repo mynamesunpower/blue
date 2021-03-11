@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%String kakaonickname = (String)session.getAttribute("kakaonickname"); %>
-<%String navernickname = (String)session.getAttribute("navernickname"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,6 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<link href="css/vendors.css" rel="stylesheet">
-
 
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
@@ -132,156 +130,7 @@
     </div>
     <!-- End Preload -->
 
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
-
-    <!-- Header================================================== -->
-    <header id="plain">
-        <div id="top_line">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
-                    <div class="col-6">
-                        <ul id="top_links">
-                            <!-- 로그인, 찜이 창 크기 줄이면 사라지는 문제 있음. -->
-                            <c:choose>
-                            	<c:when test="${sessionScope.memberId eq null}">
-                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
-                            		<li><a href="mongo.do">몽고</a></li>
-                            	</c:when>
-                            	<c:when test="${sessionScope.memberId ne null}">
-                            		<%if((kakaonickname ==null)&& (navernickname ==null)){ %>
-              										 <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
-              										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			               <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-              			               <li><a href="member/logout.do" class="icon-logout">로그아웃</a></li>
-              									<%} %>
-
-              									<%if(kakaonickname !=null){ %>
-              										<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
-              										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-              			              <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
-              									<%} %>
-
-              									<%if(navernickname !=null){ %>
-              										<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
-              										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-              			              <li><a href="naverlogout.do" class="icon-logout">로그아웃</a></li>
-              									<%} %>
-                            	</c:when>
-                            </c:choose>
-
-                        </ul>
-                    </div>
-                </div><!-- End row -->
-            </div><!-- End container-->
-        </div><!-- End top line-->
-
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <div id="logo_home">
-                    	<h1><a href="main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
-                    </div>
-                </div>
-                <nav class="col-9">
-                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-                    <div class="main-menu">
-                        <div id="header_menu">
-                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">  <!--모바일 화면 우측 서랍 아이콘 눌렀을 때 로고 나오는 거-->
-                        </div>
-                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
-                        <ul>
-                            <li class="submenu">
-                                <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
-                                <ul>
-                                     <li><a href="festival.jsp">축제</a></li>
-                                     <li><a href="/mongomonths.do">축제스</a></li>
-                                    <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurant/restaurants_list.do">식당</a></li>
-                                    <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
-                                        <ul>
-                                            <li><a href="#">테스트2</a></li>
-                                            <li><a href="#">테스트3</a></li>
-                                            <li><a href="#">테스트4</a></li>
-                                            <li><a href="#">테스트5</a></li>
-                                        </ul>
-                                    </li> -->
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                <!-- 메이트서비스 회원은 mate_index -->
-                                <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a> <!--클릭하면 메이트 메인 페이지로 이동하게-->
-                                <ul>
-                                    <li><a href="mate/mate_index_default.jsp">메이트 서비스는?</a></li>
-                                    <li><a href="#">나의 메이트 </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
-                                <ul>
-                                    <li><a href="course/course_main.do">코스 자랑 마당</a></li>
-                                    <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <c:choose>
-                                    	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
-                                    	</c:otherwise>
-                                    </c:choose>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End main-menu -->
-
-                    <!-- 헤더 메뉴 아이콘 -->
-                    <ul id="top_tools">
-                        <li>
-                            <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
-                        </li>
-                        <!-- 즐겨찾기.. 장바구니처럼 넣는 거 하느냐 마느냐~ 고민쓰-->
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-                                <ul class="dropdown-menu" id="cart_items">
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
-                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div>Total: <span>$120.00</span></div>
-                                        <a href="cart.jsp" class="button_drop">Go to cart</a>
-                                        <a href="payment.jsp" class="button_drop outline">Check out</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- End dropdown-cart-->
-                        </li>
-                        </ul>
-                </nav>
-            </div>
-        </div><!-- container -->
-    </header>
-    <!-- End Header -->
+	<%@ include file="header.jsp" %>
 
 	<main>
         <!-- Slider -->
@@ -675,121 +524,9 @@
 	</main>
 	<!-- End main -->
 
-    <footer class="revealed">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>도움이 필요하세요?</h3>
-                    <a href="tel://004542344599" id="phone">+82 10 3333 4444</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
-                </div>
-                <div class="col-md-4">
-                    <h3>축축빵빵</h3>
-                    <ul>
-                        <li><a href="#">축축빵빵은요!</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#sign-in-dialog">로그인</a></li>
-                        <li><a href="member/memberJoin.do">회원가입</a></li>
-                         <li><a href="#">이용 약관</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>언어 선택</h3>
-                    <div class="styled-select">
-                        <select name="lang" id="lang">
-                            <option value="Korean" selected>한국어</option>
-                            <option value="English">English</option>
-                            <option value="Japanese">日本語</option>
-                        </select>
-                    </div>
-                </div>
-            </div><!-- End row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="social_footer">
-                        <ul>
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-google"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram"></i></a></li>
-                            <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#"><i class="icon-vimeo"></i></a></li>
-                            <li><a href="#"><i class="icon-youtube-play"></i></a></li>
-                        </ul>
-                        <p>© Kosmo73 - Blue 2021</p>
-                    </div>
-                </div>
-            </div><!-- End row -->
-        </div><!-- End container -->
-    </footer><!-- End footer -->
+	<%@ include file="footer.jsp" %>
 
-	<div id="toTop"></div><!-- Back to top button -->
-
-	<!-- Search Menu -->
-	<div class="search-overlay-menu">
-		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-		<form role="search" id="searchform" method="get">
-			<input value="" name="q" type="search" placeholder="Search..." />
-			<button type="submit"><i class="icon_set_1_icon-78"></i>
-			</button>
-		</form>
-	</div><!-- End Search Menu -->
-
-	<!-- Sign In Popup -->
-	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-		<div class="small-dialog-header">
-			<h3>로그인</h3>
-		</div>
-		<form>
-			<div class="sign-in-wrapper">
-                <div class="snsLogin" style="text-align: center;">
-                    <!-- <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" > -->
-                    <!--  <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" > -->
-                    <a href="naverlogin.do"><img src ="/img/login/naver_login2.PNG"></a>
-                    <br/>
-                    <br/>
-                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=41e45128f773156a833facd8e3b77b49&response_type=code&redirect_uri=http://localhost:8080/login2.do&response_type=code"><img src ="/img/login/kakao_login2.png"></a>
-                </div>
-				<div class="divider"><span>Or</span></div>
-				<div class="form-group">
-					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
-					<i class="icon_pencil"></i>
-				</div>
-				<div class="form-group">
-					<label>Password</label>
-					<input type="password" class="form-control" name="password" id="password" value="">
-					<i class="icon_lock_alt"></i>
-				</div>
-				<div class="clearfix add_bottom_15">
-					<div class="checkboxes float-left">
-						<input id="remember-me" type="checkbox" name="check">
-						<label for="remember-me">기억하기</label>
-					</div>
-					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
-				</div>
-				<div class="text-center">
-                    <input type="button" value="로그인" class="btn_login">
-                    <!-- <a type="button" class="btn_login">로그인</a> -->
-                </div>
-				<div class="text-center">
-					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
-				</div>
-				<div id="forgot_pw">
-					<div class="form-group">
-                        <label>하단에 이메일을 작성해주세요.</label>
-						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
-						<i class="icon_mail_alt"></i>
-					</div>
-
-                    <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
-					<div class="text-center"><input type="button" id="findPassBtn" class="btn_1" value="비밀번호 재설정"></div>
-				</div>
-			</div>
-		</form>
-		<!--form -->
-	</div>
-	<!-- /Sign In Popup -->
+	
 
     <!-- Common scripts -->
     <script src="js/jquery-3.5.1.min.js"></script>

@@ -10,6 +10,7 @@ import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,14 +27,14 @@ public class RestaurantController {
 	@Autowired
 	private RestaurantServiceImpl restaurantService;
 	
-	@RequestMapping(value = "restaurant/restaurants_list.do")
-	public String helloRestaurant(Model model) {
+	@RequestMapping(value = "/restaurants_list.do")
+	public String helloRestaurant(ModelMap model, @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 		
-		List<RestaurantVO> restaurant_list = restaurantService.selectAll();
+		List<RestaurantVO> restaurant_list = restaurantService.selectPageList(pageNumber);
+		
+		 //List<RestaurantVO> restaurant_list = restaurantService.selectAll();
 		
 		int[] scores = new int[restaurant_list.size()];
-		
-		restaurantService.findData("restaurant_name", "점");
 		
 		// 식당마다 for문 돌기
 		for (int i = 0; i < restaurant_list.size(); i++) {
@@ -46,7 +47,29 @@ public class RestaurantController {
 			
 		}
 		
+		int pageScale = 5;
+		int totalSize = restaurantService.getTotalSize();
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int pageGroup = (int)Math.ceil((double) pageNumber / 5);
+		System.out.println("pageGroup -> " + pageGroup);
+		long startPage = ((pageGroup - 1) * pageScale) + 1;
+		long endPage = startPage + pageScale - 1;
+		long previousPage = (pageGroup - 2) * pageScale + 1;
+		long nextPage = pageGroup * pageScale + 1;
+		
+		resultMap.put("pageGroup", pageGroup);
+		resultMap.put("total", totalSize);
+		resultMap.put("page", pageNumber);
+		resultMap.put("pageScale", pageScale);
+		resultMap.put("startPage", startPage);
+		resultMap.put("endPage", endPage);
+		resultMap.put("nextPage", nextPage);
+		resultMap.put("previousPage", previousPage);
+		
+		
+		model.addAttribute("resultMap", resultMap);
 		model.addAttribute("scores", scores);
+		
 		model.addAttribute("list", restaurant_list);
 		
 		return "restaurant/restaurants_list";

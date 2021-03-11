@@ -25,5 +25,15 @@ public class AccomServiceImpl implements AccomService{
 		System.out.println("숙박 상세 Service 접근");
 		return accomDAO.detail(_id);
 	}
+	
+	@Override
+	public int getTotalSize() {
+		return accomDAO.test().size();
+	}
 
+	@Override
+	public List<AccomVO> selectPageList(int pageNumber){
+		return accomDAO.selectPageList(pageNumber);
+	}
+	
 }

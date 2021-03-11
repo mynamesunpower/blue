@@ -12,7 +12,7 @@ public class AccomVO {
 	@Id
 	private ObjectId _id;
 
-	private String lodgment_name;
+	private String title;
 	private String address;
 	private String tel;
 	private String check_in;
@@ -24,12 +24,6 @@ public class AccomVO {
 	private ArrayList<Binary> image;
 	private ArrayList<HashMap<String, String>> review;
 
-
-
-
-
-
-
 	public ObjectId get_id() {
 		return _id;
 	}
@@ -37,11 +31,11 @@ public class AccomVO {
 		this._id = _id;
 	}
 
-	public String getLodgment_name() {
-		return lodgment_name;
+	public String getTitle() {
+		return title;
 	}
-	public void setLodgment_name(String lodgment_name) {
-		this.lodgment_name = lodgment_name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getAddress() {

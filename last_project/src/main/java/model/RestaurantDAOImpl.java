@@ -22,6 +22,7 @@ import org.springframework.data.mongodb.core.query.UpdateDefinition;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.client.result.UpdateResult;
+import com.mongodb.internal.operation.AggregateOperation;
 
 import main.java.vo.RestaurantVO;
 
@@ -32,7 +33,22 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	
+	private int postPerPage = 10;
 
+	@Override
+	public List<RestaurantVO> selectPageList(int pageNumber) {
+		
+		SkipOperation skip = new SkipOperation((pageNumber-1) * 10);
+		LimitOperation limit = new LimitOperation(postPerPage);
+		Aggregation aggregation = Aggregation.newAggregation(skip, limit);
+		AggregationResults<RestaurantVO> result = mongoTemplate.aggregate(aggregation, collectionName, RestaurantVO.class);
+		
+		return result.getMappedResults();
+		
+	}
+	
+	
 	@Override
 	public List<RestaurantVO> selectAll() {
 		// TODO Auto-generated method stub
@@ -70,29 +86,5 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return vo.getReviews();
 	}
 	
-	
-	public void findData(String key, String value) {
-		System.out.println("진입");
-		Criteria criteria = new Criteria(key);
-		criteria.is(value);
-		
-		MatchOperation match = Aggregation.match(criteria);
-		SortOperation sort = Aggregation.sort(Sort.Direction.DESC, "_id");
-		SkipOperation skip = Aggregation.skip(0);
-		LimitOperation limit = Aggregation.limit(2);
-		
-		Aggregation aggregation = Aggregation.newAggregation(match);
-		AggregationResults<RestaurantVO> result = mongoTemplate.aggregate(aggregation, collectionName, RestaurantVO.class);
-		
-		List<RestaurantVO> dataList = result.getMappedResults();
-		System.out.println(dataList.size());
-		
-		for (RestaurantVO restaurantVO : dataList) {
-			System.out.println(restaurantVO.get_id());
-			System.out.println(restaurantVO.getRestaurant_name());
-			System.out.println(restaurantVO.getAddress());
-		}
-		
-	}
 	
 }

@@ -16,4 +16,6 @@ public interface RestaurantDAO {
 
 	public ArrayList<HashMap<String, String>> getReviews(String _id);
 
+	public List<RestaurantVO> selectPageList(int pageNumber);
+
 }
