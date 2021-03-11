@@ -1045,23 +1045,29 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$("#choice").click(function () {
+				// 코스의 키워드 뽑아서 배열에 넣기.
 				var keyword = new Array();
 				<c:forEach items="${detail.keyword}" var="keyword">
 					var temp = "${keyword}"
 					keyword.push(temp)
 				</c:forEach>
-/*					
+				console.log(keyword)
+				// 코스의 장소마다 이름, 주소, 전화 등 뽑아서 배열에 넣기_ json 구조로 해야하는거 맞니
 				var coursePath = new Array();
 				<c:forEach items="${detail.coursePath}" var="coursePath">
-					var title = "${coursePath.title}"
-					coursePath.push(title)
-					var address = "${coursePath.address}"
-					coursePath.push(address)
+					var data = {
+							title : "${coursePath.title}",
+							address : "${coursePath.address}",
+							tel : "${coursePath.tel}"
+					}
+					coursePath.push(data)					
 				</c:forEach>
-*/
+				console.log(coursePath);
+				console.log(coursePath.class)
 				$.ajax({
 					traditional : true,
 					type : "POST",
+					/*
 					data : {
 						'writer' : "${sessionScope.memberId}",
 						'courseName' : $('#courseName').val(),
@@ -1070,8 +1076,9 @@
 						'distance' : ${detail.distance},
 						'schedule' : "${detail.schedule}",									
 						'theme' : "${detail.theme}",
-//						'coursePath' : coursePath
+						'coursePath' : coursePath
 					},
+					*/
 					dataType : "json",
 					url : "addMycourse.do",
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리

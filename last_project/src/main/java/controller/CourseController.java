@@ -91,7 +91,15 @@ public class CourseController {
 		for(String data : temp) {
 			System.out.println("data:"+data);
 		}
+		String[] coursePath = req.getParameterValues("coursePath");
+		System.out.println(coursePath);
+		/*
+		for(String data : coursePath) {
+			System.out.println("coursePath:"+data);
+		}*/
+		
 		String memberId = (String) session.getAttribute("memberId");
+		
 		vo.setWriter(memberId);
 		CourseVO result = courseService.addMycourse(vo, memberId);
 		return result;
