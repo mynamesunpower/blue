@@ -2,16 +2,22 @@ package main.java.controller;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.bson.types.Binary;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONValue;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -84,24 +90,27 @@ public class CourseController {
 	}
 	
 	// 다른 사람이 만든 코스를 내 코스에 담기
-	@RequestMapping(value = "addMycourse.do")
+	@RequestMapping(value = "addMycourse.do", method = RequestMethod.POST)
 	@ResponseBody
-	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req){
+	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req, @RequestParam HashMap<Object, Object> param /*@RequestParam String jsonData*/){
 		String[] temp = req.getParameterValues("keyword");
 		for(String data : temp) {
 			System.out.println("data:"+data);
 		}
-		String[] coursePath = req.getParameterValues("coursePath");
-		System.out.println(coursePath);
+//		JSONArray array = new JSONArray(param.get("coursePath").toString());
+		
+//		JSONArray jarr = new JSONArray();
+//		jarr = new JSONArray(req.getParameter("coursePath"));
 		/*
-		for(String data : coursePath) {
-			System.out.println("coursePath:"+data);
-		}*/
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		JSONArray array = JSONArray.fromObject(jsonData);*/
 		
 		String memberId = (String) session.getAttribute("memberId");
 		
 		vo.setWriter(memberId);
-		CourseVO result = courseService.addMycourse(vo, memberId);
-		return result;
+		CourseVO cvo = courseService.addMycourse(vo, memberId);
+		return cvo;
 	}
 }

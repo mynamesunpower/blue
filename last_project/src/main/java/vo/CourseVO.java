@@ -21,8 +21,17 @@ public class CourseVO {
 	private String schedule;   // 일정
 	private String theme;      // 테마
 	private ArrayList<Binary> image;  // 어케 써먹지
+	//↓ HashMap<String, String> 을 Object로 해보자?
 	private ArrayList<HashMap<String, String>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
 	private ArrayList<HashMap<String, String>> reviews; // 리뷰
+//	private HashMap<String, String> coursePath2;
+	/*
+	public HashMap<String, String> getCoursePath2() {
+		return coursePath2;
+	}
+	public void setCoursePath2(HashMap<String, String> coursePath2) {
+		this.coursePath2 = coursePath2;
+	}*/
 	
 	public ObjectId get_id() {
 		return _id;

@@ -473,7 +473,7 @@
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 열기" data-text-original="지도 숨기기">지도 숨기기</a></p>
 					<!-- Map button for tablets/mobiles -->
 					<div id="Img_carousel" class="slider-pro">
-						<c:forEach items="${detail.coursePath}" var="coursePath">	
+						<c:forEach items="${detail.coursePath}" var="coursePath">
 							<div class="sp-slides">
 								<div class="sp-slide">
 									<img alt="Image" class="sp-image" src="../css/images/blank.gif" data-src="${coursePath.image}" data-small="${coursePath.image}" data-medium="${coursePath.image}" data-large="${coursePath.image}" data-retina="${coursePath.image}">
@@ -500,7 +500,7 @@
 						</div>
 							<div class="col-lg-9">
 								<c:forEach items="${detail.coursePath}" var="coursePath">
-									<h4><i class="icon-flag-1"></i>${coursePath.title}</h4>							
+									<h4><i class="icon-flag-1"></i>${coursePath.title}</h4>
 									<div class="row">
 										<div class="col-md-12">
 											<ul class="list_icons">
@@ -1044,7 +1044,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$("#choice").click(function () {
+			$("#choice").on('click',function () {
 				// 코스의 키워드 뽑아서 배열에 넣기.
 				var keyword = new Array();
 				<c:forEach items="${detail.keyword}" var="keyword">
@@ -1052,33 +1052,62 @@
 					keyword.push(temp)
 				</c:forEach>
 				console.log(keyword)
+				
 				// 코스의 장소마다 이름, 주소, 전화 등 뽑아서 배열에 넣기_ json 구조로 해야하는거 맞니
-				var coursePath = new Array();
+				var coursePath = [];
 				<c:forEach items="${detail.coursePath}" var="coursePath">
 					var data = {
 							title : "${coursePath.title}",
 							address : "${coursePath.address}",
-							tel : "${coursePath.tel}"
+							tel : "${coursePath.tel}",
+							latitude : ${coursePath.latitude},
+							longitude : ${coursePath.longitude},
+							image : "${coursePath.image}"
 					}
-					coursePath.push(data)					
+					console.log(data);
+					coursePath.push(data);
 				</c:forEach>
 				console.log(coursePath);
-				console.log(coursePath.class)
+//				var jsonData = JSON.parse(data);
+				var jsonData = JSON.stringify(coursePath);
+				console.log("jsonData:"+jsonData);
+				
+				jQuery.ajaxSettings.traditional = true;
 				$.ajax({
-					traditional : true,
 					type : "POST",
-					/*
 					data : {
-						'writer' : "${sessionScope.memberId}",
-						'courseName' : $('#courseName').val(),
-						'summary' : "${detail.summary}",						
-						'keyword' : keyword,
-						'distance' : ${detail.distance},
-						'schedule' : "${detail.schedule}",									
-						'theme' : "${detail.theme}",
-						'coursePath' : coursePath
+						"writer" : "${sessionScope.memberId}",
+						"courseName" : $('#courseName').val(),
+						"summary" : "${detail.summary}",					
+						"keyword" : keyword,
+							/*
+							[
+								<c:forEach items="${detail.keyword}" var="keyword" varStatus="var">
+									"${keyword}"
+								<c:if test="${var.last eq false}">,</c:if>	
+								</c:forEach>
+							],
+							*/
+						"distance" : ${detail.distance},
+						"schedule" : "${detail.schedule}",									
+						"theme" : "${detail.theme}",
+						coursePath : jsonData						
+							/*
+							[
+							<c:forEach items="${detail.coursePath}" var="coursePath" varStatus="var2">
+							{
+								title : "${coursePath.title}",
+								address : "${coursePath.address}",
+								tel : "${coursePath.tel}",
+								latitude : "${coursePath.latitude}",
+								longitude : "${coursePath.longitude}",
+								image : "${coursePath.image}"
+							}
+							<c:if test="${var2.last eq false}">,</c:if>
+							</c:forEach>
+							]
+							*/
 					},
-					*/
 					dataType : "json",
 					url : "addMycourse.do",
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
