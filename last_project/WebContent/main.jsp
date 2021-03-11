@@ -147,7 +147,7 @@
                             <c:choose>
                             	<c:when test="${sessionScope.memberId eq null}">
                             		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
-                            		<li><a href="mongo.do">몽고</a></li>
+                            		<li><a href="error.do">채팅</a></li>
                             	</c:when>
                             	<c:when test="${sessionScope.memberId ne null}">
                             		<%if((kakaonickname ==null)&& (navernickname ==null)){ %>

@@ -428,17 +428,7 @@
                     
                   </c:forEach>
                   
-                  <tr>
-                    <td>daisysdfl</td>
-                    <td>데이지
-                    </td>
-                    <td>1996.01.02</td>
-                    <td>010-4439-8891</td>
-                    <td>서울시 맛있구</td>
-                    <td>daisyl@naver.com</td>
-                    <td class="text-center"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#info_modify">수정</a>
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#info_delete">삭제</a></td>  
-                  </tr>    
+                      
                   </tbody>
                   <tfoot>
                   <tr>
@@ -725,7 +715,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     다음 회원 데이터가 삭제됩니다. <br/>
-									<input name="id" id="festival_id" type="text" placeholder="아이디" class="form-control delid"
+									<input name="id" id="festival_id" type="text" placeholder="${member.id}" class="form-control delid"
                                     >
 								</div>
 							</div>
