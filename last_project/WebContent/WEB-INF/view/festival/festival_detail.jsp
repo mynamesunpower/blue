@@ -106,125 +106,7 @@
 	</div>
 	<!-- End Preload -->
 
-	<div class="layer"></div>
-	<!-- Mobile menu overlay mask -->
-
-	<!-- ====================헤더========================= -->
-    <header>
-        <div id="top_line">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
-                    <div class="col-6">
-                        <ul id="top_links">
-                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
-                            <!-- 로그인 세션이 있으면, 모든 페이지의 헤더 부분이 56~59행 처럼 나와야 함. -->
-                            <!-- <li><span style="color: blue;">홍길동</span>님 환영합니다</li>
-                            <li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-                            <li><a href="#" class="icon-logout">로그아웃</a></li> -->
-                        </ul>
-                    </div>
-                </div><!-- End row -->
-            </div><!-- End container-->
-        </div><!-- End top line-->
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <div id="logo_home">
-                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
-                        <!-- 로그인 세션이 있으면, 로고 클릭 시 mainAfterLogin.jsp로 이동되게-->
-                        <!-- <h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1> -->
-                    </div>
-                </div>
-                <nav class="col-9">
-                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-                    <div class="main-menu">
-                        <div id="header_menu">
-                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">
-                        </div>
-                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
-                         <ul>
-                            <li class="submenu">
-                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
-                                <!-- 로그인 세션이 있으면, 홈 버튼 클릭 시 mainAfterLogin.jsp로 이동되게-->
-                                <!-- <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i> -->
-                                    
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
-                                <ul>
-                                    <li><a href="../festival.jsp">축제</a></li>
-                                    <li><a href="../accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.do">식당</a></li>
-                                    <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
-                                        <ul>
-                                            <li><a href="#">테스트2</a></li>
-                                            <li><a href="#">테스트3</a></li>
-                                            <li><a href="#">테스트4</a></li>
-                                            <li><a href="#">테스트5</a></li>
-                                        </ul>
-                                    </li> -->
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a>
-                                <ul>
-                                    <!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                    <!-- 메이트서비스 회원은 mate_index -->
-                                    <li><a href="../mate/mate_index_default.jsp">메이트 서비스는?</a></li>
-                                    <li><a href="#">나의 메이트 </a></li>
-                                </ul>
-                            </li>
-                             <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a><ul>
-                                    <li><a href="../course/course_main.jsp">코스 자랑 마당</a></li>
-                                    <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <li><a href="../course/course_list.jsp">나의 코스 목록</a></li>
-                                    </ul>
-                            </li>
-                        </ul>
-                    </div><!-- End main-menu -->
-                    
-                    <!-- 헤더 메뉴 아이콘 -->
-                    <ul id="top_tools">
-                        <li>
-                            <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
-                        </li>
-                        <!-- 즐겨찾기.. 장바구니처럼 넣는 거 하느냐 마느냐~ 고민쓰-->
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-                                <ul class="dropdown-menu" id="cart_items">
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
-                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div>Total: <span>$120.00</span></div>
-                                        <a href="cart.jsp" class="button_drop">Go to cart</a>
-                                        <a href="payment.jsp" class="button_drop outline">Check out</a>
-                                    </li>
-                                </ul>
-                            </div><!-- End dropdown-cart-->
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div><!-- container -->
-    </header><!-- ====================헤더 끝 ====================== -->
+	<%@ include file="../../../header.jsp" %>
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
 		<div class="parallax-content-2">
@@ -941,29 +823,46 @@ function getTimeHTML(distance) {
 					</div>
                     <hr>
 
-					<div class="row">
+										<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
-							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							<c:if test="${sessionScope.memberId ne null}">
+								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							</c:if>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">11 건의 리뷰
+							<div id="general_rating">${list.get(0).reviews.size()} 개의 후기
 								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+									<c:forEach begin="1" end="${scores[4]}">
+										<i class="icon-smile voted"></i>
+									</c:forEach>
+									<c:forEach begin="1" end="${5-scores[4]}">
+										<i class="icon-smile"></i>
+									</c:forEach>
 								</div>
 							</div>
 							<!-- End general_rating -->
 							<div class="row" id="rating_summary">
 								<div class="col-md-6">
 									<ul>
-										<li>위치
+										<li>음식
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
-										<li>즐거움
+										<li>서비스
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[1]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[1]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
 									</ul>
@@ -972,12 +871,22 @@ function getTimeHTML(distance) {
 									<ul>
 										<li>가격
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[2]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[2]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
-										<li>질
+										<li>분위기
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
+												<c:forEach begin="1" end="${scores[3]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[3]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
 									</ul>
@@ -985,44 +894,71 @@ function getTimeHTML(distance) {
 							</div>
 							<!-- End row -->
 							<hr>
-							<div class="review_strip_single">
-								<img src="img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> 2021 - 02 - 23 - 19:24 </small>
-								<h4>김형민</h4>
-								<p>
-									솔직히 노잼입니다. 이딴 것도 축제라고 개최한 겁니까? 내 돈 돌려내세요 당장. 가족들과 함께 왔다면 미안해서 큰일 날 뻔 했습니다. 망신이라고요 망신 알겠어요?
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile "></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
+							
+							<!-- 리뷰들 들어갑니다 -->
+							<c:forEach items="${list.get(0).reviews}" var="review">
+								<div class="review_strip_single rating_summary">
 
-							<div class="review_strip_single">
-								<img src="img/avatar3.jpg" alt="Image" class="rounded-circle">
-								<small> 2021 - 02 - 22 - 23:17 </small>
-								<h4>김용관</h4>
-								<p>
-									사실 가보진 않았는데 리뷰를 달 수 있길래 달아봤음 ㅋㅋ 기모링~
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
+									<h5>${review.id}</h5>
+									<div>${review.date}</div>
+									<hr>
+									<p style="font-size:14px;">
+										${review.content}
+									</p>
+									<div class="row">
+										<div class="col-md-6">
+											<ul>
+												<li>축제
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.festival)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.festival)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+												<li>서비스
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.service)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.service)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="col-md-6">
+											<ul>
+												<li>가격
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.price)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.price)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+												<li>분위기
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.quality)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.quality)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
 								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single last">
-								<img src="img/avatar2.jpg" alt="Image" class="rounded-circle">
-								<small> 2021 - 02 - 22 - 00:59 </small>
-								<h4>무명의 후기</h4>
-								<p>
-									다른 건 모르겠지만 연인끼리 즐겁게 구경하기에는 최고였어요! 더욱 더 연인관계에 도움이 되었던 축제이지 않았나 싶습니다. 조금 고급스럽게 놀기 좋은 거 같아요. 사실 무슨 내용인진 하나도 모르겠지만 말이죠. 이제 여친도 절 다시 보았겠죠? 캬캬캬캬
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
+								
+							</c:forEach> <!-- 리뷰 반복문 종료 -->
+							
 						</div>
 					</div>
 				</div>
@@ -1206,8 +1142,8 @@ function getTimeHTML(distance) {
 					<div class="box_style_4">
 						<i class="icon_set_1_icon-90"></i>
 						<h4><span>전화</span>로 문의</h4>
-						<a href="tel://0237043142" class="phone">+82) 02-3704-3142</a>
-						<small>살리게 되면 살리고 아니면 싹둑!</small>
+						<a href="tel://${list.get(0).tel}" class="phone">${list.get(0).tel}</a>
+						
 					</div> <!-- 전화로 문의 끝 -->
 
 				</aside>
@@ -1222,121 +1158,7 @@ function getTimeHTML(distance) {
 	</main>
 	<!-- End main -->
 
-	<footer class="revealed">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>도움이 필요하세요?</h3>
-                    <a href="tel://004542344599" id="phone">+82 10 3333 4444</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
-                </div>
-                <div class="col-md-4">
-                    <h3>축축빵빵</h3>
-                    <ul>
-                        <li><a href="#">축축빵빵은요!</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">로그인</a></li>
-                        <li><a href="member/memberJoin.do">회원가입</a></li>
-                         <li><a href="#">이용 약관</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>언어 선택</h3>
-                    <div class="styled-select">
-                        <select name="lang" id="lang">
-                            <option value="Korean" selected>한국어</option>
-                            <option value="English">English</option>
-                            <option value="Japanese">日本語</option>
-                        </select>
-                    </div>
-                </div>
-            </div><!-- End row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="social_footer">
-                        <ul>
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-google"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram"></i></a></li>
-                            <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#"><i class="icon-vimeo"></i></a></li>
-                            <li><a href="#"><i class="icon-youtube-play"></i></a></li>
-                        </ul>
-                        <p>© Kosmo73 - Blue 2021</p>
-                    </div>
-                </div>
-            </div><!-- End row -->
-        </div><!-- End container -->
-    </footer><!-- End footer -->
-
-	<div id="toTop"></div><!-- Back to top button -->
-	
-	<!-- Search Menu -->
-	<div class="search-overlay-menu">
-		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-		<form role="search" id="searchform" method="get">
-			<input value="" name="q" type="search" placeholder="Search..." />
-			<button type="submit"><i class="icon_set_1_icon-78"></i>
-			</button>
-		</form>
-	</div><!-- End Search Menu -->
-	
-	<!-- Sign In Popup -->
-	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-		<div class="small-dialog-header">
-			<h3>로그인</h3>
-		</div>
-		<form>
-			<div class="sign-in-wrapper">
-                <div class="snsLogin" style="text-align: center;">
-                    <!-- <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" > -->
-                    <!--  <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" > -->
-                    <a href="naverlogin.do"><img src ="/img/login/naver_login2.PNG"></a>
-                    <br/>
-                    <br/>
-                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=41e45128f773156a833facd8e3b77b49&response_type=code&redirect_uri=http://localhost:8080/login2.do&response_type=code"><img src ="/img/login/kakao_login2.png"></a>
-                </div>
-				<div class="divider"><span>Or</span></div>
-				<div class="form-group">
-					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
-					<i class="icon_pencil"></i>
-				</div>
-				<div class="form-group">
-					<label>Password</label>
-					<input type="password" class="form-control" name="password" id="password" value="">
-					<i class="icon_lock_alt"></i>
-				</div>
-				<div class="clearfix add_bottom_15">
-					<div class="checkboxes float-left">
-						<input id="remember-me" type="checkbox" name="check">
-						<label for="remember-me">기억하기</label>
-					</div>
-					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
-				</div>
-				<div class="text-center">
-                    <input type="button" value="로그인" class="btn_login">
-                    <!-- <a type="button" class="btn_login">로그인</a> -->
-                </div>
-				<div class="text-center">
-					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
-				</div>
-				<div id="forgot_pw">
-					<div class="form-group">
-                        <label>하단에 이메일을 작성해주세요.</label>
-						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
-						<i class="icon_mail_alt"></i>
-					</div>
-					
-                    <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
-					<div class="text-center"><input type="button" id="findPassBtn" class="btn_1" value="비밀번호 재설정"></div>
-				</div>
-			</div>
-		</form>
-		<!--form -->
-	</div>
-	<!-- /Sign In Popup -->
+	<%@ include file="../../../footer.jsp" %>
 
 	<!-- Modal put_into_course-->
 	<div class="modal fade" id="put_into_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -1382,7 +1204,7 @@ function getTimeHTML(distance) {
 		</div>
 	</div> <!-- End of Modal add_course-->
 
-	<!-- Modal Review -->
+	<!-- Modal Review 리뷰 폼 -->
 	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -1393,51 +1215,50 @@ function getTimeHTML(distance) {
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="#" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
+					<form method="post" action="insert_festival_review.do" name="review_tour" id="review_tour">
+						<input name="_id" id="_id" type="hidden" value="${list.get(0)._id}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="name_review" id="name_review" type="text" placeholder="이름" class="form-control">
+									<input name="review_userId" id="review_userId" type="text" placeholder="이름" class="form-control" value="${sessionScope.memberId}" disabled>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
+						<!-- 
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
 									<input name="email_review" id="email_review" type="email" placeholder="이메일" class="form-control">
 								</div>
 							</div>
-						</div>
+						</div>  -->
 						<!-- End row -->
 						<hr>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>위치</label>
-									<select class="form-control" name="position_review" id="position_review">
+									<label>축제</label>
+									<select class="form-control" name="position_review" id="festival_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>즐거움</label>
-									<select class="form-control" name="guide_review" id="guide_review">
+									<label>서비스</label>
+									<select class="form-control" name="guide_review" id="service_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
@@ -1449,38 +1270,33 @@ function getTimeHTML(distance) {
 									<label>가격</label>
 									<select class="form-control" name="price_review" id="price_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>질</label>
+									<label>분위기</label>
 									<select class="form-control" name="quality_review" id="quality_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
 						<div class="form-group">
-							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="축제에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
+							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="식당에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
 						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="인간이라면 답을 적어주세요 4 + 1 = ?">
-						</div>
-						<input type="submit" value="작성" class="btn_1" id="submit-review">
+						<input type="button" value="작성" class="btn_1" id="submit-review">
 					</form>
 				</div>
 			</div>
@@ -1524,12 +1340,91 @@ function getTimeHTML(distance) {
 
 	
 	<script>
-	
+		$(document).ready(function() {
+			// 시간 format 변환
+			function getTimeStamp() {
+			  var d = new Date();
+			
+			  var s =
+			    leadingZeros(d.getFullYear(), 4) + '-' +
+			    leadingZeros(d.getMonth() + 1, 2) + '-' +
+			    leadingZeros(d.getDate(), 2) + ' ' +
+			
+			    leadingZeros(d.getHours(), 2) + ':' +
+			    leadingZeros(d.getMinutes(), 2) + ':' +
+			    leadingZeros(d.getSeconds(), 2);
+			
+			  return s;
+			}
+			
+			function leadingZeros(n, digits) {
+			  var zero = '';
+			  n = n.toString();
+			
+			  if (n.length < digits) {
+			    for (i = 0; i < digits - n.length; i++)
+			      zero += '0';
+			  }
+			  return zero + n;
+			}
+			
+			$('#submit-review').on('click', function() {
+				
+				var date = getTimeStamp();
+				const id = $('#review_userId').val();
+				
+				const review = {
+					'id' : id,
+					'date': date,
+        			'content' : $('#review_text').val(),
+        			'festival': $('#festival_review').val(),
+        			'service': $('#service_review').val(),
+        			'price': $('#price_review').val(),
+        			'quality': $('#quality_review').val()
+				}
+				
+				const _id =	$('#_id').val()
+				
+				console.log(_id)
+				console.log(review['id'] + '/' + review['content'] + '/' + review['food'] + '/' + review['service'] + '/' + review['price'] + '/' + review['quality'])
+				
+				$.ajax({
+					type : 'post',
+	        		async : true,
+	        		url : "insert_festival_review.do",
+	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+	        		data : {
+	        			'_id': _id,
+	     				'review': review
+	        		},
+					success: function(result) {
+						
+						$('#review_text').val("")
+						$('#festival_review').val(""),
+        				$('#service_review').val(""),
+        				$('#price_review').val(""),
+        				$('#quality_review').val("")
+						
+						if ( result == 1 ) {
+							alert('리뷰가 등록되었습니다.');
+							$('.close').trigger('click');
+							location.replace(document.location.href);
+						}
+						else {
+							alert('리뷰가 등록되질 않았습니다. 왜일까')
+						}
+					},
+					error: function(error) {
+						console.log('에러' + error)
+					}
+				})
+				
+			})
+		})
 		
-
-	
 	
 	</script>
+	<script src="../../js/login.js"></script>
 
 </body>
 

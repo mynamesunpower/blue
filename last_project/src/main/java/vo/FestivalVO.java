@@ -28,7 +28,20 @@ public class FestivalVO {
 	private int postcode;
 	private ArrayList<Binary> image;
 	private ArrayList<String> images;
+	private HashMap<String, String> review;
+	private ArrayList<HashMap<String, String>> reviews;
 	
+	
+	
+	public ArrayList<HashMap<String, String>> getReviews() {
+		return reviews;
+	}
+	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
+		this.reviews = reviews;
+	}
+	public void setReview(HashMap<String, String> review) {
+		this.review = review;
+	}
 	public int getPostcode() {
 		return postcode;
 	}
@@ -56,7 +69,7 @@ public class FestivalVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-	private ArrayList<HashMap<String, String>> review;
+	
 	
 	
 	public ObjectId get_id() {
@@ -109,20 +122,11 @@ public class FestivalVO {
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
 	}
-
 	
-	public ArrayList<HashMap<String, String>> getReview() {
+	
+	public HashMap<String, String> getReview() {
 		return review;
 	}
-	
-	
-	
-	
-	public void setReview(ArrayList<HashMap<String, String>> review) {
-		this.review = review;
-	}
-	
-	
 	public Double getLatitude() {
 		return latitude;
 	}

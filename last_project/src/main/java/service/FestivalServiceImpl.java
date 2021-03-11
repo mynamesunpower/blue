@@ -1,4 +1,6 @@
 package main.java.service;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -45,6 +47,18 @@ public class FestivalServiceImpl implements FestivalService {
 	public List<FestivalVO> near(ObjectId objectId) {
 
 		return festivalDao.near(objectId);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		// TODO Auto-generated method stub
+		return festivalDao.getReviews(_id);
+	}
+
+	@Override
+	public int updateRestaurantReview(ArrayList<HashMap<String, String>> reviews, String _id) {
+		// TODO Auto-generated method stub
+		return festivalDao.updateRestaurantReview(reviews, _id);
 	}
 
 

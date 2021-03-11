@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.AccomService;
 import main.java.service.FestivalService;
 import main.java.vo.AccomVO;
 import main.java.vo.FestivalVO;
+import main.java.vo.RestaurantVO;
 
 @Controller
 public class FestivalController {
@@ -141,33 +143,33 @@ public class FestivalController {
 		}
 
 
+	@RequestMapping(value = "/insert_festival_review.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int insertFestivalReview(FestivalVO vo, String _id) {
 
-//	//�썡蹂� 異뺤젣
-//		@RequestMapping(value = "/mongomonth.do")
-//		@ResponseBody
-//		public List<FestivalVO> months(Model model) {
-//			System.out.println("FestivalController �뿉�꽌 month�슂泥�2");
-//			List<FestivalVO> list = festivalService.months();
-//
-//
-//			// 異뺤젣留덈떎 for臾� �룎湲�
-//			for (FestivalVO vo : list) {
-//				// 異뺤젣�뿉 �엳�뒗 ArrayList<Binary> image瑜�
-//				ArrayList<String> imageList = new ArrayList<String>();
-//				for (Binary img : vo.getImage()) {
-//					String image = Base64.getEncoder().encodeToString(img.getData());
-//					imageList.add(image);
-//				}
-//				vo.setImages(imageList);
-//			}
-//
-//			System.out.println("�굹�룄"+list);
-//
-//
-//			return list;
-//		}
-	
-	
+		System.out.println(_id);
+
+		HashMap<String, String> review = vo.getReview();
+		String id = review.get("id");
+		System.out.println(vo.getReview().get("id"));
+		System.out.println(vo.getReview().get("content"));
+		System.out.println(vo.getReview().get("festival"));
+		System.out.println(vo.getReview().get("service"));
+		System.out.println(vo.getReview().get("price"));
+		System.out.println(vo.getReview().get("quality"));
+
+		// 현재 데이터의 리뷰 List 가져오기
+		ArrayList<HashMap<String, String>> reviews = festivalService.getReviews(_id);
+
+		// List에 review를 추가.
+		reviews.add(review);
+
+		// 바뀐 list로 update 쿼리 실행
+		int result = festivalService.updateRestaurantReview(reviews, _id);
+
+		return result;
+	}
+
 	
 	//추천축제할곳
 	@RequestMapping("value=/mongorecommand.do")
@@ -259,7 +261,10 @@ public class FestivalController {
 		            System.out.println(String.format("Key : %s, Value : %s", key, map.get(key)));
 
 		}
-					
+		
+		ArrayList<HashMap<String, String>> reviews = list.get(0).getReviews();
+		        
+		model.addAttribute("scores", scoresAverage(reviews));
 		model.addAttribute("list", list);
 			
 		return "festival/festival_detail";
@@ -348,6 +353,33 @@ public class FestivalController {
 		}
 		
 		return list;
+	}
+	
+	public int[] scoresAverage(ArrayList<HashMap<String, String>> reviews) {
+
+		int[] scores = new int[5];
+		int[] scoresAvg = new int[5];
+
+		// 리뷰가 없을 경우엔
+		if (reviews.size() > 0) {
+
+			for (HashMap<String, String> review : reviews) {
+
+				scores[0] += Integer.parseInt(review.get("festival"));
+				scores[1] += Integer.parseInt(review.get("service"));
+				scores[2] += Integer.parseInt(review.get("price"));
+				scores[3] += Integer.parseInt(review.get("quality"));
+				scores[4] = (scores[0] + scores[1] + scores[2] + scores[3]) / 4;
+
+			}
+
+			for (int i = 0; i < scoresAvg.length; i++) {
+				scoresAvg[i] = scores[i] / reviews.size();
+			}
+
+		}
+
+		return scoresAvg;
 	}
 	
 	

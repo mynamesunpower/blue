@@ -49,8 +49,8 @@
 	<section class="parallax-window" data-parallax="scroll" data-image-src="img/restaurant/main.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>식당 둘러보삼</h1>
-				<p>사진 괘안나</p>
+				<h1>식당 리스트</h1>
+				<p>전국의 식당 리스트입니다.</p>
 			</div>
 		</div>
 	</section>
@@ -83,7 +83,7 @@
 			<div class="row">
 				<aside class="col-lg-3">
 					<p>
-						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
+						
 					</p>
 
 					<div class="box_style_cat">
@@ -109,8 +109,7 @@
 						<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>필터</a>
 						<div class="collapse show" id="collapseFilters">
 							<div class="filter_type">
-								<h6>가격</h6>
-								<input type="text" id="range" name="range" value="">
+								
 							</div>
 							<div class="filter_type">
 								<h6>별점</h6>
@@ -227,9 +226,24 @@
 									</div>
 									<div class="col-lg-6 col-md-6">
 										<div class="tour_list_desc">
-											<div class="rating"></div>
-											<h3>${list.title}</h3>
+											<div class="rating">
+											</div>
+											<h4>${list.title}</h4>
 											<p>${list.address}</p>
+											<br><br><br><br>
+											<div class="rating">
+												<h3>
+													<span>
+													<c:forEach begin="1" end="${scores[var.index]}">
+														<i class="icon-star voted"></i>
+													</c:forEach>
+													<c:forEach begin="1" end="${5 - scores[var.index]}">
+														<i class="icon-star-empty"></i>
+													</c:forEach>
+													</span>
+												( ${list.reviews.size()} )</h3>
+											</div>
+											
 										</div>
 									</div>
 									<div class="col-lg-2 col-md-2">

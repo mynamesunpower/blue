@@ -3,6 +3,8 @@ package main.java.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloController {
@@ -18,4 +20,12 @@ public class HelloController {
 		
 	}
 	
+	
+	@RequestMapping(value = "mypage.do", method = RequestMethod.GET)
+	public String mypage(@RequestParam String user_id) {
+		
+		System.out.println(user_id);
+		
+		return "member/mypage";
+	}
 }

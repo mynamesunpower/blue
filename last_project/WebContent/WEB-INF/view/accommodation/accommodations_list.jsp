@@ -232,7 +232,7 @@
 											<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 										</div>
 										<div class="img_list">
-											<a href="restaurant_detail.do?_id=${list._id}">
+											<a href="accommodations_detail.do?_id=${list._id}">
 											
 												<c:if test="${list.images.size() gt 0}">
 													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
@@ -253,7 +253,7 @@
 										<div class="price_list">
 											<div>
 												<p>
-													<a href="restaurant_detail.do?_id=${list._id}" class="btn_1">상세 정보</a>
+													<a href="accommodations_detail.do?_id=${list._id}" class="btn_1">상세 정보</a>
 												</p>
 											</div>
 										</div>

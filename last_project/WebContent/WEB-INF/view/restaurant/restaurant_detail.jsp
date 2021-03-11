@@ -96,16 +96,7 @@
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
 
-					<div id="single_tour_feat">
-						<ul>
-							<li><i class="icon_set_3_restaurant-1"></i>Pizza /Italian</li>
-							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
-							<li><i class="icon_set_1_icon-82"></i>144 Likes</li>
-							<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
-							<li><i class="icon_set_1_icon-27"></i>Parking</li>
-							<li><i class="icon_set_1_icon-47"></i>No smoking area</li>
-						</ul>
-					</div>
+					
 
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
 					</p>					
@@ -141,7 +132,7 @@
 
 					<div class="row">
 						<div class="col-lg-3">
-							<h3>후기 </h3>
+							<h3>후기 </h3> 
 							<c:if test="${sessionScope.memberId ne null}">
 								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
 							</c:if>
@@ -575,96 +566,7 @@
 	</script>
 	
 	 <!-- 로그인 -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn_login').on('click', login);
-			$('#password').on('keydown', function(evt) {
-				//evt.preventDefault();
-				//evt.stopPropagation();
-				if (evt.KeyCode == 13) {
-					login();
-				}
-			});
-			
-			$('#findPassBtn').off().on('click', function(evt) {
-				
-				evt.stopPropagation();
-				
-				if ($('#email_forgot').val().length <= 0) {
-					alert('이메일 주소를 입력해 주세요.')
-					return;
-				}
-				else {
-					$.ajax({
-						type: 'post',
-						url: '../member/memberPassFind.do',
-						contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-						data: {'email': $('#email_forgot').val()},
-						success: function(result) {
-							const msg = result.split('/')
-							alert(msg[0])
-							const url = msg[1].split('@')[1]
-							console.log(url)
-							location.replace('https://'+url)
-						},
-						error: function(err) {
-							console.log(err)
-						}
-					})	
-				}
-			});
-		});
-
-		function login() {
-			alert('로그인 버튼 클릭')
-
-			if($.trim($('#loginId').val())==''){
-        		alert('아이디를 입력해 주세요');
-        		$('#loginId').focus();
-        		return;
-        	}
-			if($.trim($('#password').val())==''){
-        		alert("비밀번호입력해주세요.");
-        		$('#password').focus();
-        		return;
-        	}
-
-			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
-
-				
-
-				$.ajax({
-	        		type : 'post',
-	        		async : true,
-	        		url : "../member/memberLogin.do",
-	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-	        		data : {
-	        			'id' : $('#loginId').val(),
-	        			'password' : $('#password').val()
-	        		},
-	        		success : function(result){
-	        			console.log(result)
-	        			if(result == 0){
-	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
-	        				$("#loginId").val("");
-	        				$("#password").val("");
-
-	        			}
-	        			else if(result==1){
-	        				location.replace('../main.jsp')
-	        			}
-	        			else {
-	        				location.replace('../admin_index.jsp')
-	        			}
-	        		},
-	        		error : function(err){console.log("에러요" + err)}
-	        	});
-			}
-			
-			
-			
-		}
-	</script>
+	<script src="../../js/login.js"></script>
 
 	<!--Review modal validation -->
 	<script src="../../assets/validate.js"></script>

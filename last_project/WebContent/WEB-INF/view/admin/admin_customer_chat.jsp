@@ -408,7 +408,7 @@
                         <td>7분 32초</td>  
                         <td>angry_customer</td>
                         <td class="text-center">
-                          <a href="#" class="btn btn-light btn-xs" data-toggle="modal" data-target="#chat_customer">채팅하기</a>    
+                          <a href="#" class="btn btn-light btn-xs adminChat" data-toggle="modal" data-target="#chat_customer">채팅하기</a>    
                           <a href="#" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#send_customer">메시지 보내기</a></td>
                       </tr>
                   </tbody>
@@ -500,11 +500,15 @@
 <!-- Page specific script -->
 <script>
     
+  $('.adminChat').on('click', function() {
+	  var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+			window.open('adminChat.do', 'Chat', option);
+	})  
+    
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       
-      }    
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,

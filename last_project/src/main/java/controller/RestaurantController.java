@@ -44,7 +44,7 @@ public class RestaurantController {
 			BinaryImageToString(vo);
 			
 			// 리뷰에 있는 각 점수 평균을 가져오는 함수, (식당평균, 서비스평균, 맛평균, 분위기평균, 전체평균) 그 중 [4]번 요소 (전체 평균)
-			
+			scores[i] = scoreAverage(vo.getReviews());
 		}
 		
 		int pageScale = 5;
@@ -75,7 +75,7 @@ public class RestaurantController {
 		return "restaurant/restaurants_list";
 	}
 	
-	@RequestMapping(value = "restaurant/restaurant_detail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "restaurant_detail.do", method = RequestMethod.GET)
 	public String restaurantDetail(@RequestParam("_id") String _id, Model model) {
 		System.out.println(_id);
 		
@@ -96,7 +96,7 @@ public class RestaurantController {
 	}
 	
 	
-	@RequestMapping(value = "restaurant/insert_restaurant_review.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/insert_restaurant_review.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int insertRestaurantReview(RestaurantVO vo, String _id) {
 		
@@ -159,6 +159,36 @@ public class RestaurantController {
 		}
 		
 		return scoresAvg;
+	}
+	
+	
+	public int scoreAverage(ArrayList<HashMap<String, String>> reviews) {
+		
+		int[] scores = new int[5];
+		int scoreSum = 0;
+		int scoreAverage = 0;
+		
+		if (reviews.size() > 0) {
+			for (HashMap<String, String> review : reviews) {
+				
+				scores[0] = Integer.parseInt(review.get("food"));
+				scores[1] = Integer.parseInt(review.get("service"));
+				scores[2] = Integer.parseInt(review.get("price"));
+				scores[3] = Integer.parseInt(review.get("quality"));
+				scores[4] = (scores[0] + scores[1] + scores[2] + scores[3]) / 4;
+				System.out.println(scores[0] + "/" + scores[1] + "/" + scores[2] + "/" + scores[3] + "/" + scores[4]);
+				scoreSum += scores[4];
+				
+			}
+			
+			scoreAverage = scoreSum / reviews.size();
+			
+		}
+		else scoreAverage = 0;
+		
+		
+		return scoreAverage;
+		
 	}
 	
 }

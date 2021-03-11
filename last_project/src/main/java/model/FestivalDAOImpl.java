@@ -3,6 +3,8 @@ package main.java.model;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
@@ -19,9 +22,11 @@ import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.GridFSFindIterable;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.mongodb.client.result.UpdateResult;
 import com.mongodb.gridfs.GridFSDBFile;
 
 import main.java.vo.FestivalVO;
+import main.java.vo.RestaurantVO;
 
 @Repository("festivalDAO")
 public class FestivalDAOImpl implements FestivalDAO {
@@ -174,6 +179,29 @@ public class FestivalDAOImpl implements FestivalDAO {
 	    
 	     List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
 		return list;
+	}
+
+
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		// TODO Auto-generated method stub
+		FestivalVO vo = mongoTemplate.findById(_id, FestivalVO.class, "festival");
+		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
+		return vo.getReviews();
+	}
+
+
+	@Override
+	public int updateRestaurantReview(ArrayList<HashMap<String, String>> reviews, String _id) {
+		// TODO Auto-generated method stub
+		Query query = new Query(Criteria.where("_id").is(_id));
+		
+		Update update = new Update();
+		update.set("reviews", reviews);
+		
+		UpdateResult result = mongoTemplate.updateFirst(query, update, "festival");
+	
+		return (int)result.getModifiedCount();
 	}
 
 

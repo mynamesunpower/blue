@@ -30,21 +30,21 @@
                             		<%if((kakaonickname ==null)&& (navernickname ==null)){ %>
               										 <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
               										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			               <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+              			               <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
               			               <li><a href="member/logout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
 
               									<%if(kakaonickname !=null){ %>
               										<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
               										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
               			              <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
 
               									<%if(navernickname !=null){ %>
               										<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
               										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
               			              <li><a href="naverlogout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
                             	</c:when>
