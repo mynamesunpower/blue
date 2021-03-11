@@ -234,7 +234,7 @@
 				
 							       <c:forEach items="${list}" var="list">
 						
-						<h1>${list.festival_name }</h1>
+						<h1>${list.title }</h1>
 						<span class='fesaddress'>${list.address}</span>
 						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
 					</div>
@@ -260,7 +260,7 @@
 					</li> -->
 					<li><a href="festival.jsp">축제</a>
 					</li>
-					<li class='fesname'>${list.festival_name}</li>
+					<li class='fesname'>${list.title}</li>
 				</ul>
 			</div>
 		</div>
