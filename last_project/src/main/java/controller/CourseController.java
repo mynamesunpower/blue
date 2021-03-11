@@ -87,16 +87,10 @@ public class CourseController {
 	@RequestMapping(value = "addMycourse.do")
 	@ResponseBody
 	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req){
-//		String[] temp = req.getParameterValues("keyword");
-//		System.out.println("temp="+temp);
-//		for(int i=0 ; i<temp.length ; i++) {
-//			System.out.println("ajax에서 받은 keyword:"+temp[i]);
-//			String temp2 = temp[i];
-//			for(int x=0 ; x<temp[i].length() ; x++) {
-//				System.out.println("나눠 받아?:"+temp[i][x]);
-//			}
-//			vo.setKeyword(keyword);
-//		}
+		String[] temp = req.getParameterValues("keyword");
+		for(String data : temp) {
+			System.out.println("data:"+data);
+		}
 		String memberId = (String) session.getAttribute("memberId");
 		vo.setWriter(memberId);
 		CourseVO result = courseService.addMycourse(vo, memberId);

@@ -1043,9 +1043,22 @@
 	</script>
 	
 	<script type="text/javascript">
-		
 		$(document).ready(function () {
 			$("#choice").click(function () {
+				var keyword = new Array();
+				<c:forEach items="${detail.keyword}" var="keyword">
+					var temp = "${keyword}"
+					keyword.push(temp)
+				</c:forEach>
+/*					
+				var coursePath = new Array();
+				<c:forEach items="${detail.coursePath}" var="coursePath">
+					var title = "${coursePath.title}"
+					coursePath.push(title)
+					var address = "${coursePath.address}"
+					coursePath.push(address)
+				</c:forEach>
+*/
 				$.ajax({
 					traditional : true,
 					type : "POST",
@@ -1053,14 +1066,14 @@
 						'writer' : "${sessionScope.memberId}",
 						'courseName' : $('#courseName').val(),
 						'summary' : "${detail.summary}",						
-						'keyword' : "${detail.keyword}",
+						'keyword' : keyword,
 						'distance' : ${detail.distance},
 						'schedule' : "${detail.schedule}",									
 						'theme' : "${detail.theme}",
-//						'coursePath' : "${detail.coursePath}"
+//						'coursePath' : coursePath
 					},
 					dataType : "json",
-					url : "addMycourse.do?_id=${detail._id}",
+					url : "addMycourse.do",
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
 					success : function (data) {
 						alert("코스에 담기 완료")
