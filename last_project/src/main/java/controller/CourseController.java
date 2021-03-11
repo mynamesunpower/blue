@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.bson.types.Binary;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.CourseService;
 import main.java.vo.CourseVO;
@@ -79,5 +81,27 @@ public class CourseController {
 		CourseVO cvo = courseService.courseEdit(vo, memberId, _id);
 		model.addAttribute("detail", cvo);
 		return "course/course_edit";
+	}
+	
+	// 다른 사람이 만든 코스를 내 코스에 담기
+	@RequestMapping(value = "addMycourse.do")
+	@ResponseBody
+	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req){
+		String[] temp = req.getParameterValues("keyword");
+		for(String data : temp) {
+			System.out.println("data:"+data);
+		}
+		String[] coursePath = req.getParameterValues("coursePath");
+		System.out.println(coursePath);
+		/*
+		for(String data : coursePath) {
+			System.out.println("coursePath:"+data);
+		}*/
+		
+		String memberId = (String) session.getAttribute("memberId");
+		
+		vo.setWriter(memberId);
+		CourseVO result = courseService.addMycourse(vo, memberId);
+		return result;
 	}
 }

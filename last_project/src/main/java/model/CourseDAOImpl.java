@@ -51,8 +51,10 @@ public class CourseDAOImpl implements CourseDAO {
 		query.addCriteria(Criteria.where("_id").is(_id));  // 조건2
 		return mongoTemplate.findOne(query, CourseVO.class, course);
 	}
-	
-	
 
-	
+	@Override
+	public CourseVO addMycourse(CourseVO vo, String memberId) {
+		System.out.println("addMycourse DAO 접근");		
+		return mongoTemplate.insert(vo, course);
+	}
 }
