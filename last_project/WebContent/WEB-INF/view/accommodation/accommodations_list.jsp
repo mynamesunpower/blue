@@ -62,9 +62,6 @@
 				<ul>
 					<li><a href="main.jsp">Home</a>
 					</li>
-					<!-- 로그인 세션이 있다면, Home 클릭 시 mainAfterLogin.jsp로 이동되게-->
-					<!-- <li><a href="mainAfterLogin.jsp">Home</a>
-					</li> -->
 					<li><a href="festival.jsp">축제</a>
 					</li>
 					<li>숙박</li>

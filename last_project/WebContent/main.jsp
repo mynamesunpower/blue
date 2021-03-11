@@ -3,14 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-    <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 전 국민 페스티벌 플랫폼</title>
+    <title>축제로 - 전 국민 페스티벌 플랫폼</title>
 
 
     <!-- Favicons-->

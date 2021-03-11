@@ -34,20 +34,22 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-	private int postPerPage = 10;
+	// 한 페이지에 나타날 숫자
+	private int postPerPage = 5;
 
 	@Override
 	public List<RestaurantVO> selectPageList(int pageNumber) {
 		
 		SkipOperation skip = new SkipOperation((pageNumber-1) * 10);
 		LimitOperation limit = new LimitOperation(postPerPage);
+		
+		//  limit 만큼 skip 하기.
 		Aggregation aggregation = Aggregation.newAggregation(skip, limit);
 		AggregationResults<RestaurantVO> result = mongoTemplate.aggregate(aggregation, collectionName, RestaurantVO.class);
 		
 		return result.getMappedResults();
 		
 	}
-	
 	
 	@Override
 	public List<RestaurantVO> selectAll() {

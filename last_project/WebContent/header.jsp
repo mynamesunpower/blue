@@ -67,7 +67,7 @@
                     <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                     <div class="main-menu">
                         <div id="header_menu">
-                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">  <!--모바일 화면 우측 서랍 아이콘 눌렀을 때 로고 나오는 거-->
+                            <img src="img/logo_sticky.png" width="160" height="34" alt="축제로">  <!--모바일 화면 우측 서랍 아이콘 눌렀을 때 로고 나오는 거-->
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
@@ -77,8 +77,7 @@
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
                                 <ul>
-                                     <li><a href="festival.jsp">축제</a></li>
-                                     <li><a href="/mongomonths.do">축제스</a></li>
+                                    <li><a href="festival.jsp">축제</a></li>
                                     <li><a href="accommodations_list.do">숙박</a></li>
                                     <li><a href="restaurants_list.do">식당</a></li>
                                     <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
