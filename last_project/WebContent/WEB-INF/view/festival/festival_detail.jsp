@@ -55,7 +55,7 @@
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
+#category li .category_bg {background:url(img/login/test.png) no-repeat;}
 #category li .bank {background-position: -10px 0;}
 #category li .mart {background-position: -10px -36px;}
 #category li .pharmacy {background-position: -10px -72px;}
@@ -226,7 +226,7 @@
         </div><!-- container -->
     </header><!-- ====================헤더 끝 ====================== -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/700_470_test_image_1.jpg" data-natural-width="700" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -407,7 +407,9 @@ function displayPlaces(places) {
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, order) {
-    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+    //var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+   //img/login/naver_login.png
+    var imageSrc = 'img/login/test.png',
     //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
     //var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';
         imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
@@ -1039,9 +1041,9 @@ function getTimeHTML(distance) {
                         <a href="#" class="btn_map" data-toggle="modal" data-target="#put_into_course">코스에 담기</a>
                     </p> <!-- 코스에 담기 끝 -->
                     <!-- 티켓 구매하기 -->
-                    <p>
+                   <!-- <p>
                         <a href="#" class="btn_map">티켓 구매하기</a>
-                    </p> <!-- 티켓 구매하기 끝 -->
+                    </p> --><!-- 티켓 구매하기 끝 -->
                     
                     <!-- 주변 식당 보기 -->
 					<div class="box_style_1">
