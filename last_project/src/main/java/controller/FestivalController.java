@@ -58,7 +58,7 @@ public class FestivalController {
 	        return (rad * 180 / Math.PI);
 	    }
 	
-	// mongo.do
+	// mongo.do 전체 축제 뽑기
 	@RequestMapping(value = "/mongo.do")
 	public String test2(Model model) {
 
@@ -75,10 +75,10 @@ public class FestivalController {
 	public List<FestivalVO> month(Model model,String month) {
 		System.out.println("FestivalController �뿉�꽌 month�슂泥�2");
 		List<FestivalVO> list = festivalService.month(month);
-
-		// 異뺤젣留덈떎 for臾� �룎湲�
+	
+		// 
 		for (FestivalVO vo : list) {
-			// 異뺤젣�뿉 �엳�뒗 ArrayList<Binary> image瑜�
+			//  ArrayList<Binary> image瑜�
 			//System.out.println(vo.get_id());
 			ArrayList<String> imageList = new ArrayList<String>();
 			for (Binary img : vo.getImage()) {
@@ -87,10 +87,10 @@ public class FestivalController {
 			}
 			vo.setImages(imageList);
 		}
-
-		//System.out.println("�굹�룄"+list);
-
-
+		
+	
+		
+		
 		return list;
 	}
 
@@ -101,19 +101,20 @@ public class FestivalController {
 			System.out.println("FestivalController 에서 month() 요청");
 
 			Calendar cal = Calendar.getInstance();
-
-		//�쁽�옱�뀈,�썡, �씪 援ы븯湲�
+			 
+		//현재 년 월 일
 			int year = cal.get ( cal.YEAR );
 			int months = cal.get ( cal.MONTH ) + 1 ;
 			int date = cal.get ( cal.DATE ) ;
 			String mon = Integer.toString(months);
 			System.out.println(mon);
 			List<FestivalVO> list = festivalService.month(mon);
-
-			System.out.println("나나나나나"+ list);
-			// 異뺤젣留덈떎 for臾� �룎湲�
+		
+			
+			
+			//이미지 뽑기
 			for (FestivalVO vo : list) {
-				// 異뺤젣�뿉 �엳�뒗 ArrayList<Binary> image瑜�
+				// ArrayList<Binary> image瑜�
 				ArrayList<String> imageList = new ArrayList<String>();
 				for (Binary img : vo.getImage()) {
 					String image = Base64.getEncoder().encodeToString(img.getData());
@@ -121,9 +122,8 @@ public class FestivalController {
 				}
 				vo.setImages(imageList);
 			}
-
-			System.out.println("�굹�룄"+list);
-			String name = list.get(0).getFestival_name();
+			
+			String name = list.get(0).getTitle();
 			int startdate = list.get(0).getStartDate();
 			int enddate = list.get(0).getEndDate();
 
@@ -134,7 +134,7 @@ public class FestivalController {
 			model.addAttribute("enddate", enddate);
 
 			for(FestivalVO i:list) {
-			System.out.println("여기는"+i.getFestival_name());
+			System.out.println("여기는"+i.getTitle());
 		}
 			
 			return "festival/festival_reset";
@@ -166,10 +166,10 @@ public class FestivalController {
 //
 //			return list;
 //		}
-
-
-
-	//異붿쿇異뺤젣
+	
+	
+	
+	//추천축제할곳
 	@RequestMapping("value=/mongorecommand.do")
 	@ResponseBody
 	public List<FestivalVO> recommand(){
@@ -200,10 +200,10 @@ public class FestivalController {
 		System.out.println(tel);
 		System.out.println("FestivalController 에서 details.do 요청했어");
 		List<FestivalVO> list = festivalService.detail(tel);
-
-		// 異뺤젣留덈떎 for臾� �룎湲�
+		
+		//이미지 바이너리
 				for (FestivalVO vo : list) {
-					// 異뺤젣�뿉 �엳�뒗 ArrayList<Binary> image瑜�
+					// 몽고디비 ArrayList<Binary> image瑜�
 					ArrayList<String> imageList = new ArrayList<String>();
 					for (Binary img : vo.getImage()) {
 						String image = Base64.getEncoder().encodeToString(img.getData());

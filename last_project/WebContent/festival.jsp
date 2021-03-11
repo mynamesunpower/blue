@@ -570,9 +570,9 @@ $(document).ready(function() {
  				$(".aa3").html(festivalss3);
  				
  				
- 				$(".nearname1").text(data[0].festival_name);
- 				$(".nearname2").text(data[1].festival_name);
-	 			$(".nearname3").text(data[2].festival_name);
+ 				$(".nearname1").text(data[0].title);
+ 				$(".nearname2").text(data[1].title);
+	 			$(".nearname3").text(data[2].title);
 		
 		
 		///기본값 끝 (근처축제)
@@ -599,7 +599,7 @@ $(document).ready(function() {
 					///festivals +='<img src="D:/Temp/test.png" alt="" class="img-fluid">'
 					//festivals +='<img src="'+item.image+'" alt="" class="img-fluid">'
 					festivals +='<div class="wrapper">'
-					festivals +='<h2>'+item.festival_name+'</h2>'
+					festivals +='<h2>'+item.title+'</h2>'
 					festivals +='<p>'+item.startDate+'~'+item.endDate+'</p>'
 					festivals +='</div>'
 					festivals +='</a>'
@@ -634,27 +634,27 @@ $(document).ready(function() {
                     //alert("items : "+item.size);
 
                     if(i ==0){
-                    ///$('.areas1 > h2').html(item.festival_name);
+                    ///$('.areas1 > h2').html(item.title);
                     $('#a1').html(festivals);
                     //alert(i)
                     }else if(i ==1){
                     	//alert(i)
-                        //$('.areas2 > h2').html(item.festival_name);
+                        //$('.areas2 > h2').html(item.title);
                     	$('#a2').html(festivals);
                     }else if(i ==2){
                     	//alert(i)
-                        //$('.areas3 > h2').html(item.festival_name);
+                        //$('.areas3 > h2').html(item.title);
                     	$('#a3').html(festivals);
                     }else if(i ==3){
                     	//alert(i)
-                        //$('.areas4 > h2').html(item.festival_name);
+                        //$('.areas4 > h2').html(item.title);
                     	$('#a4').html(festivals);
                     }else if(i ==4){
                     	//alert(i)
-                        //$('.areas5 > h2').html(item.festival_name);
+                        //$('.areas5 > h2').html(item.title);
                     	$('#a5').html(festivals);
                     }
-                    //alert("item : "+item.festival_name);
+                    //alert("item : "+item.title);
                     //alert("item : "+item.start_date);
                 });
 
@@ -743,7 +743,7 @@ $(document).ready(function() {
 
 				 $.each(data, function (i, item) {
                     alert("i : "+i);
-                    alert("item : "+item.festival_name);
+                    alert("item : "+item.title);
                     alert("item : "+item.starDate);
                 });
 
@@ -894,11 +894,11 @@ $(document).ready(function() {
  				$(".aa1").html(festivals1);
  				$(".aa2").html(festivals2);
  				$(".aa3").html(festivals3);
-
-
- 				$(".nearname1").text(data[0][0].festival_name);
- 				$(".nearname2").text(data[1][0].festival_name);
-	 			$(".nearname3").text(data[2][0].festival_name);
+ 				
+ 				
+ 				$(".nearname1").text(data[0][0].title);
+ 				$(".nearname2").text(data[1][0].title);
+	 			$(".nearname3").text(data[2][0].title);
  				
 	
  			},
@@ -937,11 +937,11 @@ $(document).ready(function() {
     	for(var j=0; j<40; j++){
     		if(data.image==''){
        		 document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
-       		//${"#ctitle"}.text(data[k].festival_name);
-       		$(".ctitles").text(data[k].festival_name);
+       		//${"#ctitle"}.text(data[k].title);
+       		$(".ctitles").text(data[k].title);
        		//이미지 사이즈
        		document.getElementById("hero").style.backgroundSize = "1150px";
-       		var na = data[k].festival_name;
+       		var na = data[k].title;
        		
        	 }else{
        		 
@@ -953,7 +953,7 @@ $(document).ready(function() {
         //이미지 사이즈
         document.getElementById("hero").style.backgroundSize = "1150px";
    
-       		$(".ctitles").text(data[k].festival_name);
+       		$(".ctitles").text(data[k].title);
        	
        	 }
     	}

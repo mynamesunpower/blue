@@ -14,7 +14,8 @@ public class FestivalVO {
 	private ObjectId _id;
 	
 	private String host;
-	private String festival_name;
+	private String title;
+	
 	private int startDate;
 	private int endDate;
 	private String address;
@@ -35,6 +36,13 @@ public class FestivalVO {
 		this.postcode = postcode;
 	}
 	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
 	public ArrayList<String> getImages() {
 		return images;
@@ -63,13 +71,7 @@ public class FestivalVO {
 	public void setHost(String host) {
 		this.host = host;
 	}
-	public String getFestival_name() {
-		return festival_name;
-	}
-	public void setFestival_name(String festival_name) {
-		this.festival_name = festival_name;
-	}
-	
+
 
 	public int getStartDate() {
 		return startDate;
