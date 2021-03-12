@@ -90,7 +90,8 @@ public class RestaurantController {
 		
 		model.addAttribute("scores", scoresAverage(reviews));
 		model.addAttribute("restaurantVO", restaurantVO);
-		
+		System.out.println(restaurantVO.getLatitude());
+		System.out.println(restaurantVO.getLongitude());
 		
 		return "restaurant/restaurant_detail";
 	}

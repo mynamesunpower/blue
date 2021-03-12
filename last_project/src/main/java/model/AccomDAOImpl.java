@@ -2,6 +2,9 @@ package main.java.model;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -9,6 +12,7 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.LimitOperation;
 import org.springframework.data.mongodb.core.aggregation.SkipOperation;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
 
 import main.java.vo.AccomVO;
@@ -49,6 +53,7 @@ public class AccomDAOImpl implements AccomDAO{
 	}
 
 	//숙소 상세
+	@Override
 	public AccomVO detail(String _id) {
 		// TODO Auto-generated method stub
 		System.out.println("상세 DAO 접근");
@@ -56,6 +61,17 @@ public class AccomDAOImpl implements AccomDAO{
 		System.out.println(vo);
 		
 		return vo;
+	}
+
+	@Override
+	public List<AccomVO> selectOne(Object object) {
+		
+		Query query = new Query(Criteria.where("_id").is(object));
+		
+		List<AccomVO> list = mongoTemplate.find(query, AccomVO.class, "lodgment");
+		
+		
+		return list;
 	}
 	
 

@@ -48,6 +48,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	}
 	
 	
+	//월별 축제 정보 가져오기
 	@Override
 	public List<FestivalVO> month(String month) {
 		System.out.println("DAO 에서: month()");
@@ -87,6 +88,8 @@ public class FestivalDAOImpl implements FestivalDAO {
 		return list;
 	}
 	
+	
+	//아직 아무 기능없음
 	@Override
 	public List<FestivalVO> recommand(){
 		System.out.println("DAO 에서: recommand()");
@@ -104,16 +107,10 @@ public class FestivalDAOImpl implements FestivalDAO {
 		return null;
 	}
 	
-	//public String imagefile() {
-		//GridFSDBFile dbFile = mongoTemplate.findOne(new Query(Criteria.where("_id").regex("^2021")));
-		
-		
-		//return "thanks";
-		
-	//}
+
 	
 	
-	//異뺤젣 �긽�꽭 �젙蹂� 戮묒븘�삤湲�
+	//축제 상세페이지 정보
 
 	@Override
 	public List<FestivalVO> detail(int tel) {
@@ -132,7 +129,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	}
 	
 	
-	//媛��졇�삤湲�  (�븘吏�...)
+	//뭐저??
 	private void getFile() throws Exception{
 	    GridFSBucket gridBucket = GridFSBuckets.create(mongoTemplate.getDb());
 

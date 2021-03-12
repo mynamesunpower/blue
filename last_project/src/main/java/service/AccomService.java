@@ -18,6 +18,8 @@ public interface AccomService {
 
 	public List<AccomVO> selectPageList(int pageNumber);
 
+	public List<AccomVO> selectOne(Object object);
+
 	
 
 }

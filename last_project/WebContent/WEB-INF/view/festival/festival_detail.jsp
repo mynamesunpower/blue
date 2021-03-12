@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <% String tel = request.getParameter("tel"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,7 @@
 .category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
 .category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 .category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
-.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;} 
+.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.') no-repeat;} 
 .category .ico_coffee {background-position:-10px 0;}  
 .category .ico_store {background-position:-10px -36px;}   
 .category .ico_carpark {background-position:-10px -72px;} 
@@ -150,7 +151,6 @@
 
 		<div class="collapse show" id="collapseMap"> 
 			
-
 <!-- 지표 -->
 <p style="margin-top:-12px">
     <em class="link">
@@ -437,7 +437,7 @@ marker.setMap(map);
 
 					<div id="carousel-home">
                         <div class="owl-carousel owl-theme">
-                        <c:forEach items="${list.images}" var="image">
+                        <c:forEach items="${list.images}" var="image" >
 			
                             <div><img class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
                                 <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.0)">
@@ -986,79 +986,39 @@ function getTimeHTML(distance) {
 						<h3 class="inner">주변 식당</h3>
                         
                         <!-- 식당 1 -->
+                        <c:forEach items="${reslist}" var="res">
                         <div class="row near-place">
+                                            
                             <div class="col-12 near-place-image">
-                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
+                            		 <c:forEach items="${res[0].images}" var="image" begin="0" end="0">
+                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                               		 </c:forEach>
                                 </a>
                             </div>
                             <div class="col-12 near-place-info">
                                 <a href="#">
 								<div class="near-place-name">
-								맛있는식당<span>디저트</span>
+								${res[0].title}<span>${res[0].category}</span>
 								</div>
                                 <div class="near-place-address">
-                                서울시 무슨구 맛있는길 223 1F
+                                ${res[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>4.2<span class="near-place-tel">02-3392-2213</span>
+								<span class="star">★</span>4.2<span class="near-place-tel">${res[0].tel }</span>
 								</div>
+								
                                 <div class="col-12" class="near-place-text">
-                                축제지로부터 3.04km 거리
+                                <c:set var="num1" value="${res[0].range }" />
+                                축제지로부터
+                                <fmt:formatNumber type="number"  pattern="0.00" value="${ ((num1*100) - ((num1*100)%1)) * (1/100)   } " />
+                                km 거리
                                 </div>
                                 </a>
                             </div>
                         </div>
+                        </c:forEach>
                         
-                        <!-- 식당 2 -->
-						<hr class="near-place-hr">
-                        <div class="row near-place">
-                            <div class="col-12 near-place-image">
-                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
-                                </a>
-                            </div>
-                            <div class="col-12 near-place-info">
-                                <a href="#">
-								<div class="near-place-name">
-								맛있는식당<span>디저트</span>
-								</div>
-                                <div class="near-place-address">
-                                서울시 무슨구 맛있는길 223 1F
-                                </div>
-                                <div class="near-place-score">
-								<span class="star">★</span>4.2<span class="near-place-tel">02-3392-2213</span>
-								</div>
-                                <div class="col-12" class="near-place-text">
-                                축제지로부터 3.04km 거리
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- 식당 3 -->
-						<hr class="near-place-hr">
-						<div class="row near-place">
-                            <div class="col-12 near-place-image">
-                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
-                                </a>
-                            </div>
-                            <div class="col-12 near-place-info">
-                                <a href="#">
-								<div class="near-place-name">
-								맛있는식당<span>디저트</span>
-								</div>
-                                <div class="near-place-address">
-                                서울시 무슨구 맛있는길 223 1F
-                                </div>
-                                <div class="near-place-score">
-								<span class="star">★</span>4.2<span class="near-place-tel">02-3392-2213</span>
-								</div>
-                                <div class="col-12" class="near-place-text">
-                                축제지로부터 3.04km 거리
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-						<hr class="near-place-hr">
+                     
 					</div>
 					<!-- 주변 식당 끝 -->
                     
@@ -1066,75 +1026,37 @@ function getTimeHTML(distance) {
                     <!-- 주변 숙박 -->
                     <div class="box_style_1">
 						<h3 class="inner">주변 숙박</h3>
+					 <c:forEach items="${accom}" var="accom">
                         <div class="row near-place">
                             <div class="col-12 near-place-image">
-                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
+                            <c:forEach items="${accom[0].images}" var="image" begin="0" end="0">
+                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                                 </c:forEach>
                                 </a>
                             </div>
                             <div class="col-12 near-place-info">
                                 <a href="#">
 								<div class="near-place-name">
-								슈퍼호텔<span>호텔</span>
+								${accom[0].title}<span>호텔</span>
 								</div>
                                 <div class="near-place-address">
-                                서울시 무슨구 편안한길 2541
+                             ${accom[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>1.5<span class="near-place-tel">02-3392-2213</span>
+								<span class="star">★</span>1.5<span class="near-place-tel">${accom[0].tel}</span>
 								</div>
                                 <div class="col-12" class="near-place-text">
-                                축제지로부터 1.04km 거리
+                                  <c:set var="num1" value="${accom[0].range }" />
+                                축제지로부터
+                                  <fmt:formatNumber type="number"  pattern="0.00" value="${ ((num1*100) - ((num1*100)%1)) * (1/100)   } " />
+                                 km 거리
                                 </div>
                                 </a>
                             </div>
                         </div>
-						<hr class="near-place-hr">
-                        <div class="row near-place">
-                            <div class="col-12 near-place-image">
-                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
-                                </a>
-                            </div>
-                            <div class="col-12 near-place-info">
-                                <a href="#">
-								<div class="near-place-name">
-								파워모텔<span>모텔</span>
-								</div>
-                                <div class="near-place-address">
-                                서울시 무슨구 편안한길 2447
-                                </div>
-                                <div class="near-place-score">
-								<span class="star">★</span>4.8<span class="near-place-tel">02-3392-2213</span>
-								</div>
-                                <div class="col-12" class="near-place-text">
-                                축제지로부터 1.05km 거리
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-						<hr class="near-place-hr">
-						<div class="row near-place">
-                            <div class="col-12 near-place-image">
-                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
-                                </a>
-                            </div>
-                            <div class="col-12 near-place-info">
-                                <a href="#">
-								<div class="near-place-name">
-								낄낄펜션<span>펜션</span>
-								</div>
-                                <div class="near-place-address">
-                                서울시 무슨구 편안한길 33-13
-                                </div>
-                                <div class="near-place-score">
-								<span class="star">★</span>4.1<span class="near-place-tel">02-3392-2213</span>
-								</div>
-                                <div class="col-12" class="near-place-text">
-                                축제지로부터 1.24km 거리
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-						<hr class="near-place-hr">
+                        </c:forEach>
+					
+
 					</div>
 					<!-- 주변 숙박 끝  -->
                     

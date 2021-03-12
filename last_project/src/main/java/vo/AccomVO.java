@@ -23,6 +23,7 @@ public class AccomVO {
 	private ArrayList<String> images;
 	private ArrayList<Binary> image;
 	private ArrayList<HashMap<String, String>> review;
+	private Double range;
 
 	public ObjectId get_id() {
 		return _id;
@@ -99,6 +100,14 @@ public class AccomVO {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
+	public Double getRange() {
+		return range;
+	}
+	public void setRange(Double range) {
+		this.range = range;
+	}
+	
+	
 
 
 }

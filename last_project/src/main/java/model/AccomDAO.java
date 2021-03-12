@@ -16,4 +16,6 @@ public interface AccomDAO {
 	public AccomVO detail(String _id);
 
 	public List<AccomVO> selectPageList(int pageNumber);
+	
+	public List<AccomVO> selectOne(Object object);
 }

@@ -305,8 +305,9 @@
                     <div class="tour_container">
                         <div class="ribbon_3 popular"><span>축제로</span></div>
                         <div class="img_container">
-                            <a href="single_tour.jsp">
-                            <div class="aa1">
+                      
+                            <a href="single_tour.jsp" class="clickurl1"> 
+                        <div class="aa1">      
                             <div>
                                 <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
                                 </div>
@@ -335,8 +336,9 @@
                     <div class="tour_container">
                         <div class="ribbon_3 popular"><span>축제로</span></div>
                         <div class="img_container">
-                            <a href="single_tour.jsp">
-                            <div class="aa2">
+                        
+                            <a href="single_tour.jsp" class="clickurl2">
+                         <div class="aa2">   
                             <div>
                                 <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
                                 </div>
@@ -365,8 +367,9 @@
                     <div class="tour_container">
                         <div class="ribbon_3 popular"><span>축제로:</span></div>
                         <div class="img_container">
-                            <a href="single_tour.jsp">
-                            <div class="aa3">
+                
+                           <a href="single_tour.jsp" class="clickurl3">
+                          <div class="aa3">          
                             <div>
                                 <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid nearimage" alt="image">
                                 </div>
@@ -564,6 +567,10 @@ $(document).ready(function() {
  				//$('.aa1 div').remove()
  				//$('.aa2 div').remove()
  				//$('.aa3 div').remove()
+ 				$(".clickurl1").attr("href","/details.do?tel="+data[0].postcode)
+ 				$(".clickurl2").attr("href","/details.do?tel="+data[1].postcode)
+ 				$(".clickurl3").attr("href","/details.do?tel="+data[2].postcode)
+ 				
  				
  				$(".aa1").html(festivalss1);
  				$(".aa2").html(festivalss2);
@@ -576,6 +583,7 @@ $(document).ready(function() {
 		
 		
 		///기본값 끝 (근처축제)
+		
 				var count = data;
 				//alert("iss = "+count.length);
 				 $.each(data, function (i, item) {
@@ -881,21 +889,29 @@ $(document).ready(function() {
  		
  				festivals1=''
  				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+
  				festivals2=''
  	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 	 	 			
  	 			festivals3=''
  	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
-
+ 	 	 	
 
  				//$('.aa1 div').remove()
  				//$('.aa2 div').remove()
  				//$('.aa3 div').remove()
 
+ 				//지도 클릭시 사진 바뀜
  				$(".aa1").html(festivals1);
  				$(".aa2").html(festivals2);
  				$(".aa3").html(festivals3);
  				
+ 				//사진 클릭시 페이지 이동
+ 				$(".clickurl1").attr("href","/details.do?tel="+data[0][0].postcode)
+ 				$(".clickurl2").attr("href","/details.do?tel="+data[1][0].postcode)
+ 				$(".clickurl3").attr("href","/details.do?tel="+data[2][0].postcode)
  				
+ 				//근처 축제 제목
  				$(".nearname1").text(data[0][0].title);
  				$(".nearname2").text(data[1][0].title);
 	 			$(".nearname3").text(data[2][0].title);

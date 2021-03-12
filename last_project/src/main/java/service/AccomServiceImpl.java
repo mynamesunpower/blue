@@ -35,5 +35,14 @@ public class AccomServiceImpl implements AccomService{
 	public List<AccomVO> selectPageList(int pageNumber){
 		return accomDAO.selectPageList(pageNumber);
 	}
+
+	@Override
+	public List<AccomVO> selectOne(Object object) {
+		
+		return accomDAO.selectOne(object);
+	}
+	
+	
+	
 	
 }
