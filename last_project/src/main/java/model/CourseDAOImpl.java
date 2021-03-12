@@ -53,7 +53,7 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public CourseVO addMycourse(CourseVO vo, String memberId) {
+	public CourseVO addMycourse(CourseVO vo) {
 		System.out.println("addMycourse DAO 접근");		
 		return mongoTemplate.insert(vo, course);
 	}

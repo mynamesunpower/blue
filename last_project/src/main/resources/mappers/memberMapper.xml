@@ -12,7 +12,7 @@
 	 
 </select>
 
-<!-- 회원가입 -->
+<!-- 회원가입 아 미치겠넹 ㅋㅋ ㅠㅠㅠㅠㅠ돌겠네... 재부팅각함잡자용 오케오케ㄴ -->
 <insert id="memberJoin" parameterType="member">
 
      INSERT INTO member   (id, 	 password, 	 name, 	 tel, 	 address, 	email,	 birthday)

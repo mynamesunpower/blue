@@ -2,6 +2,9 @@ package main.java.vo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -22,7 +25,8 @@ public class CourseVO {
 	private String theme;      // 테마
 	private ArrayList<Binary> image;  // 어케 써먹지
 	//↓ HashMap<String, String> 을 Object로 해보자?
-	private ArrayList<HashMap<String, String>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
+	private ArrayList<HashMap<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
+//	private List<Map<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
 	private ArrayList<HashMap<String, String>> reviews; // 리뷰
 //	private HashMap<String, String> coursePath2;
 	/*
@@ -101,10 +105,18 @@ public class CourseVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-	public ArrayList<HashMap<String, String>> getCoursePath() {
+	/*
+	public List<Map<String, Object>> getCoursePath() {
 		return coursePath;
 	}
-	public void setCoursePath(ArrayList<HashMap<String, String>> coursePath) {
+	public void setCoursePath(List<Map<String, Object>> coursePath) {
+		this.coursePath = coursePath;
+	}
+	*/
+	public ArrayList<HashMap<String, Object>> getCoursePath() {
+		return coursePath;
+	}
+	public void setCoursePath(ArrayList<HashMap<String, Object>> coursePath) {
 		this.coursePath = coursePath;
 	}
 	public ArrayList<HashMap<String, String>> getReviews() {

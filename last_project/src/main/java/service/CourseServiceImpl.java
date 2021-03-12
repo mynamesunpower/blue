@@ -45,8 +45,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public CourseVO addMycourse(CourseVO vo, String memberId) {
+	public CourseVO addMycourse(CourseVO vo) {
 		System.out.println("addMycourse 서비스 접근");
-		return courseDao.addMycourse(vo, memberId);
+		return courseDao.addMycourse(vo);
 	}
 }

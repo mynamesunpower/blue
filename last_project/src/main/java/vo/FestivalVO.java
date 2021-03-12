@@ -14,26 +14,48 @@ public class FestivalVO {
 	private ObjectId _id;
 	
 	private String host;
-	private String festival_name;
-	private String start_date;
-	private String end_date;
+	private String title;
+	
+	private int startDate;
+	private int endDate;
 	private String address;
 	private String fee;
 	private String tel;
 	private String homepage;
 	private String detail;
-	private String latitude;
-	private String longitude;
+	private Double latitude;
+	private Double longitude;
 	private int postcode;
+	private ArrayList<Binary> image;
 	private ArrayList<String> images;
+	private HashMap<String, String> review;
+	private ArrayList<HashMap<String, String>> reviews;
 	
+	
+	
+	public ArrayList<HashMap<String, String>> getReviews() {
+		return reviews;
+	}
+	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
+		this.reviews = reviews;
+	}
+	public void setReview(HashMap<String, String> review) {
+		this.review = review;
+	}
 	public int getPostcode() {
 		return postcode;
 	}
 	public void setPostcode(int postcode) {
 		this.postcode = postcode;
 	}
-	private ArrayList<Binary> image;
+	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
 	public ArrayList<String> getImages() {
 		return images;
@@ -47,7 +69,7 @@ public class FestivalVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-	private ArrayList<HashMap<String, String>> review;
+	
 	
 	
 	public ObjectId get_id() {
@@ -62,23 +84,19 @@ public class FestivalVO {
 	public void setHost(String host) {
 		this.host = host;
 	}
-	public String getFestival_name() {
-		return festival_name;
+
+
+	public int getStartDate() {
+		return startDate;
 	}
-	public void setFestival_name(String festival_name) {
-		this.festival_name = festival_name;
+	public void setStartDate(int startDate) {
+		this.startDate = startDate;
 	}
-	public String getStart_date() {
-		return start_date;
+	public int getEndDate() {
+		return endDate;
 	}
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
-	}
-	public String getEnd_date() {
-		return end_date;
-	}
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
+	public void setEndDate(int endDate) {
+		this.endDate = endDate;
 	}
 	public String getAddress() {
 		return address;
@@ -104,29 +122,21 @@ public class FestivalVO {
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
 	}
-
 	
-	public ArrayList<HashMap<String, String>> getReview() {
+	
+	public HashMap<String, String> getReview() {
 		return review;
 	}
-	
-	
-	
-	
-	public void setReview(ArrayList<HashMap<String, String>> review) {
-		this.review = review;
-	}
-	
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 	public String getDetail() {

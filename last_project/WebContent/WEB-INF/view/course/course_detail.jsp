@@ -983,65 +983,9 @@
 	</script>
 	
 	<!-- 로그인 -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn_login').on('click', login);
-			$('#password').on('keydown', function(evt) {
-				//evt.preventDefault();
-				//evt.stopPropagation();
-				if (evt.KeyCode == 13) {
-					login();
-				}
-			});
-		});
-		
-		function login() {
-			alert('로그인 버튼 클릭')
-			
-			if($.trim($('#loginId').val())==''){
-        		alert('아이디를 입력해 주세요');
-        		$('#loginId').focus();
-        		return;
-        	}
-			
-			if($.trim($('#password').val())==''){
-        		alert("비밀번호입력해주세요.");
-        		$('#password').focus();
-        		return;
-        	}
-			
-			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
-				
-				alert('진입 확인' + $('#loginId').val() + '/' + $('#password').val());
-				
-				$.ajax({
-	        		type : 'post',
-	        		async : true,
-	        		url : "../member/memberLogin.do",
-	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-	        		data : {
-	        			'id' : $('#loginId').val(),
-	        			'password' : $('#password').val()
-	        		},
-	        		success : function(result){
-	        			console.log(result)
-	        			if(result == 0){
-	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
-	        				$("#loginId").val("");
-	        				$("#password").val("");
-	        				
-	        			}
-	        			else if(result==1){
-	        				location.replace('../main.jsp')
-	        			}
-	        		},
-	        		error : function(err){console.log("에러요" + err)}
-	        	});	
-			}
-        		
-		}
-	</script>
+	<script src="../../js/login.js"></script>
 	
+	<!-- 내 코스에 저장.. 현재 실패 중.. 코스 경로 넣는게 어렵쓰 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$("#choice").on('click',function () {
@@ -1051,66 +995,25 @@
 					var temp = "${keyword}"
 					keyword.push(temp)
 				</c:forEach>
+				// 콘솔로 확인
 				console.log(keyword)
 				
-				// 코스의 장소마다 이름, 주소, 전화 등 뽑아서 배열에 넣기_ json 구조로 해야하는거 맞니
-				var coursePath = [];
-				<c:forEach items="${detail.coursePath}" var="coursePath">
-					var data = {
-							title : "${coursePath.title}",
-							address : "${coursePath.address}",
-							tel : "${coursePath.tel}",
-							latitude : ${coursePath.latitude},
-							longitude : ${coursePath.longitude},
-							image : "${coursePath.image}"
-					}
-					console.log(data);
-					coursePath.push(data);
-				</c:forEach>
-				console.log(coursePath);
-//				var jsonData = JSON.parse(data);
-				var jsonData = JSON.stringify(coursePath);
-				console.log("jsonData:"+jsonData);
-				
-				jQuery.ajaxSettings.traditional = true;
 				$.ajax({
-					type : "POST",
+					type : "post",
+					async : true,
+					url : "addMycourse.do",
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					traditional : true,
 					data : {
 						"writer" : "${sessionScope.memberId}",
 						"courseName" : $('#courseName').val(),
 						"summary" : "${detail.summary}",					
-						"keyword" : keyword,
-							/*
-							[
-								<c:forEach items="${detail.keyword}" var="keyword" varStatus="var">
-									"${keyword}"
-								<c:if test="${var.last eq false}">,</c:if>	
-								</c:forEach>
-							],
-							*/
-						"distance" : ${detail.distance},
+						"keyword" : keyword,							
+						"distance" : "${detail.distance}",
 						"schedule" : "${detail.schedule}",									
-						"theme" : "${detail.theme}",
-						coursePath : jsonData						
-							/*
-							[
-							<c:forEach items="${detail.coursePath}" var="coursePath" varStatus="var2">
-							{
-								title : "${coursePath.title}",
-								address : "${coursePath.address}",
-								tel : "${coursePath.tel}",
-								latitude : "${coursePath.latitude}",
-								longitude : "${coursePath.longitude}",
-								image : "${coursePath.image}"
-							}
-							<c:if test="${var2.last eq false}">,</c:if>
-							</c:forEach>
-							]
-							*/
+						"theme" : "${detail.theme}"
 					},
-					dataType : "json",
-					url : "addMycourse.do",
-					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					dataType : "json",					
 					success : function (data) {
 						alert("코스에 담기 완료")
 					},
@@ -1118,7 +1021,47 @@
 						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
 						console.log(err)
 					}
-				})
+				})  // end of ajax.
+				
+				// 코스의 장소마다 이름, 주소, 전화 등 뽑아서 배열에 넣기 _ JSONArray 만들기
+				var coursePath_arr = new Array();
+				<c:forEach items="${detail.coursePath}" var="coursePath">
+					var data = {
+							"title" : "${coursePath.title}",
+							"address" : "${coursePath.address}",
+							"tel" : "${coursePath.tel}",
+							"latitude" : "${coursePath.latitude}",
+							"longitude" : "${coursePath.longitude}",
+							"image" : "${coursePath.image}"
+					}
+					// 각 데이터 콘솔로 확인
+					console.log(data);
+					// Array에 data 넣기
+					coursePath_arr.push(data);
+				</c:forEach>
+				// 콘솔로 확인
+				console.log(coursePath_arr);
+				// coursePath 직렬화
+				var jsonData = JSON.stringify(coursePath_arr);
+				console.log("jsonData:"+jsonData);
+				$.ajax({
+					type : "post",
+					async : true,
+					url : "addMycourse_path.do",
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					traditional : true,
+					data : {
+						"coursePath" : jsonData
+					},
+					dataType : "json",					
+					success : function (data) {
+						alert("코스에 담기 완료2")
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다2: course_detail.jsp --- 코스 담기 에러");
+						console.log(err)
+					}
+				}) // end of ajax.
 			})
 		})
 	
