@@ -1,5 +1,7 @@
 package main.java.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -17,6 +19,10 @@ public interface AccomService {
 	public int getTotalSize();
 
 	public List<AccomVO> selectPageList(int pageNumber);
+
+	public int updateAccomReview(ArrayList<HashMap<String, String>> reviews, String _id);
+
+	public ArrayList<HashMap<String, String>> getReviews(String _id);
 
 	
 

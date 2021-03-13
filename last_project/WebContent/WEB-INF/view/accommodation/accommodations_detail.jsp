@@ -62,20 +62,23 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-8">
-							<span class="rating"><i class="icon-star voted"></i><i
-								class="icon-star voted"></i><i class="icon-star voted"></i><i
-								class="icon-star voted"></i><i class=" icon-star-empty"></i></span>
 	
-	
-							<h1>${detail.lodgment_name}</h1>
+							<h1>${detail.title}</h1>
 							<span>${detail.address}</span>
+							<div class="rating">
+							<c:forEach begin="1" end="${scores[4]}">
+								<i class="icon-star voted"></i>
+							</c:forEach>
+							<c:forEach begin="1" end="${5 - scores[4]}">
+								<i class=" icon-star-empty"></i>
+							</c:forEach>
+							<small>(${detail.reviews.size()})</small>						
+							</div>
 							
 							
 						</div>
 						<div class="col-md-4">
-							<div id="price_single_main" class="hotel">
-								1박 요금 <span style="color: #FFFFFF;"><sup>￦</sup>25,000</span>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -93,7 +96,7 @@
 					</li> -->
 						<li><a href="festival.jsp">축제</a></li>
 						<li><a href="accommodations_list.jsp">숙박</a></li>
-						<li>${detail.lodgment_name}</li>
+						<li>${detail.title}</li>
 					</ul>
 				</div>
 			</div>
@@ -107,17 +110,7 @@
 			<div class="container margin_60">
 				<div class="row">
 					<div class="col-lg-8" id="single_tour_desc">
-						<div id="single_tour_feat">
-							<ul>
-								<li><i class="icon_set_2_icon-116"></i>Plasma TV</li>
-								<li><i class="icon_set_1_icon-86"></i>Free Wifi</li>
-								<li><i class="icon_set_2_icon-110"></i>Poll</li>
-								<li><i class="icon_set_1_icon-59"></i>Breakfast</li>
-								<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
-								<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
-								<li><i class="icon_set_1_icon-27"></i>Parking</li>
-							</ul>
-						</div>
+						
 						<p class="d-none d-md-block d-block d-lg-none">
 							<a class="btn_map" data-toggle="collapse" href="#collapseMap"
 								aria-expanded="false" aria-controls="collapseMap"
@@ -183,37 +176,17 @@
 								<h3>소개</h3>
 							</div>
 							<div class="col-lg-9">
-								<p>부산에서 지낼 곳을 찾으세요? 그렇다면 부산의 최고를 가까이에서 즐길 수 있는 로맨틱 리조트인
-									파라다이스호텔 부산(을)를 강추합니다. 파라다이스호텔 부산 객실은 평면 TV, 미니바, 에어컨 구비를 통해서
-									최고의 편안함 및 편리함을 제공하고, 투숙객들은 무료 무선 인터넷으로 인터넷을 마음껏 이용하실 수 있습니다.
-									리조트에서는 룸서비스, 컨시어지(와)과 같은 편의시설을 제공합니다. 그뿐만 아니라, 수영장, 음식점(은)는
-									여러분의 시간을 좀 더 특별하게 만들어 줄 것입니다. 파라다이스호텔 부산에 차로 오시는 분들은 무료 주차가
-									가능함을 알려드립니다. 부산 방문 시 인기명소를 가보고 싶다면 파라다이스호텔 부산(은)는 힐링터치(0.3 km),
-									고운바다길분수(0.5 km)(으)로부터 지척에 위치해 있습니다. 맛있는 인도 요리(을)를 찾는다면 파라다이스호텔
-									부산에서 묵는 동안 펀자브 인도 요리 전문점, 발리우드 또는 나마스테 해운대점(을)를 꼭 가보시기 바랍니다.
-									부산(은)는 또한 인기 정원들인 꽃시계(이)가 자리하고 있는 곳이며 파라다이스호텔 부산(으)로부터 멀지 않습니다.
-									부산(이)가 선사하는 모든 것을 즐길 수 있는 파라다이스호텔 부산에서 좋은 시간을 보내시리라 장담합니다.</p>
-								<h4>편의 시설</h4>
-								<p>있을건 다 있어 짱이쥐</p>
 								<div class="row">
 									<div class="col-md-6">
 										<ul class="list_ok">
-											<li>이거랑</li>
-											<li>저거랑</li>
-											<li>요고랑</li>
-											<li>조고랑</li>
+											<li>체크인 ${detail.check_in}</li>
+											<li>체크아웃 ${detail.check_out}</li>
+											<li>주차가능여부 ${detail.parking}</li>
+											<li>아이디 ${detail._id}</li>
 											<li>요거랑</li>
 											<li>이거!</li>
 										</ul>
 									</div>
-									<div class="col-md-6">
-										<ul class="list_ok">
-											<li>Lorem ipsum dolor sit amet</li>
-											<li>No scripta electram necessitatibus sit</li>
-											<li>Quidam percipitur instructior an eum</li>
-											<li>No scripta electram necessitatibus sit</li>
-										</ul>
-									</div>
 								</div>
 								<!-- End row  -->
 							</div>
@@ -223,205 +196,144 @@
 
 						<hr>
 
-						<div class="row">
-							<div class="col-lg-3">
-								<h3>객실</h3>
-							</div>
-							<div class="col-lg-9">
-								<h4>싱글룸</h4>
-								<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-									aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-									iudico constituto efficiendi.</p>
-
-								<div class="row">
-									<div class="col-md-6">
-										<ul class="list_icons">
-											<li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-											<li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
-											<li><i class="icon_set_2_icon-106"></i> Safety box</li>
-										</ul>
-									</div>
-									<div class="col-md-6">
-										<ul class="list_ok">
-											<li>Lorem ipsum dolor sit amet</li>
-											<li>No scripta electram necessitatibus sit</li>
-											<li>Quidam percipitur instructior an eum</li>
-										</ul>
-									</div>
-								</div>
-								<!-- End row  -->
-								<div
-									class="owl-carousel owl-theme carousel-thumbs-2 magnific-gallery">
-									<div class="item">
-										<a href="img/carousel/1.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/1.jpg" alt="Image"> </a>
-									</div>
-									<div class="item">
-										<a href="img/carousel/2.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/2.jpg" alt="Image"> </a>
-									</div>
-									<div class="item">
-										<a href="img/carousel/3.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/3.jpg" alt="Image"> </a>
-									</div>
-									<div class="item">
-										<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/4.jpg" alt="Image"> </a>
-									</div>
-								</div>
-								<!-- End photo carousel  -->
-
-								<hr>
-
-								<h4>더블룸</h4>
-								<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-									aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-									iudico constituto efficiendi.</p>
-
-								<div class="row">
-									<div class="col-md-6">
-										<ul class="list_icons">
-											<li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-											<li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
-											<li><i class="icon_set_2_icon-106"></i> Safety box</li>
-										</ul>
-									</div>
-									<div class="col-md-6">
-										<ul class="list_ok">
-											<li>Lorem ipsum dolor sit amet</li>
-											<li>No scripta electram necessitatibus sit</li>
-											<li>Quidam percipitur instructior an eum</li>
-										</ul>
-									</div>
-								</div>
-								<!-- End row  -->
-								<div
-									class="owl-carousel owl-theme carousel-thumbs-2 magnific-gallery">
-									<div class="item">
-										<a href="img/carousel/1.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/1.jpg" alt="Image"> </a>
-									</div>
-									<div class="item">
-										<a href="img/carousel/2.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/2.jpg" alt="Image"> </a>
-									</div>
-									<div class="item">
-										<a href="img/carousel/3.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/3.jpg" alt="Image"> </a>
-									</div>
-									<div class="item">
-										<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img
-											src="img/carousel/4.jpg" alt="Image"> </a>
-									</div>
-								</div>
-								<!-- End photo carousel  -->
-							</div>
-							<!-- End col-md-9  -->
+					<div class="row">
+						<div class="col-lg-3">
+							<h3>후기 </h3> 
+							<c:if test="${sessionScope.memberId ne null}">
+								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							</c:if>
 						</div>
-						<!-- End row  -->
-
-						<hr>
-
-						<div class="row">
-							<div class="col-lg-3">
-								<h3>후기</h3>
-								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal"
-									data-target="#myReview">후기 남기기</a>
+						<div class="col-lg-9">
+							<div id="general_rating">${detail.reviews.size()} 개의 후기
+								<div class="rating">
+									<c:forEach begin="1" end="${scores[4]}">
+										<i class="icon-smile voted"></i>
+									</c:forEach>
+									<c:forEach begin="1" end="${5-scores[4]}">
+										<i class="icon-smile"></i>
+									</c:forEach>
+								</div>
 							</div>
-							<div class="col-lg-9">
-								<div id="score_detail">
-									<span>4.5</span>아주 좋음 <small>(Based on 99 reviews)</small>
+							<!-- End general_rating -->
+							<div class="row" id="rating_summary">
+								<div class="col-md-6">
+									<ul>
+										<li>음식
+											<div class="rating">
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
+											</div>
+										</li>
+										<li>서비스
+											<div class="rating">
+												<c:forEach begin="1" end="${scores[1]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[1]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
+											</div>
+										</li>
+									</ul>
 								</div>
-								<!-- End general_rating -->
-								<div class="row" id="rating_summary">
-									<div class="col-md-6">
-										<ul>
-											<li>위치
-												<div class="rating">
-													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-														class="icon-smile voted"></i><i class="icon-smile"></i><i
-														class="icon-smile"></i>
-												</div>
-											</li>
-											<li>청결
-												<div class="rating">
-													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-														class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-														class="icon-smile"></i>
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div class="col-md-6">
-										<ul>
-											<li>서비스
-												<div class="rating">
-													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-														class="icon-smile voted"></i><i class="icon-smile"></i><i
-														class="icon-smile"></i>
-												</div>
-											</li>
-											<li>가격
-												<div class="rating">
-													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-														class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-														class="icon-smile voted"></i>
-												</div>
-											</li>
-										</ul>
-									</div>
+								<div class="col-md-6">
+									<ul>
+										<li>가격
+											<div class="rating">
+												<c:forEach begin="1" end="${scores[2]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[2]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
+											</div>
+										</li>
+										<li>분위기
+											<div class="rating">
+												<c:forEach begin="1" end="${scores[3]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[3]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
+											</div>
+										</li>
+									</ul>
 								</div>
-								<!-- End row -->
-								<hr>
-								<div class="review_strip_single">
-									<img src="img/avatar1.jpg" alt="Image" class="rounded-circle">
-									<small> - 10 March 2015 -</small>
-									<h4>Jhon Doe</h4>
-									<p>"Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit. Sed a lorem quis neque interdum consequat ut sed sem.
-										Duis quis tempor nunc. Interdum et malesuada fames ac ante
-										ipsum primis in faucibus."</p>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-											class="icon-smile voted"></i><i class="icon-smile"></i><i
-											class="icon-smile"></i>
-									</div>
-								</div>
-								<!-- End review strip -->
-
-								<div class="review_strip_single">
-									<img src="img/avatar2.jpg" alt="Image" class="rounded-circle">
-									<small> - 10 March 2015 -</small>
-									<h4>Jhon Doe</h4>
-									<p>"Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit. Sed a lorem quis neque interdum consequat ut sed sem.
-										Duis quis tempor nunc. Interdum et malesuada fames ac ante
-										ipsum primis in faucibus."</p>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-											class="icon-smile voted"></i><i class="icon-smile"></i><i
-											class="icon-smile"></i>
-									</div>
-								</div>
-								<!-- End review strip -->
-
-								<div class="review_strip_single last">
-									<img src="img/avatar3.jpg" alt="Image" class="rounded-circle">
-									<small> - 10 March 2015 -</small>
-									<h4>Jhon Doe</h4>
-									<p>"Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit. Sed a lorem quis neque interdum consequat ut sed sem.
-										Duis quis tempor nunc. Interdum et malesuada fames ac ante
-										ipsum primis in faucibus."</p>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-											class="icon-smile voted"></i><i class="icon-smile"></i><i
-											class="icon-smile"></i>
-									</div>
-								</div>
-								<!-- End review strip -->
 							</div>
+							<!-- End row -->
+							<hr>
+							
+							<!-- 리뷰들 들어갑니다 -->
+							<c:forEach items="${detail.reviews}" var="review">
+								<div class="review_strip_single rating_summary">
+
+									<h5>${review.id}</h5>
+									<div>${review.date}</div>
+									<hr>
+									<p style="font-size:14px;">
+										${review.content}
+									</p>
+									<div class="row">
+										<div class="col-md-6">
+											<ul>
+												<li>숙박
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.lodgment)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.lodgment)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+												<li>서비스
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.service)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.service)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="col-md-6">
+											<ul>
+												<li>가격
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.price)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.price)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+												<li>분위기
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.quality)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.quality)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								
+							</c:forEach> <!-- 리뷰 반복문 종료 -->
+							
 						</div>
+					</div>
 					</div>
 					<!--End  single_tour_desc-->
 
@@ -439,48 +351,12 @@
 								data-target="#put_into_course">코스에 담기</a>
 						</p>
 						<!-- 코스에 담기 끝 -->
-						<div class="box_style_1 expose">
-							<h3 class="inner">예약 사이트 이동</h3>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label><i class="icon-calendar-7"></i> 체크인</label> <input
-											class="date-pick form-control" data-date-format="M d, D"
-											type="text">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label><i class="icon-calendar-7"></i> 체크아웃</label> <input
-											class="date-pick form-control" data-date-format="M d, D"
-											type="text">
-									</div>
-								</div>
+						<c:if test="${detail.homepage.length() > 4}">
+							<div class="box_style_1 expose">
+								<h3 class="inner">예약 사이트 이동</h3>
+								<br> <a class="btn_full" href="${detail.homepage}">예약 사이트 이동</a>
 							</div>
-							<div class="row">
-								<div class="col-6">
-									<div class="form-group">
-										<label>성인</label>
-										<div class="numbers-row">
-											<input type="text" value="1" id="adults"
-												class="qty2 form-control" name="quantity">
-										</div>
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="form-group">
-										<label>아동</label>
-										<div class="numbers-row">
-											<input type="text" value="0" id="children"
-												class="qty2 form-control" name="quantity">
-										</div>
-									</div>
-								</div>
-							</div>
-							<br> <a class="btn_full" href="#">예약 사이트 이동</a> <a
-								class="btn_full_outline" href="#"><i class=" icon-heart"></i>
-								Add to wishlist</a>
-						</div>
+						</c:if>
 						<!--/box_style_1 -->
 
 						<div class="box_style_4">
@@ -488,8 +364,7 @@
 							<h4>
 								<span>Book</span> by phone
 							</h4>
-							<a href="tel://${detail.tel}" class="phone">${detail.tel}</a> <small>Monday
-								to Friday 9.00am - 7.30pm</small>
+							<a href="tel://${detail.tel}" class="phone">${detail.tel}</a>
 						</div>
 
 					</aside>
@@ -621,68 +496,53 @@
 	</div>
 	<!-- End of Modal add_course-->
 
-	<!-- Modal Review -->
-	<div class="modal fade" id="myReview" tabindex="-1" role="dialog"
-		aria-labelledby="myReviewLabel" aria-hidden="true">
+	<!-- Modal Review 리뷰 폼 -->
+	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myReviewLabel">후기 남기기</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
-					<div id="message-review"></div>
-					<form method="post" action="#" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden"
-							value="Paris Arch de Triomphe Tour">
+					<div id="message-review">
+					</div>
+					<form method="post" action="insert_lodgment_review.do" name="review_tour" id="review_tour">
+						<input name="_id" id="_id" type="hidden" value="${detail._id}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="name_review" id="name_review" type="text"
-										placeholder="이름" class="form-control">
+									<input name="review_userId" id="review_userId" type="text" placeholder="이름" class="form-control" value="${sessionScope.memberId}" disabled>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="email_review" id="email_review" type="email"
-										placeholder="이메일" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
+
 						<hr>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>위치</label> <select class="form-control"
-										name="position_review" id="position_review">
+									<label>숙박</label>
+									<select class="form-control" name="position_review" id="food_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>청결</label> <select class="form-control"
-										name="guide_review" id="guide_review">
+									<label>서비스</label>
+									<select class="form-control" name="guide_review" id="service_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
@@ -691,44 +551,36 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>서비스</label> <select class="form-control"
-										name="price_review" id="price_review">
+									<label>가격</label>
+									<select class="form-control" name="price_review" id="price_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>가격</label> <select class="form-control"
-										name="quality_review" id="quality_review">
+									<label>분위기</label>
+									<select class="form-control" name="quality_review" id="quality_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
 						<div class="form-group">
-							<textarea name="review_text" id="review_text"
-								class="form-control" style="height: 100px"
-								placeholder="숙소에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
+							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="숙소에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
 						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control"
-								placeholder="인간이라면 답을 적어주세요 4 + 1 = ?">
-						</div>
-						<input type="submit" value="작성" class="btn_1" id="submit-review">
+						<input type="button" value="작성" class="btn_1" id="submit-review">
 					</form>
 				</div>
 			</div>
@@ -740,6 +592,7 @@
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
+	<script src="js/login.js"></script>
 
 	<!-- Date and time pickers -->
 	<script src="js/jquery.sliderPro.min.js"></script>
@@ -763,8 +616,85 @@
 	</script>
 
 	<!-- Date and time pickers -->
-	<script>
-		$('input.date-pick').datepicker('setDate', 'today');
+	<script type="text/javascript">
+	// 시간 format 변환
+	function getTimeStamp() {
+	  var d = new Date();
+	
+	  var s =
+	    leadingZeros(d.getFullYear(), 4) + '-' +
+	    leadingZeros(d.getMonth() + 1, 2) + '-' +
+	    leadingZeros(d.getDate(), 2) + ' ' +
+	
+	    leadingZeros(d.getHours(), 2) + ':' +
+	    leadingZeros(d.getMinutes(), 2) + ':' +
+	    leadingZeros(d.getSeconds(), 2);
+	
+	  return s;
+	}
+	
+	function leadingZeros(n, digits) {
+	  var zero = '';
+	  n = n.toString();
+	
+	  if (n.length < digits) {
+	    for (i = 0; i < digits - n.length; i++)
+	      zero += '0';
+	  }
+	  return zero + n;
+	}
+	
+	$('#submit-review').on('click', function() {
+		
+		var date = getTimeStamp();
+		const id = $('#review_userId').val();
+		
+		const review = {
+			'id' : id,
+			'date': date,
+			'content' : $('#review_text').val(),
+			'lodgment': $('#food_review').val(),
+			'service': $('#service_review').val(),
+			'price': $('#price_review').val(),
+			'quality': $('#quality_review').val()
+		}
+		
+		const _id =	$('#_id').val()
+		
+		console.log(_id)
+		console.log(review['id'] + '/' + review['content'] + '/' + review['lodgment'] + '/' + review['service'] + '/' + review['price'] + '/' + review['quality'])
+		
+		$.ajax({
+			type : 'post',
+    		async : true,
+    		url : "insert_lodgment_review.do",
+    		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+    		data : {
+    			'_id': _id,
+ 				'review': review
+    		},
+			success: function(result) {
+				
+				$('#review_text').val("")
+				$('#food_review').val(""),
+				$('#service_review').val(""),
+				$('#price_review').val(""),
+				$('#quality_review').val("")
+				
+				if ( result == 1 ) {
+					alert('리뷰가 등록되었습니다.');
+					$('.close').trigger('click');
+					location.replace('accommodations_detail.do?_id='+_id);
+				}
+				else {
+					alert('리뷰가 등록되질 않았습니다. 왜일까')
+				}
+			},
+			error: function(error) {
+				console.log('에러' + error)
+			}
+		})
+	})
 	</script>
 
 	<!-- Map -->

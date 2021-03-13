@@ -18,12 +18,34 @@ public class AccomVO {
 	private String check_in;
 	private String check_out;
 	private String homepage;
+	private String parking;
 	private double latitude;
 	private double longitude;
 	private ArrayList<String> images;
 	private ArrayList<Binary> image;
-	private ArrayList<HashMap<String, String>> review;
+	private ArrayList<HashMap<String, String>> reviews;
+	private HashMap<String, String> review;
 
+	
+	
+	public String getParking() {
+		return parking;
+	}
+	public void setParking(String parking) {
+		this.parking = parking;
+	}
+	public ArrayList<HashMap<String, String>> getReviews() {
+		return reviews;
+	}
+	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
+		this.reviews = reviews;
+	}
+	public HashMap<String, String> getReview() {
+		return review;
+	}
+	public void setReview(HashMap<String, String> review) {
+		this.review = review;
+	}
 	public ObjectId get_id() {
 		return _id;
 	}
@@ -68,9 +90,7 @@ public class AccomVO {
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
 	}
-	public ArrayList<HashMap<String, String>> getReview() {
-		return review;
-	}
+
 	public ArrayList<String> getImages() {
 		return images;
 	}
@@ -83,9 +103,7 @@ public class AccomVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-	public void setReview(ArrayList<HashMap<String, String>> review) {
-		this.review = review;
-	}
+
 
 	public double getLatitude() {
 		return latitude;

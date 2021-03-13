@@ -1,5 +1,7 @@
 package main.java.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -9,11 +11,14 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.LimitOperation;
 import org.springframework.data.mongodb.core.aggregation.SkipOperation;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.client.result.UpdateResult;
+
 import main.java.vo.AccomVO;
-import main.java.vo.FestivalVO;
-import main.java.vo.RestaurantVO;
 
 @Repository("accomDAO")
 public class AccomDAOImpl implements AccomDAO{
@@ -56,6 +61,34 @@ public class AccomDAOImpl implements AccomDAO{
 		System.out.println(vo);
 		
 		return vo;
+	}
+
+	@Override
+	public int updateAccomReview(ArrayList<HashMap<String, String>> reviews, String _id) {
+		
+		Query query = new Query(Criteria.where("_id").is(_id));
+		
+		Update update = new Update();
+		update.set("reviews", reviews);
+		
+		UpdateResult result = mongoTemplate.updateFirst(query, update, lodgment);
+	
+		return (int)result.getModifiedCount();
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		
+		System.out.println("DAO 진입");
+		System.out.println(_id);
+		
+		AccomVO vo = mongoTemplate.findById(_id, AccomVO.class, lodgment);
+		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
+		System.out.println(vo.getAddress());
+		System.out.println(vo.getLatitude());
+		System.out.println(vo.get_id());
+		
+		return vo.getReviews();
 	}
 	
 

@@ -18,4 +18,9 @@ public interface RestaurantDAO {
 
 	public List<RestaurantVO> selectPageList(int pageNumber);
 
+	public List<HashMap> groupCategory();
+
+	public List<RestaurantVO> getCategoryData(String category, int pageNumber);
+
+
 }

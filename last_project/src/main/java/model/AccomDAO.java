@@ -1,5 +1,7 @@
 package main.java.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -16,4 +18,8 @@ public interface AccomDAO {
 	public AccomVO detail(String _id);
 
 	public List<AccomVO> selectPageList(int pageNumber);
+
+	public int updateAccomReview(ArrayList<HashMap<String, String>> reviews, String _id);
+
+	public ArrayList<HashMap<String, String>> getReviews(String _id);
 }

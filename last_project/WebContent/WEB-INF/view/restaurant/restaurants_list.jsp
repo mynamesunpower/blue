@@ -88,20 +88,16 @@
 
 					<div class="box_style_cat">
 						<ul id="cat_nav">
-							<li><a href="#" id="active"><i class="icon_set_3_restaurant-10"></i>모든 식당 <span>(141)</span></a>
+							<li><a href="restaurants_list.do" id="active"><i class="icon_set_3_restaurant-10"></i>모든 식당 <span>(${countSum})</span></a>
 							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-1"></i>피자 / 이탈리안 <span>(20)</span></a>
+							<c:forEach begin="0" end="5" varStatus="var">
+							<li>
+								<a href="restaurants_list.do?category=${categories.get(var.index)._id}">${categories.get(var.index)._id} 
+									<span>(${categories.get(var.index).countA})</span>
+								</a>
 							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-2"></i>패스트푸드 <span>(16)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-3"></i>일식 <span>(12)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-4"></i>중식 <span>(11)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-8"></i>카페 <span>(08)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-7"></i>해산물 <span>(08)</span></a>
-							</li>
+							</c:forEach>
+
 						</ul>
 					</div>
 
@@ -208,8 +204,11 @@
 							<div class="strip_all_tour_list wow fadeIn restaurant" data-wow-delay="0.1s">
 								<div class="row">
 									<div class="col-lg-4 col-md-4">
-										<div class="ribbon_3 popular"><span>인기</span>
-										</div>
+										<c:if test="${scores[var.index] ge 3}">
+											<div class="ribbon_3 popular"><span>인기</span>
+											</div>
+										</c:if>
+										
 										<div class="wishlist">
 											<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 										</div>
@@ -220,7 +219,7 @@
 													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
 												</c:if>
 												
-												<div class="short_info"><i class="icon_set_3_restaurant-2"></i> Fast food</div>
+												<div class="short_info" style="padding-left:10px;">${list.category}</div>
 											</a>
 										</div>
 									</div>
@@ -324,7 +323,21 @@
 		$('#cat_nav').mobileMenu();
 		
 		function fnGoPaging(page) {
-            location.replace("restaurants_list.do?page="+page)
+			
+			var url = new URL(window.location.href);
+			var urlParams = url.searchParams;
+
+			console.log(urlParams.has("category") + " / " + urlParams.has("page"))
+			
+			if (urlParams.has("category") == true) {
+				var word = urlParams.get('category')
+				alert(word)
+	            location.replace("restaurants_list.do?page="+page+"&category="+word)
+			}
+			else {
+				location.replace("restaurants_list.do?page="+page)
+			}
+			
         }
 		
 	</script>

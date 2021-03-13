@@ -19,4 +19,9 @@ public interface RestaurantService {
 	public List<RestaurantVO> selectPageList(int pageNumber);
 
 	public int getTotalSize();
+
+	public List<HashMap> getGroupCategory();
+
+	public List<RestaurantVO> getCategoryData(String word, int pageNumber);
+
 }

@@ -49,5 +49,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		return restaurantDAO.selectPageList(pageNumber);
 	}
+
+	@Override
+	public List<HashMap> getGroupCategory() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.groupCategory();
+	}
+
+	@Override
+	public List<RestaurantVO> getCategoryData(String word, int pageNumber) {
+		// TODO Auto-generated method stub
+		return restaurantDAO.getCategoryData(word, pageNumber);
+	}
 	
 }

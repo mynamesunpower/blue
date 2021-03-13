@@ -22,8 +22,16 @@ public class RestaurantVO {
 	private ArrayList<String> images;
 	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews;
+	private String category;
 	
 	
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public String getAddress() {
 		return address;
 	}

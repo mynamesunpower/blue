@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.AccomService;
 import main.java.service.FestivalService;
+import main.java.service.RestaurantService;
 import main.java.vo.AccomVO;
 import main.java.vo.FestivalVO;
 import main.java.vo.RestaurantVO;
@@ -30,6 +31,8 @@ public class FestivalController {
 	@Autowired
 	private AccomService AccomService;
 
+	@Autowired
+	private  RestaurantService restaurantService;
 
 	 public static Double distance(Double lat1, Double lon1, Double lat2, Double lon2, String unit) {
       	        Double theta = lon1 - lon2;
@@ -230,27 +233,26 @@ public class FestivalController {
 
 		for(AccomVO vo : lists) {
 
-			double latitudes = vo.getLatitude();
-
-			double longitudes = vo.getLongitude();
+			//식당 위도 경도 지정 (식당은 DB에 위도 경도가 바껴있음)
+			double res_latitudes = vo.getLongitude();
+			double res_longitudes = vo.getLatitude();
 
 			ObjectId id = vo.get_id();
 
-			System.out.println("double 변수 지정하자");
-
-		  double theta = list.get(0).getLongitude() - longitude;
-
-		  Double distanceMeter = distance(latitude, longitude, vo.getLatitude(), vo.getLongitude(), "kilometer");
+		  Double distanceMeter = distance(latitude, longitude, res_latitudes, res_longitudes, "kilometer");
 
 			map.put(distanceMeter, vo.get_id() );
 		}
+		 		
+				
+			List<RestaurantVO> res= null;
 			   List<Double> keySet = new ArrayList<>(map.keySet());
 
 		        System.out.println("==Key 값 기준으로 오름차순 정렬==");
 		        List<Double> keys = new ArrayList<>(map.keySet());
 		        Collections.sort(keys);
 		        for (Double key : keys) {
-		            System.out.println(String.format("Key : %s, Value : %s", key, map.get(key)));
+		            System.out.println(String.format("주변 식당 입니다, Key : %s, Value : %s", key, map.get(key)));
 
 		}
 
@@ -262,6 +264,7 @@ public class FestivalController {
 		return "festival/festival_detail";
 	}
 
+	
 	//근처축제
 	@RequestMapping(value="/nearnear.do")
 	@ResponseBody

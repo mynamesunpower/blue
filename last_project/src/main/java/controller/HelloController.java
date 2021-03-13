@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import main.java.admin.ChatMessageC;
+
 
 @Controller
 public class HelloController {
@@ -25,8 +25,6 @@ public class HelloController {
 	@RequestMapping(value="error.do")
 	public String error() {
 
-		ChatMessageC c = new ChatMessageC();
-		c.runClient();
 
 		System.out.println("[�뿉�윭 諛쒖깮: �뿉�윭 �럹�씠吏�濡� �씠�룞]");
 

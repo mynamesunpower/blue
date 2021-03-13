@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,28 +28,75 @@ public class RestaurantController {
 	@Autowired
 	private RestaurantServiceImpl restaurantService;
 	
+	// 페이징 번호 갯수
+	private final int pageScale = 5;
+	
+	
 	@RequestMapping(value = "/restaurants_list.do")
-	public String helloRestaurant(ModelMap model, @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
+	public String helloRestaurant(ModelMap model, 
+			@RequestParam(value = "page", defaultValue = "1") int pageNumber, 
+			@RequestParam(value = "category", required = false) String word) {
 		
-		List<RestaurantVO> restaurant_list = restaurantService.selectPageList(pageNumber);
 		
-		 //List<RestaurantVO> restaurant_list = restaurantService.selectAll();
-		
-		int[] scores = new int[restaurant_list.size()];
-		
-		// 식당마다 for문 돌기
-		for (int i = 0; i < restaurant_list.size(); i++) {
-			RestaurantVO vo = restaurant_list.get(i);
+		int totalSize;
+		int[] scores;
+	
+		// 카테고리를 클릭하지 않았다면
+		if (word == null) {
 			
-			// 축제에 있는 ArrayList<Binary> image를 String 데이터로 변환
-			BinaryImageToString(vo);
+			List<RestaurantVO> restaurant_list = restaurantService.selectPageList(pageNumber);
 			
-			// 리뷰에 있는 각 점수 평균을 가져오는 함수, (식당평균, 서비스평균, 맛평균, 분위기평균, 전체평균) 그 중 [4]번 요소 (전체 평균)
-			scores[i] = scoreAverage(vo.getReviews());
+			scores = new int[restaurant_list.size()];
+			
+			// 식당마다 for문 돌기
+			for (int i = 0; i < restaurant_list.size(); i++) {
+				RestaurantVO vo = restaurant_list.get(i);
+				
+				// 축제에 있는 ArrayList<Binary> image를 String 데이터로 변환
+				BinaryImageToString(vo);
+				
+				// 리뷰에 있는 각 점수 평균을 가져오는 함수, (식당평균, 서비스평균, 맛평균, 분위기평균, 전체평균) 그 중 [4]번 요소 (전체 평균)
+				scores[i] = scoreAverage(vo.getReviews(), "food");
+			}
+			
+			
+			// 리스트의 총 갯수
+			totalSize = restaurantService.getTotalSize();
+			
+			model.addAttribute("list", restaurant_list);
+			
+		}
+		// 카테고리를 클릭했다면
+		else {
+			System.out.println("카테고리 -> " + word);
+			List<RestaurantVO> categoryList = restaurantService.getCategoryData(word, pageNumber);
+			scores = new int[categoryList.size()];
+			System.out.println(categoryList.size());
+			
+			// 식당마다 for문 돌기
+			for (int i = 0; i < categoryList.size(); i++) {
+				RestaurantVO vo = categoryList.get(i);
+				
+				// 축제에 있는 ArrayList<Binary> image를 String 데이터로 변환
+				BinaryImageToString(vo);
+				
+				// 리뷰에 있는 각 점수 평균을 가져오는 함수, (식당평균, 서비스평균, 맛평균, 분위기평균, 전체평균) 그 중 [4]번 요소 (전체 평균)
+				scores[i] = scoreAverage(vo.getReviews(), "food");
+			}
+						
+			totalSize = categoryList.size();
+			
+			model.addAttribute("list", categoryList);
 		}
 		
-		int pageScale = 5;
-		int totalSize = restaurantService.getTotalSize();
+		// 카테고리 가져오기
+		List<HashMap> categories = restaurantService.getGroupCategory();
+		int countSum = 0;
+		for (HashMap hashMap : categories) {
+			countSum += (Integer) hashMap.get("countA");
+		}
+		
+		// 페이징 처리
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		int pageGroup = (int)Math.ceil((double) pageNumber / 5);
 		System.out.println("pageGroup -> " + pageGroup);
@@ -65,12 +113,11 @@ public class RestaurantController {
 		resultMap.put("endPage", endPage);
 		resultMap.put("nextPage", nextPage);
 		resultMap.put("previousPage", previousPage);
-		
-		
+		model.addAttribute("countSum", countSum);
+		model.addAttribute("categories", categories);
 		model.addAttribute("resultMap", resultMap);
 		model.addAttribute("scores", scores);
 		
-		model.addAttribute("list", restaurant_list);
 		
 		return "restaurant/restaurants_list";
 	}
@@ -88,7 +135,7 @@ public class RestaurantController {
 		// 해당 식당 정보 VO 객체에서 reviews 컬럼의 데이터를 가져온다.
 		ArrayList<HashMap<String, String>> reviews = restaurantVO.getReviews();
 		
-		model.addAttribute("scores", scoresAverage(reviews));
+		model.addAttribute("scores", scoresAverage(reviews, "food"));
 		model.addAttribute("restaurantVO", restaurantVO);
 		
 		
@@ -134,7 +181,7 @@ public class RestaurantController {
 		
 	}
 	
-	public int[] scoresAverage(ArrayList<HashMap<String, String>> reviews) {
+	public static int[] scoresAverage(ArrayList<HashMap<String, String>> reviews, String firstScoreName) {
 		
 		int[] scores = new int[5];
 		int[] scoresAvg = new int[5];
@@ -144,7 +191,7 @@ public class RestaurantController {
 			
 			for (HashMap<String, String> review : reviews) {
 				
-				scores[0] += Integer.parseInt(review.get("food"));
+				scores[0] += Integer.parseInt(review.get(firstScoreName));
 				scores[1] += Integer.parseInt(review.get("service"));
 				scores[2] += Integer.parseInt(review.get("price"));
 				scores[3] += Integer.parseInt(review.get("quality"));
@@ -162,7 +209,7 @@ public class RestaurantController {
 	}
 	
 	
-	public int scoreAverage(ArrayList<HashMap<String, String>> reviews) {
+	public static int scoreAverage(ArrayList<HashMap<String, String>> reviews, String firstScoreName) {
 		
 		int[] scores = new int[5];
 		int scoreSum = 0;
@@ -171,7 +218,7 @@ public class RestaurantController {
 		if (reviews.size() > 0) {
 			for (HashMap<String, String> review : reviews) {
 				
-				scores[0] = Integer.parseInt(review.get("food"));
+				scores[0] = Integer.parseInt(review.get(firstScoreName));
 				scores[1] = Integer.parseInt(review.get("service"));
 				scores[2] = Integer.parseInt(review.get("price"));
 				scores[3] = Integer.parseInt(review.get("quality"));
@@ -190,5 +237,7 @@ public class RestaurantController {
 		return scoreAverage;
 		
 	}
+	
+
 	
 }

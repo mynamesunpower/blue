@@ -1,5 +1,7 @@
 package main.java.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -10,7 +12,7 @@ import main.java.model.AccomDAOImpl;
 import main.java.vo.AccomVO;
 
 @Service("AccomService")
-public class AccomServiceImpl implements AccomService{
+public class AccomServiceImpl implements AccomService {
 
 	@Autowired
 	private AccomDAOImpl accomDAO;
@@ -34,6 +36,19 @@ public class AccomServiceImpl implements AccomService{
 	@Override
 	public List<AccomVO> selectPageList(int pageNumber){
 		return accomDAO.selectPageList(pageNumber);
+	}
+
+	@Override
+	public int updateAccomReview(ArrayList<HashMap<String, String>> reviews, String _id) {
+		// TODO Auto-generated method stub
+		return accomDAO.updateAccomReview(reviews, _id);
+	}
+	
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		// TODO Auto-generated method stub
+		System.out.println("서비스 진입");
+		return accomDAO.getReviews(_id);
 	}
 	
 }
