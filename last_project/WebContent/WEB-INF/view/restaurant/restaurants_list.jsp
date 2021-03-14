@@ -101,81 +101,7 @@
 						</ul>
 					</div>
 
-					<div id="filters_col">
-						<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>필터</a>
-						<div class="collapse show" id="collapseFilters">
-							<div class="filter_type">
-								
-							</div>
-							<div class="filter_type">
-								<h6>별점</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i>
-											</span>(15)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i>
-											</span>(45)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(35)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(25)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(15)
-										</label>
-									</li>
-								</ul>
-							</div>
-							<div class="filter_type">
-								<h6>지역</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox">서울
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">경기/인천
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">부산
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">제주
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!--End collapse -->
-					</div>
-					<!--End filters col-->
+					
 				</aside>
 				<!--End aside -->
 				<div class="col-lg-9">
@@ -184,16 +110,10 @@
 
 						<div class="row">							
 							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
-									<select name="sort_rating" id="sort_rating">
-										<option value="" selected>랭킹 순 정렬</option>
-										<option value="lower">랭킹 낮은 순</option>
-										<option value="higher">랭킹 높은 순</option>
-									</select>
-								</div>
+
 							</div>
 							<div class="col-md-9 col-sm-4 d-none d-sm-block text-right">
-								<a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class="icon-list"></i></a>
+
 							</div>
 
 						</div>
@@ -331,7 +251,6 @@
 			
 			if (urlParams.has("category") == true) {
 				var word = urlParams.get('category')
-				alert(word)
 	            location.replace("restaurants_list.do?page="+page+"&category="+word)
 			}
 			else {
