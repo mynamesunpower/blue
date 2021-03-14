@@ -13,15 +13,21 @@ import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
 import main.java.service.CourseService;
 import main.java.vo.CourseVO;
-
-
+import main.java.vo.FestivalVO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -90,69 +96,88 @@ public class CourseController {
 		return "course/course_edit";
 	}
 	
-	// 다른 사람이 만든 코스를 내 코스에 담기 ( 경로 제외 )
-	@RequestMapping(value = "addMycourse.do", method = RequestMethod.POST)
+	// 다른 사람이 만든 코스를 내 코스에 담기
+	@PostMapping("addMycourse.do")
 	@ResponseBody
-	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req){
+	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req/*, @RequestBody String jsonData*/){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("id:"+memberId);
 		// 키워드 가져오는거 확인용
-		
 		String[] temp = req.getParameterValues("keyword");
 		for(String keyword : temp) {
 			System.out.println("keyword:"+keyword);
-		}				
+		}
 		
-		vo.setWriter(memberId);
+		/*List<Map<String, Object>> resultMap = new ArrayList<Map<String,Object>>();
+		resultMap = JSONArray.fromObject(jsonData);
 		
+		for (Map<String, Object> map : resultMap) {
+			System.out.println(map.get("title") + "/" + map.get("address"));
+		}
+		*/
 		CourseVO cvo = courseService.addMycourse(vo);
 		return cvo;		
 	}
-	
-	// 코스 경로만 넘겨보자 _ 안되네 시벌?
-	@RequestMapping(value = "addMycourse_path.do", method = RequestMethod.POST)
-	public @ResponseBody CourseVO coursePathResend(CourseVO vo, @RequestParam String coursePath) {
-		// 코스 경로 가져오는 작업 시작
-//		Map<String, Object> result = new HashMap<String, Object>();
-//		Map<String, String> result = new HashMap<String, String>();
 		
-//		Map<String, Object> paramMap = new HashMap<String, Object>();
-//		ArrayList<HashMap<String, String>> paramMap = new ArrayList<HashMap<String,String>>();
-//		ArrayList<HashMap<String, Object>> paramMap = new ArrayList<HashMap<String,Object>>();
+	// 축제_ 코스에 담기
+	@PostMapping("addMycourse_festival.do")
+	@ResponseBody
+	public CourseVO addFestival(CourseVO vo, @RequestBody String jsonData) {
 		
-		//직렬화 시켜 가져온 오브젝트 배열을 JSONArray 형식으로 바꿔준다.
-		JSONArray array = JSONArray.fromObject(coursePath);
+		/*
+		Gson gson = new Gson();
+		List<Map<String, Object>> myPushList = null;
+		String jsonArray = jsonData;
+		myPushList = gson.fromJson(jsonArray, new TypeToken<List<Map<String, Object>>>() {}.getType());
 		
-//		List<Map<String, Object>> resendList = new ArrayList<Map<String, Object>>();
-//		ArrayList<HashMap<String, String>> resendList = new ArrayList<HashMap<String,String>>();
-		ArrayList<HashMap<String, Object>> resendList = new ArrayList<HashMap<String,Object>>();
+		System.out.println(myPushList.toString());
+		*/
+		/*
+		Map<String, Object> result = new HashMap<String, Object>();
+		 
+	    Map<String, Object> paramMap = new HashMap<String, Object>();
 		
-		for(int i=0 ; i<array.size() ; i++) {
-			System.out.println("배열 크기:"+array.size());
-			//JSONArray 형태의 값을 가져와 JSONObject 로 풀어준다.
+		JSONArray array = JSONArray.fromObject(jsonData);
+		List<Map<String, Object>> resendList = new ArrayList<Map<String, Object>>();
+		for(int i=0;i<array.size();i++) {
 			JSONObject obj = (JSONObject) array.get(i);
 			
-//			Map<String, Object> resendMap = new HashMap<String, Object>();
-//			HashMap<String, String> resendMap = new HashMap<String, String>();
-			HashMap<String, Object> resendMap = new HashMap<String, Object>();
-			
+			Map<String, Object> resendMap = new HashMap<String, Object>();
 			resendMap.put("title", obj.get("title"));
-			System.out.println("타이틀:" + obj.get("title"));
-	        resendMap.put("address", obj.get("address"));
-	        resendMap.put("tel", obj.get("tel"));
-	        resendMap.put("latitude", obj.get("latitude"));
-	        resendMap.put("longitude", obj.get("longitude"));
-	        resendMap.put("image", obj.get("image"));
-	            
-	        resendList.add(resendMap);
-	    }
-	 
-//	    paramMap.put("resendList", resendList);
-//	    paramMap.addAll(resendList);
-	    
-	    vo.setCoursePath(resendList);	    	    		
-	    CourseVO cvo = courseService.addMycourse(vo);
-	    return cvo;
-	}	
+			resendMap.put("address", obj.get("address"));
+			resendMap.put("startDate", obj.get("startDate"));
+			resendMap.put("endDate", obj.get("endDate"));
+			resendMap.put("fee", obj.get("fee"));
+			resendMap.put("festel", obj.get("festel"));
+			resendMap.put("host", obj.get("host"));
+			
+			resendList.add(resendMap);
+		}
+		vo.setCoursePath(resendList);
+		*/
+		/*
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("writer", vo.getWriter());
+		map.put("courseName", vo.getCourseName());
+		map.put("", vo.get)
+		*/
+		CourseVO cvo = courseService.addMycourse(vo);
+		return cvo;
+	}
+	
+	// 코스 지우기  _ a 태그에 .do 를 걸어서 그런가 return이 안 먹힘. 
+	@RequestMapping(value = "deleteCourse.do")
+	public String deleteCourse(@RequestParam String _id) {
+		courseService.deleteCourse(_id);
+		return "course/course_list";
+	}
+	
+	// 코스 편집
+	@RequestMapping(value = "editCourse.do")
+	@ResponseBody
+	public String editCourse(@RequestBody CourseVO vo, @RequestParam String _id) {
+		courseService.editCourse(vo, _id);
+		return "course/course_list";
+	}
 }

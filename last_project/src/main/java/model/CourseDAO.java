@@ -18,4 +18,7 @@ public interface CourseDAO {
 	
 	public CourseVO addMycourse(CourseVO vo);
 	
+	public void deleteCourse(String _id);
+	
+	public void editCourse(CourseVO vo, String _id);
 }

@@ -24,10 +24,10 @@ public class CourseVO {
 	private String schedule;   // 일정
 	private String theme;      // 테마
 	private ArrayList<Binary> image;  // 어케 써먹지
-	//↓ HashMap<String, String> 을 Object로 해보자?
 	private ArrayList<HashMap<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
 //	private List<Map<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
 	private ArrayList<HashMap<String, String>> reviews; // 리뷰
+	private String jsonData;
 //	private HashMap<String, String> coursePath2;
 	/*
 	public HashMap<String, String> getCoursePath2() {
@@ -124,5 +124,11 @@ public class CourseVO {
 	}
 	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
 		this.reviews = reviews;
+	}
+	public String getJsonData() {
+		return jsonData;
+	}
+	public void setJsonData(String jsonData) {
+		this.jsonData = jsonData;
 	}
 }

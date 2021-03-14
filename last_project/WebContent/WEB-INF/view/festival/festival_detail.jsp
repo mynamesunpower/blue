@@ -1262,35 +1262,49 @@ function getTimeHTML(distance) {
 	<!-- 코스 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			<c:forEach items="${list}" var="list">
-				var title = "${list.title}"
-				var address = "${list.address}"
-				var startDate = ${list.startDate}
-				var endDate = ${list.endDate}
-				var fee = "${list.fee}"
-				var detail = "${list.detail}"
+			<c:forEach items="${list}" var="fes">
+				var title = "${fes.title}"
+				var address = "${fes.address}"
+				var startDate = ${fes.startDate}
+				var endDate = ${fes.endDate}
+				var fee = "${fes.fee}"
+				var festel = "${fes.tel}"
+				var host = "${fes.host}"
 			</c:forEach>
 			$("#choice").on('click', function () {
+				var fesInfo = [];
+				fesInfo.push({
+					"title" : title,
+					"address" : address,
+					"startDate" : startDate,
+					"endDate" : endDate,
+					"fee" : fee,
+					"festel" : festel,
+					"host" : host
+				})
+				console.log(typeof(fesInfo))
+				console.log(fesInfo);
+				
+				var jsonData = JSON.stringify(fesInfo)
+				console.log(typeof(jsonData))
+				console.log(jsonData)
 				$.ajax({
 					type : "post",
 					async : true,
 					url : "addMycourse_festival.do",
-					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					contentType: 'application/json; charset=utf-8', // 한글처리
+					traditional : true,
 					data : {
-						
-						"title" : title,
-						"address" : address,
-						"startDate" : startDate,
-						"endDate" : endDate,
-						"fee" : fee,
-						"detail" : detail
+						"writer" : "${sessionScope.memberId}",
+						"courseName" : $('#courseName').val(),
+						"jsonData" : jsonData					
 					},
 					dataType : "json",					
 					success : function (data) {
-						alert("코스에 담기 완료")
+						alert("완료")
 					},
 					error : function (err) {
-						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
+						alert("에러가 발생했습니다");
 						console.log(err)
 					}
 				}) // end of ajax.

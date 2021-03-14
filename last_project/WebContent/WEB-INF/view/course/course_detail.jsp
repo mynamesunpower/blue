@@ -774,10 +774,10 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="modal-body" style="text-align: center;">
-							<div>
+							<div id="courseList">
 								<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
 									<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
+									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1"></span>
 								</h4>
 							</div>
 							<div style="text-align: center;">
@@ -795,16 +795,16 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myReviewLabel">새 코스 추가</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span id="back" aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div id="message-review">
 					</div>
 					<div class="form-group">
-						<input type="text" placeholder="코스명을 입력해주세요.">
+						<input type="text" placeholder="코스명을 입력해주세요." id="addcourseName">
 					</div>
 					<div style="text-align: center;">
-						<input type="button" value="추가" class="btn btn-success">
+						<input type="button" value="추가" class="btn btn-success" id="addNewcourse">
 						<!-- 추가 누르면 창이 닫히고, 입력한 코스명으로 부모 페이지에 코스가 추가 입력 되어져야함.-->
 					</div>
 				</div>
@@ -988,7 +988,9 @@
 	<!-- 내 코스에 저장.. 현재 실패 중.. 코스 경로 넣는게 어렵쓰 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$("#choice").on('click',function () {
+			$("#courseList span > input").on('click',function () {
+				var courseName = $(this).parent().prev().val();
+				console.log(courseName);
 				// 코스의 키워드 뽑아서 배열에 넣기.
 				var keyword = new Array();
 				<c:forEach items="${detail.keyword}" var="keyword">
@@ -998,6 +1000,30 @@
 				// 콘솔로 확인
 				console.log(keyword)
 				
+				// 코스 경로
+				var coursePath_arr = new Array();
+				var obj = new Object();
+				<c:forEach items="${detail.coursePath}" var="coursePath">
+					var title = "${coursePath.title}";
+					obj.title = title;
+					var address = "${coursePath.address}";
+					obj.address  = address;
+					var tel = "${coursePath.tel}";
+					obj.tel = tel;
+				/*
+					var data = {
+							"title" : "${coursePath.title}",
+							"address" : "${coursePath.address}",
+							"tel" : "${coursePath.tel}"
+					}
+				*/
+					coursePath_arr.push(obj)
+				</c:forEach>
+				// 콘솔로 확인
+				console.log(coursePath_arr)
+				var jsonData = JSON.stringify(coursePath_arr)
+				console.log("jsonData:"+jsonData)
+				console.log(typeof(jsonData))
 				$.ajax({
 					type : "post",
 					async : true,
@@ -1006,12 +1032,13 @@
 					traditional : true,
 					data : {
 						"writer" : "${sessionScope.memberId}",
-						"courseName" : $('#courseName').val(),
+						"courseName" : courseName,
 						"summary" : "${detail.summary}",					
 						"keyword" : keyword,							
 						"distance" : "${detail.distance}",
 						"schedule" : "${detail.schedule}",									
-						"theme" : "${detail.theme}"
+						"theme" : "${detail.theme}",
+//						"coursePath" : jsonData
 					},
 					dataType : "json",					
 					success : function (data) {
@@ -1022,48 +1049,16 @@
 						console.log(err)
 					}
 				})  // end of ajax.
-				
-				// 코스의 장소마다 이름, 주소, 전화 등 뽑아서 배열에 넣기 _ JSONArray 만들기
-				var coursePath_arr = new Array();
-				<c:forEach items="${detail.coursePath}" var="coursePath">
-					var data = {
-							"title" : "${coursePath.title}",
-							"address" : "${coursePath.address}",
-							"tel" : "${coursePath.tel}",
-							"latitude" : "${coursePath.latitude}",
-							"longitude" : "${coursePath.longitude}",
-							"image" : "${coursePath.image}"
-					}
-					// 각 데이터 콘솔로 확인
-					console.log(data);
-					// Array에 data 넣기
-					coursePath_arr.push(data);
-				</c:forEach>
-				// 콘솔로 확인
-				console.log(coursePath_arr);
-				// coursePath 직렬화
-				var jsonData = JSON.stringify(coursePath_arr);
-				console.log("jsonData:"+jsonData);
-				$.ajax({
-					type : "post",
-					async : true,
-					url : "addMycourse_path.do",
-					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-					traditional : true,
-					data : {
-						"coursePath" : jsonData
-					},
-					dataType : "json",					
-					success : function (data) {
-						alert("코스에 담기 완료2")
-					},
-					error : function (err) {
-						alert("에러가 발생했습니다2: course_detail.jsp --- 코스 담기 에러");
-						console.log(err)
-					}
-				}) // end of ajax.
+			}) // end of $('#choice') click function
+			
+			$("#addNewcourse").on('click', function(){
+				var courseName = $("#addcourseName").val();
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' id='courseName' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1'></span></h4>"		
+				);
+				$('#back').trigger('click');
 			})
-		})
+		}) // end of jQuery.
 	
 	</script>
 	

@@ -49,4 +49,16 @@ public class CourseServiceImpl implements CourseService {
 		System.out.println("addMycourse 서비스 접근");
 		return courseDao.addMycourse(vo);
 	}
+
+	@Override
+	public void deleteCourse(String _id) {
+		System.out.println("deleteCourse 서비스 접근");
+		courseDao.deleteCourse(_id);
+	}
+
+	@Override
+	public void editCourse(CourseVO vo, String _id) {
+		System.out.println("editCourse 서비스 접근");
+		courseDao.editCourse(vo, _id);
+	}
 }

@@ -451,78 +451,120 @@
             <div class="container margin_60">
                 <div class="main_title">
                     <h2><span>ㅣ</span>테마별 축제이야기 & 기획기사</h2>
-                    <p>https://korean.visitkorea.or.kr/other/otherService.do?otdid=4e706603-293b-11eb-b8bd-020027310001 긁어오자</p>
                 </div>
-
                 <div class="row">
-                        <div class="col-lg-6">
-                            <a class="box_news" href="blog.jsp">
-                                <figure><img src="img/main/main_news1.jpg" alt="">
-                                    <!-- <figcaption><strong>28</strong>Dec</figcaption> -->
-                                </figure>
-                                <ul>
-                                    <li>등록일</li>
-                                    <li>2020.12.16</li>
-                                </ul>
-                                <h4>청정 자연에서 즐기는 힐링 축제</h4>
-                                <p>맑고 깨끗한 자연은 언제나 눈과 마음을 편안하게 만든다. 바쁜 일상에서 잠시 벗어나 아름다운 자연 앞에서 느끼는 감동과 위로만큼 확실한 힐링이 또 있을까.</p>
-                            </a>
-                        </div>
-                        <!-- /box_news -->
-                        <div class="col-lg-6">
-                            <a class="box_news" href="blog.jsp">
-                                <figure><img src="img/main/main_news2.jpg" alt="">
-                                    <!-- <figcaption><strong>28</strong>Dec</figcaption> -->
-                                </figure>
-                                <ul>
-                                    <li>등록일</li>
-                                    <li>2020.12.18</li>
-                                </ul>
-                                <h4>축제, 전통과 만나는 가장 재미있는 방법!</h4>
-                                <p>시간이 흐름에 따라 전통이라는 단어에는 왠지 모를 무게감과 거리감이 더해진 것만 같다. 사실 굳이 각을 잡고 어려운 책을 펼치지 않더라도 전통을 느끼고 배우는 방법은 다양하다. 그중에서도 가장 재미있는 방법은 뭐니 뭐니 해도 역시 축제가 아닐까?</p>
-                            </a>
-                        </div>
-                        <!-- /box_news -->
-                        <div class="col-lg-6">
-                            <a class="box_news" href="blog.jsp">
-                                <figure><img src="img/news_home_3.jpg" alt="">
-                                    <figcaption><strong>28</strong>Dec</figcaption>
-                                </figure>
-                                <ul>
-                                    <li>Luca Robinson</li>
-                                    <li>20.11.2017</li>
-                                </ul>
-                                <h4>Elitr mandamus cu has</h4>
-                                <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                            </a>
-                        </div>
-                        <!-- /box_news -->
-                        <div class="col-lg-6">
-                            <a class="box_news" href="blog.jsp">
-                                <figure><img src="img/news_home_4.jpg" alt="">
-                                    <figcaption><strong>28</strong>Dec</figcaption>
-                                </figure>
-                                <ul>
-                                    <li>Paula Rodrigez</li>
-                                    <li>20.11.2017</li>
-                                </ul>
-                                <h4>Id est adhuc ignota delenit</h4>
-                                <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                            </a>
-                        </div>
-                        <!-- /box_news -->
+	                <div class="col-lg-6">
+	                    <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=79409b07-a8a3-47d5-927d-a3e11a4277a0&con_type=10700">
+	                        <figure><img src="img/main/main_news1.jpg" alt="">
+	                        </figure>
+	                        <ul>
+	                            <li>등록일</li>
+	                            <li>2020.12.16</li>
+	                        </ul>
+	                        <h4>청정 자연에서 즐기는 힐링 축제</h4>
+	                        <p>맑고 깨끗한 자연은 언제나 눈과 마음을 편안하게 만든다. 바쁜 일상에서 잠시 벗어나 아름다운 자연 앞에서 느끼는 감동과 위로만큼 확실한 힐링이 또 있을까.</p>
+	                    </a>
+	                </div>
+                    <!-- /box_news -->
+                    <div class="col-lg-6">
+                        <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=21b4f671-fc92-40a4-abe1-82d523d3a106&con_type=10700">
+                            <figure><img src="img/main/main_news2.jpg" alt="">
+                            </figure>
+                            <ul>
+                                <li>등록일</li>
+                                <li>2020.12.18</li>
+                            </ul>
+                            <h4>전통과 만나는 가장 재미있는 방법!</h4>
+                            <p>시간이 흐름에 따라 전통이라는 단어에는 왠지 모를 무게감과 거리감이 더해진 것만 같다. 사실 굳이 각을 잡고 어려운 책을 펼치지 않더라도 전통을 느끼고 배우는 방법은 다양하다. 그중에서도 가장 재미있는 방법은 뭐니 뭐니 해도 역시 축제가 아닐까?</p>
+                        </a>
                     </div>
-                    <!-- /row -->
-                    <!-- <p class="btn_home_align"><a href="blog.jsp" class="btn_1 rounded">이야기 더 보기</a></p> -->
-                    <p class="text-center nopadding">
-                        <a href="all_hotels_list.jsp" class="btn_1">이야기 더 보기</a>
-                    </p>
+                    <!-- /box_news -->
+                    <div class="col-lg-6">
+                        <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=0fc60f77-6868-49a7-a962-baede7ab3e17&con_type=10700">
+                            <figure><img src="img/main/main_news3.jpg" alt="">
+                            </figure>
+                            <ul>
+                                <li>등록일</li>
+                               	<li>2020.12.18</li>
+                            </ul>
+                            <h4>안전하게 즐기는 비대면 온라인 축제</h4>
+                            <p>코로나19로 평범한 일상마저 멈춰야 했던 2020년. 함께 어울려 웃으며 즐겼던 수많은 축제들도 줄줄이 취소되며 많은 아쉬움을 남겼다. 그러나 안전하게 즐기는 비대면 온라인 축제로 집콕생활에 지친 이들에게 작으나마 기쁨과 희망을 선물해준 축제들도 있다. 내년에는 직접 찾아가 즐길 수 있기를 바라는 마음을 담아 이들 온라인 축제를 모아 보았다.</p>
+                        </a>
+                    </div>
+                    <!-- /box_news -->
+                    <div class="col-lg-6">
+                        <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=ada9e2f2-e78e-4c7e-a9c6-227db2e89254&con_type=10700">
+                            <figure><img src="img/main/main_news4.png" alt="">
+                            </figure>
+                            <ul>
+                                <li>등록일</li>
+                                <li>2020.12.04</li>
+                            </ul>
+                            <h4>낮보다 아름다운 순간, 그 축제의 밤</h4>
+                            <p>밤이 낮보다 아름다운 순간이 있다. 흩뿌려져 있는 별빛, 따뜻하게 빛나는 불빛. 그래서 우린 어떤 여행지를 가든 어둠 속에서 형형색색 빛나는불빛을 찾으며 함께 웃고, 때로는 따뜻한 위로 받는 시간을 사랑한다. 이것이 우리가 늦은 밤 숙소를 나서는 이유가 아닐까. 별이 빛나는 밤, 소중한 사람들과 함께 특별한 추억을 남길 수 있는 심야의 시간으로 당신을 이끌고자 한다.</p>
+                        </a>
+                    </div>
+                    <!-- /box_news -->
+                </div>
+                <!-- /row -->
+                <p class="text-center nopadding">
+                    <a href="https://korean.visitkorea.or.kr/other/other_list.do?otdid=4e706603-293b-11eb-b8bd-020027310001&moreTag=%ED%85%8C%EB%A7%88%EB%B3%84%EC%B6%95%EC%A0%9C%EC%9D%B4%EC%95%BC%EA%B8%B0%7C%7C" class="btn_1">이야기 더 보기</a>
+                </p>
             </div>
             <!-- End container -->
         </div>
         <!-- End white_bg -->
         <div class="container margin_60">
             <div class="main_title">
+                <h2><span>ㅣ</span>테마별 축제</h2>
+            </div>
+            <div class="row">
+           		<div class="col-lg-3 col-md-6 text-center">
+           			<h3><span>ㅣ</span>두근두근 감성 축제</h3>
+					<p>
+						<a href="https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=da2c0d94-e3e2-433a-8d2c-94932aee8776&big_category=A02&mid_category=A0207&big_area=37"><img src="img/main/test1.png" alt="Pic" class="img-fluid"></a>
+					</p>
+					<h4><span>무주 반딧불 축제</span></h4>
+					<p>
+						전라북도 무주군
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center">
+					<h3><span>ㅣ</span>신나는 놀이 축제</h3>
+					<p>
+						<a href="https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=055d530e-b36f-4714-9292-02a75fe47b76&big_category=A02&mid_category=A0207&big_area=32"><img src="img/main/test2.png" alt="Pic" class="img-fluid"></a>
+					</p>
+					<h4><span>화천 산천어 축제</span></h4>
+					<p>
+						강원도 화천군
+					</p>
+				</div>
+                <div class="col-lg-3 col-md-6 text-center">
+					<h3><span>ㅣ</span>입안가득 맛의 축제</h3>
+					<p>
+						<a href="https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=e5d334d3-30a3-4c50-8981-03ee9e9489c0&big_category=A02&mid_category=A0207&big_area=32"><img src="img/main/test3.png" alt="Pic" class="img-fluid"></a>
+					</p>
+					<h4><span>강릉 커피 축제</span></h4>
+					<p>
+						강원도 강릉시
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center">
+					<h3><span>ㅣ</span>과거로 시간여행 축제</h3>
+					<p>
+						<a href="https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=17a16f42-c187-4c77-8d5f-c6b212e2536a&big_category=A02&mid_category=A0207&big_area=38"><img src="img/main/test4.png" alt="Pic" class="img-fluid"></a>
+					</p>
+					<h4><span>영암왕인문화축제</span></h4>
+					<p>
+						전라남도 영암군
+					</p>
+				</div>
+        	</div>
+        </div>
+        <!-- End container -->
+        <div class="white_bg">
+            <div class="container margin_60">
+                <div class="main_title">
                 <h2>Some <span>good</span> reasons</h2>
                 <p>
                     축축빵빵을 이용해야 하는 이유!
@@ -586,77 +628,6 @@
                 </div>
             </div>
             <!-- End row -->
-
-        </div>
-        <!-- End container -->
-        <div class="white_bg">
-            <div class="container margin_60">
-                <h2>화면 줄이면 안 예쁨. 추후 수정 -> index3.jsp 아래 있는 부분 써보자</h2>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="main_title">
-                            <h3><span>ㅣ</span>두근두근 감성 축제</h3>
-                                <figure>
-                                    <img src="img/main/test1.png" alt="" width="255" height="125">
-                                </figure>
-                                <h6>무주 반딧불 축제</h6>
-                                <span>전라북도 무주군</span><br/><br/>
-                                <figure>
-                                    <img src="img/main/test.jpg" alt="" width="255" height="125">
-                                </figure>
-                                <h6>사진 세로 늘리고 캐러셀로 바꿀까</h6>
-                                <span>지역명</span>
-                        </div>
-                    </div>
-    
-                    <div class="col-lg-3">
-                        <div class="main_title">
-                            <h3><span>ㅣ</span>신나는 놀이 축제</h3>
-                            <figure>
-                                <img src="img/main/test2.png" alt="" width="255" height="125">
-                            </figure>
-                            <h6>화천 산천어 축제</h6>
-                            <span>강원도 화천군</span><br/><br/>
-                            <figure>
-                                <img src="img/main/test.jpg" alt="" width="255" height="125">
-                            </figure>
-                            <h6>축제 제목</h6>
-                            <span>지역명</span>
-                        </div>
-                    </div>
-    
-                    <div class="col-lg-3">
-                        <div class="main_title">
-                            <h3><span>ㅣ</span>입안가득 맛의 축제</h3>
-                            <figure>
-                                <img src="img/main/test3.png" alt="" width="255" height="125">
-                            </figure>
-                            <h6>강릉커피축제</h6>
-                            <span>강원도 강릉시</span><br/><br/>
-                            <figure>
-                                <img src="img/main/test.jpg" alt="" width="255" height="125">
-                            </figure>
-                            <h6>축제 제목</h6>
-                            <span>지역명</span>
-                        </div>
-                    </div>
-    
-                    <div class="col-lg-3">
-                        <div class="main_title">
-                            <h3><span>ㅣ</span>과거로 시간여행 축제</h3>
-                            <figure>
-                                <img src="img/main/test4.png" alt="" width="255" height="125">
-                            </figure>
-                            <h6>영암왕인문화축제</h6>
-                            <span>전라남도 영암군</span><br/><br/>
-                            <figure>
-                                <img src="img/main/test.jpg" alt="" width="255" height="125">
-                            </figure>
-                            <h6>축제 제목</h6>
-                            <span>지역명</span>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- End container -->
         </div>
