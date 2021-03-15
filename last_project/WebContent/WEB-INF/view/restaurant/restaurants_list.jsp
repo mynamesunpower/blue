@@ -83,7 +83,7 @@
 			<div class="row">
 				<aside class="col-lg-3">
 					<p>
-						
+						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
 					</p>
 
 					<div class="box_style_cat">
@@ -100,6 +100,7 @@
 
 						</ul>
 					</div>
+					
 
 					
 				</aside>

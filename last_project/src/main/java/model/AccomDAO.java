@@ -22,4 +22,6 @@ public interface AccomDAO {
 	public int updateAccomReview(ArrayList<HashMap<String, String>> reviews, String _id);
 
 	public ArrayList<HashMap<String, String>> getReviews(String _id);
+	
+	public List<AccomVO> selectOne(Object object);
 }

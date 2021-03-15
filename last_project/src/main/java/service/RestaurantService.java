@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
 import main.java.vo.RestaurantVO;
 
 public interface RestaurantService {
@@ -24,4 +26,5 @@ public interface RestaurantService {
 
 	public List<RestaurantVO> getCategoryData(String word, int pageNumber);
 
+	public List<RestaurantVO> selectnear(ObjectId objectId);
 }

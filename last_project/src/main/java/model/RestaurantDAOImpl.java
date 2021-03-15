@@ -1,9 +1,15 @@
 package main.java.model;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,15 +32,18 @@ import org.springframework.stereotype.Repository;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.internal.operation.AggregateOperation;
 
+import main.java.vo.FestivalVO;
 import main.java.vo.RestaurantVO;
 
 @Repository("restaurantDAO")
 public class RestaurantDAOImpl implements RestaurantDAO {
 
-	private final String collectionName = "restaurant";
+	
 	
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	
+	private final String collectionName = "restaurant";
 	
 	// 한 페이지에 나타날 숫자
 	private int postPerPage = 5;
@@ -101,6 +110,25 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		RestaurantVO vo = mongoTemplate.findById(_id, RestaurantVO.class, collectionName);
 		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
 		return vo.getReviews();
+	}
+
+	
+	@Override
+	public List<RestaurantVO> selectnear(ObjectId objectId) {
+				
+		System.out.println("식당DAOIMPL에서 selectnear 들어옴");
+		Query query = new Query(Criteria.where("_id").is(objectId));
+	     //Criteria criteria = new Criteria();
+	
+	     //query.addCriteria(Criteria.where("_id").is(objectId));
+	    
+	    List<RestaurantVO> list =  mongoTemplate.find(query, RestaurantVO.class, "restaurant");
+
+	    
+	     return list;
+		
+		
+		
 	}
 	
 	@Override

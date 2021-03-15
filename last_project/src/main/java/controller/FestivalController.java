@@ -33,6 +33,7 @@ public class FestivalController {
 
 	@Autowired
 	private  RestaurantService restaurantService;
+	
 
 	 public static Double distance(Double lat1, Double lon1, Double lat2, Double lon2, String unit) {
       	        Double theta = lon1 - lon2;
@@ -78,7 +79,7 @@ public class FestivalController {
 	@RequestMapping(value = "/mongomonth.do")
 	@ResponseBody
 	public List<FestivalVO> month(Model model,String month) {
-		System.out.println("FestivalController �뿉�꽌 month�슂泥�2");
+		System.out.println("FestivalController 에서 mongomonth.do 요청");
 		List<FestivalVO> list = festivalService.month(month);
 
 		//
@@ -100,50 +101,50 @@ public class FestivalController {
 	}
 
 
-	//축제페이지 가기
-		@RequestMapping(value = "/mongomonths.do")
-		public String month(Model model) {
-			System.out.println("FestivalController 에서 month() 요청");
-
-			Calendar cal = Calendar.getInstance();
-
-		//현재 년 월 일
-			int year = cal.get ( cal.YEAR );
-			int months = cal.get ( cal.MONTH ) + 1 ;
-			int date = cal.get ( cal.DATE ) ;
-			String mon = Integer.toString(months);
-			System.out.println(mon);
-			List<FestivalVO> list = festivalService.month(mon);
-
-
-
-			//이미지 뽑기
-			for (FestivalVO vo : list) {
-				// ArrayList<Binary> image瑜�
-				ArrayList<String> imageList = new ArrayList<String>();
-				for (Binary img : vo.getImage()) {
-					String image = Base64.getEncoder().encodeToString(img.getData());
-					imageList.add(image);
-				}
-				vo.setImages(imageList);
-			}
-
-			String name = list.get(0).getTitle();
-			int startdate = list.get(0).getStartDate();
-			int enddate = list.get(0).getEndDate();
-
-			model.addAttribute("list",list);
-
-			model.addAttribute("name", name);
-			model.addAttribute("startdate", startdate);
-			model.addAttribute("enddate", enddate);
-
-			for(FestivalVO i:list) {
-			System.out.println("여기는"+i.getTitle());
-		}
-
-			return "festival/festival_reset";
-		}
+//	//축제페이지 가기
+//		@RequestMapping(value = "/mongomonths.do")
+//		public String month(Model model) {
+//			System.out.println("FestivalController 에서 month() 요청");
+//
+//			Calendar cal = Calendar.getInstance();
+//
+//		//현재 년 월 일
+//			int year = cal.get ( cal.YEAR );
+//			int months = cal.get ( cal.MONTH ) + 1 ;
+//			int date = cal.get ( cal.DATE ) ;
+//			String mon = Integer.toString(months);
+//			System.out.println(mon);
+//			List<FestivalVO> list = festivalService.month(mon);
+//
+//
+//
+//			//이미지 뽑기
+//			for (FestivalVO vo : list) {
+//				// ArrayList<Binary> image瑜�
+//				ArrayList<String> imageList = new ArrayList<String>();
+//				for (Binary img : vo.getImage()) {
+//					String image = Base64.getEncoder().encodeToString(img.getData());
+//					imageList.add(image);
+//				}
+//				vo.setImages(imageList);
+//			}
+//
+//			String name = list.get(0).getTitle();
+//			int startdate = list.get(0).getStartDate();
+//			int enddate = list.get(0).getEndDate();
+//
+//			model.addAttribute("list",list);
+//
+//			model.addAttribute("name", name);
+//			model.addAttribute("startdate", startdate);
+//			model.addAttribute("enddate", enddate);
+//
+//			for(FestivalVO i:list) {
+//			System.out.println("여기는"+i.getTitle());
+//		}
+//
+//			return "festival/festival_reset";
+//		}
 
 
 	@RequestMapping(value = "/insert_festival_review.do", method = RequestMethod.POST)
@@ -184,20 +185,6 @@ public class FestivalController {
 	}
 
 
-	//異뺤젣 �긽�꽭 �럹�씠吏� 異뺤젣 �젙蹂�
-//	@RequestMapping(value = "/detail.do")
-//	@ResponseBody
-//	public List<FestivalVO> detail(Model model,String tel) {
-//		System.out.println("FestivalController �뿉�꽌 detail�슂泥�");
-//		List<FestivalVO> list = festivalService.detail(tel);
-//
-//		System.out.println("detail()lists"+list);
-//
-//
-//
-//		return list;
-//	}
-
 
 	//축제 상세페이지
 	@RequestMapping(value = "/details.do")
@@ -228,10 +215,10 @@ public class FestivalController {
 		double longitude = list.get(0).getLongitude();
 
 
-		//주변 식당 정보 가져오기
-		List<AccomVO> lists = AccomService.test();
+		//주변 식당 정보 가져오기 
+		List<RestaurantVO> lists = restaurantService.selectAll();
 
-		for(AccomVO vo : lists) {
+		for(RestaurantVO vo : lists) {
 
 			//식당 위도 경도 지정 (식당은 DB에 위도 경도가 바껴있음)
 			double res_latitudes = vo.getLongitude();
@@ -241,30 +228,155 @@ public class FestivalController {
 
 		  Double distanceMeter = distance(latitude, longitude, res_latitudes, res_longitudes, "kilometer");
 
-			map.put(distanceMeter, vo.get_id() );
+			map.put(distanceMeter, vo.get_id());
 		}
-		 		
+		
 				
-			List<RestaurantVO> res= null;
+			
 			   List<Double> keySet = new ArrayList<>(map.keySet());
 
 		        System.out.println("==Key 값 기준으로 오름차순 정렬==");
 		        List<Double> keys = new ArrayList<>(map.keySet());
 		        Collections.sort(keys);
-		        for (Double key : keys) {
-		            System.out.println(String.format("주변 식당 입니다, Key : %s, Value : %s", key, map.get(key)));
+		        
+		       
+		        List<RestaurantVO> res= null;
+		        List<List<RestaurantVO>> result = new ArrayList<>();
+		        for(int i=0; i<=2; i++) {
+		        	System.out.println("<><<><><><><><식당><>"+(map.get(keys.get(i))));
+		        	System.out.println("넌뭐니"+keys.get(i));
+		        	
+		        	res= restaurantService.selectnear(map.get(keys.get(i)));
+		        	
+		    
 
-		}
+		        	for (RestaurantVO vo : res) {
+
+		    			ArrayList<String> imageList = new ArrayList<String>();
+		    			for (Binary img : vo.getImage()) {
+		    				String image = Base64.getEncoder().encodeToString(img.getData());
+		    				imageList.add(image);
+		    			}
+		    			vo.setImages(imageList);
+		    			//식당 거리
+		    			vo.setRange(keys.get(i));
+		    			
+		    		}
+
+
+		        	result.add(res);
+		        	
+
+		        }	//여기까지 식당 정보
+		        
+		        
+		       
+		        
+		        Map<Double, Object> accommap = new HashMap<Double, Object>();
+		       
+		        //숙박 정보 가져오기
+		       		       
+		       List<AccomVO> accom = AccomService.test();
+		       
+		      for(AccomVO vo : accom) {
+		    	  
+		    	  //숙박도 위도 경도가 바껴있음
+		    	  Double accom_latitue = vo.getLongitude();
+		    	  Double accom_longitude = vo.getLatitude();
+		    	  
+		    	  Double distanceMeter = distance(latitude, longitude, accom_latitue, accom_longitude, "kilometer");
+		    	  
+		    	  accommap.put(distanceMeter, vo.get_id());
+		    	
+		      }
+		      
+		     
+		      List<Double> keySets = new ArrayList<>(accommap.keySet());
+		      
+		        List<Double> keys2 = new ArrayList<>(accommap.keySet());
+		        Collections.sort(keySets);
+		        System.out.println("숙박이야>>>>>>>>>>>>>>"+keySets);
+		     
+	
+		     
+		      
+		      List<AccomVO> acc= null;
+		      List<List<AccomVO>> result2 = new ArrayList<>();
+		        
+		        for(int a=0; a<=2; a++) {
+		        	
+		        	acc = AccomService.selectOne(accommap.get(keySets.get(a)));
+		        	//System.out.println("여기는"+acc);
+		        	
+		        	for (AccomVO vo : acc) {
+
+		    			ArrayList<String> imageList = new ArrayList<String>();
+		    			for (Binary img : vo.getImage()) {
+		    				String image = Base64.getEncoder().encodeToString(img.getData());
+		    				imageList.add(image);
+		    			}
+		    			vo.setImages(imageList);
+		    			//숙박 거리
+		    			vo.setRange(keySets.get(a));
+		    			
+		    		}
+		        	result2.add(acc);
+		        	
+		        }
+		        
+		     
+		        ////
+		     		       
+//		        List<RestaurantVO> res= null;
+//		        List<List<RestaurantVO>> result = new ArrayList<>();
+//		        for(int i=0; i<=2; i++) {
+//		        	System.out.println("<><<><><><><><식당><>"+(map.get(keys.get(i))));
+//		        	System.out.println("넌뭐니"+keys.get(i));
+//		        	
+//		        	res= restaurantService.selectnear(map.get(keys.get(i)));
+//		        	
+//		    
+//
+//		        	for (RestaurantVO vo : res) {
+//
+//		    			ArrayList<String> imageList = new ArrayList<String>();
+//		    			for (Binary img : vo.getImage()) {
+//		    				String image = Base64.getEncoder().encodeToString(img.getData());
+//		    				imageList.add(image);
+//		    			}
+//		    			vo.setImages(imageList);
+//		    			//식당 거리
+//		    			vo.setRange(keys.get(i));
+//		    			
+//		    		}
+//
+//
+//		        	result.add(res);
+//		        	
+//
+//		        }	//여기까지 식당 정보
+		        ///
+		       
+		        
+
+		        
 
 		ArrayList<HashMap<String, String>> reviews = list.get(0).getReviews();
 
+	
 		model.addAttribute("scores", scoresAverage(reviews));
 		model.addAttribute("list", list);
-
+		model.addAttribute("reslist", result);
+		model.addAttribute("accom", result2);
+		
 		return "festival/festival_detail";
 	}
 
 	
+	
+
+
+
 	//근처축제
 	@RequestMapping(value="/nearnear.do")
 	@ResponseBody
@@ -285,17 +397,20 @@ public class FestivalController {
 			map.put(distanceMeter, vo.get_id() );
 	}
 
+		
 		 List<Double> keySet = new ArrayList<>(map.keySet());
 
 	        System.out.println("==Key 값 기준으로 오름차순 정렬==");
 	        List<Double> keys = new ArrayList<>(map.keySet());
 	        Collections.sort(keys);
-
-
+	     
+	        
+	        
 	        List<FestivalVO> lists= null;
 	        List<List<FestivalVO>> result = new ArrayList<>();
 	        for(int i=0; i<=2; i++) {
 	        	System.out.println("<><<><><><><><><>"+(map.get(keys.get(i))));
+	        	
 
 
 	        	lists = festivalService.near(map.get(keys.get(i)));
@@ -311,7 +426,6 @@ public class FestivalController {
 	    		}
 
 	        	result.add(lists);
-
 
 	        }
 

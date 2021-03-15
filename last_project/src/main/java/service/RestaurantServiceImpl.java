@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +62,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		return restaurantDAO.getCategoryData(word, pageNumber);
 	}
+	public List<RestaurantVO> selectnear(ObjectId objectId) {
+		
+		return restaurantDAO.selectnear(objectId);
+	}
+	
+	
 	
 }

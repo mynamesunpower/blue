@@ -50,5 +50,12 @@ public class AccomServiceImpl implements AccomService {
 		System.out.println("서비스 진입");
 		return accomDAO.getReviews(_id);
 	}
+	public List<AccomVO> selectOne(Object object) {
+		
+		return accomDAO.selectOne(object);
+	}
+	
+	
+	
 	
 }

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -54,6 +57,7 @@ public class AccomDAOImpl implements AccomDAO{
 	}
 
 	//숙소 상세
+	@Override
 	public AccomVO detail(String _id) {
 		// TODO Auto-generated method stub
 		System.out.println("상세 DAO 접근");
@@ -89,6 +93,14 @@ public class AccomDAOImpl implements AccomDAO{
 		System.out.println(vo.get_id());
 		
 		return vo.getReviews();
+	public List<AccomVO> selectOne(Object object) {
+		
+		Query query = new Query(Criteria.where("_id").is(object));
+		
+		List<AccomVO> list = mongoTemplate.find(query, AccomVO.class, "lodgment");
+		
+		
+		return list;
 	}
 	
 

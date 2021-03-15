@@ -18,11 +18,17 @@ public class RestaurantVO {
 	private String rest_day;
 	private String address;
 	private String tel;
+	private Double latitude;
+	private Double longitude;
+	private String category;
+
 	private ArrayList<Binary> image;
 	private ArrayList<String> images;
 	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews;
 	private String category;
+	
+	private Double range;
 	
 	
 	
@@ -74,6 +80,20 @@ public class RestaurantVO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	
+	public Double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+	public Double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+	
 	public ArrayList<Binary> getImage() {
 		return image;
 	}
@@ -98,6 +118,13 @@ public class RestaurantVO {
 	}
 	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
 		this.reviews = reviews;
+	}
+	
+	public Double getRange() {
+		return range;
+	}
+	public void setRange(Double range) {
+		this.range = range;
 	}
 	
 	

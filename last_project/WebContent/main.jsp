@@ -77,6 +77,7 @@
 			border-width: 0px;
 			border-radius: 0 0 0px 0
 		}
+		
 	</style>
 	<style type="text/css">
 		.hermes.tp-bullets {}
