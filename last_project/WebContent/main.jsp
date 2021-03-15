@@ -359,7 +359,7 @@
                                     <img src="img/main/main_mate.jpg" alt="" class="img-fluid">
                                     <div class="wrapper">
                                         <h2>메이트</h2>
-                                        <p>1223 macthed</p>
+                                        <p>1223 matched</p>
                                     </div>
                                 </a>
                             </div>

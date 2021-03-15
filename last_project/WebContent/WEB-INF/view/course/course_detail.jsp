@@ -775,9 +775,9 @@
 						</div>
 						<div class="modal-body" style="text-align: center;">
 							<div id="courseList">
-								<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
+								<h4>- <input type="text" style="width:35%;" value="내 코스 1">
 									<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1"></span>
+									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
 								</h4>
 							</div>
 							<div style="text-align: center;">
@@ -985,10 +985,11 @@
 	<!-- 로그인 -->
 	<script src="../../js/login.js"></script>
 	
-	<!-- 내 코스에 저장.. 현재 실패 중.. 코스 경로 넣는게 어렵쓰 -->
+	<!-- 내 코스에 저장 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$("#courseList span > input").on('click',function () {
+			// '선택' 클릭
+			$(document).on("click", "#choice", function(){
 				var courseName = $(this).parent().prev().val();
 				console.log(courseName);
 				// 코스의 키워드 뽑아서 배열에 넣기.
@@ -999,69 +1000,69 @@
 				</c:forEach>
 				// 콘솔로 확인
 				console.log(keyword)
-				
 				// 코스 경로
 				var coursePath_arr = new Array();
-				var obj = new Object();
 				<c:forEach items="${detail.coursePath}" var="coursePath">
-					var title = "${coursePath.title}";
-					obj.title = title;
-					var address = "${coursePath.address}";
-					obj.address  = address;
-					var tel = "${coursePath.tel}";
-					obj.tel = tel;
-				/*
 					var data = {
 							"title" : "${coursePath.title}",
 							"address" : "${coursePath.address}",
-							"tel" : "${coursePath.tel}"
+							"tel" : "${coursePath.tel}",
+							"latitude" : ${coursePath.latitude},
+							"longitude" : ${coursePath.longitude},
+							"image" : "${coursePath.image}"
 					}
-				*/
-					coursePath_arr.push(obj)
+					coursePath_arr.push(data)
 				</c:forEach>
 				// 콘솔로 확인
 				console.log(coursePath_arr)
-				var jsonData = JSON.stringify(coursePath_arr)
+				var info = {
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName,
+					"summary" : "${detail.summary}",					
+					"keyword" : keyword,							
+					"distance" : ${detail.distance},
+					"schedule" : "${detail.schedule}",									
+					"theme" : "${detail.theme}",
+					"coursePath" : coursePath_arr
+				}
+				console.log(info)
+				console.log(typeof(info))
+				var jsonData = JSON.stringify(info)
 				console.log("jsonData:"+jsonData)
 				console.log(typeof(jsonData))
+					
 				$.ajax({
-					type : "post",
-					async : true,
+					type : "POST",
 					url : "addMycourse.do",
-					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
-					data : {
-						"writer" : "${sessionScope.memberId}",
-						"courseName" : courseName,
-						"summary" : "${detail.summary}",					
-						"keyword" : keyword,							
-						"distance" : "${detail.distance}",
-						"schedule" : "${detail.schedule}",									
-						"theme" : "${detail.theme}",
-//						"coursePath" : jsonData
-					},
+					data : jsonData,
 					dataType : "json",					
-					success : function (data) {
+					success : function () {
 						alert("코스에 담기 완료")
 					},
 					error : function (err) {
-						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
-						console.log(err)
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
+						alert("코스에 담기 완료")
+						console.log("err:"+err)
 					}
 				})  // end of ajax.
-			}) // end of $('#choice') click function
-			
+			}) // end of $(document).on("click", "#choice", function()
+		}) // end of jQuery.
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
 			$("#addNewcourse").on('click', function(){
 				var courseName = $("#addcourseName").val();
 				$("#courseList").append(
-					"<h4>- <input type='text' style='width:35%;' id='courseName' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1'></span></h4>"		
+					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
 				);
 				$('#back').trigger('click');
+				$("#addcourseName").val("");
 			})
-		}) // end of jQuery.
-	
+		})
 	</script>
-	
 </body>
 
 </html>

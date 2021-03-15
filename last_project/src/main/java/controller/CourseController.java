@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.bson.types.Binary;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -75,19 +78,29 @@ public class CourseController {
 	
 	// 나의 코스 목록 진입
 	@RequestMapping(value = "course_list.do")
-	public String courseList(CourseVO vo, Model model, HttpSession session) {
+	public String courseList(Model model, HttpSession session) {
 		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("memberId:"+memberId);
-		List<CourseVO> list = courseService.viewMycourse(vo, memberId);
+		List<CourseVO> list = courseService.viewMycourse(memberId);
+		/*
+		for (CourseVO vo : list) {
+			ArrayList<String> imageList = new ArrayList<String>();
+			for(Binary img : vo.getImage()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setCoursePath(imageList);
+		}
+		*/
 		model.addAttribute("list", list);
 		return "course/course_list";
 	}
 	
-	// 코스 편집하기 진입
+	// 코스 편집하기 페이지 진입
 	@RequestMapping(value = "course_edit.do")
 	public String courseEdit(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
-		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요
+		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요   __ 회원 id 받는게 필요한가 ? 나중에 점검.
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("memberId:"+memberId);
 		System.out.println("course id:"+_id);
@@ -96,81 +109,42 @@ public class CourseController {
 		return "course/course_edit";
 	}
 	
-	// 다른 사람이 만든 코스를 내 코스에 담기
-	@PostMapping("addMycourse.do")
+	// 내 코스에 담기
+	@RequestMapping(value = "addMycourse.do", method = RequestMethod.POST)
 	@ResponseBody
-	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req/*, @RequestBody String jsonData*/){
+	public String addMycourse(HttpSession session, /*HttpServletRequest req, */@RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("id:"+memberId);
+		System.out.println("id===="+memberId);
 		// 키워드 가져오는거 확인용
+		/*
 		String[] temp = req.getParameterValues("keyword");
 		for(String keyword : temp) {
 			System.out.println("keyword:"+keyword);
 		}
-		
-		/*List<Map<String, Object>> resultMap = new ArrayList<Map<String,Object>>();
-		resultMap = JSONArray.fromObject(jsonData);
-		
-		for (Map<String, Object> map : resultMap) {
-			System.out.println(map.get("title") + "/" + map.get("address"));
+		*/
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
+			courseService.addMycourse(vo);
+			System.out.println("됐어!");
+		} catch(Exception e) {
+			System.out.println("error:"+e);
 		}
-		*/
-		CourseVO cvo = courseService.addMycourse(vo);
-		return cvo;		
-	}
+		response.setContentType("text/html; charset=UTF-8");
 		
-	// 축제_ 코스에 담기
-	@PostMapping("addMycourse_festival.do")
-	@ResponseBody
-	public CourseVO addFestival(CourseVO vo, @RequestBody String jsonData) {
-		
-		/*
-		Gson gson = new Gson();
-		List<Map<String, Object>> myPushList = null;
-		String jsonArray = jsonData;
-		myPushList = gson.fromJson(jsonArray, new TypeToken<List<Map<String, Object>>>() {}.getType());
-		
-		System.out.println(myPushList.toString());
-		*/
-		/*
-		Map<String, Object> result = new HashMap<String, Object>();
-		 
-	    Map<String, Object> paramMap = new HashMap<String, Object>();
-		
-		JSONArray array = JSONArray.fromObject(jsonData);
-		List<Map<String, Object>> resendList = new ArrayList<Map<String, Object>>();
-		for(int i=0;i<array.size();i++) {
-			JSONObject obj = (JSONObject) array.get(i);
-			
-			Map<String, Object> resendMap = new HashMap<String, Object>();
-			resendMap.put("title", obj.get("title"));
-			resendMap.put("address", obj.get("address"));
-			resendMap.put("startDate", obj.get("startDate"));
-			resendMap.put("endDate", obj.get("endDate"));
-			resendMap.put("fee", obj.get("fee"));
-			resendMap.put("festel", obj.get("festel"));
-			resendMap.put("host", obj.get("host"));
-			
-			resendList.add(resendMap);
-		}
-		vo.setCoursePath(resendList);
-		*/
-		/*
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("writer", vo.getWriter());
-		map.put("courseName", vo.getCourseName());
-		map.put("", vo.get)
-		*/
-		CourseVO cvo = courseService.addMycourse(vo);
-		return cvo;
+		return null;
 	}
 	
-	// 코스 지우기  _ a 태그에 .do 를 걸어서 그런가 return이 안 먹힘. 
+	// 코스 지우기
 	@RequestMapping(value = "deleteCourse.do")
-	public String deleteCourse(@RequestParam String _id) {
+	public String deleteCourse(@RequestParam String _id, HttpSession session) {
+		// 접속 유저 id
+		String memberId = (String) session.getAttribute("memberId");
+		System.out.println("id===="+memberId);
+		
 		courseService.deleteCourse(_id);
-		return "course/course_list";
+		return "redirect:course_list.do?memberId="+memberId;
 	}
 	
 	// 코스 편집
