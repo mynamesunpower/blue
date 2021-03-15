@@ -2,7 +2,9 @@ package main.java.controller;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,12 +13,23 @@ import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
 import main.java.service.CourseService;
 import main.java.vo.CourseVO;
+import main.java.vo.FestivalVO;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping(value = "course/")
@@ -84,24 +97,87 @@ public class CourseController {
 	}
 	
 	// 다른 사람이 만든 코스를 내 코스에 담기
-	@RequestMapping(value = "addMycourse.do")
+	@PostMapping("addMycourse.do")
 	@ResponseBody
-	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req){
-		String[] temp = req.getParameterValues("keyword");
-		for(String data : temp) {
-			System.out.println("data:"+data);
-		}
-		String[] coursePath = req.getParameterValues("coursePath");
-		System.out.println(coursePath);
-		/*
-		for(String data : coursePath) {
-			System.out.println("coursePath:"+data);
-		}*/
-		
+	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req/*, @RequestBody String jsonData*/){
+		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
+		System.out.println("id:"+memberId);
+		// 키워드 가져오는거 확인용
+		String[] temp = req.getParameterValues("keyword");
+		for(String keyword : temp) {
+			System.out.println("keyword:"+keyword);
+		}
 		
-		vo.setWriter(memberId);
-		CourseVO result = courseService.addMycourse(vo, memberId);
-		return result;
+		/*List<Map<String, Object>> resultMap = new ArrayList<Map<String,Object>>();
+		resultMap = JSONArray.fromObject(jsonData);
+		
+		for (Map<String, Object> map : resultMap) {
+			System.out.println(map.get("title") + "/" + map.get("address"));
+		}
+		*/
+		CourseVO cvo = courseService.addMycourse(vo);
+		return cvo;		
+	}
+		
+	// 축제_ 코스에 담기
+	@PostMapping("addMycourse_festival.do")
+	@ResponseBody
+	public CourseVO addFestival(CourseVO vo, @RequestBody String jsonData) {
+		
+		/*
+		Gson gson = new Gson();
+		List<Map<String, Object>> myPushList = null;
+		String jsonArray = jsonData;
+		myPushList = gson.fromJson(jsonArray, new TypeToken<List<Map<String, Object>>>() {}.getType());
+		
+		System.out.println(myPushList.toString());
+		*/
+		/*
+		Map<String, Object> result = new HashMap<String, Object>();
+		 
+	    Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		JSONArray array = JSONArray.fromObject(jsonData);
+		List<Map<String, Object>> resendList = new ArrayList<Map<String, Object>>();
+		for(int i=0;i<array.size();i++) {
+			JSONObject obj = (JSONObject) array.get(i);
+			
+			Map<String, Object> resendMap = new HashMap<String, Object>();
+			resendMap.put("title", obj.get("title"));
+			resendMap.put("address", obj.get("address"));
+			resendMap.put("startDate", obj.get("startDate"));
+			resendMap.put("endDate", obj.get("endDate"));
+			resendMap.put("fee", obj.get("fee"));
+			resendMap.put("festel", obj.get("festel"));
+			resendMap.put("host", obj.get("host"));
+			
+			resendList.add(resendMap);
+		}
+		vo.setCoursePath(resendList);
+		*/
+		/*
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("writer", vo.getWriter());
+		map.put("courseName", vo.getCourseName());
+		map.put("", vo.get)
+		*/
+		CourseVO cvo = courseService.addMycourse(vo);
+		return cvo;
+	}
+	
+	// 코스 지우기  _ a 태그에 .do 를 걸어서 그런가 return이 안 먹힘. 
+	@RequestMapping(value = "deleteCourse.do")
+	public String deleteCourse(@RequestParam String _id) {
+		courseService.deleteCourse(_id);
+		return "course/course_list";
+	}
+	
+	// 코스 편집
+	@RequestMapping(value = "editCourse.do")
+	@ResponseBody
+	public String editCourse(@RequestBody CourseVO vo, @RequestParam String _id) {
+		courseService.editCourse(vo, _id);
+		return "course/course_list";
 	}
 }

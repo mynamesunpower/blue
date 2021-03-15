@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <% String tel = request.getParameter("tel"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +40,7 @@
 .category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
 .category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 .category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
-.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.') no-repeat;} 
+.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;} 
 .category .ico_coffee {background-position:-10px 0;}  
 .category .ico_store {background-position:-10px -36px;}   
 .category .ico_carpark {background-position:-10px -72px;} 
@@ -56,7 +55,7 @@
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(img/login/test.png) no-repeat;}
+#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
 #category li .bank {background-position: -10px 0;}
 #category li .mart {background-position: -10px -36px;}
 #category li .pharmacy {background-position: -10px -72px;}
@@ -107,9 +106,127 @@
 	</div>
 	<!-- End Preload -->
 
-	<%@ include file="../../../header.jsp" %>
+	<div class="layer"></div>
+	<!-- Mobile menu overlay mask -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
+	<!-- ====================헤더========================= -->
+    <header>
+        <div id="top_line">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
+                    <div class="col-6">
+                        <ul id="top_links">
+                            <li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                            <!-- 로그인 세션이 있으면, 모든 페이지의 헤더 부분이 56~59행 처럼 나와야 함. -->
+                            <!-- <li><span style="color: blue;">홍길동</span>님 환영합니다</li>
+                            <li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
+                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
+                            <li><a href="#" class="icon-logout">로그아웃</a></li> -->
+                        </ul>
+                    </div>
+                </div><!-- End row -->
+            </div><!-- End container-->
+        </div><!-- End top line-->
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <div id="logo_home">
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                        <!-- 로그인 세션이 있으면, 로고 클릭 시 mainAfterLogin.jsp로 이동되게-->
+                        <!-- <h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1> -->
+                    </div>
+                </div>
+                <nav class="col-9">
+                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                    <div class="main-menu">
+                        <div id="header_menu">
+                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">
+                        </div>
+                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+                         <ul>
+                            <li class="submenu">
+                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
+                                <!-- 로그인 세션이 있으면, 홈 버튼 클릭 시 mainAfterLogin.jsp로 이동되게-->
+                                <!-- <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i> -->
+                                    
+                            </li>
+                            <li class="submenu">
+                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a>
+                                <ul>
+                                    <li><a href="../festival.jsp">축제</a></li>
+                                    <li><a href="../accommodations_list.jsp">숙박</a></li>
+                                    <li><a href="restaurants_list.do">식당</a></li>
+                                    <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
+                                        <ul>
+                                            <li><a href="#">테스트2</a></li>
+                                            <li><a href="#">테스트3</a></li>
+                                            <li><a href="#">테스트4</a></li>
+                                            <li><a href="#">테스트5</a></li>
+                                        </ul>
+                                    </li> -->
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a>
+                                <ul>
+                                    <!-- 메이트서비스 아닌 회원은 mate_index_default -->
+                                    <!-- 메이트서비스 회원은 mate_index -->
+                                    <li><a href="../mate/mate_index_default.jsp">메이트 서비스는?</a></li>
+                                    <li><a href="#">나의 메이트 </a></li>
+                                </ul>
+                            </li>
+                             <li class="submenu">
+                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a><ul>
+                                    <li><a href="../course/course_main.jsp">코스 자랑 마당</a></li>
+                                    <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
+                                    <li><a href="../course/course_list.jsp">나의 코스 목록</a></li>
+                                    </ul>
+                            </li>
+                        </ul>
+                    </div><!-- End main-menu -->
+                    
+                    <!-- 헤더 메뉴 아이콘 -->
+                    <ul id="top_tools">
+                        <li>
+                            <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
+                        </li>
+                        <!-- 즐겨찾기.. 장바구니처럼 넣는 거 하느냐 마느냐~ 고민쓰-->
+                        <li>
+                            <div class="dropdown dropdown-cart">
+                                <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
+                                <ul class="dropdown-menu" id="cart_items">
+                                    <li>
+                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
+                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
+                                        <a href="#" class="action"><i class="icon-trash"></i></a>
+                                    </li>
+                                    <li>
+                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
+                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
+                                        <a href="#" class="action"><i class="icon-trash"></i></a>
+                                    </li>
+                                    <li>
+                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
+                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
+                                        <a href="#" class="action"><i class="icon-trash"></i></a>
+                                    </li>
+                                    <li>
+                                        <div>Total: <span>$120.00</span></div>
+                                        <a href="cart.jsp" class="button_drop">Go to cart</a>
+                                        <a href="payment.jsp" class="button_drop outline">Check out</a>
+                                    </li>
+                                </ul>
+                            </div><!-- End dropdown-cart-->
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div><!-- container -->
+    </header><!-- ====================헤더 끝 ====================== -->
+
+	<section class="parallax-window" data-parallax="scroll" data-image-src="img/700_470_test_image_1.jpg" data-natural-width="700" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -117,13 +234,13 @@
 				
 							       <c:forEach items="${list}" var="list">
 						
-						<h1>${list.title }</h1>
+						<h1>나는<%=tel%></h1>
 						<span class='fesaddress'>${list.address}</span>
 						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
-							<span class='fesdate'><h2 style="color: #AABBFF;">${list.startDate} ~ ${list.endDate }</h2></span>
+							<span class='fesdate'><h2 style="color: #AABBFF;">${list.start_date} ~ ${list.end_date }</h2></span>
 						</div>
 					</div>
 				</div>
@@ -143,7 +260,7 @@
 					</li> -->
 					<li><a href="festival.jsp">축제</a>
 					</li>
-					<li class='fesname'>${list.title}</li>
+					<li class='fesname'>${list.festival_name}</li>
 				</ul>
 			</div>
 		</div>
@@ -151,6 +268,7 @@
 
 		<div class="collapse show" id="collapseMap"> 
 			
+
 <!-- 지표 -->
 <p style="margin-top:-12px">
     <em class="link">
@@ -232,6 +350,7 @@ function addEventHandle(target, type, callback) {
         target.attachEvent('on' + type, callback);
     }
 }
+
 // 카테고리 검색을 요청하는 함수입니다
 function searchPlaces() {
     if (!currCategory) {
@@ -240,6 +359,7 @@ function searchPlaces() {
     
     // 커스텀 오버레이를 숨깁니다 
     placeOverlay.setMap(null);
+
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
     
@@ -254,6 +374,7 @@ function placesSearchCB(data, status, pagination) {
         displayPlaces(data);
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
         // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
+
     } else if (status === kakao.maps.services.Status.ERROR) {
         // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
         
@@ -283,11 +404,10 @@ function displayPlaces(places) {
             })(marker, places[i]);
     }
 }
+
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, order) {
-    //var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-   //img/login/naver_login.png
-    var imageSrc = 'img/login/test.png',
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
     //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
     //var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';
         imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
@@ -315,10 +435,12 @@ function removeMarker() {
     }   
     markers = [];
 }
+
 // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 function displayPlaceInfo (place) {
     var content = '<div class="placeinfo">' +
                     '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+
     if (place.road_address_name) {
         content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
                     '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
@@ -329,6 +451,7 @@ function displayPlaceInfo (place) {
     content += '    <span class="tel">' + place.phone + '</span>' + 
                 '</div>' + 
                 '<div class="after"></div>';
+
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
     placeOverlay.setMap(map);  
@@ -339,10 +462,12 @@ function displayPlaceInfo (place) {
 function addCategoryClickEvent() {
     var category = document.getElementById('category'),
         children = category.children;
+
     for (var i=0; i<children.length; i++) {
         children[i].onclick = onClickCategory;
     }
 }
+
 // 카테고리를 클릭했을 때 호출되는 함수입니다
 function onClickCategory() {
     var id = this.id,
@@ -360,6 +485,7 @@ function onClickCategory() {
         searchPlaces();
     }
 }
+
 // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
 function changeCategoryClass(el) {
     var category = document.getElementById('category'),
@@ -382,6 +508,7 @@ var markerPosition  = new kakao.maps.LatLng(${list.latitude} , ${list.longitude}
 var marker = new kakao.maps.Marker({
     position: markerPosition
 });
+
 // 마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);
 </script>
@@ -426,7 +553,7 @@ marker.setMap(map);
 
 					<div id="carousel-home">
                         <div class="owl-carousel owl-theme">
-                        <c:forEach items="${list.images}" var="image" >
+                        <c:forEach items="${list.images}" var="image">
 			
                             <div><img class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
                                 <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.0)">
@@ -455,7 +582,7 @@ marker.setMap(map);
                             <div class="row">
 								<div class="col-md-6">
 									<ul class="list_ok">
-										<li>시작일<span class='fesstartdate'>${list.startDate }</span></li>
+										<li>시작일<span class='fesstartdate'>${list.start_date }</span></li>
 										<li>전화번호<span class='festel'>${list.tel }</span></li>
 										<li>주소<span class='fesaddress'>${list.address }</span></li>
 										<li>주최<span class='feshost'>${list.host}</span></li>
@@ -463,7 +590,7 @@ marker.setMap(map);
 								</div>
 								<div class="col-md-6">
 									<ul class="list_ok">
-										<li>종료일<span class='fesenddate'>${list.endDate }</span></li>
+										<li>종료일<span class='fesenddate'>${list.end_date }</span></li>
 										<li>홈페이지<span><a href="https://www.nfm.go.kr" class=feshomepage>${list.homepage }</a></span></li>
 										<li>가격<span class='fesfee'>${list.fee }</span></li>
 									</ul>
@@ -536,6 +663,7 @@ kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
         
         // 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
         deleteDistnce();
+
         // 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
         deleteCircleDot();
     
@@ -571,6 +699,7 @@ kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
         
         // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
         clickLine.setPath(path);
+
         var distance = Math.round(clickLine.getLength());
         displayCircleDot(clickPosition, distance);
     }
@@ -579,11 +708,13 @@ kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
 // 지도에 마우스무브 이벤트를 등록합니다
 // 선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
 kakao.maps.event.addListener(maps, 'mousemove', function (mouseEvent) {
+
     // 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
     if (drawingFlag){
         
         // 마우스 커서의 현재 위치를 얻어옵니다 
         var mousePosition = mouseEvent.latLng; 
+
         // 마우스 클릭으로 그려진 선의 좌표 배열을 얻어옵니다
         var path = clickLine.getPath();
         
@@ -616,11 +747,13 @@ kakao.maps.event.addListener(maps, 'rightclick', function (mouseEvent) {
     
         // 선을 구성하는 좌표의 개수가 2개 이상이면
         if (path.length > 1) {
+
             // 마지막 클릭 지점에 대한 거리 정보 커스텀 오버레이를 지웁니다
             if (dots[dots.length-1].distance) {
                 dots[dots.length-1].distance.setMap(null);
                 dots[dots.length-1].distance = null;    
             }
+
             var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
                 content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
                 
@@ -628,17 +761,20 @@ kakao.maps.event.addListener(maps, 'rightclick', function (mouseEvent) {
             showDistance(content, path[path.length-1]);  
              
         } else {
+
             // 선을 구성하는 좌표의 개수가 1개 이하이면 
             // 지도에 표시되고 있는 선과 정보들을 지도에서 제거합니다.
             deleteClickLine();
             deleteCircleDot(); 
             deleteDistnce();
+
         }
         
         // 상태를 false로, 그리지 않고 있는 상태로 변경합니다
         drawingFlag = false;          
     }  
 });    
+
 // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
 function deleteClickLine() {
     if (clickLine) {
@@ -646,6 +782,7 @@ function deleteClickLine() {
         clickLine = null;        
     }
 }
+
 // 마우스 드래그로 그려지고 있는 선의 총거리 정보를 표시하거
 // 마우스 오른쪽 클릭으로 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 생성하고 지도에 표시하는 함수입니다
 function showDistance(content, position) {
@@ -669,6 +806,7 @@ function showDistance(content, position) {
         });      
     }
 }
+
 // 그려지고 있는 선의 총거리 정보와 
 // 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 삭제하는 함수입니다
 function deleteDistnce () {
@@ -717,6 +855,7 @@ function deleteCircleDot() {
         if (dots[i].circle) { 
             dots[i].circle.setMap(null);
         }
+
         if (dots[i].distance) {
             dots[i].distance.setMap(null);
         }
@@ -749,6 +888,7 @@ function getTimeHTML(distance) {
         bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
     }
     bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
+
     // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
     var content = '<ul class="dotOverlay distanceInfo">';
     content += '    <li>';
@@ -799,46 +939,29 @@ function getTimeHTML(distance) {
 					</div>
                     <hr>
 
-										<div class="row">
+					<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
-							<c:if test="${sessionScope.memberId ne null}">
-								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
-							</c:if>
+							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">${list.get(0).reviews.size()} 개의 후기
+							<div id="general_rating">11 건의 리뷰
 								<div class="rating">
-									<c:forEach begin="1" end="${scores[4]}">
-										<i class="icon-smile voted"></i>
-									</c:forEach>
-									<c:forEach begin="1" end="${5-scores[4]}">
-										<i class="icon-smile"></i>
-									</c:forEach>
+									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 								</div>
 							</div>
 							<!-- End general_rating -->
 							<div class="row" id="rating_summary">
 								<div class="col-md-6">
 									<ul>
-										<li>음식
+										<li>위치
 											<div class="rating">
-												<c:forEach begin="1" end="${scores[0]}">
-													<i class="icon-smile voted"></i>
-												</c:forEach>
-												<c:forEach begin="1" end="${5-scores[0]}">
-													<i class="icon-smile"></i>
-												</c:forEach>
+												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</div>
 										</li>
-										<li>서비스
+										<li>즐거움
 											<div class="rating">
-												<c:forEach begin="1" end="${scores[1]}">
-													<i class="icon-smile voted"></i>
-												</c:forEach>
-												<c:forEach begin="1" end="${5-scores[1]}">
-													<i class="icon-smile"></i>
-												</c:forEach>
+												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
 											</div>
 										</li>
 									</ul>
@@ -847,22 +970,12 @@ function getTimeHTML(distance) {
 									<ul>
 										<li>가격
 											<div class="rating">
-												<c:forEach begin="1" end="${scores[2]}">
-													<i class="icon-smile voted"></i>
-												</c:forEach>
-												<c:forEach begin="1" end="${5-scores[2]}">
-													<i class="icon-smile"></i>
-												</c:forEach>
+												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</div>
 										</li>
-										<li>분위기
+										<li>질
 											<div class="rating">
-												<c:forEach begin="1" end="${scores[3]}">
-													<i class="icon-smile voted"></i>
-												</c:forEach>
-												<c:forEach begin="1" end="${5-scores[3]}">
-													<i class="icon-smile"></i>
-												</c:forEach>
+												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
 											</div>
 										</li>
 									</ul>
@@ -870,71 +983,44 @@ function getTimeHTML(distance) {
 							</div>
 							<!-- End row -->
 							<hr>
-							
-							<!-- 리뷰들 들어갑니다 -->
-							<c:forEach items="${list.get(0).reviews}" var="review">
-								<div class="review_strip_single rating_summary">
-
-									<h5>${review.id}</h5>
-									<div>${review.date}</div>
-									<hr>
-									<p style="font-size:14px;">
-										${review.content}
-									</p>
-									<div class="row">
-										<div class="col-md-6">
-											<ul>
-												<li>축제
-													<div class="rating">
-														<c:forEach begin="1" end="${Integer.parseInt(review.festival)}">
-															<i class="icon-smile voted"></i>
-														</c:forEach>
-														<c:forEach begin="1" end="${5 - Integer.parseInt(review.festival)}">
-															<i class="icon-smile"></i>
-														</c:forEach>
-													</div>
-												</li>
-												<li>서비스
-													<div class="rating">
-														<c:forEach begin="1" end="${Integer.parseInt(review.service)}">
-															<i class="icon-smile voted"></i>
-														</c:forEach>
-														<c:forEach begin="1" end="${5 - Integer.parseInt(review.service)}">
-															<i class="icon-smile"></i>
-														</c:forEach>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="col-md-6">
-											<ul>
-												<li>가격
-													<div class="rating">
-														<c:forEach begin="1" end="${Integer.parseInt(review.price)}">
-															<i class="icon-smile voted"></i>
-														</c:forEach>
-														<c:forEach begin="1" end="${5 - Integer.parseInt(review.price)}">
-															<i class="icon-smile"></i>
-														</c:forEach>
-													</div>
-												</li>
-												<li>분위기
-													<div class="rating">
-														<c:forEach begin="1" end="${Integer.parseInt(review.quality)}">
-															<i class="icon-smile voted"></i>
-														</c:forEach>
-														<c:forEach begin="1" end="${5 - Integer.parseInt(review.quality)}">
-															<i class="icon-smile"></i>
-														</c:forEach>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
+							<div class="review_strip_single">
+								<img src="img/avatar1.jpg" alt="Image" class="rounded-circle">
+								<small> 2021 - 02 - 23 - 19:24 </small>
+								<h4>김형민</h4>
+								<p>
+									솔직히 노잼입니다. 이딴 것도 축제라고 개최한 겁니까? 내 돈 돌려내세요 당장. 가족들과 함께 왔다면 미안해서 큰일 날 뻔 했습니다. 망신이라고요 망신 알겠어요?
+								</p>
+								<div class="rating">
+									<i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile "></i><i class="icon-smile"></i><i class="icon-smile"></i>
 								</div>
-								
-							</c:forEach> <!-- 리뷰 반복문 종료 -->
-							
+							</div>
+							<!-- End review strip -->
+
+							<div class="review_strip_single">
+								<img src="img/avatar3.jpg" alt="Image" class="rounded-circle">
+								<small> 2021 - 02 - 22 - 23:17 </small>
+								<h4>김용관</h4>
+								<p>
+									사실 가보진 않았는데 리뷰를 달 수 있길래 달아봤음 ㅋㅋ 기모링~
+								</p>
+								<div class="rating">
+									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
+								</div>
+							</div>
+							<!-- End review strip -->
+
+							<div class="review_strip_single last">
+								<img src="img/avatar2.jpg" alt="Image" class="rounded-circle">
+								<small> 2021 - 02 - 22 - 00:59 </small>
+								<h4>무명의 후기</h4>
+								<p>
+									다른 건 모르겠지만 연인끼리 즐겁게 구경하기에는 최고였어요! 더욱 더 연인관계에 도움이 되었던 축제이지 않았나 싶습니다. 조금 고급스럽게 놀기 좋은 거 같아요. 사실 무슨 내용인진 하나도 모르겠지만 말이죠. 이제 여친도 절 다시 보았겠죠? 캬캬캬캬
+								</p>
+								<div class="rating">
+									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+								</div>
+							</div>
+							<!-- End review strip -->
 						</div>
 					</div>
 				</div>
@@ -953,48 +1039,88 @@ function getTimeHTML(distance) {
                         <a href="#" class="btn_map" data-toggle="modal" data-target="#put_into_course">코스에 담기</a>
                     </p> <!-- 코스에 담기 끝 -->
                     <!-- 티켓 구매하기 -->
-                   <!-- <p>
+                    <p>
                         <a href="#" class="btn_map">티켓 구매하기</a>
-                    </p> --><!-- 티켓 구매하기 끝 -->
+                    </p> <!-- 티켓 구매하기 끝 -->
                     
                     <!-- 주변 식당 보기 -->
 					<div class="box_style_1">
 						<h3 class="inner">주변 식당</h3>
                         
                         <!-- 식당 1 -->
-                        <c:forEach items="${reslist}" var="res">
                         <div class="row near-place">
-                                            
                             <div class="col-12 near-place-image">
-                            		 <c:forEach items="${res[0].images}" var="image" begin="0" end="0">
-                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
-                               		 </c:forEach>
+                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
                                 </a>
                             </div>
                             <div class="col-12 near-place-info">
                                 <a href="#">
 								<div class="near-place-name">
-								${res[0].title}<span>${res[0].category}</span>
+								맛있는식당<span>디저트</span>
 								</div>
                                 <div class="near-place-address">
-                                ${res[0].address}
+                                서울시 무슨구 맛있는길 223 1F
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>4.2<span class="near-place-tel">${res[0].tel }</span>
+								<span class="star">★</span>4.2<span class="near-place-tel">02-3392-2213</span>
 								</div>
-								
                                 <div class="col-12" class="near-place-text">
-                                <c:set var="num1" value="${res[0].range }" />
-                                축제지로부터
-                                <fmt:formatNumber type="number"  pattern="0.00" value="${ ((num1*100) - ((num1*100)%1)) * (1/100)   } " />
-                                km 거리
+                                축제지로부터 3.04km 거리
                                 </div>
                                 </a>
                             </div>
                         </div>
-                        </c:forEach>
                         
-                     
+                        <!-- 식당 2 -->
+						<hr class="near-place-hr">
+                        <div class="row near-place">
+                            <div class="col-12 near-place-image">
+                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
+                                </a>
+                            </div>
+                            <div class="col-12 near-place-info">
+                                <a href="#">
+								<div class="near-place-name">
+								맛있는식당<span>디저트</span>
+								</div>
+                                <div class="near-place-address">
+                                서울시 무슨구 맛있는길 223 1F
+                                </div>
+                                <div class="near-place-score">
+								<span class="star">★</span>4.2<span class="near-place-tel">02-3392-2213</span>
+								</div>
+                                <div class="col-12" class="near-place-text">
+                                축제지로부터 3.04km 거리
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 식당 3 -->
+						<hr class="near-place-hr">
+						<div class="row near-place">
+                            <div class="col-12 near-place-image">
+                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
+                                </a>
+                            </div>
+                            <div class="col-12 near-place-info">
+                                <a href="#">
+								<div class="near-place-name">
+								맛있는식당<span>디저트</span>
+								</div>
+                                <div class="near-place-address">
+                                서울시 무슨구 맛있는길 223 1F
+                                </div>
+                                <div class="near-place-score">
+								<span class="star">★</span>4.2<span class="near-place-tel">02-3392-2213</span>
+								</div>
+                                <div class="col-12" class="near-place-text">
+                                축제지로부터 3.04km 거리
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+						<hr class="near-place-hr">
 					</div>
 					<!-- 주변 식당 끝 -->
                     
@@ -1002,37 +1128,75 @@ function getTimeHTML(distance) {
                     <!-- 주변 숙박 -->
                     <div class="box_style_1">
 						<h3 class="inner">주변 숙박</h3>
-					 <c:forEach items="${accom}" var="accom">
                         <div class="row near-place">
                             <div class="col-12 near-place-image">
-                            <c:forEach items="${accom[0].images}" var="image" begin="0" end="0">
-                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
-                                 </c:forEach>
+                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
                                 </a>
                             </div>
                             <div class="col-12 near-place-info">
                                 <a href="#">
 								<div class="near-place-name">
-								${accom[0].title}<span>호텔</span>
+								슈퍼호텔<span>호텔</span>
 								</div>
                                 <div class="near-place-address">
-                             ${accom[0].address}
+                                서울시 무슨구 편안한길 2541
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>1.5<span class="near-place-tel">${accom[0].tel}</span>
+								<span class="star">★</span>1.5<span class="near-place-tel">02-3392-2213</span>
 								</div>
                                 <div class="col-12" class="near-place-text">
-                                  <c:set var="num1" value="${accom[0].range }" />
-                                축제지로부터
-                                  <fmt:formatNumber type="number"  pattern="0.00" value="${ ((num1*100) - ((num1*100)%1)) * (1/100)   } " />
-                                 km 거리
+                                축제지로부터 1.04km 거리
                                 </div>
                                 </a>
                             </div>
                         </div>
-                        </c:forEach>
-					
-
+						<hr class="near-place-hr">
+                        <div class="row near-place">
+                            <div class="col-12 near-place-image">
+                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
+                                </a>
+                            </div>
+                            <div class="col-12 near-place-info">
+                                <a href="#">
+								<div class="near-place-name">
+								파워모텔<span>모텔</span>
+								</div>
+                                <div class="near-place-address">
+                                서울시 무슨구 편안한길 2447
+                                </div>
+                                <div class="near-place-score">
+								<span class="star">★</span>4.8<span class="near-place-tel">02-3392-2213</span>
+								</div>
+                                <div class="col-12" class="near-place-text">
+                                축제지로부터 1.05km 거리
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+						<hr class="near-place-hr">
+						<div class="row near-place">
+                            <div class="col-12 near-place-image">
+                                <a href="#"><img class="img-fluid" src='img/297_95.png' alt="맞춰넣으세요">
+                                </a>
+                            </div>
+                            <div class="col-12 near-place-info">
+                                <a href="#">
+								<div class="near-place-name">
+								낄낄펜션<span>펜션</span>
+								</div>
+                                <div class="near-place-address">
+                                서울시 무슨구 편안한길 33-13
+                                </div>
+                                <div class="near-place-score">
+								<span class="star">★</span>4.1<span class="near-place-tel">02-3392-2213</span>
+								</div>
+                                <div class="col-12" class="near-place-text">
+                                축제지로부터 1.24km 거리
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+						<hr class="near-place-hr">
 					</div>
 					<!-- 주변 숙박 끝  -->
                     
@@ -1040,8 +1204,8 @@ function getTimeHTML(distance) {
 					<div class="box_style_4">
 						<i class="icon_set_1_icon-90"></i>
 						<h4><span>전화</span>로 문의</h4>
-						<a href="tel://${list.get(0).tel}" class="phone">${list.get(0).tel}</a>
-						
+						<a href="tel://0237043142" class="phone">+82) 02-3704-3142</a>
+						<small>살리게 되면 살리고 아니면 싹둑!</small>
 					</div> <!-- 전화로 문의 끝 -->
 
 				</aside>
@@ -1056,7 +1220,121 @@ function getTimeHTML(distance) {
 	</main>
 	<!-- End main -->
 
-	<%@ include file="../../../footer.jsp" %>
+	<footer class="revealed">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>도움이 필요하세요?</h3>
+                    <a href="tel://004542344599" id="phone">+82 10 3333 4444</a>
+                    <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
+                </div>
+                <div class="col-md-4">
+                    <h3>축축빵빵</h3>
+                    <ul>
+                        <li><a href="#">축축빵빵은요!</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">로그인</a></li>
+                        <li><a href="member/memberJoin.do">회원가입</a></li>
+                         <li><a href="#">이용 약관</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>언어 선택</h3>
+                    <div class="styled-select">
+                        <select name="lang" id="lang">
+                            <option value="Korean" selected>한국어</option>
+                            <option value="English">English</option>
+                            <option value="Japanese">日本語</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- End row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="social_footer">
+                        <ul>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-google"></i></a></li>
+                            <li><a href="#"><i class="icon-instagram"></i></a></li>
+                            <li><a href="#"><i class="icon-pinterest"></i></a></li>
+                            <li><a href="#"><i class="icon-vimeo"></i></a></li>
+                            <li><a href="#"><i class="icon-youtube-play"></i></a></li>
+                        </ul>
+                        <p>© Kosmo73 - Blue 2021</p>
+                    </div>
+                </div>
+            </div><!-- End row -->
+        </div><!-- End container -->
+    </footer><!-- End footer -->
+
+	<div id="toTop"></div><!-- Back to top button -->
+	
+	<!-- Search Menu -->
+	<div class="search-overlay-menu">
+		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
+		<form role="search" id="searchform" method="get">
+			<input value="" name="q" type="search" placeholder="Search..." />
+			<button type="submit"><i class="icon_set_1_icon-78"></i>
+			</button>
+		</form>
+	</div><!-- End Search Menu -->
+	
+	<!-- Sign In Popup -->
+	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+		<div class="small-dialog-header">
+			<h3>로그인</h3>
+		</div>
+		<form>
+			<div class="sign-in-wrapper">
+                <div class="snsLogin" style="text-align: center;">
+                    <!-- <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/naver_login.png); border: 0; outline: 0;" > -->
+                    <!--  <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(img/login/kakao_login.png); border: 0; outline: 0;" > -->
+                    <a href="naverlogin.do"><img src ="/img/login/naver_login2.PNG"></a>
+                    <br/>
+                    <br/>
+                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=41e45128f773156a833facd8e3b77b49&response_type=code&redirect_uri=http://localhost:8080/login2.do&response_type=code"><img src ="/img/login/kakao_login2.png"></a>
+                </div>
+				<div class="divider"><span>Or</span></div>
+				<div class="form-group">
+					<label>ID</label>
+					<input type="text" class="form-control" name="loginId" id="loginId">
+					<i class="icon_pencil"></i>
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" class="form-control" name="password" id="password" value="">
+					<i class="icon_lock_alt"></i>
+				</div>
+				<div class="clearfix add_bottom_15">
+					<div class="checkboxes float-left">
+						<input id="remember-me" type="checkbox" name="check">
+						<label for="remember-me">기억하기</label>
+					</div>
+					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
+				</div>
+				<div class="text-center">
+                    <input type="button" value="로그인" class="btn_login">
+                    <!-- <a type="button" class="btn_login">로그인</a> -->
+                </div>
+				<div class="text-center">
+					계정이 없으신가요? <a href="member/memberJoin.do">회원가입</a>
+				</div>
+				<div id="forgot_pw">
+					<div class="form-group">
+                        <label>하단에 이메일을 작성해주세요.</label>
+						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
+						<i class="icon_mail_alt"></i>
+					</div>
+					
+                    <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
+					<div class="text-center"><input type="button" id="findPassBtn" class="btn_1" value="비밀번호 재설정"></div>
+				</div>
+			</div>
+		</form>
+		<!--form -->
+	</div>
+	<!-- /Sign In Popup -->
 
 	<!-- Modal put_into_course-->
 	<div class="modal fade" id="put_into_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -1068,10 +1346,8 @@ function getTimeHTML(distance) {
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div>
-						<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
-							<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-							<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
-						</h4>
+						<h4>- 내 코스 1<span style="padding-left: 250px;"><input type="button" value="선택" class="btn_1" id=""></span></h4>
+						<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
 					</div>
 					<div style="text-align: center;">
 						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
@@ -1104,7 +1380,7 @@ function getTimeHTML(distance) {
 		</div>
 	</div> <!-- End of Modal add_course-->
 
-	<!-- Modal Review 리뷰 폼 -->
+	<!-- Modal Review -->
 	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -1115,50 +1391,51 @@ function getTimeHTML(distance) {
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="insert_festival_review.do" name="review_tour" id="review_tour">
-						<input name="_id" id="_id" type="hidden" value="${list.get(0)._id}">
+					<form method="post" action="#" name="review_tour" id="review_tour">
+						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="review_userId" id="review_userId" type="text" placeholder="이름" class="form-control" value="${sessionScope.memberId}" disabled>
+									<input name="name_review" id="name_review" type="text" placeholder="이름" class="form-control">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
-						<!-- 
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
 									<input name="email_review" id="email_review" type="email" placeholder="이메일" class="form-control">
 								</div>
 							</div>
-						</div>  -->
+						</div>
 						<!-- End row -->
 						<hr>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>축제</label>
-									<select class="form-control" name="position_review" id="festival_review">
+									<label>위치</label>
+									<select class="form-control" name="position_review" id="position_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
+										<option value="Low">구리구리</option>
+										<option value="Sufficient">적절</option>
+										<option value="Good">낫배도</option>
+										<option value="Excellent">개굳</option>
+										<option value="Superb">킹왕짱</option>
+										<option value="Not rated">나도모룹니다</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>서비스</label>
-									<select class="form-control" name="guide_review" id="service_review">
+									<label>즐거움</label>
+									<select class="form-control" name="guide_review" id="guide_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
+										<option value="Low">구리구리</option>
+										<option value="Sufficient">적절</option>
+										<option value="Good">낫배도</option>
+										<option value="Excellent">개굳</option>
+										<option value="Superb">킹왕짱</option>
+										<option value="Not rated">나도모룹니다</option>
 									</select>
 								</div>
 							</div>
@@ -1170,33 +1447,38 @@ function getTimeHTML(distance) {
 									<label>가격</label>
 									<select class="form-control" name="price_review" id="price_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
+										<option value="Low">구리구리</option>
+										<option value="Sufficient">적절</option>
+										<option value="Good">낫배도</option>
+										<option value="Excellent">개굳</option>
+										<option value="Superb">킹왕짱</option>
+										<option value="Not rated">나도모룹니다</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>분위기</label>
+									<label>질</label>
 									<select class="form-control" name="quality_review" id="quality_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
+										<option value="Low">구리구리</option>
+										<option value="Sufficient">적절</option>
+										<option value="Good">낫배도</option>
+										<option value="Excellent">개굳</option>
+										<option value="Superb">킹왕짱</option>
+										<option value="Not rated">나도모룹니다</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
 						<div class="form-group">
-							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="식당에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
+							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="축제에 방문할 사람들이 참고할 수 있게 자세한 후기를 남겨주세요."></textarea>
 						</div>
-						<input type="button" value="작성" class="btn_1" id="submit-review">
+						<div class="form-group">
+							<input type="text" id="verify_review" class=" form-control" placeholder="인간이라면 답을 적어주세요 4 + 1 = ?">
+						</div>
+						<input type="submit" value="작성" class="btn_1" id="submit-review">
 					</form>
 				</div>
 			</div>
@@ -1240,145 +1522,13 @@ function getTimeHTML(distance) {
 
 	
 	<script>
-		$(document).ready(function() {
-			// 시간 format 변환
-			function getTimeStamp() {
-			  var d = new Date();
-			
-			  var s =
-			    leadingZeros(d.getFullYear(), 4) + '-' +
-			    leadingZeros(d.getMonth() + 1, 2) + '-' +
-			    leadingZeros(d.getDate(), 2) + ' ' +
-			
-			    leadingZeros(d.getHours(), 2) + ':' +
-			    leadingZeros(d.getMinutes(), 2) + ':' +
-			    leadingZeros(d.getSeconds(), 2);
-			
-			  return s;
-			}
-			
-			function leadingZeros(n, digits) {
-			  var zero = '';
-			  n = n.toString();
-			
-			  if (n.length < digits) {
-			    for (i = 0; i < digits - n.length; i++)
-			      zero += '0';
-			  }
-			  return zero + n;
-			}
-			
-			$('#submit-review').on('click', function() {
-				
-				var date = getTimeStamp();
-				const id = $('#review_userId').val();
-				
-				const review = {
-					'id' : id,
-					'date': date,
-        			'content' : $('#review_text').val(),
-        			'festival': $('#festival_review').val(),
-        			'service': $('#service_review').val(),
-        			'price': $('#price_review').val(),
-        			'quality': $('#quality_review').val()
-				}
-				
-				const _id =	$('#_id').val()
-				
-				console.log(_id)
-				console.log(review['id'] + '/' + review['content'] + '/' + review['food'] + '/' + review['service'] + '/' + review['price'] + '/' + review['quality'])
-				
-				$.ajax({
-					type : 'post',
-	        		async : true,
-	        		url : "insert_festival_review.do",
-	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-	        		data : {
-	        			'_id': _id,
-	     				'review': review
-	        		},
-					success: function(result) {
-						
-						$('#review_text').val("")
-						$('#festival_review').val(""),
-        				$('#service_review').val(""),
-        				$('#price_review').val(""),
-        				$('#quality_review').val("")
-						
-						if ( result == 1 ) {
-							alert('리뷰가 등록되었습니다.');
-							$('.close').trigger('click');
-							location.replace(document.location.href);
-						}
-						else {
-							alert('리뷰가 등록되질 않았습니다. 왜일까')
-						}
-					},
-					error: function(error) {
-						console.log('에러' + error)
-					}
-				})
-				
-			})
-		})
+	
 		
+
+	
 	
 	</script>
-	<!-- 로그인 -->
-	<script src="../../js/login.js"></script>
-	<!-- 코스 -->
-	<script type="text/javascript">
-		$(document).ready(function () {
-			<c:forEach items="${list}" var="fes">
-				var title = "${fes.title}"
-				var address = "${fes.address}"
-				var startDate = ${fes.startDate}
-				var endDate = ${fes.endDate}
-				var fee = "${fes.fee}"
-				var festel = "${fes.tel}"
-				var host = "${fes.host}"
-			</c:forEach>
-			$("#choice").on('click', function () {
-				var fesInfo = [];
-				fesInfo.push({
-					"title" : title,
-					"address" : address,
-					"startDate" : startDate,
-					"endDate" : endDate,
-					"fee" : fee,
-					"festel" : festel,
-					"host" : host
-				})
-				console.log(typeof(fesInfo))
-				console.log(fesInfo);
-				
-				var jsonData = JSON.stringify(fesInfo)
-				console.log(typeof(jsonData))
-				console.log(jsonData)
-				$.ajax({
-					type : "post",
-					async : true,
-					url : "addMycourse_festival.do",
-					contentType: 'application/json; charset=utf-8', // 한글처리
-					traditional : true,
-					data : {
-						"writer" : "${sessionScope.memberId}",
-						"courseName" : $('#courseName').val(),
-						"jsonData" : jsonData					
-					},
-					dataType : "json",					
-					success : function (data) {
-						alert("완료")
-					},
-					error : function (err) {
-						alert("에러가 발생했습니다");
-						console.log(err)
-					}
-				}) // end of ajax.
-			})
-			
-		})
-	</script>
+
 </body>
 
 </html>

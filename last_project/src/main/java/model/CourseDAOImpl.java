@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+
+import com.mongodb.client.result.DeleteResult;
 
 import main.java.vo.CourseVO;
 
@@ -53,8 +56,31 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public CourseVO addMycourse(CourseVO vo, String memberId) {
-		System.out.println("addMycourse DAO 접근");		
+	public CourseVO addMycourse(CourseVO vo) {
+		System.out.println("addMycourse DAO 접근");
 		return mongoTemplate.insert(vo, course);
 	}
+
+	@Override
+	public void deleteCourse(String _id) {
+		System.out.println("deleteCourse DAO 접근");
+		Criteria criteria = new Criteria("_id");
+		criteria.is(_id);
+		Query query = new Query(criteria);
+		mongoTemplate.remove(query, course);
+	}
+
+	@Override
+	public void editCourse(CourseVO vo, String _id) {
+		System.out.println("editCourse DAO 접근");
+		Update update = new Update();
+		Query query = new Query(Criteria.where("courseName").is(_id));
+		
+		update.set("courseName",vo.getCourseName());
+		update.set("summary",vo.getSummary());
+		
+		mongoTemplate.updateMulti(query, update, course);
+	}
+	
+	
 }

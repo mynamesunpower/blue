@@ -215,7 +215,7 @@
 	                                    <div class="img_list">
 	                                        <a href="courseSelect.do?_id=${course._id}">
 	                                        	<c:forEach items="${course.coursePath}" var="coursePath" begin="0" end="0">
-	                                            	<img src="${coursePath.image}" alt="Image">
+	                                            	<img src="${coursePath.image}" alt="Image" class="img-fluid">
 	                                            </c:forEach>
 	                                            <%-- <div class="short_info">
 	                                            	<c:choose>
@@ -252,10 +252,13 @@
 	                                <div class="col-lg-7 col-md-7">
 	                                    <div class="tour_list_desc">
 	                                        <div class="rating">
+	                                        	<div style="text-align: right;">
+		                                        	<span style="font-size: larger;">
+														<a href="deleteCourse.do?_id=${course._id}" class="icon-trash-7"></a><!-- 쓰레기통 클릭 시 해당 코스 삭제 -->
+														<!-- <a href="course_list.do?memberId=${sessionScope.memberId}"></a> --> 
+													</span>
+	                                        	</div>
 	                                        	<i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><medium>(${course.reviews.size()})</medium>
-		                                        <span style="font-size: larger;">
-													<i class="icon-trash-7" style="cursor: pointer;"></i>우측 끝으로 밀어버리고 싶어  <!-- 쓰레기통 클릭 시 해당 칸 삭제, 우측 끝으로 밀고 싶어--> 
-												</span>
 	                                        </div>
 	                                        <h3><strong>${course.courseName}</strong></h3>
 	                                        <c:forEach items="${course.keyword}" var="keyword">
@@ -494,6 +497,7 @@
 	<script>
 		$('#cat_nav').mobileMenu();
 	</script>
+	
 </body>
 
 </html>

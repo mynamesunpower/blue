@@ -11,15 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloController {
 
-//	// �뼱�뵒�뱺 蹂대궡踰꾨젮
-//	@RequestMapping(value="/{path}")
-//	public String hello(@PathVariable String path) {
-//
-//		System.out.println("[HelloController > " + path + " �슂泥�]");
-//
-//		return path;
-//	}
-//
 
 	// �뿉�윭
 	@RequestMapping(value="error.do")

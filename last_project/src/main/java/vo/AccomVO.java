@@ -91,7 +91,6 @@ public class AccomVO {
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
 	}
-
 	public ArrayList<String> getImages() {
 		return images;
 	}
@@ -104,7 +103,6 @@ public class AccomVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-
 
 	public double getLatitude() {
 		return latitude;

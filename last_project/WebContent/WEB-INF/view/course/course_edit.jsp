@@ -211,7 +211,7 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<p><strong>코스명</strong></p>
-									<input type="text" class="form-control" id="name_contact" name="name_contact" style="font-size: large;" value="${detail.courseName}"><hr/>
+									<input type="text" class="form-control" id="courseName" name="courseName" style="font-size: large;" value="${detail.courseName}"><hr/>
 								</div>
 							</div>
 						</div>
@@ -244,7 +244,7 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<p><strong>코스 설명</strong></p>
-									<textarea rows="5" id="message_contact" name="message_contact" class="form-control" style="height:100px; margin-bottom: 5%;">${detail.summary}</textarea>
+									<textarea rows="5" id="summary" name="summary" class="form-control" style="height:100px; margin-bottom: 5%;">${detail.summary}</textarea>
 								</div>
 							</div>
 						</div>
@@ -331,22 +331,14 @@
 								</div>
 
 								<div class="col-sm-12">
-									<p style="font-size: large;">코스 자랑 마당에 공유하기
-										<!-- <label class="switch-light switch-ios float-right">
-											<input type="checkbox" name="option_2" id="option_2" value="">
-											<span>
-											<span>No</span>
-											<span>Yes</span>
-											</span>
-											<a></a> -->
-									</p>
+									<p style="font-size: large;">코스 자랑 마당에 공유하기</p>
 									<div style="text-align: center;">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
 											<label class="form-check-label" for="inlineRadio1">Yes</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
 											<label class="form-check-label" for="inlineRadio2">No</label>
 										</div>
 									</div>
@@ -355,7 +347,7 @@
 
 								<div class="col-sm-12">
 									<div style="text-align: center;">
-										<input type="button" value="저장" class="btn_1" id="">
+										<input type="button" value="저장" class="btn_1" id="editCourse">
 									</div>
 								</div>
 							</div>
@@ -698,6 +690,30 @@
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#editCourse").on('click', function(){
+				$.ajax({
+					type : "post",
+					url : "editCourse.do?_id=${detail._id}",
+					contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					data : {
+						"courseName" : $("#courseName").val(),
+						"summary" : $("#summary").val()
+					},
+					dataType : "json",
+					success : function(data){
+						alert("성공")
+					},
+					error : function(err){
+						alert("에러 발생")
+						console.log(err)
+					}
+				}) // end of ajax				
+			}) // end of $('#editCourse') click function
+		})
 	</script>
 </body>
 
