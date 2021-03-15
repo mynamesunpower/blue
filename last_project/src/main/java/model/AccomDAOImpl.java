@@ -93,6 +93,8 @@ public class AccomDAOImpl implements AccomDAO{
 		System.out.println(vo.get_id());
 		
 		return vo.getReviews();
+	}	
+		
 	public List<AccomVO> selectOne(Object object) {
 		
 		Query query = new Query(Criteria.where("_id").is(object));

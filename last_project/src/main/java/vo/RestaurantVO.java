@@ -26,7 +26,6 @@ public class RestaurantVO {
 	private ArrayList<String> images;
 	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews;
-	private String category;
 	
 	private Double range;
 	
