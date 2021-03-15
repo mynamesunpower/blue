@@ -82,105 +82,25 @@
 
 			<div class="row">
 				<aside class="col-lg-3">
-					<p>
-						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
-					</p>
+					
 
 					<div class="box_style_cat">
 						<ul id="cat_nav">
-							<li><a href="#" id="active"><i class="icon_set_3_restaurant-10"></i>모든 식당 <span>(141)</span></a>
+							<li><a href="restaurants_list.do" id="active"><i class="icon_set_3_restaurant-10"></i>모든 식당 <span>(${countSum})</span></a>
 							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-1"></i>피자 / 이탈리안 <span>(20)</span></a>
+							<c:forEach begin="0" end="5" varStatus="var">
+							<li>
+								<a href="restaurants_list.do?category=${categories.get(var.index)._id}">${categories.get(var.index)._id} 
+									<span>(${categories.get(var.index).countA})</span>
+								</a>
 							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-2"></i>패스트푸드 <span>(16)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-3"></i>일식 <span>(12)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-4"></i>중식 <span>(11)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-8"></i>카페 <span>(08)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_3_restaurant-7"></i>해산물 <span>(08)</span></a>
-							</li>
+							</c:forEach>
+
 						</ul>
 					</div>
 					
 
-					<div id="filters_col">
-						<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>필터</a>
-						<div class="collapse show" id="collapseFilters">
-							<div class="filter_type">
-								
-							</div>
-							<div class="filter_type">
-								<h6>별점</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i>
-											</span>(15)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i>
-											</span>(45)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(35)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(25)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(15)
-										</label>
-									</li>
-								</ul>
-							</div>
-							<div class="filter_type">
-								<h6>지역</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox">서울
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">경기/인천
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">부산
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">제주
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!--End collapse -->
-					</div>
-					<!--End filters col-->
+					
 				</aside>
 				<!--End aside -->
 				<div class="col-lg-9">
@@ -189,16 +109,10 @@
 
 						<div class="row">							
 							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
-									<select name="sort_rating" id="sort_rating">
-										<option value="" selected>랭킹 순 정렬</option>
-										<option value="lower">랭킹 낮은 순</option>
-										<option value="higher">랭킹 높은 순</option>
-									</select>
-								</div>
+
 							</div>
 							<div class="col-md-9 col-sm-4 d-none d-sm-block text-right">
-								<a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class="icon-list"></i></a>
+
 							</div>
 
 						</div>
@@ -209,8 +123,11 @@
 							<div class="strip_all_tour_list wow fadeIn restaurant" data-wow-delay="0.1s">
 								<div class="row">
 									<div class="col-lg-4 col-md-4">
-										<div class="ribbon_3 popular"><span>인기</span>
-										</div>
+										<c:if test="${scores[var.index] ge 3}">
+											<div class="ribbon_3 popular"><span>인기</span>
+											</div>
+										</c:if>
+										
 										<div class="wishlist">
 											<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 										</div>
@@ -221,7 +138,7 @@
 													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
 												</c:if>
 												
-												<div class="short_info"><i class="icon_set_3_restaurant-2"></i> Fast food</div>
+												<div class="short_info" style="padding-left:10px;">${list.category}</div>
 											</a>
 										</div>
 									</div>
@@ -325,7 +242,20 @@
 		$('#cat_nav').mobileMenu();
 		
 		function fnGoPaging(page) {
-            location.replace("restaurants_list.do?page="+page)
+			
+			var url = new URL(window.location.href);
+			var urlParams = url.searchParams;
+
+			console.log(urlParams.has("category") + " / " + urlParams.has("page"))
+			
+			if (urlParams.has("category") == true) {
+				var word = urlParams.get('category')
+	            location.replace("restaurants_list.do?page="+page+"&category="+word)
+			}
+			else {
+				location.replace("restaurants_list.do?page="+page)
+			}
+			
         }
 		
 	</script>

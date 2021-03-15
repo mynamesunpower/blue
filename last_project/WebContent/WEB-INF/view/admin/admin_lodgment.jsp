@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -409,17 +410,23 @@
                   </tr>
                   </thead>
                   <tbody>
+                  
+                  <!--  동적 데이블 생성 만들 부분입니다......... -->
+                  <c:forEach items="${lodgmentlist}" var="lodgment">
+               
                       <tr class="row_editable">
-                        <td>좋은호텔</td>
-                        <td>서울시 숙박구 호텔로 334</td>
-                        <td>02-3339-3391</td>
-                          <td><a href='#'>http://good.hotel</a></td>
-                        <td>12:00</td>
-                        <td>19:00</td>
+                        <td>${lodgment.title}</td>
+                        <td>${lodgment.address}</td>
+                        <td>${lodgment.tel}</td>
+                        <td><a href='#'>${lodgment.booking_url}</a></td>
+                        <td>${lodgment.checkin}</td>
+                        <td>${lodgment.checkout}</td>
                         <td class="text-center">
-                          <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_lodgment">수정</a>    
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_lodgment">삭제</a></td>
+                          <a href="#" class="btn btn-primary btn-xs modifybutton" data-toggle="modal" data-target="#modify_lodgment">수정</a>    
+                          <a href="#" class="btn btn-danger btn-xs deletebutton" data-toggle="modal" data-target="#delete_lodgment">삭제</a></td>
                       </tr>
+                  </c:forEach>
+                  
                   </tbody>
                   <tfoot>
                   <tr>
@@ -447,6 +454,64 @@
     <!-- /.content -->
   </div>
   <!-- 페이지 메인 콘텐츠 끝 -->
+  
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <script>
+  $( document ).ready( function() {
+    
+    $(".modifybutton").on('click', function(){
+    	        
+		var title = $(this).parent().parent().children("td:nth-child(1)").text();
+		console.log(title)
+    	var address = $(this).parent().parent().children("td:nth-child(2)").text();
+    	var tel = $(this).parent().parent().children("td:nth-child(3)").text();
+    	var booking_url = $(this).parent().parent().find("td:nth-child(4) > a").text();
+    	var checkin = $(this).parent().parent().children("td:nth-child(5)").text();
+    	var checkout = $(this).parent().parent().children("td:nth-child(6)").text();
+    			
+    	
+    	$('.lodgment_name').attr('value',title); 
+    	$('.lodgment_address').attr('value',address); 
+    	$('.lodgment_tel').attr('value',tel); 
+    	$('.lodgment_website').attr('value',booking_url); 
+    	$('.lodgment_intime').val(checkin); 
+    	$('.lodgment_outtime').val(checkout); 
+    	    	                    
+    });
+ //});
+  
+  
+  	$(".deletebutton").on('click', function(){
+	                	
+            		var title = $(this).parent().parent().children("td:nth-child(1)").text();
+                  
+            			console.log(title)
+            			
+                  	 //var id = $("#tabledata").find_all("td:nth-child(1)").text();
+                  	$('.dellodgment').val(title); 
+               		
+                  	$('.delbutton').prop("disabled", true);
+                  	$('.delete_confirm').on("keyup", action);
+                  	function action() {
+            			  if($('.delete_confirm').val()== "삭제한다") {
+            			        $('.delbutton').prop("disabled", false);
+            			     }
+            			  else{
+            				  $('.delbutton').prop("disabled", true);
+            			  }
+                  	}
+                  	
+                  });
+                  
+                	  
+            	  $(".delclose").on('click', function(){
+            		  $('.delete_confirm').val("")
+            		  
+            	  });
+          
+  });
+    </script>
+
     
   <!-- 푸터 -->    
   <footer class="main-footer">
@@ -479,7 +544,7 @@
 					</div>
                     
                     <!-- 추가 form <action값 확인 필수> -->
-					<form method="post" action="#" name="insert_lodgment_form" id="insert_lodgment_form">
+					<form method="post" action="insert_lodgment.do" name="insert_lodgment_form" id="insert_lodgment_form">
                         
                         <!-- mongoDB 고유 아이디 (필요없나?) -->
                         <input type="hidden" value="unique_id">
@@ -488,8 +553,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_name" id="lodgment_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소 이름">
+									<input name="title" id="lodgment_name" type="text" placeholder="이름" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -497,8 +562,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_address" id="lodgment_address" type="text" placeholder="주소" class="form-control"
-                                    value="숙박업소 주소">
+									<input name="address" id="lodgment_address" type="text" placeholder="주소" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -506,8 +571,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_tel" id="lodgment_tel" type="text" placeholder="숙박업소 전화번호" class="form-control"
-                                    value="숙박업소 전화번호">
+									<input name="tel" id="lodgment_tel" type="text" placeholder="숙박업소 전화번호" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -515,8 +580,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_website" id="lodgment_website" type="text" placeholder="홈페이지" class="form-control"
-                                    value="홈페이지">
+									<input name="booking_url" id="lodgment_website" type="text" placeholder="홈페이지" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -524,8 +589,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_intime" id="lodgment_intime" type="text" placeholder="입실시간" class="form-control"
-                                    value="입실시간">
+									<input name="checkin" id="lodgment_intime" type="text" placeholder="입실시간" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -533,8 +598,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_outtime" id="lodgment_outtime" type="text" placeholder="퇴실시간" class="form-control"
-                                    value="퇴실시간">
+									<input name="checkout" id="lodgment_outtime" type="text" placeholder="퇴실시간" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -561,7 +626,7 @@
 					</div>
                     
                     <!-- 수정 form -->
-					<form method="post" action="#" name="insert_lodgment_form" id="modify_lodgment_form">
+					<form method="post" action="/admin/modify_lodgment.do" name="modify_lodgment_form" id="modify_lodgment_form">
                         
                         <!-- mongoDB 고유 아이디 (필요없나?) -->
                         <input type="hidden" value="unique_id">
@@ -570,8 +635,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_name" id="lodgment_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소 이름">
+									<input name="title" id="lodgment_name" type="text" placeholder="이름" class="form-control lodgment_name"
+                                    value="" readonly="readonly">
 								</div>
 							</div>
 						</div>
@@ -579,8 +644,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_address" id="lodgment_address" type="text" placeholder="주소" class="form-control"
-                                    value="숙박업소 주소">
+									<input name="address" id="lodgment_address" type="text" placeholder="주소" class="form-control lodgment_address"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -588,8 +653,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_tel" id="lodgment_tel" type="text" placeholder="숙박업소 전화번호" class="form-control"
-                                    value="숙박업소 전화번호">
+									<input name="tel" id="lodgment_tel" type="text" placeholder="숙박업소 전화번호" class="form-control lodgment_tel"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -597,8 +662,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_website" id="lodgment_website" type="text" placeholder="홈페이지" class="form-control"
-                                    value="홈페이지">
+									<input name="booking_url" id="lodgment_website" type="text" placeholder="홈페이지" class="form-control lodgment_website"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -606,8 +671,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_intime" id="lodgment_intime" type="text" placeholder="입실시간" class="form-control"
-                                    value="입실시간">
+									<input name="checkin" id="lodgment_intime" type="text" placeholder="입실시간" class="form-control lodgment_intime"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -615,8 +680,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="lodgment_outtime" id="lodgment_outtime" type="text" placeholder="퇴실시간" class="form-control"
-                                    value="퇴실시간">
+									<input name="checkout" id="lodgment_outtime" type="text" placeholder="퇴실시간" class="form-control lodgment_outtime"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -636,14 +701,14 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="info_deleteLabel">숙박 정보 삭제</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close delclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
                     
                     <!-- 삭제 form <action 확인 필수!> -->
-					<form method="post" action="#" name="delete_lodgment_form" id="delete_lodgment_form">
+					<form method="post" action="delete_lodgment.do" name="delete_lodgment_form" id="delete_lodgment_form">
                         
                         <!-- mongoDB 숙박 고유 id -->
                         <input type="hidden" value="unique_id">
@@ -652,8 +717,8 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     다음 숙박 데이터가 삭제됩니다. <br/>
-									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
-                                    value="숙박업소 이름">
+									<input name="title" id="lodgment_name" type="text" placeholder="이름" class="form-control dellodgment"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -663,13 +728,13 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     삭제를 진행하기 위해서 <strong>삭제한다 </strong>를 입력해주세요
-									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control">
+									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control delete_confirm">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
                         
-						<input type="submit" value="삭제" class="btn btn-danger" id="submit-lodgment-delete">
+						<input type="submit" value="삭제" class="btn btn-danger delbutton" id="submit-lodgment-delete">
 					</form> <!-- 삭제 form 끝 -->
 				</div>
 			</div>

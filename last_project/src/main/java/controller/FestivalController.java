@@ -261,6 +261,10 @@ public class FestivalController {
 		    			//식당 거리
 		    			vo.setRange(keys.get(i));
 		    			
+		    			int averageScore = RestaurantController.scoreAverage(vo.getReviews(), "food");
+		    			System.out.println(averageScore);
+		    			vo.setAverageScore(averageScore);
+		    			
 		    		}
 
 
@@ -323,42 +327,6 @@ public class FestivalController {
 		        	result2.add(acc);
 		        	
 		        }
-		        
-		     
-		        ////
-		     		       
-//		        List<RestaurantVO> res= null;
-//		        List<List<RestaurantVO>> result = new ArrayList<>();
-//		        for(int i=0; i<=2; i++) {
-//		        	System.out.println("<><<><><><><><식당><>"+(map.get(keys.get(i))));
-//		        	System.out.println("넌뭐니"+keys.get(i));
-//		        	
-//		        	res= restaurantService.selectnear(map.get(keys.get(i)));
-//		        	
-//		    
-//
-//		        	for (RestaurantVO vo : res) {
-//
-//		    			ArrayList<String> imageList = new ArrayList<String>();
-//		    			for (Binary img : vo.getImage()) {
-//		    				String image = Base64.getEncoder().encodeToString(img.getData());
-//		    				imageList.add(image);
-//		    			}
-//		    			vo.setImages(imageList);
-//		    			//식당 거리
-//		    			vo.setRange(keys.get(i));
-//		    			
-//		    		}
-//
-//
-//		        	result.add(res);
-//		        	
-//
-//		        }	//여기까지 식당 정보
-		        ///
-		       
-		        
-
 		        
 
 		ArrayList<HashMap<String, String>> reviews = list.get(0).getReviews();

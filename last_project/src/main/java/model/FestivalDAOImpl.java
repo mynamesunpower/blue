@@ -46,6 +46,22 @@ public class FestivalDAOImpl implements FestivalDAO {
 		
 		return mongoTemplate.findAll(FestivalVO.class, festival);
 	}
+
+	
+	//근처 축제 3개 뽑기
+	@Override
+	public List<FestivalVO> near(ObjectId objectId) {
+		// TODO Auto-generated method stub
+		 Query query = new Query();
+	     Criteria criteria = new Criteria();
+		query.addCriteria(criteria.where("_id").is(objectId));
+	    
+	     List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
+		return list;
+	}
+
+
+
 	
 	
 	//월별 축제 정보 가져오기
@@ -162,21 +178,56 @@ public class FestivalDAOImpl implements FestivalDAO {
 	}
 
 
-	
-
-
-	
-//근처 축제 3개 뽑기
 	@Override
-	public List<FestivalVO> near(ObjectId objectId) {
-		// TODO Auto-generated method stub
-		 Query query = new Query();
-	     Criteria criteria = new Criteria();
-		query.addCriteria(criteria.where("_id").is(objectId));
-	    
-	     List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
-		return list;
+	public FestivalVO insert_festival(FestivalVO vo) {
+		
+		return mongoTemplate.insert(vo, festival);
 	}
+	
+	public FestivalVO modify_festival(FestivalVO vo) {
+		
+//		 Criteria criteria = new Criteria("title");
+//	        criteria.is(vo.getTitle());
+	        
+	        Query query = new Query();
+	        //업데이트 할 항목 정의
+	        Update update = new Update();
+	        
+	     // where절 조건
+	        query.addCriteria(Criteria.where("title").is(vo.getTitle()));
+//	        query.addCriteria(Criteria.where("컬럼명2").is("조건값2"));
+	        	        
+	        update.set("address", vo.getAddress());
+	        update.set("host", vo.getHost());
+	        update.set("startDate", vo.getStartDate());
+	        update.set("endDate", vo.getEndDate());
+	        update.set("fee", vo.getFee());
+	        update.set("tel", vo.getTel());
+	        update.set("homepage", vo.getHomepage());
+	        update.set("detail", vo.getDetail());
+	        update.set("latitude", vo.getLatitude());
+	        update.set("longitude", vo.getLongitude());
+	        update.set("postcode", vo.getPostcode());
+	        	     	     
+		
+	        mongoTemplate.updateMulti(query, update, "festival");
+	        return null;
+	}
+
+	
+
+	public FestivalVO delete_festival(FestivalVO vo) {
+		
+		Criteria criteria = new Criteria("title");
+	    criteria.is(vo.getTitle());
+	    Query query = new Query(criteria);
+	        
+	    mongoTemplate.remove(query, "festival");
+		return null;
+	}
+
+
+	
 
 
 	@Override

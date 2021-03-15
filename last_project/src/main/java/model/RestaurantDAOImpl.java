@@ -17,6 +17,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.Fields;
+import org.springframework.data.mongodb.core.aggregation.GroupOperation;
 import org.springframework.data.mongodb.core.aggregation.LimitOperation;
 import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.aggregation.SkipOperation;
@@ -49,7 +51,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	@Override
 	public List<RestaurantVO> selectPageList(int pageNumber) {
 		
-		SkipOperation skip = new SkipOperation((pageNumber-1) * 10);
+		SkipOperation skip = new SkipOperation((pageNumber-1) * postPerPage);
 		LimitOperation limit = new LimitOperation(postPerPage);
 		
 		//  limit 만큼 skip 하기.
@@ -65,6 +67,19 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		// TODO Auto-generated method stub
 		return mongoTemplate.findAll(RestaurantVO.class, collectionName);
 	}
+	
+	
+	public List<HashMap> groupCategory() {
+		
+		GroupOperation group = Aggregation.group("category").count().as("countA");
+		SortOperation sort = Aggregation.sort(Sort.Direction.DESC, "countA");
+		Aggregation aggregation = Aggregation.newAggregation(group, sort);
+		AggregationResults<HashMap> results = mongoTemplate.aggregate(aggregation, collectionName, HashMap.class);
+		List<HashMap> result = results.getMappedResults();
+		
+		return result;
+	} 
+	
 
 	@Override
 	public RestaurantVO selectOne(String _id) {
@@ -116,5 +131,50 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		
 	}
 	
+	@Override
+	public List<RestaurantVO> getCategoryData(String category, int pageNumber) {
+		
+		SkipOperation skip = new SkipOperation((pageNumber-1) * postPerPage);
+		LimitOperation limit = new LimitOperation(postPerPage);
+		MatchOperation where = Aggregation.match(new Criteria().andOperator(Criteria.where("category").is(category)));
+		Aggregation aggregation = Aggregation.newAggregation(where, skip, limit);
+		AggregationResults<RestaurantVO> result = mongoTemplate.aggregate(aggregation, collectionName, RestaurantVO.class);
+		
+		return result.getMappedResults();
+	} 
+	
+	//관리자에서
+	public RestaurantVO insert_restaurant(RestaurantVO vo) {
+		return mongoTemplate.insert(vo, "restaurant");
+	}
+
+	public RestaurantVO modify_restaurant(RestaurantVO vo) {
+		Query query = new Query();
+        //업데이트 할 항목 정의
+        Update update = new Update();
+        
+     // where절 조건
+        query.addCriteria(Criteria.where("title").is(vo.getTitle()));
+//        query.addCriteria(Criteria.where("컬럼명2").is("조건값2"));
+        	        
+        update.set("address", vo.getAddress());
+        update.set("tel", vo.getTel());
+        update.set("open_time", vo.getOpen_time());
+        update.set("close_time", vo.getClose_time());
+//        update.set("rest_day", vo.getRest_day());
+                	     	     
+	
+        mongoTemplate.updateMulti(query, update, "restaurant");
+        return null;
+	}
+
+	public RestaurantVO delete_restaurant(RestaurantVO vo) {
+		Criteria criteria = new Criteria("title");
+	    criteria.is(vo.getTitle());
+	    Query query = new Query(criteria);
+	        
+	    mongoTemplate.remove(query, "restaurant");
+		return null;
+	}
 	
 }

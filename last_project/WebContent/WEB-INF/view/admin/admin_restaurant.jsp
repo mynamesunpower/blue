@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -404,20 +405,28 @@
                     <th>전화번호</th>
                     <th>영업개시</th>
                     <th>영업마감</th>
+                    <!-- <th>휴무일</th> -->
                     <th>관리</th>
                   </tr>
                   </thead>
                   <tbody>
+                  
+                  <!--  동적 데이블 생성 만들 부분입니다......... -->
+                  <c:forEach items="${restaurantlist}" var="restaurant">
+               
                       <tr class="row_editable">
-                        <td>맛있는식당</td>
-                        <td>서울시 맛나구 식당로 3334</td>
-                        <td>02-3339-323</td>
-                        <td>11:00</td>
-                        <td>21:00</td>
+                        <td>${restaurant.title}</td>
+                        <td>${restaurant.address}</td>
+                        <td>${restaurant.tel}</td>
+                        <td>${restaurant.open_time}</td>
+                        <td>${restaurant.close_time}</td>
+                        <%-- <td>${restaurant.rest_day}</td> --%>
                         <td class="text-center">
-                          <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_restaurant">수정</a>    
-                          <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_restaurant">삭제</a></td>
+                          <a href="#" class="btn btn-primary btn-xs modifybutton" data-toggle="modal" data-target="#modify_restaurant">수정</a>    
+                          <a href="#" class="btn btn-danger btn-xs deletebutton" data-toggle="modal" data-target="#delete_restaurant">삭제</a></td>
                       </tr>
+                      
+                  </c:forEach>
                   </tbody>
                   <tfoot>
                   <tr>
@@ -444,6 +453,62 @@
     <!-- /.content -->
   </div>
   <!-- 페이지 메인 콘텐츠 끝 -->
+  
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <script>
+  $( document ).ready( function() {
+    
+    $(".modifybutton").on('click', function(){
+    	        
+		var title = $(this).parent().parent().children("td:nth-child(1)").text();
+    	var address = $(this).parent().parent().children("td:nth-child(2)").text();
+    	var tel = $(this).parent().parent().children("td:nth-child(3)").text();
+    	var open_time = $(this).parent().parent().children("td:nth-child(4)").text();
+    	var close_time = $(this).parent().parent().children("td:nth-child(5)").text();
+    	/* var rest_day = $(this).parent().parent().find("td:nth-child(6)").text(); */
+    			
+    	
+    	$('.restaurant_name').attr('value',title);
+    	$('.restaurant_opentime').attr('value',open_time); 
+    	$('.restaurant_closetime').attr('value',close_time); 
+    	$('.restaurant_address').attr('value',address); 
+    	$('.restaurant_tel').attr('value',tel); 
+    	/* $('.restaurant....').val(rest_day);  */
+    	    	                    
+    });
+ //});
+  
+  
+  	$(".deletebutton").on('click', function(){
+	                	
+            		var title = $(this).parent().parent().children("td:nth-child(1)").text();
+                  
+            			console.log(title)
+            			
+                  	 //var id = $("#tabledata").find_all("td:nth-child(1)").text();
+                  	$('.delrestaurant').val(title); 
+               		
+                  	 $('.delbutton').prop("disabled", true);
+                  	$('.delete_confirm').on("keyup", action);
+                  	function action() {
+            			  if($('.delete_confirm').val()== "삭제한다") {
+            			        $('.delbutton').prop("disabled", false);
+            			     }
+            			  else{
+            				  $('.delbutton').prop("disabled", true);
+            			  }
+                  	}
+                  	
+                  });
+                  
+                	  
+            	  $(".delclose").on('click', function(){
+            		  $('.delete_confirm').val("")
+            		  
+            	  });
+          
+  });
+    </script>
     
   <!-- 푸터 -->    
   <footer class="main-footer">
@@ -476,7 +541,7 @@
 					</div>
                     
                     <!-- 추가 form <action값 확인 필수> -->
-					<form method="post" action="#" name="insert_restaurant_form" id="insert_restaurant_form">
+					<form method="post" action="insert_restaurant.do" name="insert_restaurant_form" id="insert_restaurant_form">
                         
                         <!-- mongoDB 고유 아이디 (필요없나?) -->
                         <input type="hidden" value="unique_id">
@@ -485,8 +550,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_name" id="restaurant_name" type="text" placeholder="이름" class="form-control"
-                                    value="식당 이름">
+									<input name="title" id="restaurant_name" type="text" placeholder="이름" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -494,8 +559,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_address" id="restaurant_address" type="text" placeholder="주소" class="form-control"
-                                    value="식당 주소">
+									<input name="address" id="restaurant_address" type="text" placeholder="주소" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -503,8 +568,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_tel" id="restaurant_tel" type="text" placeholder="식당 전화번호" class="form-control"
-                                    value="식당 전화번호">
+									<input name="tel" id="restaurant_tel" type="text" placeholder="식당 전화번호" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -512,8 +577,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_opentime" id="restaurant_opentime" type="text" placeholder="영업개시" class="form-control"
-                                    value="영업개시">
+									<input name="open_time" id="restaurant_opentime" type="text" placeholder="영업개시" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -521,8 +586,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_closetime" id="restaurant_closetime" type="text" placeholder="영업마감" class="form-control"
-                                    value="영업마감">
+									<input name="close_time" id="restaurant_closetime" type="text" placeholder="영업마감" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -549,7 +614,7 @@
 					</div>
                     
                     <!-- 수정 form -->
-					<form method="post" action="#" name="modify_restaurant_form" id="modify_restaurant_form">
+					<form method="post" action="modify_restaurant.do" name="modify_restaurant_form" id="modify_restaurant_form">
                         
                         <!-- mongoDB 고유 아이디 (필요없나?) -->
                         <input type="hidden" value="unique_id">
@@ -558,8 +623,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_name" id="restaurant_name" type="text" placeholder="이름" class="form-control"
-                                    value="식당 이름">
+									<input name="title" id="restaurant_name" type="text" placeholder="이름" class="form-control restaurant_name"
+                                    value="" readonly="readonly">
 								</div>
 							</div>
 						</div>
@@ -567,8 +632,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_address" id="restaurant_address" type="text" placeholder="주소" class="form-control"
-                                    value="식당 주소">
+									<input name="address" id="restaurant_address" type="text" placeholder="주소" class="form-control restaurant_address"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -576,8 +641,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_tel" id="restaurant_tel" type="text" placeholder="식당 전화번호" class="form-control"
-                                    value="식당 전화번호">
+									<input name="tel" id="restaurant_tel" type="text" placeholder="식당 전화번호" class="form-control restaurant_tel"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -585,8 +650,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_opentime" id="restaurant_opentime" type="text" placeholder="영업개시" class="form-control"
-                                    value="영업개시">
+									<input name="open_time" id="restaurant_opentime" type="text" placeholder="영업개시" class="form-control restaurant_opentime"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -594,8 +659,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="restaurant_closetime" id="restaurant_closetime" type="text" placeholder="영업마감" class="form-control"
-                                    value="영업마감">
+									<input name="close_time" id="restaurant_closetime" type="text" placeholder="영업마감" class="form-control restaurant_closetime"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -615,14 +680,14 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="info_deleteLabel">식당 정보 삭제</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close delclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
                     
                     <!-- 삭제 form <action 확인 필수!> -->
-					<form method="post" action="#" name="delete_restaurant_form" id="delete_restaurant_form">
+					<form method="post" action="delete_restaurant.do" name="delete_restaurant_form" id="delete_restaurant_form">
                         
                         <!-- mongoDB 숙박 고유 id -->
                         <input type="hidden" value="unique_id">
@@ -631,8 +696,8 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     다음 식당 데이터가 삭제됩니다. <br/>
-									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
-                                    value="식당 이름">
+									<input name="title" id="restaurant_name" type="text" placeholder="이름" class="form-control delrestaurant"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -642,13 +707,13 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     삭제를 진행하기 위해서 <strong>삭제한다 </strong>를 입력해주세요
-									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control">
+									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control delete_confirm">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
                         
-						<input type="submit" value="삭제" class="btn btn-danger" id="submit-restaurant-delete">
+						<input type="submit" value="삭제" class="btn btn-danger delbutton" id="submit-restaurant-delete">
 					</form> <!-- 삭제 form 끝 -->
 				</div>
 			</div>

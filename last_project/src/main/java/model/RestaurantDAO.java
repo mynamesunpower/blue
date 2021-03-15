@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
+import main.java.vo.AccomVO;
 import main.java.vo.RestaurantVO;
 
 public interface RestaurantDAO {
@@ -22,4 +23,13 @@ public interface RestaurantDAO {
 	
 	public List<RestaurantVO> selectnear(ObjectId objectId);
 
+	public List<HashMap> groupCategory();
+
+	public List<RestaurantVO> getCategoryData(String category, int pageNumber);
+
+
+	//관리자에서
+	public RestaurantVO insert_restaurant(RestaurantVO vo);
+	public RestaurantVO modify_restaurant(RestaurantVO vo);
+	public RestaurantVO delete_restaurant(RestaurantVO vo);
 }

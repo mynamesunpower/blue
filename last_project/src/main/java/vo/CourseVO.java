@@ -2,6 +2,9 @@ package main.java.vo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -21,8 +24,18 @@ public class CourseVO {
 	private String schedule;   // 일정
 	private String theme;      // 테마
 	private ArrayList<Binary> image;  // 어케 써먹지
-	private ArrayList<HashMap<String, String>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
+	private ArrayList<HashMap<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
+//	private List<Map<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
 	private ArrayList<HashMap<String, String>> reviews; // 리뷰
+	private String jsonData;
+//	private HashMap<String, String> coursePath2;
+	/*
+	public HashMap<String, String> getCoursePath2() {
+		return coursePath2;
+	}
+	public void setCoursePath2(HashMap<String, String> coursePath2) {
+		this.coursePath2 = coursePath2;
+	}*/
 	
 	public ObjectId get_id() {
 		return _id;
@@ -92,10 +105,18 @@ public class CourseVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-	public ArrayList<HashMap<String, String>> getCoursePath() {
+	/*
+	public List<Map<String, Object>> getCoursePath() {
 		return coursePath;
 	}
-	public void setCoursePath(ArrayList<HashMap<String, String>> coursePath) {
+	public void setCoursePath(List<Map<String, Object>> coursePath) {
+		this.coursePath = coursePath;
+	}
+	*/
+	public ArrayList<HashMap<String, Object>> getCoursePath() {
+		return coursePath;
+	}
+	public void setCoursePath(ArrayList<HashMap<String, Object>> coursePath) {
 		this.coursePath = coursePath;
 	}
 	public ArrayList<HashMap<String, String>> getReviews() {
@@ -103,5 +124,11 @@ public class CourseVO {
 	}
 	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
 		this.reviews = reviews;
+	}
+	public String getJsonData() {
+		return jsonData;
+	}
+	public void setJsonData(String jsonData) {
+		this.jsonData = jsonData;
 	}
 }

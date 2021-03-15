@@ -75,8 +75,13 @@ $(document).ready(function(){
 	        			else if(result==1){
 	        				location.replace(document.location.href);
 	        			}
-	        			else {
+	        			else if(result=="admin") {
 	        				location.replace('../admin_index.jsp')
+	        			}
+	        			else {
+	        				$("#loginId").val("");
+	        				$("#password").val("");
+	        				alert('해당하는 회원 정보가 없습니다.')
 	        			}
 	        		},
 	        		error : function(err){console.log("에러요" + err)}

@@ -348,7 +348,7 @@
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 열기" data-text-original="지도 숨기기">지도 숨기기</a></p>
 					<!-- Map button for tablets/mobiles -->
 					<div id="Img_carousel" class="slider-pro">
-						<c:forEach items="${detail.coursePath}" var="coursePath">	
+						<c:forEach items="${detail.coursePath}" var="coursePath">
 							<div class="sp-slides">
 								<div class="sp-slide">
 									<img alt="Image" class="sp-image" src="../css/images/blank.gif" data-src="${coursePath.image}" data-small="${coursePath.image}" data-medium="${coursePath.image}" data-large="${coursePath.image}" data-retina="${coursePath.image}">
@@ -375,7 +375,7 @@
 						</div>
 							<div class="col-lg-9">
 								<c:forEach items="${detail.coursePath}" var="coursePath">
-									<h4><i class="icon-flag-1"></i>${coursePath.title}</h4>							
+									<h4><i class="icon-flag-1"></i>${coursePath.title}</h4>
 									<div class="row">
 										<div class="col-md-12">
 											<ul class="list_icons">
@@ -538,10 +538,10 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="modal-body" style="text-align: center;">
-							<div>
+							<div id="courseList">
 								<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
 									<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
+									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1"></span>
 								</h4>
 							</div>
 							<div style="text-align: center;">
@@ -559,16 +559,16 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myReviewLabel">새 코스 추가</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span id="back" aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div id="message-review">
 					</div>
 					<div class="form-group">
-						<input type="text" placeholder="코스명을 입력해주세요.">
+						<input type="text" placeholder="코스명을 입력해주세요." id="addcourseName">
 					</div>
 					<div style="text-align: center;">
-						<input type="button" value="추가" class="btn btn-success">
+						<input type="button" value="추가" class="btn btn-success" id="addNewcourse">
 						<!-- 추가 누르면 창이 닫히고, 입력한 코스명으로 부모 페이지에 코스가 추가 입력 되어져야함.-->
 					</div>
 				</div>
@@ -748,105 +748,64 @@
 	</script>
 	
 	<!-- 로그인 -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn_login').on('click', login);
-			$('#password').on('keydown', function(evt) {
-				//evt.preventDefault();
-				//evt.stopPropagation();
-				if (evt.KeyCode == 13) {
-					login();
-				}
-			});
-		});
-		
-		function login() {
-			alert('로그인 버튼 클릭')
-			
-			if($.trim($('#loginId').val())==''){
-        		alert('아이디를 입력해 주세요');
-        		$('#loginId').focus();
-        		return;
-        	}
-			
-			if($.trim($('#password').val())==''){
-        		alert("비밀번호입력해주세요.");
-        		$('#password').focus();
-        		return;
-        	}
-			
-			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
-				
-				alert('진입 확인' + $('#loginId').val() + '/' + $('#password').val());
-				
-				$.ajax({
-	        		type : 'post',
-	        		async : true,
-	        		url : "../member/memberLogin.do",
-	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-	        		data : {
-	        			'id' : $('#loginId').val(),
-	        			'password' : $('#password').val()
-	        		},
-	        		success : function(result){
-	        			console.log(result)
-	        			if(result == 0){
-	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
-	        				$("#loginId").val("");
-	        				$("#password").val("");
-	        				
-	        			}
-	        			else if(result==1){
-	        				location.replace('../main.jsp')
-	        			}
-	        		},
-	        		error : function(err){console.log("에러요" + err)}
-	        	});	
-			}
-        		
-		}
-	</script>
+	<script src="../../js/login.js"></script>
 	
+	<!-- 내 코스에 저장.. 현재 실패 중.. 코스 경로 넣는게 어렵쓰 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$("#choice").click(function () {
+			$("#courseList span > input").on('click',function () {
+				var courseName = $(this).parent().prev().val();
+				console.log(courseName);
 				// 코스의 키워드 뽑아서 배열에 넣기.
 				var keyword = new Array();
 				<c:forEach items="${detail.keyword}" var="keyword">
 					var temp = "${keyword}"
 					keyword.push(temp)
 				</c:forEach>
+				// 콘솔로 확인
 				console.log(keyword)
-				// 코스의 장소마다 이름, 주소, 전화 등 뽑아서 배열에 넣기_ json 구조로 해야하는거 맞니
-				var coursePath = new Array();
+				
+				// 코스 경로
+				var coursePath_arr = new Array();
+				var obj = new Object();
 				<c:forEach items="${detail.coursePath}" var="coursePath">
+					var title = "${coursePath.title}";
+					obj.title = title;
+					var address = "${coursePath.address}";
+					obj.address  = address;
+					var tel = "${coursePath.tel}";
+					obj.tel = tel;
+				/*
 					var data = {
-							title : "${coursePath.title}",
-							address : "${coursePath.address}",
-							tel : "${coursePath.tel}"
+							"title" : "${coursePath.title}",
+							"address" : "${coursePath.address}",
+							"tel" : "${coursePath.tel}"
 					}
-					coursePath.push(data)					
+				*/
+					coursePath_arr.push(obj)
 				</c:forEach>
-				console.log(coursePath);
-				console.log(coursePath.class)
+				// 콘솔로 확인
+				console.log(coursePath_arr)
+				var jsonData = JSON.stringify(coursePath_arr)
+				console.log("jsonData:"+jsonData)
+				console.log(typeof(jsonData))
 				$.ajax({
-					traditional : true,
-					type : "POST",
-					/*
-					data : {
-						'writer' : "${sessionScope.memberId}",
-						'courseName' : $('#courseName').val(),
-						'summary' : "${detail.summary}",						
-						'keyword' : keyword,
-						'distance' : ${detail.distance},
-						'schedule' : "${detail.schedule}",									
-						'theme' : "${detail.theme}",
-						'coursePath' : coursePath
-					},
-					*/
-					dataType : "json",
+					type : "post",
+					async : true,
 					url : "addMycourse.do",
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					traditional : true,
+					data : {
+						"writer" : "${sessionScope.memberId}",
+						"courseName" : courseName,
+						"summary" : "${detail.summary}",					
+						"keyword" : keyword,							
+						"distance" : "${detail.distance}",
+						"schedule" : "${detail.schedule}",									
+						"theme" : "${detail.theme}",
+//						"coursePath" : jsonData
+					},
+					dataType : "json",					
 					success : function (data) {
 						alert("코스에 담기 완료")
 					},
@@ -854,9 +813,17 @@
 						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
 						console.log(err)
 					}
-				})
+				})  // end of ajax.
+			}) // end of $('#choice') click function
+			
+			$("#addNewcourse").on('click', function(){
+				var courseName = $("#addcourseName").val();
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' id='courseName' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1'></span></h4>"		
+				);
+				$('#back').trigger('click');
 			})
-		})
+		}) // end of jQuery.
 	
 	</script>
 	

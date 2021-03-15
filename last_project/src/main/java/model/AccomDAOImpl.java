@@ -1,5 +1,7 @@
 package main.java.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -13,11 +15,13 @@ import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.LimitOperation;
 import org.springframework.data.mongodb.core.aggregation.SkipOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.client.result.UpdateResult;
+
 import main.java.vo.AccomVO;
-import main.java.vo.FestivalVO;
-import main.java.vo.RestaurantVO;
 
 @Repository("accomDAO")
 public class AccomDAOImpl implements AccomDAO{
@@ -64,6 +68,33 @@ public class AccomDAOImpl implements AccomDAO{
 	}
 
 	@Override
+	public int updateAccomReview(ArrayList<HashMap<String, String>> reviews, String _id) {
+		
+		Query query = new Query(Criteria.where("_id").is(_id));
+		
+		Update update = new Update();
+		update.set("reviews", reviews);
+		
+		UpdateResult result = mongoTemplate.updateFirst(query, update, lodgment);
+	
+		return (int)result.getModifiedCount();
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		
+		System.out.println("DAO 진입");
+		System.out.println(_id);
+		
+		AccomVO vo = mongoTemplate.findById(_id, AccomVO.class, lodgment);
+		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
+		System.out.println(vo.getAddress());
+		System.out.println(vo.getLatitude());
+		System.out.println(vo.get_id());
+		
+		return vo.getReviews();
+	}	
+		
 	public List<AccomVO> selectOne(Object object) {
 		
 		Query query = new Query(Criteria.where("_id").is(object));
@@ -73,6 +104,39 @@ public class AccomDAOImpl implements AccomDAO{
 		
 		return list;
 	}
+	public AccomVO insert_lodgment(AccomVO vo) {
+		return mongoTemplate.insert(vo, lodgment);
+	}
+
+	public AccomVO modify_lodgment(AccomVO vo) {		
+		Query query = new Query();
+        //업데이트 할 항목 정의
+        Update update = new Update();
+        
+     // where절 조건
+        query.addCriteria(Criteria.where("title").is(vo.getTitle()));
+//        query.addCriteria(Criteria.where("컬럼명2").is("조건값2"));
+        	        
+        update.set("address", vo.getAddress());
+        update.set("tel", vo.getTel());
+        update.set("checkin", vo.getCheckin());
+        update.set("checkout", vo.getCheckout());
+        update.set("booking_url", vo.getBooking_url());
+                	     	     
+	
+        mongoTemplate.updateMulti(query, update, "lodgment");
+        return null;
+	}
+
+	public AccomVO delete_lodgment(AccomVO vo) {		
+		Criteria criteria = new Criteria("title");
+	    criteria.is(vo.getTitle());
+	    Query query = new Query(criteria);
+	        
+	    mongoTemplate.remove(query, "lodgment");
+		return null;
+	}
+
 	
 
 	

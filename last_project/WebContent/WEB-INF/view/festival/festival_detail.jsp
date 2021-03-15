@@ -232,7 +232,6 @@ function addEventHandle(target, type, callback) {
         target.attachEvent('on' + type, callback);
     }
 }
-
 // 카테고리 검색을 요청하는 함수입니다
 function searchPlaces() {
     if (!currCategory) {
@@ -241,7 +240,6 @@ function searchPlaces() {
     
     // 커스텀 오버레이를 숨깁니다 
     placeOverlay.setMap(null);
-
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
     
@@ -256,7 +254,6 @@ function placesSearchCB(data, status, pagination) {
         displayPlaces(data);
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
         // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
-
     } else if (status === kakao.maps.services.Status.ERROR) {
         // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
         
@@ -286,7 +283,6 @@ function displayPlaces(places) {
             })(marker, places[i]);
     }
 }
-
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, order) {
     //var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
@@ -319,12 +315,10 @@ function removeMarker() {
     }   
     markers = [];
 }
-
 // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 function displayPlaceInfo (place) {
     var content = '<div class="placeinfo">' +
                     '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
-
     if (place.road_address_name) {
         content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
                     '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
@@ -335,7 +329,6 @@ function displayPlaceInfo (place) {
     content += '    <span class="tel">' + place.phone + '</span>' + 
                 '</div>' + 
                 '<div class="after"></div>';
-
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
     placeOverlay.setMap(map);  
@@ -346,12 +339,10 @@ function displayPlaceInfo (place) {
 function addCategoryClickEvent() {
     var category = document.getElementById('category'),
         children = category.children;
-
     for (var i=0; i<children.length; i++) {
         children[i].onclick = onClickCategory;
     }
 }
-
 // 카테고리를 클릭했을 때 호출되는 함수입니다
 function onClickCategory() {
     var id = this.id,
@@ -369,7 +360,6 @@ function onClickCategory() {
         searchPlaces();
     }
 }
-
 // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
 function changeCategoryClass(el) {
     var category = document.getElementById('category'),
@@ -392,7 +382,6 @@ var markerPosition  = new kakao.maps.LatLng(${list.latitude} , ${list.longitude}
 var marker = new kakao.maps.Marker({
     position: markerPosition
 });
-
 // 마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);
 </script>
@@ -547,7 +536,6 @@ kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
         
         // 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
         deleteDistnce();
-
         // 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
         deleteCircleDot();
     
@@ -583,7 +571,6 @@ kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
         
         // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
         clickLine.setPath(path);
-
         var distance = Math.round(clickLine.getLength());
         displayCircleDot(clickPosition, distance);
     }
@@ -592,13 +579,11 @@ kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
 // 지도에 마우스무브 이벤트를 등록합니다
 // 선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
 kakao.maps.event.addListener(maps, 'mousemove', function (mouseEvent) {
-
     // 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
     if (drawingFlag){
         
         // 마우스 커서의 현재 위치를 얻어옵니다 
         var mousePosition = mouseEvent.latLng; 
-
         // 마우스 클릭으로 그려진 선의 좌표 배열을 얻어옵니다
         var path = clickLine.getPath();
         
@@ -631,13 +616,11 @@ kakao.maps.event.addListener(maps, 'rightclick', function (mouseEvent) {
     
         // 선을 구성하는 좌표의 개수가 2개 이상이면
         if (path.length > 1) {
-
             // 마지막 클릭 지점에 대한 거리 정보 커스텀 오버레이를 지웁니다
             if (dots[dots.length-1].distance) {
                 dots[dots.length-1].distance.setMap(null);
                 dots[dots.length-1].distance = null;    
             }
-
             var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
                 content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
                 
@@ -645,20 +628,17 @@ kakao.maps.event.addListener(maps, 'rightclick', function (mouseEvent) {
             showDistance(content, path[path.length-1]);  
              
         } else {
-
             // 선을 구성하는 좌표의 개수가 1개 이하이면 
             // 지도에 표시되고 있는 선과 정보들을 지도에서 제거합니다.
             deleteClickLine();
             deleteCircleDot(); 
             deleteDistnce();
-
         }
         
         // 상태를 false로, 그리지 않고 있는 상태로 변경합니다
         drawingFlag = false;          
     }  
 });    
-
 // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
 function deleteClickLine() {
     if (clickLine) {
@@ -666,7 +646,6 @@ function deleteClickLine() {
         clickLine = null;        
     }
 }
-
 // 마우스 드래그로 그려지고 있는 선의 총거리 정보를 표시하거
 // 마우스 오른쪽 클릭으로 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 생성하고 지도에 표시하는 함수입니다
 function showDistance(content, position) {
@@ -690,7 +669,6 @@ function showDistance(content, position) {
         });      
     }
 }
-
 // 그려지고 있는 선의 총거리 정보와 
 // 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 삭제하는 함수입니다
 function deleteDistnce () {
@@ -739,7 +717,6 @@ function deleteCircleDot() {
         if (dots[i].circle) { 
             dots[i].circle.setMap(null);
         }
-
         if (dots[i].distance) {
             dots[i].distance.setMap(null);
         }
@@ -772,7 +749,6 @@ function getTimeHTML(distance) {
         bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
     }
     bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
-
     // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
     var content = '<ul class="dotOverlay distanceInfo">';
     content += '    <li>';
@@ -986,7 +962,7 @@ function getTimeHTML(distance) {
 						<h3 class="inner">주변 식당</h3>
                         
                         <!-- 식당 1 -->
-                        <c:forEach items="${reslist}" var="res">
+                        <c:forEach items="${reslist}" var="res" varStatus="var">
                         <div class="row near-place">
                                             
                             <div class="col-12 near-place-image">
@@ -1004,7 +980,7 @@ function getTimeHTML(distance) {
                                 ${res[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>4.2<span class="near-place-tel">${res[0].tel }</span>
+								<span class="star">★</span>${res[0].averageScore}<span class="near-place-tel">${res[0].tel }</span>
 								</div>
 								
                                 <div class="col-12" class="near-place-text">
@@ -1092,8 +1068,10 @@ function getTimeHTML(distance) {
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div>
-						<h4>- 내 코스 1<span style="padding-left: 250px;"><input type="button" value="선택" class="btn_1" id=""></span></h4>
-						<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
+						<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
+							<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
+							<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
+						</h4>
 					</div>
 					<div style="text-align: center;">
 						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
@@ -1346,8 +1324,61 @@ function getTimeHTML(distance) {
 		
 	
 	</script>
+	<!-- 로그인 -->
 	<script src="../../js/login.js"></script>
-
+	<!-- 코스 -->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			<c:forEach items="${list}" var="fes">
+				var title = "${fes.title}"
+				var address = "${fes.address}"
+				var startDate = ${fes.startDate}
+				var endDate = ${fes.endDate}
+				var fee = "${fes.fee}"
+				var festel = "${fes.tel}"
+				var host = "${fes.host}"
+			</c:forEach>
+			$("#choice").on('click', function () {
+				var fesInfo = [];
+				fesInfo.push({
+					"title" : title,
+					"address" : address,
+					"startDate" : startDate,
+					"endDate" : endDate,
+					"fee" : fee,
+					"festel" : festel,
+					"host" : host
+				})
+				console.log(typeof(fesInfo))
+				console.log(fesInfo);
+				
+				var jsonData = JSON.stringify(fesInfo)
+				console.log(typeof(jsonData))
+				console.log(jsonData)
+				$.ajax({
+					type : "post",
+					async : true,
+					url : "addMycourse_festival.do",
+					contentType: 'application/json; charset=utf-8', // 한글처리
+					traditional : true,
+					data : {
+						"writer" : "${sessionScope.memberId}",
+						"courseName" : $('#courseName').val(),
+						"jsonData" : jsonData					
+					},
+					dataType : "json",					
+					success : function (data) {
+						alert("완료")
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다");
+						console.log(err)
+					}
+				}) // end of ajax.
+			})
+			
+		})
+	</script>
 </body>
 
 </html>

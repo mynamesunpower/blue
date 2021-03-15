@@ -52,11 +52,34 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
+	public List<HashMap> getGroupCategory() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.groupCategory();
+	}
+
+	@Override
+	public List<RestaurantVO> getCategoryData(String word, int pageNumber) {
+		// TODO Auto-generated method stub
+		return restaurantDAO.getCategoryData(word, pageNumber);
+	}
 	public List<RestaurantVO> selectnear(ObjectId objectId) {
 		
 		return restaurantDAO.selectnear(objectId);
 	}
 	
 	
+	
+	//관리자에서
+	public RestaurantVO insert_restaurant(RestaurantVO vo) {
+		return restaurantDAO.insert_restaurant(vo);
+	}
+
+	public RestaurantVO modify_restaurant(RestaurantVO vo) {
+		return restaurantDAO.modify_restaurant(vo);
+	}
+
+	public RestaurantVO delete_restaurant(RestaurantVO vo) {
+		return restaurantDAO.delete_restaurant(vo);
+	}
 	
 }

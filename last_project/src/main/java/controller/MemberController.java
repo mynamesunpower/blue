@@ -215,6 +215,10 @@ public class MemberController {
 
 		// DB에서 정보를 확인한다. id로 검색하여 SELECT *을 검색. 비번 일치 여부는 뒤에서 확인.
 		MemberVO result = memberService.memberLogin(vo);
+		
+		if (result == null) {
+			return "";
+		}
 
 		// TODO result.getPassword() null이면 널포인터인데. 이거 어떻게 막지.
 		boolean passwordMatch = passwordEncoder.matches(inputPassword, result.getPassword());

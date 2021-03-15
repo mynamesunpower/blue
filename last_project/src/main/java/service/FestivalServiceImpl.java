@@ -61,8 +61,21 @@ public class FestivalServiceImpl implements FestivalService {
 		return festivalDao.updateRestaurantReview(reviews, _id);
 	}
 
+	//관리자에서
+	@Override
+	public FestivalVO insert_festival(FestivalVO vo) {
+		return festivalDao.insert_festival(vo);
+	}
+	
+	@Override
+	public FestivalVO modify_festival(FestivalVO vo) {
+		return festivalDao.modify_festival(vo);
+	}
 
-
-
-
+	@Override
+	public FestivalVO delete_festival(FestivalVO vo) {
+		return festivalDao.delete_festival(vo);
+	}
+	
+	
 }
