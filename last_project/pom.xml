@@ -108,6 +108,7 @@
 		<artifactId>mongodb-driver-legacy</artifactId>
 		<version>4.2.0-beta1</version>
 	</dependency>
+	
 	<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
 	<dependency>
 		<groupId>org.springframework.data</groupId>
