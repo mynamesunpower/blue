@@ -83,14 +83,14 @@ public class CourseController {
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("memberId:"+memberId);
 		List<CourseVO> list = courseService.viewMycourse(memberId);
-		/*
+		/* 왜 이거 안해도 나오지???
 		for (CourseVO vo : list) {
 			ArrayList<String> imageList = new ArrayList<String>();
 			for(Binary img : vo.getImage()) {
 				String image = Base64.getEncoder().encodeToString(img.getData());
 				imageList.add(image);
 			}
-			vo.setCoursePath(imageList);
+			vo.setCoursePath(imageList); // 여길 어떻게 해줘야 할까
 		}
 		*/
 		model.addAttribute("list", list);

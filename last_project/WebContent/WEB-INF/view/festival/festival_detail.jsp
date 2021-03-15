@@ -1267,9 +1267,13 @@ function getTimeHTML(distance) {
 			$(document).on("click", "#choice", function(){
 				var courseName = $(this).parent().prev().val();
 				console.log(courseName);
-				// 코스 경로
+				// 코스 경로 배열 생성.
 				var coursePath_arr = new Array();
 				<c:forEach items="${list}" var="fes">
+					// 첫 번째 이미지 가져오기
+					<c:forEach items="${fes.images}" var="image" begin="0" end="0">
+						var img = "data:image/jpg;base64,${image}"
+					</c:forEach>
 					var data = {
 							"title" : "${fes.title}",
 							"host" : "${fes.host}",
@@ -1279,8 +1283,8 @@ function getTimeHTML(distance) {
 							"longitude" : ${fes.longitude},
 							"startDate" : ${fes.startDate},
 							"endDate" : ${fes.endDate},
-							"fee" : "${fes.fee}",
-							"image" : "${fes.image}"
+//							"fee" : "${fes.fee}", // fee안에 태그랑 "" 있는 경우있어서 오류 뜸.
+							"image" : img
 					}
 					console.log(data)
 					coursePath_arr.push(data)
@@ -1297,7 +1301,13 @@ function getTimeHTML(distance) {
 				var jsonData = JSON.stringify(info)
 				console.log("jsonData:"+jsonData)
 				console.log(typeof(jsonData))
+				
+				/*
+				if(_id = "코스 _id가 DB에 존재하면 그 DB에 정보를 추가하는 새로운 ajax 요청을 발송."){
+					그 새로운 ajax 요청이 여기 들어오고,    
 					
+					아닌 경우는 밑에 ajax로 새로 코스 생성 요청.     < - DAOImpl 에서 처리 ㄱ ?
+				}*/
 				$.ajax({
 					type : "POST",
 					url : "course/addMycourse.do",

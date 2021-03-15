@@ -58,6 +58,11 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public CourseVO addMycourse(CourseVO vo) {
 		System.out.println("addMycourse DAO 접근");
+//		System.out.println(">>>>>>>>>>>_id:" + vo.get_id());
+//		System.out.println(">?>>>>>> cname :"+ vo.getCourseName());
+		/*
+		 * 여기서, if문으로 정보를 넣으려는 코스가 이미 존재하면 update, 아니면 insert되게 ?
+		 */
 		return mongoTemplate.insert(vo, course);
 	}
 	// 코스 삭제
