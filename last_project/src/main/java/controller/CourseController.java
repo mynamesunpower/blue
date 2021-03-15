@@ -28,8 +28,7 @@ import com.google.gson.reflect.TypeToken;
 import main.java.service.CourseService;
 import main.java.vo.CourseVO;
 import main.java.vo.FestivalVO;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+
 
 @Controller
 @RequestMapping(value = "course/")

@@ -134,9 +134,14 @@
 										<div class="img_list">
 											<a href="restaurant_detail.do?_id=${list._id}">
 											
-												<c:if test="${list.images.size() gt 0}">
-													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
-												</c:if>
+												<c:choose>
+													<c:when test="${list.images.size() gt 0}">
+														<img class="img-fluid" src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
+													</c:when>
+													<c:otherwise>
+														<img class="img-fluid" src="img/no-image2.jpg">
+													</c:otherwise>
+												</c:choose>
 												
 												<div class="short_info" style="padding-left:10px;">${list.category}</div>
 											</a>

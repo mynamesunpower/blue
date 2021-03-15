@@ -98,7 +98,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>이름</label>
-											<input type="text" id="name" name="name" class="form-control">
+											<input type="text" id="name" name="name" class="form-control" value="${vo.name}" disabled>
 										</div>
 									</div>
 								</div>
@@ -106,7 +106,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>전화번호</label>
-											<input type="text" id="telephone" name="telephone" class="form-control">
+											<input type="text" id="telephone" name="telephone" class="form-control" value="${vo.tel}">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="changePhoneNumber">전화번호 변경</button>
 											</div>
@@ -115,7 +115,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>이메일</label>
-											<input type="email" id="email" name="email" class="form-control">
+											<input type="email" id="email" name="email" class="form-control" value="${vo.email}">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="changeEmail">이메일 변경</button>
 											</div>
@@ -126,10 +126,7 @@
 									<div class="col-sm-6">									
 										<div class="form-group">
 											<label>주소 </label>
-											<input type="text" placeholder="우편번호" id="zonecode" class="form-control">
-											<input type="text" size="35" placeholder="도로명주소 또는 지번주소" id="addr" class="form-control">
-											<input type="text" placeholder="상세 주소란" id="detailAddr" class="form-control">
-											<input type="text" placeholder="동" id="extraAddr" class="form-control">
+											<input type="text" id="addr" class="form-control" value="${vo.address}" style="width:100%;">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="findAddr">주소 변경</button>
 											</div>
@@ -154,24 +151,24 @@
 										<div class="card">
 											<div class="card-header">
 											<h4>
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseOne_faq">공부가 하기 싫어효<i class="indicator icon-minus float-right"></i></a>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseOne_faq">축제.. 좋아하세요?<i class="indicator icon-minus float-right"></i></a>
 											</h4>
 											</div>
 											<div id="collapseOne_faq" class="collapse show" data-parent="#faq">
 											<div class="card-body">
-												나가죽자
+												정말 좋아합니다. 이번엔 거짓이 아니라구요.
 											</div>
 											</div>
 										</div>
 										<div class="card">
 											<div class="card-header">
 											<h4>
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseTwo_faq">오늘 저녁은 뭘 먹죠<i class="indicator icon-plus float-right"></i></a>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseTwo_faq">메이트 서비스는요?<i class="indicator icon-plus float-right"></i></a>
 											</h4>
 											</div>
 											<div id="collapseTwo_faq" class="collapse" data-parent="#faq">
 											<div class="card-body">
-												식욕이 없어요.
+												죄송합니다. 제 실력이 부족하여 미구현입니다.
 											</div>
 											</div>
 										</div>
@@ -295,17 +292,17 @@
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>이름 <sup>*</sup>
 													</label>
-													<input type="text" name="field-name" value="" placeholder="" class="form-control">
+													<input type="text" name="field-name" value="" placeholder="" class="form-control" value="${vo.name}">
 												</div>
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>전화번호 <sup>*</sup>
 													</label>
-													<input type="text" name="field-name" value="" placeholder="" class="form-control">
+													<input type="text" name="field-name" value="" placeholder="" class="form-control" value="${vo.tel}">
 												</div>
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>이메일 <sup>*</sup>
 													</label>
-													<input type="email" name="field-name" value="" placeholder="" class="form-control">
+													<input type="email" name="field-name" value="" placeholder="" class="form-control" value="${vo.email}">
 												</div>
 												<div class="form-group col-md-12 col-sm-6 col-xs-12">
 													<label>문의 유형
@@ -313,13 +310,13 @@
 													<select class="custom-select">
 														<option selected>선택해주세요.</option>
 														<option value="1">코스 서비스</option>
-														<option value="2">메이트 서비스</option>
+														<option value="2">정보 오류 수정 </option>
 														<option value="3">기타</option>
 													</select>
 												</div>											
 												<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 													<label>문의 내역</label>
-													<textarea placeholder="문의 사항을 상세히 기재해주세요." class="form-control"></textarea>
+													<textarea id="cs_detail" placeholder="문의 사항을 상세히 기재해주세요." class="form-control"></textarea>
 												</div>
 											</div>
 											<div style="text-align: center;">
@@ -396,6 +393,11 @@
 			<!-- End row -->
 		</div>
 		<!-- End container -->
+		<form name="frmData" id="frmData" method="post">
+			<input type="hidden" name="name" id="mem_name" value="${vo.name}" /> 
+			<input type="hidden" name="id" id="mem_id" value="${vo.id}" />
+		</form>
+
 	</main>
 	<!-- End main -->
 
@@ -414,13 +416,77 @@
 	<!-- Fixed sidebar -->
 	<script src="js/theia-sticky-sidebar.js"></script>
 	<script>
+	// 시간 format 변환
+
+		function getTimeStamp() {
+
+			var d = new Date();
+
+			var s = leadingZeros(d.getFullYear(), 4) + '-'
+					+ leadingZeros(d.getMonth() + 1, 2) + '-'
+					+ leadingZeros(d.getDate(), 2) + ' ' +
+
+					leadingZeros(d.getHours(), 2) + ':'
+					+ leadingZeros(d.getMinutes(), 2) + ':'
+					+ leadingZeros(d.getSeconds(), 2);
+
+			return s;
+		}
+
+		function leadingZeros(n, digits) {
+			var zero = '';
+			n = n.toString();
+
+			if (n.length < digits) {
+				for (i = 0; i < digits - n.length; i++)
+					zero += '0';
+			}
+			return zero + n;
+		}
+		
+		function openPop() {
+
+			var url = "../CustomerService/memberChat.do";
+			var pop_title = "관리자와 대화하기";
+			var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+
+			window.open(url, pop_title, option);
+		}
+
 		$('.memberChat').on('click', function() {
-			var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-			window.open('../CustomerService/memberChat.do', 'Chat', option);
-		})
-	
+			
+			
+			var date = getTimeStamp();
+			console.log(date)
+			
+			$.ajax({
+				type: 'post',
+				url: '../admin/admin_customer_chat.do',
+				contentType:'application/x-www-form-urlencoded;charset=euc-kr', // 한글처리
+				data: {
+					'id': $('#mem_id').val(),
+					'name': $('#mem_name').val(),
+					'first_date': date.split(' ')[0],
+					'second_date': date.split(' ')[1]
+				},
+				success: function(result) {
+					console.log('성공')
+				},
+				error: function(error) {
+					console.log(error)
+				},
+				complete: function(complete) {
+					console.log('끝나따')
+					
+					// 채팅창 열기!
+					openPop();
+				}
+			})
+			
+		});
+
 		jQuery('#sidebar').theiaStickySidebar({
-			additionalMarginTop: 80
+			additionalMarginTop : 80
 		});
 	</script>
 	<script>

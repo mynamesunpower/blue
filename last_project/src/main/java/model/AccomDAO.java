@@ -26,8 +26,16 @@ public interface AccomDAO {
 	
 	public List<AccomVO> selectOne(Object object);
 	
+	public List<HashMap> groupRegion();
+	
+	public List<AccomVO> getRegionData(String region, int pageNumber);
+	
 	//관리자에서
 	public AccomVO insert_lodgment(AccomVO vo);
 	public AccomVO modify_lodgment(AccomVO vo);
 	public AccomVO delete_lodgment(AccomVO vo);
+
+	
+
+	
 }

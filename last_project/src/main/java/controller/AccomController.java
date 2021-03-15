@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.AccomService;
 import main.java.vo.AccomVO;
+import main.java.vo.RestaurantVO;
 
 @Controller
 public class AccomController {
@@ -26,65 +27,73 @@ public class AccomController {
 	@Autowired
 	private AccomService AccomService;
 	
+	// 페이징 숫자 폭
+	private final int pageScale = 5;
+	
+	private final String firstScoreName = "lodgment";
+	
 	//숙박 리스트 조회
 	@RequestMapping(value="/accommodations_list.do")
-	public String test2(ModelMap m, @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
+	public String test2(ModelMap m, @RequestParam(value = "page", defaultValue = "1") int pageNumber, 
+									@RequestParam(value = "region", required = false) String region) {
 		
-		System.out.println("AccomController 리스트 요청2");
-		List<AccomVO> list = AccomService.selectPageList(pageNumber);
 		
-		System.out.println("컨트롤러에서"+list);
+		int totalSize;
+		int[] scores;
 		
-		int[] scores = new int[list.size()];
-		
-		// 이미지 띄우기
-		for (AccomVO vo : list) {
-			// ArrayList<Binary> image
-			ArrayList<String> imageList = new ArrayList<String>();
-			for (Binary img : vo.getImage()) {
-				String image = Base64.getEncoder().encodeToString(img.getData());
-				imageList.add(image);
+		// 지역을 선택하지 않았다면
+		if (region == null) {
+			
+			List<AccomVO> list = AccomService.selectPageList(pageNumber);
+			
+			scores = new int[list.size()];
+			
+			// vo에 있는 binary 이미지들을 base64 String 컨버트
+			for (int i = 0; i < list.size(); i++) {
+				
+				AccomVO vo = list.get(i);
+				BinaryImageToString(vo);
+				scores[i] = RestaurantController.scoreAverage(vo.getReviews(), "lodgment");
+				
 			}
-			vo.setImages(imageList);
-		}
-		
-		for (int i = 0; i < list.size(); i++) {
 			
-			AccomVO vo = list.get(i);
-			
-			ArrayList<String> imageList = new ArrayList<String>();
-			for (Binary img : vo.getImage()) {
-				String image = Base64.getEncoder().encodeToString(img.getData());
-				imageList.add(image);
-			}
-			vo.setImages(imageList);
-			
-			scores[i] = RestaurantController.scoreAverage(vo.getReviews(), "lodgment");
+			// 리스트의 총 갯수
+			totalSize = AccomService.getTotalSize();
+
+			m.addAttribute("list", list);
 			
 		}
-		
-		int pageScale = 5;
-		int totalSize = AccomService.getTotalSize();
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		int pageGroup = (int)Math.ceil((double) pageNumber / 5);
-		System.out.println("pageGroup -> " + pageGroup);
-		long startPage = ((pageGroup - 1) * pageScale) + 1;
-		long endPage = startPage + pageScale - 1;
-		long previousPage = (pageGroup - 2) * pageScale + 1;
-		long nextPage = pageGroup * pageScale + 1;
-		
-		resultMap.put("pageGroup", pageGroup);
-		resultMap.put("total", totalSize);
-		resultMap.put("page", pageNumber);
-		resultMap.put("pageScale", pageScale);
-		resultMap.put("startPage", startPage);
-		resultMap.put("endPage", endPage);
-		resultMap.put("nextPage", nextPage);
-		resultMap.put("previousPage", previousPage);
+		else {
+			
+			List<AccomVO> regionList = AccomService.getRegionData(region, pageNumber);
+			scores = new int[regionList.size()];
+			totalSize = regionList.size();
+			
+			for (int i = 0; i < totalSize; i++) {
+				AccomVO vo = regionList.get(i);
+				BinaryImageToString(vo);
+				scores[i] = RestaurantController.scoreAverage(vo.getReviews(), firstScoreName);
+				
+			}
+			
+			m.addAttribute("list", regionList);
+		}
 		
 		
+		// 사이드바 지역 설정하기
+		List<HashMap> regionList = AccomService.groupRegion();
+		int countSum = 0;
+		for (HashMap hashMap : regionList) {
+			countSum += (Integer) hashMap.get("regionCount");
+		}
+		
+		// 페이징 처리를 위한 hashmap
+		HashMap<String, Object> resultMap = RestaurantController.getPagingResultMap(pageNumber, pageScale, totalSize);
+		
+		m.addAttribute("countSum", countSum);
+		m.addAttribute("regionList", regionList);
 		m.addAttribute("resultMap", resultMap);
-		m.addAttribute("list", list);
+		m.addAttribute("scores", scores);
 		
 		return "accommodation/accommodations_list";
 		
@@ -142,6 +151,15 @@ public class AccomController {
 	}
 	
 	
+	public void BinaryImageToString(AccomVO accomVO) {
 
+		ArrayList<String> imageList = new ArrayList<String>();
+		for (Binary img : accomVO.getImage()) {
+			String image = Base64.getEncoder().encodeToString(img.getData());
+			imageList.add(image);
+		}
+		accomVO.setImages(imageList);
+
+	}
 
 }

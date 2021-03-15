@@ -85,7 +85,14 @@
 
 
 		<section class="parallax-window" data-parallax="scroll"
-			data-image-src="data:image/jpg;base64,${detail.images.get(0)}" data-natural-width="1400"
+			<c:choose>
+				<c:when test="${detail.images.size() gt 0}">
+				data-image-src="data:image/jpg;base64,${detail.images.get(0)}" data-natural-width="1400"	
+				</c:when>
+				<c:otherwise>
+				data-image-src="img/sample1400-470.jpg" data-natural-width="1400"
+				</c:otherwise>
+			</c:choose>
 			data-natural-height="470">
 			<div class="parallax-content-2">
 				<div class="container">
@@ -395,8 +402,11 @@ marker.setMap(map);
 								data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 숨기기</a>
 						</p>
 						<!-- Map button for tablets/mobiles -->
-						<div id="Img_carousel" class="slider-pro">
-							<div class="sp-slides">		
+					<c:choose>
+						<c:when test="${detail.images.size() gt 0}">
+							<div id="Img_carousel" class="slider-pro">
+							<div class="sp-slides">
+										
 								<c:forEach items="${detail.images}" var="image">
 								<div class="sp-slide">
 								
@@ -446,7 +456,13 @@ marker.setMap(map);
 									
 							</div>
 						</div>
-
+							
+						</c:when>
+						<c:otherwise>
+							이미지 정보가 없습니다.
+						</c:otherwise>
+					</c:choose>
+					
 						<hr>
 
 						<div class="row">
@@ -460,9 +476,6 @@ marker.setMap(map);
 											<li>체크인 ${detail.check_in}</li>
 											<li>체크아웃 ${detail.check_out}</li>
 											<li>주차가능여부 ${detail.parking}</li>
-											<li>아이디 ${detail._id}</li>
-											<li>요거랑</li>
-											<li>이거!</li>
 										</ul>
 									</div>
 								</div>

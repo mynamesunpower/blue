@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -388,7 +389,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                    관리자와 채팅 문의를 원하는 고객이 ___ 명 있습니다.
+                    관리자와 채팅 문의를 원하는 고객이 ${chatList.size()} 명 있습니다.
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -402,15 +403,17 @@
                     <th>관리</th>
                   </tr>
                   </thead>
-                  <tbody>
-                      <tr class="row_editable">
-                        <td>2021. 2. 26 12:11</td>
-                        <td>7분 32초</td>  
-                        <td>angry_customer</td>
+                  <tbody class="chatList">
+                  	  <c:forEach items="${chatList}" var="list">
+                  	  	<tr class="row_editable wait_time">
+                        <td>${list.first_date} ${list.second_date}</td>
+                        <td class="timer">7분 32초</td>  
+                        <td>${list.id}</td>
                         <td class="text-center">
                           <a href="#" class="btn btn-light btn-xs adminChat" data-toggle="modal" data-target="#chat_customer">채팅하기</a>    
                           <a href="#" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#send_customer">메시지 보내기</a></td>
-                      </tr>
+                     	</tr>	
+                  	  </c:forEach>  
                   </tbody>
                   <tfoot>
                   <tr>
@@ -506,6 +509,9 @@
 	})  
     
   $(function () {
+	  
+	timer_init();
+	  
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       
@@ -520,7 +526,53 @@
       "responsive": true,
     });
     
+    
+    
   });
+  
+  function clock() {
+	    var date = new Date();
+	    console.log(date)
+	    let item = document.getElementsByClassName("timer");
+	    
+	    let wait_time = document.getElementsByClassName("wait_time");
+	    $.each(wait_time, function(index, item) {
+	    	var time = item.innerHTML;
+	    	var first_date = time.split(' ')[0];
+	    	var second_date = time.split('  ')[1];
+	    	
+	    	var year = first_date.split('-')[0];
+	    	var month = first_date.split('-')[1];
+	    	var day = first_date.split('-')[2];
+	    	
+	    	var hour = second_date.split(':')[0];
+	    	var minute = second_date.split(':')[1];
+	    	var second = second_date.split(':')[2];
+	    	
+	    	var waitTime = new Date();
+	    	waitTime.setFullYear(year);
+	    	waitTime.setMonth(month-1);
+	    	waitTime.setDate(day);
+	    	waitTime.setHours(hour);
+	    	waitTime.setMinutes(minute);
+	    	waitTime.setSeconds(second);
+	    	
+			console.log(time)
+			console.log(waitTime)
+	    	
+		})
+	    
+	    $.each(item, function (index, item) {
+	    	item.innerText = date;
+	    })
+	   
+	}
+  
+  function timer_init(item) {
+	  
+	  clock();
+	  setInterval(clock, 1000);
+  }
 </script>
 </body>
 </html>

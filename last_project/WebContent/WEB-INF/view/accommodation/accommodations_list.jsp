@@ -79,118 +79,27 @@
 
 			<div class="row">
 				<aside class="col-lg-3">
-					<p>
-						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
-					</p>
 
 					<div id="filters_col">
 						<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>필터</a>
 						<div class="collapse show" id="collapseFilters">
-							<div class="filter_type">
-								<h6>별점</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i>
-											</span>(15)
-										</label>
+								<br>
+								<ul id="cat_nav">
+								
+									<li><a href="accommodations_list.do" id="active"><i
+											class=""></i>모든 숙박업소 <span>(${countSum})</span></a>
 									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i>
-											</span>(45)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(35)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(25)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(15)
-										</label>
-									</li>
+									
+									<c:forEach begin="0" end="${regionList.size() - 1}" varStatus="var">
+										<li><a
+											href="accommodations_list.do?region=${regionList.get(var.index)._id}">${regionList.get(var.index)._id}
+												<span>(${regionList.get(var.index).regionCount})</span>
+										</a></li>
+									</c:forEach>
+
 								</ul>
-							</div>
-							<div class="filter_type">
-								<h6>지역</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox">서울
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">경기/인천
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">부산
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">제주
-										</label>
-									</li>
-								</ul>
-							</div>
-							<div class="filter_type">
-								<h6>시설</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox">반려동물 동반 가능
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">와이파이
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">스파
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">조식 제공
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">수영장
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">주차 가능
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">운동 시설
-										</label>
-									</li>
-								</ul>
-							</div>
+
+
 						</div>
 						<!--End collapse -->
 					</div>
@@ -202,15 +111,7 @@
 
 					<div id="tools">
 						<div class="row">
-							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
-									<select name="sort_rating" id="sort_rating">
-										<option value="" selected>랭킹 순 정렬</option>
-										<option value="lower">랭킹 낮은 순</option>
-										<option value="higher">랭킹 높은 순</option>
-									</select>
-								</div>
-							</div>
+							
 							<div class="col-md-3 col-sm-4 col-6">
 								
 							</div>
@@ -226,19 +127,16 @@
 							<div class="strip_all_tour_list wow fadeIn restaurant" data-wow-delay="0.1s">
 								<div class="row">
 									<div class="col-lg-4 col-md-4">
-										<div class="ribbon_3 popular"><span>인기</span>
-										</div>
-										<div class="wishlist">
-											<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-										</div>
+										<c:if test="${scores[var.index] ge 3}">
+											<div class="ribbon_3 popular"><span>인기</span>
+											</div>
+										</c:if>
+										
 										<div class="img_list">
 											<a href="accommodations_detail.do?_id=${list._id}">
-											
 												<c:if test="${list.images.size() gt 0}">
 													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
 												</c:if>
-												
-												<div class="short_info"><i class="icon_set_3_restaurant-2"></i> Fast food</div>
 											</a>
 										</div>
 									</div>
@@ -247,6 +145,19 @@
 											<div class="rating"></div>
 											<h3>${list.title}</h3>
 											<p>${list.address}</p>
+											<br><br><br><br>
+											<div class="rating">
+												<h3>
+													<span>
+													<c:forEach begin="1" end="${scores[var.index]}">
+														<i class="icon-star voted"></i>
+													</c:forEach>
+													<c:forEach begin="1" end="${5 - scores[var.index]}">
+														<i class="icon-star-empty"></i>
+													</c:forEach>
+													</span>
+												( ${list.reviews.size()} )</h3>
+											</div>
 										</div>
 									</div>
 									<div class="col-lg-2 col-md-2">
@@ -316,6 +227,9 @@
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
 
+	<!-- Login -->
+	<script src="js/login.js"></script>
+
 	<!-- Map -->
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/map_hotels.js"></script>
@@ -328,9 +242,26 @@
 		   radioClass: 'iradio_square-grey'
 		 });
 		
+
 		function fnGoPaging(page) {
-            location.replace("accommodations_list.do?page="+page)
-        }
+
+			var url = new URL(window.location.href);
+			var urlParams = url.searchParams;
+
+			console.log(urlParams.has("region") + " / " + urlParams.has("page"))
+
+			if (urlParams.has("region") == true) {
+				
+				location.replace("accommodations_list.do?page=" + page + "&region=" + urlParams.get('region'))
+				
+			} 
+			else {
+				
+				location.replace("accommodations_list.do?page=" + page)
+				
+			}
+
+		}
 	</script>
 
 
