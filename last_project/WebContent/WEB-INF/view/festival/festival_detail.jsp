@@ -962,7 +962,7 @@ function getTimeHTML(distance) {
 						<h3 class="inner">주변 식당</h3>
                         
                         <!-- 식당 1 -->
-                        <c:forEach items="${reslist}" var="res">
+                        <c:forEach items="${reslist}" var="res" varStatus="var">
                         <div class="row near-place">
                                             
                             <div class="col-12 near-place-image">
@@ -980,7 +980,7 @@ function getTimeHTML(distance) {
                                 ${res[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>4.2<span class="near-place-tel">${res[0].tel }</span>
+								<span class="star">★</span>${res[0].averageScore}<span class="near-place-tel">${res[0].tel }</span>
 								</div>
 								
                                 <div class="col-12" class="near-place-text">

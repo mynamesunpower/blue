@@ -219,12 +219,13 @@ public class RestaurantController {
 		if (reviews.size() > 0) {
 			for (HashMap<String, String> review : reviews) {
 				
+				// firstScoreName -> festival / food / lodgment
 				scores[0] = Integer.parseInt(review.get(firstScoreName));
 				scores[1] = Integer.parseInt(review.get("service"));
 				scores[2] = Integer.parseInt(review.get("price"));
 				scores[3] = Integer.parseInt(review.get("quality"));
 				scores[4] = (scores[0] + scores[1] + scores[2] + scores[3]) / 4;
-				System.out.println(scores[0] + "/" + scores[1] + "/" + scores[2] + "/" + scores[3] + "/" + scores[4]);
+				//System.out.println(scores[0] + "/" + scores[1] + "/" + scores[2] + "/" + scores[3] + "/" + scores[4]);
 				scoreSum += scores[4];
 				
 			}

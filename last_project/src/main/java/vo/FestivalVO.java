@@ -33,6 +33,9 @@ public class FestivalVO {
 	
 	
 	
+	public int getEndDate() {
+		return endDate;
+	}
 	public ArrayList<HashMap<String, String>> getReviews() {
 		return reviews;
 	}
@@ -47,14 +50,6 @@ public class FestivalVO {
 	}
 	public void setPostcode(int postcode) {
 		this.postcode = postcode;
-	}
-	
-	
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	
 	public ArrayList<String> getImages() {
@@ -86,15 +81,10 @@ public class FestivalVO {
 	}
 
 
-	public int getStartDate() {
-		return startDate;
-	}
 	public void setStartDate(int startDate) {
 		this.startDate = startDate;
 	}
-	public int getEndDate() {
-		return endDate;
-	}
+
 	public void setEndDate(int endDate) {
 		this.endDate = endDate;
 	}
@@ -151,18 +141,11 @@ public class FestivalVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getStartDate() {
+	public int getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-	public String getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
+
+
 	
 	
 }

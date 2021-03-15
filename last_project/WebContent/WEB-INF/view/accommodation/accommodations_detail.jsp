@@ -85,7 +85,7 @@
 
 
 		<section class="parallax-window" data-parallax="scroll"
-			data-image-src="img/single_hotel_bg_1.jpg" data-natural-width="1400"
+			data-image-src="data:image/jpg;base64,${detail.images.get(0)}" data-natural-width="1400"
 			data-natural-height="470">
 			<div class="parallax-content-2">
 				<div class="container">
@@ -124,7 +124,7 @@
 						<!-- <li><a href="mainAfterLogin.jsp">Home</a>
 					</li> -->
 						<li><a href="festival.jsp">축제</a></li>
-						<li><a href="accommodations_list.jsp">숙박</a></li>
+						<li><a href="accommodations_list.do">숙박</a></li>
 						<li>${detail.title}</li>
 					</ul>
 				</div>

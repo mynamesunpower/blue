@@ -34,6 +34,26 @@ public class AccomVO {
 
 	
 	
+	
+	
+	public String getCheck_in() {
+		return check_in;
+	}
+	public void setCheck_in(String check_in) {
+		this.check_in = check_in;
+	}
+	public String getCheck_out() {
+		return check_out;
+	}
+	public void setCheck_out(String check_out) {
+		this.check_out = check_out;
+	}
+	public String getHomepage() {
+		return homepage;
+	}
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
 	public String getParking() {
 		return parking;
 	}
@@ -103,9 +123,6 @@ public class AccomVO {
 		this.booking_url = booking_url;
 	}
 	
-	public ArrayList<HashMap<String, String>> getReview() {
-		return review;
-	}
 	public ArrayList<String> getImages() {
 		return images;
 	}
