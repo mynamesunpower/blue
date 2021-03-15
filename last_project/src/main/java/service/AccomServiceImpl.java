@@ -58,4 +58,20 @@ public class AccomServiceImpl implements AccomService {
 	
 	
 	
+	//관리자에서
+	@Override
+	public AccomVO insert_lodgment(AccomVO vo) {
+		return accomDAO.insert_lodgment(vo);
+	}
+
+	@Override
+	public AccomVO modify_lodgment(AccomVO vo) {
+		return accomDAO.modify_lodgment(vo);
+	}
+
+	@Override
+	public AccomVO delete_lodgment(AccomVO vo) {
+		return accomDAO.delete_lodgment(vo);
+	}
+
 }

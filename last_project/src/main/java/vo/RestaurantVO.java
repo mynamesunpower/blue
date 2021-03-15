@@ -118,6 +118,12 @@ public class RestaurantVO {
 	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
 		this.reviews = reviews;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
 	public Double getRange() {
 		return range;

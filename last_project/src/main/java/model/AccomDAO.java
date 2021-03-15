@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 
 import main.java.vo.AccomVO;
 import main.java.vo.RestaurantVO;
+import main.java.vo.FestivalVO;
 
 public interface AccomDAO {
 
@@ -24,4 +25,9 @@ public interface AccomDAO {
 	public ArrayList<HashMap<String, String>> getReviews(String _id);
 	
 	public List<AccomVO> selectOne(Object object);
+	
+	//관리자에서
+	public AccomVO insert_lodgment(AccomVO vo);
+	public AccomVO modify_lodgment(AccomVO vo);
+	public AccomVO delete_lodgment(AccomVO vo);
 }

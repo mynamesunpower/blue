@@ -144,7 +144,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">${sessionScope.adminName}</a>
+          <a href="#" class="d-block">관리자1</a>
         </div>
       </div>
 
@@ -416,7 +416,6 @@
 
                 	<tr id ="tabledata">
                     <td>${member.id}</td>
-
                     <td>${member.name}</td>
                     <td>${member.birthday}</td>
                     <td>${member.tel}</td>
@@ -429,6 +428,8 @@
                   </c:forEach>
 
 
+                  
+                      
                   </tbody>
                   <tfoot>
                   <tr>
@@ -574,7 +575,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<input name="id" type="text" placeholder="아이디" class="form-control member_id"
-                                    disabled>
+                                    value=>
 								</div>
 							</div>
 						</div>
