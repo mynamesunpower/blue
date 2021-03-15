@@ -12,7 +12,7 @@ public class RestaurantVO {
 	@Id
 	private ObjectId _id;
 	
-	private String restaurant_name;
+	private String title;
 	private String open_time;
 	private String close_time;
 	private String rest_day;
@@ -36,12 +36,7 @@ public class RestaurantVO {
 	public void set_id(ObjectId _id) {
 		this._id = _id;
 	}
-	public String getRestaurant_name() {
-		return restaurant_name;
-	}
-	public void setRestaurant_name(String restaurant_name) {
-		this.restaurant_name = restaurant_name;
-	}
+	
 	public String getOpen_time() {
 		return open_time;
 	}
@@ -90,6 +85,12 @@ public class RestaurantVO {
 	}
 	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
 		this.reviews = reviews;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

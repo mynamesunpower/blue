@@ -12,4 +12,11 @@ public interface FestivalService {
 	public List<FestivalVO> detail(int tel);
 	
 	public List<FestivalVO> months();
+	
+	//관리자에서
+	public FestivalVO insert_festival(FestivalVO vo);
+	public FestivalVO modify_festival(FestivalVO vo);
+	public FestivalVO delete_festival(FestivalVO vo);
+	
+	
 }

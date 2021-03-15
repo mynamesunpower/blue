@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
@@ -18,6 +19,7 @@ import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.GridFSFindIterable;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.mongodb.client.result.UpdateResult;
 import com.mongodb.gridfs.GridFSDBFile;
 
 import main.java.vo.FestivalVO;
@@ -147,6 +149,55 @@ public class FestivalDAOImpl implements FestivalDAO {
 	        }
 	        i++;
 	    }
+	}
+
+
+	@Override
+	public FestivalVO insert_festival(FestivalVO vo) {
+		
+		return mongoTemplate.insert(vo, festival);
+	}
+	
+	public FestivalVO modify_festival(FestivalVO vo) {
+		
+//		 Criteria criteria = new Criteria("title");
+//	        criteria.is(vo.getTitle());
+	        
+	        Query query = new Query();
+	        //업데이트 할 항목 정의
+	        Update update = new Update();
+	        
+	     // where절 조건
+	        query.addCriteria(Criteria.where("title").is(vo.getTitle()));
+//	        query.addCriteria(Criteria.where("컬럼명2").is("조건값2"));
+	        	        
+	        update.set("address", vo.getAddress());
+	        update.set("host", vo.getHost());
+	        update.set("startDate", vo.getStartDate());
+	        update.set("endDate", vo.getEndDate());
+	        update.set("fee", vo.getFee());
+	        update.set("tel", vo.getTel());
+	        update.set("homepage", vo.getHomepage());
+	        update.set("detail", vo.getDetail());
+	        update.set("latitude", vo.getLatitude());
+	        update.set("longitude", vo.getLongitude());
+	        update.set("postcode", vo.getPostcode());
+	        	     	     
+		
+	        mongoTemplate.updateMulti(query, update, "festival");
+	        return null;
+	}
+
+	
+
+	public FestivalVO delete_festival(FestivalVO vo) {
+		
+		Criteria criteria = new Criteria("title");
+	    criteria.is(vo.getTitle());
+	    Query query = new Query(criteria);
+	        
+	    mongoTemplate.remove(query, "festival");
+		return null;
 	}
 
 

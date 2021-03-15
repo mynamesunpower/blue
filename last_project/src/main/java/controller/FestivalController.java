@@ -82,9 +82,9 @@ public class FestivalController {
 			}
 			
 			System.out.println("�굹�룄"+list);
-			String name = list.get(0).getFestival_name();
-			String startdate = list.get(0).getStart_date();
-			String enddate = list.get(0).getEnd_date();
+			String name = list.get(0).getTitle();
+			String startdate = list.get(0).getStartDate();
+			String enddate = list.get(0).getEndDate();
 			
 			model.addAttribute("list",list);
 			
@@ -93,7 +93,7 @@ public class FestivalController {
 			model.addAttribute("enddate", enddate);
 			
 			for(FestivalVO i:list) {
-			System.out.println("여기는"+i.getFestival_name());
+			System.out.println("여기는"+i.getTitle());
 		}
 			
 			return "festival_reset";

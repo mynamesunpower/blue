@@ -414,8 +414,8 @@
                   <c:forEach items="${list}" var="list">
                       <tr class="row_editable">
                         <td>${list.host}</td>
-                        <td>${list.festival_name}</td>
-                        <td>${list.start_date}~${list.end_date}</td>
+                        <td>${list.title}</td>
+                        <td>${list.startDate}~${list.endDate}</td>
                         <td>${list.address}</td>
                         <td>${list.fee}</td>
                         <td>${list.tel}</td>
@@ -452,6 +452,63 @@
     </section>
     <!-- /.content -->
   </div>
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <script>
+  $( document ).ready( function() {
+    
+    $(".modifybutton").on('click', function(){
+    	        
+		var title = $(this).parent().parent().children("td:nth-child(2)").text();
+    	var host = $(this).parent().parent().children("td:nth-child(1)").text();
+    	var address = $(this).parent().parent().children("td:nth-child(4)").text();
+    	var tel = $(this).parent().parent().children("td:nth-child(6)").text();
+    	var fee = $(this).parent().parent().children("td:nth-child(5)").text();
+    	var homepage = $(this).parent().parent().find("td:nth-child(7) > a").text();
+    			
+    	
+    	$('.festival_name').attr('value',title);
+    	$('.festival_host').attr('value',host); 
+    	$('.festival_address').attr('value',address); 
+    	$('.festival_tel').attr('value',tel); 
+    	$('.festival_fee').attr('value',fee); 
+    	$('.festival_page').val(homepage); 
+    	    	                    
+    });
+ //});
+  
+  
+  	$(".deletebutton").on('click', function(){
+	                	
+            		var title = $(this).parent().parent().children("td:nth-child(2)").text();
+                  
+            			console.log(title)
+            			
+                  	 //var id = $("#tabledata").find_all("td:nth-child(1)").text();
+                  	$('.delfestival').val(title); 
+               		
+                  	 $('.delbutton').prop("disabled", true);
+                  	$('.delete_confirm').on("keyup", action);
+                  	function action() {
+            			  if($('.delete_confirm').val()== "삭제한다") {
+            			        $('.delbutton').prop("disabled", false);
+            			     }
+            			  else{
+            				  $('.delbutton').prop("disabled", true);
+            			  }
+                  	}
+                  	
+                  });
+                  
+                	  
+            	  $(".delclose").on('click', function(){
+            		  $('.delete_confirm').val("")
+            		  
+            	  });
+          
+  });
+    </script>
+  
+   <!--  </script> -->
   <!-- 페이지 메인 콘텐츠 끝 -->
     
   <!-- 푸터 -->    
@@ -472,7 +529,7 @@
 </div>
 <!-- ./wrapper -->
     
-    <!-- 수정하기 -->
+    <!-- 추가하기 -->
 	<div class="modal fade" id="insert_festival" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -485,7 +542,7 @@
 					</div>
                     
                     <!-- 추가 form <action값 확인 필수> -->
-					<form method="post" action="#" name="insert_festival_form" id="insert_festival_form">
+					<form method="post" action="insert_festival.do" name="insert_festival_form" id="insert_festival_form">
                         
                         <!-- mongoDB 고유 아이디 (필요없나?) -->
                         <input type="hidden" value="unique_id">
@@ -494,8 +551,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
-                                    value="축제 이름">
+									<input name="title" id="festival_name" type="text" placeholder="이름" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -503,8 +560,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_host" id="festival_host" type="text" placeholder="주최" class="form-control"
-                                    value="주최 이름">
+									<input name="host" id="festival_host" type="text" placeholder="주최" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -512,8 +569,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_address" id="festival_address" type="text" placeholder="개최지 주소" class="form-control"
-                                    value="개최지 주소">
+									<input name="address" id="festival_address" type="text" placeholder="개최지 주소" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -521,8 +578,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_fee" id="festival_fee" type="text" placeholder="이용요금" class="form-control"
-                                    value="이용요금">
+									<input name="fee" id="festival_fee" type="text" placeholder="이용요금" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -530,8 +587,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_tel" id="festival_tel" type="text" placeholder="전화번호" class="form-control"
-                                    value="전화번호">
+									<input name="tel" id="festival_tel" type="text" placeholder="전화번호" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -539,8 +596,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_page" id="festival_page" type="text" placeholder="홈페이지" class="form-control"
-                                    value="홈페이지">
+									<input name="homepage" id="festival_page" type="text" placeholder="홈페이지" class="form-control"
+                                    >
 								</div>
 							</div>
 						</div>
@@ -567,13 +624,12 @@
 					</div>
                     
                     <!-- 수정 form -->
-					<form method="post" action="#" name="modify_festival_form" id="modify_festival_form">
+					<form method="post" action="modify_festival.do" name="modify_festival_form" id="modify_festival_form">
                         <input type="hidden" value="unique_id">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
-                                    value="축제 이름">
+									<input name="title" id="festival_name" type="text" placeholder="축제명" class="form-control festival_name" value="" readonly="readonly">
 								</div>
 							</div>
 						</div>
@@ -581,8 +637,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_host" id="festival_host" type="text" placeholder="주최" class="form-control"
-                                    value="주최 이름">
+									<input name="host" id="festival_host" type="text" placeholder="주최" class="form-control festival_host" value=""
+                                    >
 								</div>
 							</div>
 						</div>
@@ -590,8 +646,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_address" id="festival_address" type="text" placeholder="개최지 주소" class="form-control"
-                                    value="개최지 주소">
+									<input name="address" id="festival_address" type="text" placeholder="개최지 주소" class="form-control festival_address" value=""
+                                    >
 								</div>
 							</div>
 						</div>
@@ -599,8 +655,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_fee" id="festival_fee" type="text" placeholder="이용요금" class="form-control"
-                                    value="이용요금">
+									<input name="fee" id="festival_fee" type="text" placeholder="이용요금" class="form-control festival_fee" value=""
+                                    >
 								</div>
 							</div>
 						</div>
@@ -608,8 +664,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_tel" id="festival_tel" type="text" placeholder="전화번호" class="form-control"
-                                    value="전화번호">
+									<input name="tel" id="festival_tel" type="text" placeholder="전화번호" class="form-control festival_tel" value=""
+                                    >
 								</div>
 							</div>
 						</div>
@@ -617,8 +673,8 @@
                         <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="festival_page" id="festival_page" type="text" placeholder="홈페이지" class="form-control"
-                                    value="홈페이지">
+									<input name="homepage" id="festival_page" type="text" placeholder="홈페이지" class="form-control festival_page" value=""
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -638,14 +694,14 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myReviewLabel">축제 정보 삭제</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close delclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
                     
                     <!-- 삭제 form <action 확인 필수!> -->
-					<form method="post" action="#" name="delete_festival_form" id="delete_festival_form">
+					<form method="post" action="delete_festival.do" name="delete_festival_form" id="delete_festival_form">
                         
                         <!-- mongoDB 축제 고유 id -->
                         <input type="hidden" value="unique_id">
@@ -654,8 +710,8 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     다음 축제 데이터가 삭제됩니다. <br/>
-									<input name="festival_name" id="festival_name" type="text" placeholder="이름" class="form-control"
-                                    value="축제 이름">
+									<input name="title" id="festival_name" type="text" placeholder="이름" class="form-control delfestival"
+                                    value="">
 								</div>
 							</div>
 						</div>
@@ -665,13 +721,13 @@
 							<div class="col-md-12">
 								<div class="form-group">
                                     삭제를 진행하기 위해서 <strong>삭제한다 </strong>를 입력해주세요
-									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control">
+									<input name="delete_confirm" id="delete_confirm" type="text" placeholder="여기에 입력" class="form-control delete_confirm">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
                         
-						<input type="submit" value="삭제" class="btn btn-danger" id="submit-festival-delete">
+						<input type="submit" value="삭제" class="btn btn-danger delbutton" id="submit-festival-delete">
 					</form> <!-- 삭제 form 끝 -->
 				</div>
 			</div>
@@ -680,7 +736,7 @@
 	<!-- 삭제하기 끝 --> 
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
@@ -701,8 +757,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script>
+
+   <script>
     
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -732,6 +790,6 @@
     });
     
   });
-</script>
+  </script>
 </body>
 </html>

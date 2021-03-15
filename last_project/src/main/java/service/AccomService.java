@@ -13,6 +13,10 @@ public interface AccomService {
 	//숙박 상세
 	public AccomVO detail(String _id);
 
+	//관리자에서
+	public AccomVO insert_lodgment(AccomVO vo);
+	public AccomVO modify_lodgment(AccomVO vo);
+	public AccomVO delete_lodgment(AccomVO vo);
 	
 
 }

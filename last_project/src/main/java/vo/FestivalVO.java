@@ -14,9 +14,9 @@ public class FestivalVO {
 	private ObjectId _id;
 	
 	private String host;
-	private String festival_name;
-	private String start_date;
-	private String end_date;
+	private String title;
+	private String startDate;
+	private String endDate;
 	private String address;
 	private String fee;
 	private String tel;
@@ -62,24 +62,8 @@ public class FestivalVO {
 	public void setHost(String host) {
 		this.host = host;
 	}
-	public String getFestival_name() {
-		return festival_name;
-	}
-	public void setFestival_name(String festival_name) {
-		this.festival_name = festival_name;
-	}
-	public String getStart_date() {
-		return start_date;
-	}
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
-	}
-	public String getEnd_date() {
-		return end_date;
-	}
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
-	}
+	
+	
 	public String getAddress() {
 		return address;
 	}
@@ -134,6 +118,24 @@ public class FestivalVO {
 	}
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	
 	

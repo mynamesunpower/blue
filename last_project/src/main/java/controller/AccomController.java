@@ -33,7 +33,7 @@ public class AccomController {
 		
 		// 이미지 띄우기
 		for (AccomVO vo : list) {
-			// 異뺤젣�뿉 �엳�뒗 ArrayList<Binary> image瑜�
+			// ArrayList<Binary> image
 			ArrayList<String> imageList = new ArrayList<String>();
 			for (Binary img : vo.getImage()) {
 				String image = Base64.getEncoder().encodeToString(img.getData());

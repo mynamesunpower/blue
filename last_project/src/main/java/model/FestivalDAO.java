@@ -11,5 +11,11 @@ public interface FestivalDAO {
 	public List<FestivalVO> recommand();
 	public List<FestivalVO> detail(int tel);
 	
+	//관리자에서
+	public FestivalVO insert_festival(FestivalVO vo);
+	public FestivalVO modify_festival(FestivalVO vo);
+	public FestivalVO delete_festival(FestivalVO vo);
+
+	
 	
 }

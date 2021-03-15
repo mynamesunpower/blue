@@ -12,12 +12,12 @@ public class AccomVO {
 	@Id
 	private ObjectId _id;
 	
-	private String lodgment_name;
+	private String title;
 	private String address;
 	private String tel;
-	private String check_in;
-	private String check_out;
-	private String homepage;
+	private String checkin;
+	private String checkout;
+	private String booking_url;
 	private ArrayList<String> images;
 	private ArrayList<Binary> image;
 	
@@ -31,13 +31,14 @@ public class AccomVO {
 	public void set_id(ObjectId _id) {
 		this._id = _id;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
-	public String getLodgment_name() {
-		return lodgment_name;
-	}
-	public void setLodgment_name(String lodgment_name) {
-		this.lodgment_name = lodgment_name;
-	}
 	
 	public String getAddress() {
 		return address;
@@ -51,24 +52,29 @@ public class AccomVO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getCheck_in() {
-		return check_in;
+	
+	
+	public String getCheckin() {
+		return checkin;
 	}
-	public void setCheck_in(String check_in) {
-		this.check_in = check_in;
+	public void setCheckin(String checkin) {
+		this.checkin = checkin;
 	}
-	public String getCheck_out() {
-		return check_out;
+	public String getCheckout() {
+		return checkout;
 	}
-	public void setCheck_out(String check_out) {
-		this.check_out = check_out;
+	public void setCheckout(String checkout) {
+		this.checkout = checkout;
 	}
-	public String getHomepage() {
-		return homepage;
+	
+	
+	public String getBooking_url() {
+		return booking_url;
 	}
-	public void setHomepage(String homepage) {
-		this.homepage = homepage;
+	public void setBooking_url(String booking_url) {
+		this.booking_url = booking_url;
 	}
+	
 	public ArrayList<HashMap<String, String>> getReview() {
 		return review;
 	}
@@ -87,5 +93,4 @@ public class AccomVO {
 	public void setReview(ArrayList<HashMap<String, String>> review) {
 		this.review = review;
 	}
-	
 }

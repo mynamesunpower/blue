@@ -38,5 +38,19 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		return restaurantDAO.getReviews(_id);
 	}
+
+	
+	//관리자에서
+	public RestaurantVO insert_restaurant(RestaurantVO vo) {
+		return restaurantDAO.insert_restaurant(vo);
+	}
+
+	public RestaurantVO modify_restaurant(RestaurantVO vo) {
+		return restaurantDAO.modify_restaurant(vo);
+	}
+
+	public RestaurantVO delete_restaurant(RestaurantVO vo) {
+		return restaurantDAO.delete_restaurant(vo);
+	}
 	
 }

@@ -60,5 +60,40 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
 		return vo.getReviews();
 	}
+
+	
+	//관리자에서
+	public RestaurantVO insert_restaurant(RestaurantVO vo) {
+		return mongoTemplate.insert(vo, "restaurant");
+	}
+
+	public RestaurantVO modify_restaurant(RestaurantVO vo) {
+		Query query = new Query();
+        //업데이트 할 항목 정의
+        Update update = new Update();
+        
+     // where절 조건
+        query.addCriteria(Criteria.where("title").is(vo.getTitle()));
+//        query.addCriteria(Criteria.where("컬럼명2").is("조건값2"));
+        	        
+        update.set("address", vo.getAddress());
+        update.set("tel", vo.getTel());
+        update.set("open_time", vo.getOpen_time());
+        update.set("close_time", vo.getClose_time());
+//        update.set("rest_day", vo.getRest_day());
+                	     	     
+	
+        mongoTemplate.updateMulti(query, update, "restaurant");
+        return null;
+	}
+
+	public RestaurantVO delete_restaurant(RestaurantVO vo) {
+		Criteria criteria = new Criteria("title");
+	    criteria.is(vo.getTitle());
+	    Query query = new Query(criteria);
+	        
+	    mongoTemplate.remove(query, "restaurant");
+		return null;
+	}
 	
 }

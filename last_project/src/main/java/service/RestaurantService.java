@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import main.java.vo.AccomVO;
 import main.java.vo.RestaurantVO;
 
 public interface RestaurantService {
@@ -16,4 +17,8 @@ public interface RestaurantService {
 
 	public ArrayList<HashMap<String, String>> getReviews(String _id);
 	
+	//관리자에서
+	public RestaurantVO insert_restaurant(RestaurantVO vo);
+	public RestaurantVO modify_restaurant(RestaurantVO vo);
+	public RestaurantVO delete_restaurant(RestaurantVO vo);
 }

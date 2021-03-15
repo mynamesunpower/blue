@@ -5,8 +5,10 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-
 import main.java.vo.AccomVO;
 import main.java.vo.FestivalVO;
 
@@ -36,6 +38,40 @@ public class AccomDAOImpl implements AccomDAO{
 		
 		return vo;
 	}
+
+	public AccomVO insert_lodgment(AccomVO vo) {
+		return mongoTemplate.insert(vo, lodgment);
+	}
+
+	public AccomVO modify_lodgment(AccomVO vo) {		
+		Query query = new Query();
+        //업데이트 할 항목 정의
+        Update update = new Update();
+        
+     // where절 조건
+        query.addCriteria(Criteria.where("title").is(vo.getTitle()));
+//        query.addCriteria(Criteria.where("컬럼명2").is("조건값2"));
+        	        
+        update.set("address", vo.getAddress());
+        update.set("tel", vo.getTel());
+        update.set("checkin", vo.getCheckin());
+        update.set("checkout", vo.getCheckout());
+        update.set("booking_url", vo.getBooking_url());
+                	     	     
+	
+        mongoTemplate.updateMulti(query, update, "lodgment");
+        return null;
+	}
+
+	public AccomVO delete_lodgment(AccomVO vo) {		
+		Criteria criteria = new Criteria("title");
+	    criteria.is(vo.getTitle());
+	    Query query = new Query(criteria);
+	        
+	    mongoTemplate.remove(query, "lodgment");
+		return null;
+	}
+
 	
 
 	
