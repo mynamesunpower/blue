@@ -553,7 +553,7 @@
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.2s">
                     <div class="feature_home">
                         <i class="icon_set_1_icon-41"></i>
-                        <h3><span>+47</span> 축제 정보</h3>
+                        <h3><span class="festivalcount"></span> 축제 정보</h3>
                         <p>
                             많은 축제가 당신을 기다리고 있어요.
                         </p>
@@ -806,6 +806,36 @@
 					});
 				}
 			});	/*ready*/
+	</script>
+	
+	
+	 
+	<script>
+$(document).ready(function(){
+
+	
+	alert("시작하니")
+	
+	$.ajax({
+					type : 'post',
+	        		//async : true,
+	        		url : "/festivalCount.do",
+	        	
+					success: function(result) {
+							
+						$('.festivalcount').html("+"+result)
+					},
+					error: function(error) {
+						console.log('에러' + error)
+					}
+				});
+	
+	
+	
+	
+	
+
+});
 	</script>
 </body>
 

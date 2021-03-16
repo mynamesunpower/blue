@@ -494,6 +494,22 @@ public class FestivalController {
 	}
 	
 	
+	@RequestMapping(value="festivalCount.do")
+	@ResponseBody
+	public String festivalcount(String test) {
+		
+		String test2 = test;
+		
+		long count = festivalService.festivalcount();
+		
+		System.out.println("몽고디비 페스티벌:" +count);
+		
+		String num = String.valueOf(count);
+		
+		return num;
+		
+	}
+	
 
 
 

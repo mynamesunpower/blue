@@ -68,6 +68,13 @@ public class FestivalServiceImpl implements FestivalService {
 		// TODO Auto-generated method stub
 		return festivalDao.search(word);
 	}
+	
+
+	@Override
+	public long festivalcount() {
+		// TODO Auto-generated method stub
+		return festivalDao.festivalcount();
+	}
 
 	//관리자에서
 	@Override

@@ -269,6 +269,23 @@ public class FestivalDAOImpl implements FestivalDAO {
 		return result.getMappedResults();
 	}
 
+
+	@Override
+	public long festivalcount() {
+		// TODO Auto-generated method stub
+		
+		//Query query = new Query(Criteria.where("_id"));
+		
+		//long result = mongoTemplate.count(null, FestivalVO.class);
+		
+		List<FestivalVO> list = mongoTemplate.findAll(FestivalVO.class, festival);
+
+		long result = list.size();
+		
+		return result;
+	}
+
+	
 	
 	
 	
