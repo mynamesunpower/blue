@@ -383,7 +383,6 @@
     	   var maks = new kakao.maps.Marker({
     		   
     		   map: map,
-    		   text: "이거되나",
     		   position : new kakao.maps.LatLng(data.latitude, data.longitude)
     	   	
     		  
@@ -408,9 +407,6 @@
     	    
     
            return maks;
-
-        
-
             
         });
       
@@ -452,10 +448,6 @@
       
           }
       
-           
-     	
-
-    
     
     // 마커 클러스터러에 클릭이벤트를 등록합니다
     // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
