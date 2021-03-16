@@ -12,6 +12,9 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -252,6 +255,23 @@ public class FestivalDAOImpl implements FestivalDAO {
 		return (int)result.getModifiedCount();
 	}
 
+
+	//축제 검색
+	@Override
+	public List<FestivalVO> search(String word) {
+		// TODO Auto-generated method stub
+		
+		// where(title컬럼)에서 word 있는애들 찾음
+				MatchOperation where = Aggregation.match(new Criteria().andOperator(Criteria.where("title").regex(word)));
+				Aggregation aggregation = Aggregation.newAggregation(where);
+				AggregationResults<FestivalVO> result = mongoTemplate.aggregate(aggregation, festival, FestivalVO.class);
+		
+		return result.getMappedResults();
+	}
+
+	
+	
+	
 
 	
 	

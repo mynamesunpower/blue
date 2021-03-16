@@ -60,6 +60,14 @@ public class FestivalServiceImpl implements FestivalService {
 		// TODO Auto-generated method stub
 		return festivalDao.updateRestaurantReview(reviews, _id);
 	}
+	
+		
+
+	@Override
+	public List<FestivalVO> search(String word) {
+		// TODO Auto-generated method stub
+		return festivalDao.search(word);
+	}
 
 	//관리자에서
 	@Override
