@@ -1001,10 +1001,6 @@ function getTimeHTML(distance) {
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div id="courseList">
-						<h4>- <input type="text" style="width:35%;" value="내 코스 1">
-							<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-							<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
-						</h4>
 					</div>
 					<div style="text-align: center;">
 						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
@@ -1330,6 +1326,14 @@ function getTimeHTML(distance) {
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			// 코스 저장하기 클릭 시 - 팝업창에 내가 가진 코스명 리스트 띄워놓기
+			<c:forEach items="${clist}" var="name">
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+			</c:forEach>
+			
+			// 새 코스 추가 클릭 시
 			$("#addNewcourse").on('click', function(){
 				var courseName = $("#addcourseName").val();
 				$("#courseList").append(
@@ -1337,8 +1341,8 @@ function getTimeHTML(distance) {
 				);
 				$('#back').trigger('click');
 				$("#addcourseName").val("");
-			})
-		})
+			}) // end of $("#addNewcourse").on('click', function(){}).
+		}) // end of jQuery.
 	</script>
 </body>
 

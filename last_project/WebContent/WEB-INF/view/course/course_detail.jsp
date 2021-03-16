@@ -766,27 +766,23 @@
 	<!-- /Sign In Popup -->
 	
 	<!-- Modal put_into_course-->
-			<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						</div>
-						<div class="modal-body" style="text-align: center;">
-							<div id="courseList">
-								<h4>- <input type="text" style="width:35%;" value="내 코스 1">
-									<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
-								</h4>
-							</div>
-							<div style="text-align: center;">
-								<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
-							</div>
-						</div>
+	<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					<div id="courseList">
+					</div>
+					<div style="text-align: center;">
+						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
  	<!-- End of Modal put_into_course-->
 
 	<!-- Modal add_course-->
@@ -1033,7 +1029,7 @@
 					
 				$.ajax({
 					type : "POST",
-					url : "addMycourse.do",
+					url : "updateCourse.do",
 					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
 					data : jsonData,
@@ -1053,15 +1049,50 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			// 코스 저장하기 클릭 시 - 팝업창에 내가 가진 코스명 리스트 띄워놓기
+			<c:forEach items="${list}" var="name">
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='${name._id}'><span style='padding-left: 70px;'><input type='button' value='test' class='btn_1' id='choice'></span></h4>"		
+				);
+			</c:forEach>
+			
+			// 새 코스 추가 클릭 시
 			$("#addNewcourse").on('click', function(){
 				var courseName = $("#addcourseName").val();
+				// 팝업창에 입력한 코스명으로 행이 추가 되고
 				$("#courseList").append(
 					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
 				);
+				// 창 닫히고
 				$('#back').trigger('click');
+				// 초기화
 				$("#addcourseName").val("");
-			})
-		})
+				// DB 코스 컬렉션에 document 생성
+				var data = {
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName
+				}
+				var jsonData = JSON.stringify(data)
+				$.ajax({
+					type : "POST",
+					url : "addMycourse.do",
+					contentType: 'application/json;charset=UTF-8',
+					data : jsonData,
+					dataType : "json",					
+					success : function () {
+						alert("코스 생성")
+					},
+					error : function (err) {
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
+						alert("코스 생성")
+						console.log("err:"+err)
+					}
+				}) // end of ajax.
+			}) // end of $("#addNewcourse").on('click', function(){}).
+		}) // end of jQuery.
 	</script>
 </body>
 

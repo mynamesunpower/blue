@@ -193,7 +193,7 @@
         <!-- 월별 축제 이미지 -->
             <div class="main_title">
 
-                <h2><a href="#" onclick="setFestivalNewMonth(-1);">◀</a><span class="month">3 월</span><a href="#" onclick="setFestivalNewMonth(1);">▶</a></h2>
+                <h2><a href="javascript:void(0)" onclick="setFestivalNewMonth(-1);">◀</a><span class="month">3 월</span><a href="javascript:void(0)" onclick="setFestivalNewMonth(1);">▶</a></h2>
 
 
             </div>

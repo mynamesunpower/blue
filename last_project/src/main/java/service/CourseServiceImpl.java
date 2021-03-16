@@ -2,6 +2,7 @@ package main.java.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +61,10 @@ public class CourseServiceImpl implements CourseService {
 	public void editCourse(CourseVO vo, String _id) {
 		System.out.println("editCourse 서비스 접근");
 		courseDao.editCourse(vo, _id);
+	}
+	@Override
+	public void updateCourse(CourseVO vo, String _id) {
+		System.out.println("updateCourse 서비스 접근");
+		courseDao.updateCourse(vo, _id);
 	}
 }

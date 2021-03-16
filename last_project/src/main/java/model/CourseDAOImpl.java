@@ -2,6 +2,7 @@ package main.java.model;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -10,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 
 import main.java.vo.CourseVO;
 
@@ -58,8 +60,8 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public CourseVO addMycourse(CourseVO vo) {
 		System.out.println("addMycourse DAO 접근");
-//		System.out.println(">>>>>>>>>>>_id:" + vo.get_id());
-//		System.out.println(">?>>>>>> cname :"+ vo.getCourseName());
+//		System.out.println(">>>>>>>>>>>_id:" + vo.get_id());  // 아직 _id 없지.
+//		System.out.println(">?>>>>>> cname :"+ vo.getCourseName());  // 이건 받아와
 		/*
 		 * 여기서, if문으로 정보를 넣으려는 코스가 이미 존재하면 update, 아니면 insert되게 ?
 		 */
@@ -79,11 +81,25 @@ public class CourseDAOImpl implements CourseDAO {
 	public void editCourse(CourseVO vo, String _id) {
 		System.out.println("editCourse DAO 접근");
 		Update update = new Update();
-		Query query = new Query(Criteria.where("courseName").is(_id));
+		Query query = new Query(Criteria.where("courseName").is(_id));  // ??
 		
 		update.set("courseName",vo.getCourseName());
 		update.set("summary",vo.getSummary());
 		
+		mongoTemplate.updateMulti(query, update, course);
+	}
+	// 축제, 식당, 숙박을 코스에 담을 때 선택한 코스의 coursePath에 추가 되게.
+	@Override
+	public void updateCourse(CourseVO vo, String _id) {
+		System.out.println("updateCourse DAO 접근");
+		System.out.println(">>>>>_id="+_id);
+		Update update = new Update();
+		Query query = new Query(Criteria.where("_id").is(_id));
+		
+		update.set("courseName", vo.getCourseName());
+		System.out.println("courseName="+ vo.getCourseName());
+		update.set("coursePath", vo.getCoursePath());
+		System.out.println("coursePath="+ vo.getCoursePath());
 		mongoTemplate.updateMulti(query, update, course);
 	}
 	

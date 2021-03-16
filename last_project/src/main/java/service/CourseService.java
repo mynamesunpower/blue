@@ -2,6 +2,8 @@ package main.java.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
 import main.java.vo.CourseVO;
 
 public interface CourseService {
@@ -21,4 +23,6 @@ public interface CourseService {
 	public void deleteCourse(String _id);
 	
 	public void editCourse(CourseVO vo, String _id);
+	
+	public void updateCourse(CourseVO vo, String _id);
 }

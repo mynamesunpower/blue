@@ -69,10 +69,17 @@ public class CourseController {
 	
 	// 코스 상세보기 진입
 	@RequestMapping(value = "courseSelect.do")
-	public String courseDetail(CourseVO vo, Model model, @RequestParam String _id) {
+	public String courseDetail(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
 		System.out.println("course id:"+_id);
 		CourseVO cvo = courseService.courseSelect(vo, _id);
 		model.addAttribute("detail", cvo);
+		
+		String memberId = (String) session.getAttribute("memberId");
+		List<CourseVO> list = courseService.viewMycourse(memberId);
+		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("list", list); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("list", list);를 해주게 함.
+		if (list != null) {
+			model.addAttribute("list", list);
+		}
 		return "course/course_detail";
 	}
 	
@@ -127,6 +134,26 @@ public class CourseController {
 			ObjectMapper mapper = new ObjectMapper();
 			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
 			courseService.addMycourse(vo);
+			System.out.println("됐어!");
+		} catch(Exception e) {
+			System.out.println("error:"+e);
+		}
+		response.setContentType("text/html; charset=UTF-8");
+		
+		return null;
+	}
+	// 코스에 업데이트
+	@RequestMapping(value = "updateCourse.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateCourse(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
+		// 접속 유저 id
+		String memberId = (String) session.getAttribute("memberId");
+		System.out.println("id===="+memberId);
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
+			System.out.println("<<<<>>>>>"+vo.get_id());
+//			courseService.updateCourse(vo, vo.get_id());
 			System.out.println("됐어!");
 		} catch(Exception e) {
 			System.out.println("error:"+e);
