@@ -1,7 +1,6 @@
 package main.java.vo;
 
 public class MemberVO {
-	
 	private String id;
 	private String name;
 	private String tel;
@@ -52,6 +51,5 @@ public class MemberVO {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	
-	
+
 }

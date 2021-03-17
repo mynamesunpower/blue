@@ -1,3 +1,4 @@
+  
 package main.java.model;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface MemberDAO {
 	public int insert_member(MemberVO vo);
 	public List<MemberVO> addtable();
 	public int modify_member(MemberVO vo);
+	public MemberVO selectOne(String user_id);
 }

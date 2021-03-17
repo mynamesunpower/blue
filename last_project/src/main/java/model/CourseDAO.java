@@ -11,5 +11,14 @@ public interface CourseDAO {
 	public List<CourseVO> viewAllcourse();
 	
 	public CourseVO courseSelect(CourseVO vo, String _id);
-
+	
+	public List<CourseVO> viewMycourse(CourseVO vo, String memberId);
+	
+	public CourseVO courseEdit(CourseVO vo, String memberId, String _id);
+	
+	public CourseVO addMycourse(CourseVO vo);
+	
+	public void deleteCourse(String _id);
+	
+	public void editCourse(CourseVO vo, String _id);
 }

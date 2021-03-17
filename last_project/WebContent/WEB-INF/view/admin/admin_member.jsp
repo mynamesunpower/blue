@@ -39,20 +39,20 @@
 
     <!-- 우측 상단 navbar 기능 -->
     <ul class="navbar-nav ml-auto">
-        
+
       <!-- 드롭다운 메세지 -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
-            
+
            <!-- 새로 온 메세지의 갯수 -->
           <span class="badge badge-danger navbar-badge">2</span>
         </a>
-          
+
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            
-            
-          <!-- 메세지 -->    
+
+
+          <!-- 메세지 -->
           <a href="#" class="dropdown-item">
             <div class="media">
               <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
@@ -66,9 +66,9 @@
               </div>
             </div>
           </a>
-          <!-- 메세지 끝 -->    
-            
-          <!-- 메세지 -->    
+          <!-- 메세지 끝 -->
+
+          <!-- 메세지 -->
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <div class="media">
@@ -82,14 +82,14 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4시간 전</p>
               </div>
             </div>
-          </a> <!-- 메세지 끝 -->  
-             
-            
+          </a> <!-- 메세지 끝 -->
+
+
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">모든 문의사항 확인</a>
         </div>
       </li> <!-- 드롭다운 메세지 전체 끝 -->
-        
+
       <!-- 알림 드롭다운 메뉴 -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -117,9 +117,9 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li> <!-- 알림 드롭다운 메뉴 끝 -->
-        
-        
-      <!-- 풀 스크린 모드 -->    
+
+
+      <!-- 풀 스크린 모드 -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -173,7 +173,7 @@
               </p>
             </a>
           </li> <!-- 대시보드 끝 -->
-          
+
           <!-- 회원관리 -->
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -198,8 +198,8 @@
               </li>
             </ul>
           </li>
-            
-          <!-- 축제 -->    
+
+          <!-- 축제 -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-moon"></i>
@@ -229,8 +229,8 @@
               </li>
             </ul>
           </li>
-            
-          <!-- 코스 관리 -->    
+
+          <!-- 코스 관리 -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -254,8 +254,8 @@
               </li>
             </ul>
           </li> <!-- 코스 관리 끝 -->
-            
-            <!-- 리뷰 관리 -->    
+
+            <!-- 리뷰 관리 -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -291,8 +291,8 @@
               </li>
             </ul>
           </li> <!-- 코스 관리 끝 -->
-            
-            
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -322,8 +322,8 @@
               </li>
             </ul>
           </li> <!-- 고객센터 끝 -->
-            
-          <!-- 시각화 -->    
+
+          <!-- 시각화 -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -409,11 +409,11 @@
                   </tr>
                   </thead>
                   <tbody>
-                  
+
                   <!--  동적 데이블 생성 만들 부분입니다......... -->
                 <c:forEach items="${memberlist}" var="member">
-               
-                
+
+
                 	<tr id ="tabledata">
                     <td>${member.id}</td>
                     <td>${member.name}</td>
@@ -422,10 +422,12 @@
                     <td>${member.address}</td>
                     <td>${member.email}</td>
                     <td class="text-center"><a href="#" class="btn btn-primary btn-xs modifybutton" data-toggle="modal" data-target="#info_modify" id="modifybutton">수정</a>
-                          <a href="#" class="btn btn-danger btn-xs deletebutton" data-toggle="modal" data-target="#info_delete" id="deletebutton">삭제</a></td>  
-                    </tr> 
-                    
+                          <a href="#" class="btn btn-danger btn-xs deletebutton" data-toggle="modal" data-target="#info_delete" id="deletebutton">삭제</a></td>
+                    </tr>
+
                   </c:forEach>
+
+
                   
                       
                   </tbody>
@@ -437,7 +439,7 @@
                     <th>전화번호</th>
                     <th>주소</th>
                     <th>이메일</th>
-                    <th>관리</th>  
+                    <th>관리</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -457,7 +459,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2021 <a href="festival.do">축축빵빵</a>. </strong>All rights reserved.
-    
+
     <div class="float-right d-none d-sm-inline-block">
       <b>밥은 먹으면서 합시다!</b> 행복해져야죠
     </div>
@@ -470,11 +472,11 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-    
+
     <!-- 추가하기 -->
-    
+
 	<div class="modal fade" id="insert_member" tabindex="-1" role="dialog" aria-labelledby="info_insertLabel" aria-hidden="true">
-	
+
 	<!-- <form action="admin/insert_member.do" name="inser_member" id="insert_member" method="post" enctype="multipart/form-data"> -->
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -551,8 +553,8 @@
 	</form>
 	</div>
 	<!-- 추가하기 끝 -->
-    
-    
+
+
     <!-- 수정하기 -->
 <div class="modal fade" id="info_modify" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -566,8 +568,8 @@
 					</div>
 					<form method="post" action="modify_member.do" name="festival_modify" id="festival_modify">
 					<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    
-					
+
+
                         <input type="hidden" value="unique_id">
 						<div class="row">
 							<div class="col-md-12">
@@ -630,13 +632,13 @@
 			</div>
 		</div>
 	</div>
-	
+
 	    <script>
             //var memberid= $('#member_id')
             $( document ).ready( function() {
-                
+
                 $(".modifybutton").on('click', function(){
-                	                	
+
  					var id = $(this).parent().parent().children("td:nth-child(1)").text();
                 	var name = $(this).parent().parent().children("td:nth-child(2)").text();
                 	var birthday = $(this).parent().parent().children("td:nth-child(3)").text();
@@ -650,26 +652,26 @@
  					console.log(address)
  					console.log(email)
                 	 //var id = $("#tabledata").find_all("td:nth-child(1)").text();
-                	$('.member_id').val(id); 
+                	$('.member_id').val(id);
                 	$('.member_name').val(name);
-                	//$('.member_birthday').attr('value',birthday); 
-                	$('.member_birthday').val(birthday); 
-                	$('.member_tel').val(tel); 
-                	$('.member_address').val(address); 
-                	$('.member_email').val(email); 
-                	
-                	                    
+                	//$('.member_birthday').attr('value',birthday);
+                	$('.member_birthday').val(birthday);
+                	$('.member_tel').val(tel);
+                	$('.member_address').val(address);
+                	$('.member_email').val(email);
+
+
                 });
-                
+
                 $(".deletebutton").on('click', function(){
-	                	
+
             		var id = $(this).parent().parent().children("td:nth-child(1)").text();
-                  
+
             			console.log(id)
-            			
+
                   	 //var id = $("#tabledata").find_all("td:nth-child(1)").text();
-                  	$('.delid').val(id); 
-               		
+                  	$('.delid').val(id);
+
                   	 $('.delbutton').prop("disabled", true);
                   	$('.delete_confirm').on("keyup", action);
                   	function action() {
@@ -680,20 +682,20 @@
             				  $('.delbutton').prop("disabled", true);
             			  }
                   	}
-                  	
+
                   });
-                  
-                	  
+
+
             	  $(".delclose").on('click', function(){
             		  $('.delete_confirm').val("")
-            		  
+
             	  });
-          
+
             });
- 
+
         </script>
 	<!-- 수정하기 끝 -->
-    
+
     <!-- 삭제하기 -->
 	<div class="modal fade" id="info_delete" tabindex="-1" role="dialog" aria-labelledby="info_modifyLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -706,10 +708,10 @@
 					<div id="message-review">
 					</div>
 					<form method="post" action="delete_member.do" name="festival_modify" id="festival_modify">
-                        
+
                         <!-- mariaDB 회원 id -->
                         <input type="hidden" value="unique_id">
-                        
+
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
@@ -730,14 +732,14 @@
 							</div>
 						</div>
 						<!-- End row -->
-                        
+
 						<input type="submit" value="삭제하기" class="btn btn-danger delbutton" id="submit-festival-modify">
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 삭제하기 끝 -->     
+	<!-- 삭제하기 끝 -->
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -762,7 +764,7 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
-    
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -779,7 +781,7 @@
                   1: '1개 데이터를 클립보드에 복사했습니다.'
               }
           }
-      }    
+      }
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
@@ -790,37 +792,37 @@
       "autoWidth": false,
       "responsive": true,
     });
-    
-    
-    
+
+
+
   });
-  
-  
-  
+
+
+
  // $( document ).ready( function() {
-	  
-	  
+
+
 	  //pointdel
 	  //$('.delete_confirm').on("keyup", action);
 	  //function action() {
 	  // $(".pointdel").on('click', function(){
-		 
+
 		 // if($('.delete_confirm').val()== "삭제한다") {
 	     //   $('.delbutton').prop("disabled", false);
 	    // }else {
 	    //    $('.delbutton').prop("disabled", true);
 	    // }
 	//  }
-	  
+
 	//  $(".delclose").on('click', function(){
 	//	  $('.delete_confirm').val("")
-		  
+
 	//  });
- 
+
 
  // });
-  
-  
+
+
 </script>
 </body>
 </html>
