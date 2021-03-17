@@ -255,7 +255,6 @@
 	                                        	<div style="text-align: right;">
 		                                        	<span style="font-size: larger;">
 														<a href="deleteCourse.do?_id=${course._id}" class="icon-trash-7"></a><!-- 쓰레기통 클릭 시 해당 코스 삭제 -->
-														<!-- <a href="course_list.do?memberId=${sessionScope.memberId}"></a> --> 
 													</span>
 	                                        	</div>
 	                                        	<i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><medium>(${course.reviews.size()})</medium>

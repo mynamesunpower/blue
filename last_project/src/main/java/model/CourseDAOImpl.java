@@ -2,6 +2,7 @@ package main.java.model;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -10,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 
 import main.java.vo.CourseVO;
 
@@ -26,27 +28,27 @@ public class CourseDAOImpl implements CourseDAO {
 		System.out.println("test DAO 접근");
 		return mongoTemplate.findAll(CourseVO.class, course);
 	}
-
+	// 코스 메인 (코스 자랑 마당 진입)
 	@Override
 	public List<CourseVO> viewAllcourse() {
 		System.out.println("viewAllcourse DAO 접근");
 		return mongoTemplate.findAll(CourseVO.class, course);
 	}
-
+	// 코스 상세보기
 	@Override
 	public CourseVO courseSelect(CourseVO vo, String _id) {
 		System.out.println("viewOnecourse DAO 접근");
 		Query query = new Query(Criteria.where("_id").is(_id));
 		return mongoTemplate.findOne(query, CourseVO.class, course);
 	}
-
+	// 나의 코스 목록
 	@Override
-	public List<CourseVO> viewMycourse(CourseVO vo, String memberId) {
+	public List<CourseVO> viewMycourse(String memberId) {
 		System.out.println("viewMycourse DAO 접근");
 		Query query = new Query(Criteria.where("writer").is(memberId));
 		return mongoTemplate.find(query, CourseVO.class, course);
 	}
-
+	// 코스 편집하기 페이지 진입
 	@Override
 	public CourseVO courseEdit(CourseVO vo, String memberId, String _id) {
 		System.out.println("courseEdit DAO 접근");
@@ -54,13 +56,18 @@ public class CourseDAOImpl implements CourseDAO {
 		query.addCriteria(Criteria.where("_id").is(_id));  // 조건2
 		return mongoTemplate.findOne(query, CourseVO.class, course);
 	}
-
+	// 내 코스에 담기
 	@Override
 	public CourseVO addMycourse(CourseVO vo) {
 		System.out.println("addMycourse DAO 접근");
+//		System.out.println(">>>>>>>>>>>_id:" + vo.get_id());  // 아직 _id 없지.
+//		System.out.println(">?>>>>>> cname :"+ vo.getCourseName());  // 이건 받아와
+		/*
+		 * 여기서, if문으로 정보를 넣으려는 코스가 이미 존재하면 update, 아니면 insert되게 ?
+		 */
 		return mongoTemplate.insert(vo, course);
 	}
-
+	// 코스 삭제
 	@Override
 	public void deleteCourse(String _id) {
 		System.out.println("deleteCourse DAO 접근");
@@ -69,16 +76,30 @@ public class CourseDAOImpl implements CourseDAO {
 		Query query = new Query(criteria);
 		mongoTemplate.remove(query, course);
 	}
-
+	// 코스 편집
 	@Override
 	public void editCourse(CourseVO vo, String _id) {
 		System.out.println("editCourse DAO 접근");
 		Update update = new Update();
-		Query query = new Query(Criteria.where("courseName").is(_id));
+		Query query = new Query(Criteria.where("courseName").is(_id));  // ??
 		
 		update.set("courseName",vo.getCourseName());
 		update.set("summary",vo.getSummary());
 		
+		mongoTemplate.updateMulti(query, update, course);
+	}
+	// 축제, 식당, 숙박을 코스에 담을 때 선택한 코스의 coursePath에 추가 되게.
+	@Override
+	public void updateCourse(CourseVO vo, String _id) {
+		System.out.println("updateCourse DAO 접근");
+		System.out.println(">>>>>_id="+_id);
+		Update update = new Update();
+		Query query = new Query(Criteria.where("_id").is(_id));
+		
+		update.set("courseName", vo.getCourseName());
+		System.out.println("courseName="+ vo.getCourseName());
+		update.set("coursePath", vo.getCoursePath());
+		System.out.println("coursePath="+ vo.getCoursePath());
 		mongoTemplate.updateMulti(query, update, course);
 	}
 	

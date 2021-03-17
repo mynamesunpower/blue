@@ -227,7 +227,7 @@
 									<div style="text-align: right; font-size: larger;">
 										<i class="icon-trash-7" style="cursor: pointer;"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
 									</div>
-									<a class="box_news" href="blog.jsp">
+									<a class="box_news" href="javascript:void(0)">
 										<figure><img src="${coursePath.image}" alt="">
 											<figcaption><strong>${vs.count}</strong></figcaption>  <!-- figcaption 넘 큰뎅.. 작게하고 싶다-->
 										</figure>
