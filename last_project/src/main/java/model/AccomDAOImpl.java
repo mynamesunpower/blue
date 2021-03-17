@@ -78,9 +78,19 @@ public class AccomDAOImpl implements AccomDAO{
 	@Override
 	public AccomVO detail(String _id) {
 		// TODO Auto-generated method stub
-		System.out.println("상세 DAO 접근");
+		System.out.println("숙박 -> 상세 DAO 접근");
+		
 		AccomVO vo = mongoTemplate.findById(_id, AccomVO.class, lodgment);
-		System.out.println(vo);
+		int views = vo.getViews();
+		views++;
+		// 숙박, 식당은 정보 하나 가져올때 vo로 가져와서
+		// 
+		Query query = new Query(Criteria.where("_id").is(_id));
+		Update update = new Update();
+		update.set("views", views);
+		// 요래해주면 업데이트 잘 대는데
+		UpdateResult result = mongoTemplate.updateFirst(query, update, lodgment);
+		System.out.println("update 갯수 -> " + result.getModifiedCount());
 		
 		return vo;
 	}

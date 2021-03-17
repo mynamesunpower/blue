@@ -30,9 +30,14 @@ public class FestivalVO {
 	private ArrayList<String> images;
 	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews;
+	private int views;
 	
-	
-	
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
+	}
 	public int getEndDate() {
 		return endDate;
 	}

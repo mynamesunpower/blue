@@ -192,6 +192,7 @@ public class FestivalController {
 		System.out.println("FestivalController 에서 details.do 요청");
 
 		List<FestivalVO> list = festivalService.detail(tel);
+		
 
 		//이미지 바이너리
 				for (FestivalVO vo : list) {

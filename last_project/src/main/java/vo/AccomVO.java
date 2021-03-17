@@ -32,10 +32,14 @@ public class AccomVO {
 	private HashMap<String, String> review;
 	private Double range;
 
+	private int views;
 	
-	
-	
-	
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
+	}
 	public String getCheck_in() {
 		return check_in;
 	}

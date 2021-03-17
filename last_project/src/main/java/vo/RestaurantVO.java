@@ -28,8 +28,15 @@ public class RestaurantVO {
 	private ArrayList<HashMap<String, String>> reviews;
 	
 	private int averageScore;
+	private int views;
 	
-	
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
+	}
 
 	public int getAverageScore() {
 		return averageScore;

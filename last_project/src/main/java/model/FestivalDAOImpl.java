@@ -131,13 +131,33 @@ public class FestivalDAOImpl implements FestivalDAO {
 	@Override
 	public List<FestivalVO> detail(int tel) {
 	     System.out.println("dao detail"+tel);
+	     
+	     
 		 Query query = new Query();
 	     Criteria criteria = new Criteria();
 	
 	     query.addCriteria(criteria.where("postcode").is(tel));
 	    
+	     // 얘는 리스트로 가져오니까 업데이트를 어케해야댈지몰겟네 ㅡㅡ
+	     //리스트에 하나들어가는데 안들어가지나요? 아 알거같당
 	     List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
+	     
+	     FestivalVO vo = list.get(0);
+	     
+	     System.out.println(list.get(0).getViews());
+	     int views = vo.getViews();
+	     views++;
+	     list.get(0).setViews(views);
+	     
+	     System.out.println(vo.getViews());
+	     
+		 Update update = new Update();
+		 update.set("views", list.get(0).getViews());
 
+		 UpdateResult result = mongoTemplate.updateFirst(query, update, "festival");
+		 
+		 System.out.println("update 갯수 -> " + result.getModifiedCount());
+		 
 	     System.out.println("여기는 DAO detail"+list);
 	   
 		
