@@ -97,10 +97,12 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 	// coursePath에서 빼기
 	@Override
-	public void pullCoursePath(String _id) {
+	public void pullCoursePath(String _id, String cId) {
 		System.out.println("pullCoursePath DAO 접근");
-		Query query = new Query(Criteria.where("_id").is(_id));
+		System.out.println("****************"+cId);
+		Query query = new Query(Criteria.where("_id").is(new ObjectId(cId)));
 		Update update = new Update();
+		System.out.println("&&&&&&&&&&&&&&&&"+_id);
 		update.pull("coursePath", new BasicDBObject("_id", _id));
 		mongoTemplate.updateFirst(query, update, course);
 	}

@@ -226,6 +226,7 @@
 								<div class="col-sm-12">
 									<div style="text-align: right; font-size: larger;">
 										<i class="icon-trash-7" style="cursor: pointer;" id="pullCourse"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
+										<input type="hidden" value="${coursePath._id}">
 									</div>
 									<a class="box_news" href="javascript:void(0)">
 										<figure><img src="${coursePath.image}" alt="">
@@ -694,23 +695,27 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			/*
 			// 쓰레기통 아이콘 클릭
 			$(document).on("click", "#pullCourse", function(){
-				var cId = ${detail._id}
+				var cId = "${detail._id}"  // 코스의 _id
 				console.log(cId)
-				<c:forEach items="${detail.coursePath}" var="coursePath">
-					var _id = ${coursePath._id}
-				</c:forEach>
-				
+				var _id = $(this).next().val() // 각각 경로의 _id
+				console.log(_id)
 				$.ajax({
 					type : "POST",
-					url : "pullCoursePath.do"
-					
+					url : "pullCoursePath.do?_id="+_id,
+					contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					data : cId,
+					success : function(){
+						alert("삭제 성공")
+					},
+					error : function(err){
+						console.log(err)
+					}
 				}) // end of ajax.
 				
 			})
-			*/
+			
 			$("#editCourse").on('click', function(){
 				$.ajax({
 					type : "post",

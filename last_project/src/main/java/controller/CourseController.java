@@ -165,16 +165,18 @@ public class CourseController {
 	}
 	
 	// 코스 경로에서 빼기
-	/*
-	@RequestMapping(value = "pullCoursePath.do")
-	public void pullCoursePath(@RequestParam String _id, HttpSession session) {
-		String memberId = (String) session.getAttribute("memberId");
-		//courseService.courseSelect(vo, _id)
-		
-		//courseService.pullCoursePath(_id);
-		//return "redirect:course_edit.do?memberId="+memberId+"&_id="+"이 코스의 _id";
+	@RequestMapping(value = "pullCoursePath.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String pullCoursePath(@RequestParam String _id, HttpSession session, @RequestBody String cId) {
+		String memberId = (String) session.getAttribute("memberId");		
+		System.out.println(">>>>>>>>>>>>>>>>>"+ cId);
+		String test = cId.split("&")[1].replace("=", "");
+		System.out.println(test);
+		System.out.println("<<<<<<<<<<<<<<<<<"+_id);
+		courseService.pullCoursePath(_id, test);
+		return "redirect:course_edit.do?memberId="+memberId+"&_id="+test;
 	}
-	*/
+	
 	// 코스 지우기
 	@RequestMapping(value = "deleteCourse.do")
 	public String deleteCourse(@RequestParam String _id, HttpSession session) {

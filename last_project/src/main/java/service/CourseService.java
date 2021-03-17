@@ -26,7 +26,7 @@ public interface CourseService {
 	
 	public void pushCoursePath(CourseVO vo, ObjectId _id);
 	
-	public void pullCoursePath(String _id);
+	public void pullCoursePath(String _id, String cId);
 	
 	public CourseVO cId(String memberId, String cname);
 }
