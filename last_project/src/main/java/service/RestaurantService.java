@@ -28,6 +28,9 @@ public interface RestaurantService {
 	public List<RestaurantVO> getCategoryData(String word, int pageNumber);
 
 	public List<RestaurantVO> selectnear(ObjectId objectId);
+	
+	public int count();
+	
 	//관리자에서
 	public RestaurantVO insert_restaurant(RestaurantVO vo);
 	public RestaurantVO modify_restaurant(RestaurantVO vo);

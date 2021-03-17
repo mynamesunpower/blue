@@ -82,4 +82,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.delete_restaurant(vo);
 	}
 	
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.count();
+	}
+	
 }

@@ -255,6 +255,17 @@ public class RestaurantController {
 		
 	}
 	
+	
+	//식당 개수 구하기(메인페이지)
+	@RequestMapping(value="restaurantcount.do")
+	@ResponseBody
+	public int restaurant_Count() {
+		
+		int count = restaurantService.count();
+		
+		return count;
+	}
+	
 
 	
 }

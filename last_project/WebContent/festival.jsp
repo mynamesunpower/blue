@@ -312,8 +312,55 @@ $(document).ready(function() {
 		var fes_oMonth = new Date();
 		fes_oMonth.setDate(1);
 		cur_month = (fes_oMonth.getMonth()+1);
-		getMonthData()
+		getMonthData();
 		
+		//////
+	 	    //클릭한 위도 경도 넘겨주기
+	 	    $.ajax({
+	 			url: "/nearnear.do",
+	 			dataType: 'json',
+	 			type: "POST",
+	 			data: {"latitude" : 37.56582395976361, "longitude" : 126.9779054965128 },
+	 			success: function(data) {
+	 					
+	 		
+	 				festivals1=''
+	 				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+
+	 				festivals2=''
+	 	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+	 	 	 			
+	 	 			festivals3=''
+	 	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+	 	 	 	
+
+	 				//지도 클릭시 사진 바뀜
+	 				$(".aa1").html(festivals1);
+	 				$(".aa2").html(festivals2);
+	 				$(".aa3").html(festivals3);
+	 				
+	 				//사진 클릭시 페이지 이동
+	 				$(".clickurl1").attr("href","/details.do?tel="+data[0][0].postcode)
+	 				$(".clickurl2").attr("href","/details.do?tel="+data[1][0].postcode)
+	 				$(".clickurl3").attr("href","/details.do?tel="+data[2][0].postcode)
+	 				
+	 				//근처 축제 제목
+	 				$(".nearname1").text(data[0][0].title);
+	 				$(".nearname2").text(data[1][0].title);
+		 			$(".nearname3").text(data[2][0].title);
+	 				
+		
+	 			},
+	 			complete: function(d) {
+	 			},
+	 			error: function(xhr, textStatus, errorThrown) {
+	 				console.log(';;')
+	 			}
+	 		});
+	 	
+		
+		/////
+	
 		
 	})
 
@@ -329,31 +376,8 @@ $(document).ready(function() {
 			data: {"month" : cur_month},
 			success: function(data) {
 		//근처축제 기본값
-		
- 				festivalss1=''
- 				festivalss1 += '<div><img src="data:image/jpg;base64,'+data[0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
- 				festivalss2=''
- 	 			festivalss2 += '<div><img src="data:image/jpg;base64,'+data[1].image[1].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
- 	 			festivalss3=''
- 	 	 		festivalss3 += '<div><img src="data:image/jpg;base64,'+data[2].image[1].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
- 	 	 				
+			
  				
- 				//$('.aa1 div').remove()
- 				//$('.aa2 div').remove()
- 				//$('.aa3 div').remove()
- 				$(".clickurl1").attr("href","/details.do?tel="+data[0].postcode)
- 				$(".clickurl2").attr("href","/details.do?tel="+data[1].postcode)
- 				$(".clickurl3").attr("href","/details.do?tel="+data[2].postcode)
- 				
- 				
- 				$(".aa1").html(festivalss1);
- 				$(".aa2").html(festivalss2);
- 				$(".aa3").html(festivalss3);
- 				
- 				
- 				$(".nearname1").text(data[0].title);
- 				$(".nearname2").text(data[1].title);
-	 			$(".nearname3").text(data[2].title);
 		
 		
 		///기본값 끝 (근처축제)
@@ -651,8 +675,13 @@ $(document).ready(function() {
  	    
  	    var resultDiv = document.getElementById('clickLatlng'); 
  	    resultDiv.innerHTML = message;
+ 	    
+ 	    sss();
+ 	    
+ 	  
+ 	    
 
-
+ 	   function sss(){
  	    //클릭한 위도 경도 넘겨주기
  	    $.ajax({
  			url: "/nearnear.do",
@@ -660,6 +689,12 @@ $(document).ready(function() {
  			type: "POST",
  			data: {"latitude" : latlng.getLat(), "longitude" : latlng.getLng() },
  			success: function(data) {
+ 				
+ 			
+ 	
+ 				
+ 				
+ 				
  		
  				festivals1=''
  				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
@@ -698,7 +733,7 @@ $(document).ready(function() {
  				console.log(';;')
  			}
  		});
-
+ 	   }
 
  	});
 

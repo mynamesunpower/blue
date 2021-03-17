@@ -16,14 +16,14 @@ public class FestivalServiceImpl implements FestivalService {
 	@Override
 	public List<FestivalVO> test() {
 		// TODO Auto-generated method stub
-		System.out.println("Service �젒洹�");
+		
 		return festivalDao.test();
 	}
 
 	@Override
 	public List<FestivalVO> month(String month) {
 		// TODO Auto-generated method stub
-		System.out.println("Service �젒洹�: month()");
+		System.out.println("Service : month()");
 		return festivalDao.month(month);
 	}
 
@@ -59,6 +59,21 @@ public class FestivalServiceImpl implements FestivalService {
 	public int updateRestaurantReview(ArrayList<HashMap<String, String>> reviews, String _id) {
 		// TODO Auto-generated method stub
 		return festivalDao.updateRestaurantReview(reviews, _id);
+	}
+	
+		
+
+	@Override
+	public List<FestivalVO> search(String word) {
+		// TODO Auto-generated method stub
+		return festivalDao.search(word);
+	}
+	
+
+	@Override
+	public long festivalcount() {
+		// TODO Auto-generated method stub
+		return festivalDao.festivalcount();
 	}
 
 	//관리자에서

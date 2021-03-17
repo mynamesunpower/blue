@@ -1,4 +1,5 @@
 package main.java.controller;
+import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
@@ -6,6 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
@@ -244,9 +247,7 @@ public class FestivalController {
 		        List<RestaurantVO> res= null;
 		        List<List<RestaurantVO>> result = new ArrayList<>();
 		        for(int i=0; i<=2; i++) {
-		        	System.out.println("<><<><><><><><식당><>"+(map.get(keys.get(i))));
-		        	System.out.println("넌뭐니"+keys.get(i));
-		        	
+		      
 		        	res= restaurantService.selectnear(map.get(keys.get(i)));
 		        	
 		    
@@ -300,7 +301,7 @@ public class FestivalController {
 		      
 		        List<Double> keys2 = new ArrayList<>(accommap.keySet());
 		        Collections.sort(keySets);
-		        System.out.println("숙박이야>>>>>>>>>>>>>>"+keySets);
+		       
 		     
 	
 		     
@@ -354,8 +355,8 @@ public class FestivalController {
 
 		Map<Double, ObjectId> map= new HashMap<Double, ObjectId>();
 
-		System.out.println(latitude);
-		System.out.println(longitude);
+		//System.out.println(latitude);
+		//System.out.println(longitude);
 		List<FestivalVO> list = festivalService.test();
 
 		for(FestivalVO vo : list) {
@@ -378,7 +379,7 @@ public class FestivalController {
 	        List<FestivalVO> lists= null;
 	        List<List<FestivalVO>> result = new ArrayList<>();
 	        for(int i=0; i<=2; i++) {
-	        	System.out.println("<><<><><><><><><>"+(map.get(keys.get(i))));
+	        	//System.out.println("<><<><><><><><><>"+(map.get(keys.get(i))));
 	        	
 
 
@@ -416,8 +417,7 @@ public class FestivalController {
 	public List<FestivalVO> tosss(int interval){
 
 		List<FestivalVO> list = festivalService.test();
-		System.out.println(list);
-
+		
 		for (FestivalVO vo : list) {
 
 			ArrayList<String> imageList = new ArrayList<String>();
@@ -458,6 +458,54 @@ public class FestivalController {
 		return scoresAvg;
 	}
 
+	
+	
+	//축제 검색
+	@RequestMapping(value="/search.do")
+	public String search(HttpServletRequest requset,Model model) {
+		
+		String word = requset.getParameter("q");
+		
+		List<FestivalVO> list = festivalService.search(word);
+		
+		for (FestivalVO vo : list) {
+			// ArrayList<Binary> image
+			ArrayList<String> imageList = new ArrayList<String>();
+			for (Binary img : vo.getImage()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setImages(imageList);
+		}
+		
+		model.addAttribute("list", list);
+		
+		return "festival/search_list";
+		
+	}
+	
+	
+	//축제 리스트
+	@RequestMapping(value="/festivallist.do")
+	public String festivallist(Model model) {
+		
+		
+		return "festival/festival_list";
+	}
+	
+	
+	@RequestMapping(value="festivalCount.do")
+	@ResponseBody
+	public String festivalcount() {
+				
+		long count = festivalService.festivalcount();
+					
+		String num = String.valueOf(count);
+		
+		return num;
+		
+	}
+	
 
 
 
