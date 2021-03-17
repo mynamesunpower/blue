@@ -119,7 +119,15 @@
 						
 						<h1>${list.title }</h1>
 						<span class='fesaddress'>${list.address}</span>
-						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+						<div class="rating">
+							<c:forEach begin="1" end="${scores[4]}">
+								<i class="icon-star voted"></i>
+							</c:forEach>
+							<c:forEach begin="1" end="${5 - scores[4]}">
+								<i class=" icon-star-empty"></i>
+							</c:forEach>
+							<small>(${list.reviews.size()})</small>						
+							</div>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
@@ -1019,7 +1027,7 @@ function getTimeHTML(distance) {
                              ${accom[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>1.5<span class="near-place-tel">${accom[0].tel}</span>
+								<span class="star">★</span>여기 바꾸기<span class="near-place-tel">${accom[0].tel}</span>
 								</div>
                                 <div class="col-12" class="near-place-text">
                                   <c:set var="num1" value="${accom[0].range }" />

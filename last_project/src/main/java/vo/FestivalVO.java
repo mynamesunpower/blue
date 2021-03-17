@@ -32,6 +32,8 @@ public class FestivalVO {
 	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews;
 	
+	private int[] score;
+	
 	
 	
 	public int getEndDate() {
@@ -150,6 +152,14 @@ public class FestivalVO {
 	}
 	public void setAddress_detail(String address_detail) {
 		this.address_detail = address_detail;
+	}
+	
+	
+	public int[] getScore() {
+		return score;
+	}
+	public void setScore(int[] score) {
+		this.score = score;
 	}
 
 	

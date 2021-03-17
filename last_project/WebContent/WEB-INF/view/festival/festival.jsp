@@ -53,7 +53,7 @@
     </div>
     <!-- End Preload -->
 
-    <%@ include file="header.jsp" %>
+    <%@ include file="/../header.jsp" %>
 
     <!-- 메인 이미지 슬라이더 -->
 	<section id="hero">
@@ -185,7 +185,11 @@
         <div class="owl-carousel owl-theme list_carousel add_bottom_30">
                 <div class="item">
                     <div class="tour_container">
+                    <c:forEach items="${list}" var="list" varStatus="var">
+                    <c:if test="${scores[var.index] ge 3}">
                         <div class="ribbon_3 popular"><span>축제로</span></div>
+                        </c:if>
+                        </c:forEach>
                         <div class="img_container">
                       
                             <a href="single_tour.jsp" class="clickurl1"> 
@@ -201,14 +205,13 @@
                         </div>
                         <div class="tour_title">
                             <h3><strong class="nearname1">꼴뚜기 투어</strong></h3>
-                            <div class="rating">
+                            <div class="rating" id="rating1">
+                            
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><small>(75)</small>
                             </div>
                             <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">코스에 추가하기</span></span></a>
-                            </div>
-                            <!-- End 코스에 추가하기-->
+                            
+                         
                         </div>
                     </div>
                     <!-- End box tour -->
@@ -232,14 +235,11 @@
                         </div>
                         <div class="tour_title">
                             <h3><strong class="nearname2">매운탕 투어</strong></h3>
-                            <div class="rating">
+                            <div class="rating" id="rating2">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
                             </div>
                             <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">코스에 추가하기</span></span></a>
-                            </div>
-                            <!-- End wish list-->
+                           
                         </div>
                     </div>
                     <!-- End box tour -->
@@ -263,14 +263,11 @@
                         </div>
                         <div class="tour_title">
                             <h3><strong class="nearname3">매운탕 투어</strong></h3>
-                            <div class="rating">
+                            <div class="rating" id="rating3">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
                             </div>
                             <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">코스에 추가하기</span></span></a>
-                            </div>
-                            <!-- End wish list-->
+                            
                         </div>
                     </div>
                     <!-- End box tour -->
@@ -284,7 +281,7 @@
     </main>
 	<!-- End main -->
 
-	<%@ include file="footer.jsp" %>
+	<%@ include file="/../footer.jsp" %>
 
  	<!-- Common scripts -->
 
@@ -307,6 +304,57 @@
 	});
 
 $(document).ready(function() {
+	document.getElementById("hero").style.backgroundImage = "url('/img/main/main_festa.jpg')";
+	 var k =1;
+	 playAlert = setInterval(function() {
+		
+		 $.ajax({
+				url: "mongotime.do",
+				dataType: 'json',
+				type: "POST",
+				data:{"interval": 3000},
+				success: function(data) {
+					k=k+1;
+					if(k==12){
+						k=1;
+					}
+	 
+	 
+	    	
+	    	for(var j=0; j<40; j++){
+	    		if(data.image==''){
+	       		 document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
+	       
+	       		$(".ctitles").text(data[k].title);
+	       		//이미지 사이즈
+	       		document.getElementById("hero").style.backgroundSize = "1150px";
+	       		var na = data[k].title;
+	       		
+	       	 }else{
+	       		 
+	      
+	       		var img = "url('data:image/jpg;base64, "+data[k].image[1].data+"')";
+	       	
+	       		//이미지 등록
+	       	document.getElementById("hero").style.backgroundImage = img;
+	        //이미지 사이즈
+	        document.getElementById("hero").style.backgroundSize = "1150px";
+	   
+	       		$(".ctitles").text(data[k].title);
+	       	
+	       	 }
+	    	}
+	   
+					
+				},
+				complete: function(d) {
+				},
+				error: function(xhr, textStatus, errorThrown) {
+					console.log(';;')
+				}
+			});
+		
+		}, 3000);
 
 		var cur_month = 0;
 		var fes_oMonth = new Date();
@@ -689,13 +737,7 @@ $(document).ready(function() {
  			type: "POST",
  			data: {"latitude" : latlng.getLat(), "longitude" : latlng.getLng() },
  			success: function(data) {
- 				
- 			
  	
- 				
- 				
- 				
- 		
  				festivals1=''
  				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
 
@@ -724,6 +766,19 @@ $(document).ready(function() {
  				$(".nearname1").text(data[0][0].title);
  				$(".nearname2").text(data[1][0].title);
 	 			$(".nearname3").text(data[2][0].title);
+	 			
+	 			//평점
+	 						
+				
+				//$.each(data.score function(index,item)){
+					
+				//}
+													
+				//rating = ''
+				//rating += '<i class="icon-star voted"></i>'
+				//rating += '<i class="icon-star-empty"></i>'
+													
+	 			//$('.rating').html();
  				
 	
  			},
@@ -742,108 +797,30 @@ $(document).ready(function() {
 	</script>
 
  <script>
- document.getElementById("hero").style.backgroundImage = "url('img/main/main_festa.jpg')";
- var k =1;
- playAlert = setInterval(function() {
-	   //alert('이게 되니안되니');
-	 $.ajax({
-			url: "mongotime.do",
-			dataType: 'json',
-			type: "POST",
-			data:{"interval": 3000},
-			success: function(data) {
-				k=k+1;
-				if(k==12){
-					k=1;
-				}
  
  
-    	
-    	for(var j=0; j<40; j++){
-    		if(data.image==''){
-       		 document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
-       		//${"#ctitle"}.text(data[k].title);
-       		$(".ctitles").text(data[k].title);
-       		//이미지 사이즈
-       		document.getElementById("hero").style.backgroundSize = "1150px";
-       		var na = data[k].title;
-       		
-       	 }else{
-       		 
-      
-       		var img = "url('data:image/jpg;base64, "+data[k].image[1].data+"')";
-       	
-       		//이미지 등록
-       	document.getElementById("hero").style.backgroundImage = img;
-        //이미지 사이즈
-        document.getElementById("hero").style.backgroundSize = "1150px";
-   
-       		$(".ctitles").text(data[k].title);
-       	
-       	 }
-    	}
-    	//console.log(item.image[0].data)
-    	//document.getElementById("hero").style.backgroundImage; src="/img/login/testfile.png";
-    	
-    	//document.getElementById("hero").style.backgroundImage = "url('data:image/jpg;base64,"+data.image[0].data+')";
-    	//'<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
-    	//"'data:image/jpg;base64,"+data[2][0].image[0].data+"'"
-   // });
-    
-    //이미지 사이즈
-    //document.getElementById("div").style.backgroundSize = "200px";
-    
-    //반복제거, url
-    //document.getElementById("div").style.backgroundRepeat = "no-repeat";
-    //이미지 등록
-    
-    //document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
-    //이미지 사이즈
-   // document.getElementById("div").style.backgroundSize = "200px";
-				
-				
-			},
-			complete: function(d) {
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				console.log(';;')
-			}
-		});
-	
-	}, 3000);
- 
-    //window.onload = function(){
-    //반복제거, url
-    //document.getElementById("div").style.backgroundRepeat = "no-repeat";
-    //이미지 등록
 
-    //document.getElementById("hero").style.backgroundImage = "url('/img/login/testfile.png')";
-    //이미지 사이즈
-    //document.getElementById("div").style.backgroundSize = "200px";
-   // }
-</script>
 
 <!--  <script type="text/javascript"> /* 사용자가 새로고침, F5 눌럿을 때만, 배경화면이 자동 변경 자바스크립트 함수*/
 
-	window.onload = function(){
+	//window.onload = function(){
 
-		var background_img = "/img/main";
+		//var background_img = "/img/main";
 
-		var number = Math.floor(Math.random() * 16) + 1;
+		//var number = Math.floor(Math.random() * 16) + 1;
 
-		var container = document.getElementById("container");
+		//var container = document.getElementById("container");
 		//var container = document.getElementById("hero");
 
 
 
-		background_img += number + ".jpg";
+		//background_img += number + ".jpg";
 
-		container.style.backgroundImage = "url('" + background_img + "')";
+		//container.style.backgroundImage = "url('" + background_img + "')";
 
-	}-->
+	//}-->
 
 </script>
-
 
 
 
