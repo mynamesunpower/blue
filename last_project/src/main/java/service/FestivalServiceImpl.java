@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import main.java.model.FestivalDAO;
 import main.java.vo.FestivalVO;
+import main.java.vo.InstarVO;
 @Service("festivalService")
 public class FestivalServiceImpl implements FestivalService {
 	@Autowired
@@ -74,6 +75,15 @@ public class FestivalServiceImpl implements FestivalService {
 	public long festivalcount() {
 		// TODO Auto-generated method stub
 		return festivalDao.festivalcount();
+		
+	}
+	
+	
+
+	@Override
+	public List<InstarVO> instar() {
+		// TODO Auto-generated method stub
+		return festivalDao.instar();
 	}
 
 	//관리자에서

@@ -211,7 +211,7 @@
     </div>
     <!-- End Preload -->
 
-	<%@ include file="header.jsp" %>
+	<%@ include file="/../header.jsp" %>
 
 	<main>
         <!-- Slider -->
@@ -338,16 +338,20 @@
 			</div>
 		
 			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
+			<c:forEach items="${list}" var="list">
+			<c:forEach items="${list.images}" var="image" >
                 <div class="item">
                     <div class="tour_container">
                         <div class="img_container">
                             <a href="single_tour.html">
-                                <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="image">
+                                <img src="data:image/jpg;base64,${image}" width="800" height="533" class="img-fluid" alt="image">
                             </a>
                         </div>
                     </div>
                     <!-- End box tour -->
                 </div>
+                </c:forEach>
+                </c:forEach>
                 <!-- /item -->
             </div>
             <!-- /carousel -->
@@ -359,7 +363,7 @@
             <!-- /carousel -->
 		
 			<p class="text-center add_bottom_30">
-				<a href="/instar.do" id="instarview">인스타 사진보기</a>
+				<!-- <a href="/instar.do" id="instarview">인스타 사진보기</a> -->
 			</p>
 
 			<hr class="mt-5 mb-5">
@@ -717,7 +721,7 @@
 	</main>
 	<!-- End main -->
 
-	<%@ include file="footer.jsp" %>
+	<%@ include file="/../footer.jsp" %>
 
 
 

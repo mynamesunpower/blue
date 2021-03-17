@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 
 
 import main.java.vo.FestivalVO;
+import main.java.vo.InstarVO;
 
 public interface FestivalService {
 
@@ -22,10 +23,13 @@ public interface FestivalService {
 	public List<FestivalVO> search(String word);
 	public long festivalcount();
 	
+	public List<InstarVO> instar();
+	
 	//관리자에서
 	public FestivalVO insert_festival(FestivalVO vo);
 	public FestivalVO modify_festival(FestivalVO vo);
 	public FestivalVO delete_festival(FestivalVO vo);
+	
 
 	
 	

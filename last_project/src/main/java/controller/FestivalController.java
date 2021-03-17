@@ -25,6 +25,7 @@ import main.java.service.RestaurantService;
 import main.java.vo.AccomVO;
 import main.java.vo.FestivalVO;
 import main.java.vo.RestaurantVO;
+import main.java.vo.InstarVO;
 
 @Controller
 public class FestivalController {
@@ -208,8 +209,6 @@ public class FestivalController {
 					vo.setImages(imageList);
 				}
 
-		System.out.println("위도"+list.get(0).getLatitude());
-
 
 
 		Map<Double, ObjectId> map= new HashMap<Double, ObjectId>();
@@ -238,12 +237,12 @@ public class FestivalController {
 				
 			
 			   List<Double> keySet = new ArrayList<>(map.keySet());
-
+			   System.out.println("식당:"+keySet);
 		        System.out.println("==Key 값 기준으로 오름차순 정렬==");
 		        List<Double> keys = new ArrayList<>(map.keySet());
 		        Collections.sort(keys);
 		        
-		       
+		        System.out.println("식당sssssss:"+keys);
 		        List<RestaurantVO> res= null;
 		        List<List<RestaurantVO>> result = new ArrayList<>();
 		        for(int i=0; i<=2; i++) {
@@ -297,11 +296,11 @@ public class FestivalController {
 		      }
 		      
 		     
-		      List<Double> keySets = new ArrayList<>(accommap.keySet());
-		      
+		      	List<Double> keySets = new ArrayList<>(accommap.keySet());
+		      	 System.out.println("숙박"+keySets);
 		        List<Double> keys2 = new ArrayList<>(accommap.keySet());
-		        Collections.sort(keySets);
-		       
+		        Collections.sort(keys2);
+		        System.out.println("숙박sssssss"+keys2);
 		     
 	
 		     
@@ -311,7 +310,7 @@ public class FestivalController {
 		        
 		        for(int a=0; a<=2; a++) {
 		        	
-		        	acc = AccomService.selectOne(accommap.get(keySets.get(a)));
+		        	acc = AccomService.selectOne(accommap.get(keys2.get(a)));
 		        	//System.out.println("여기는"+acc);
 		        	
 		        	for (AccomVO vo : acc) {
@@ -323,7 +322,7 @@ public class FestivalController {
 		    			}
 		    			vo.setImages(imageList);
 		    			//숙박 거리
-		    			vo.setRange(keySets.get(a));
+		    			vo.setRange(keys2.get(a));
 		    			
 		    		}
 		        	result2.add(acc);
@@ -333,6 +332,10 @@ public class FestivalController {
 
 		ArrayList<HashMap<String, String>> reviews = list.get(0).getReviews();
 
+		
+		System.out.println(result.get(0).get(0).getRange());
+		System.out.println(result2.get(0).get(0).getRange());
+		
 	
 		model.addAttribute("scores", scoresAverage(reviews));
 		model.addAttribute("list", list);
@@ -494,6 +497,7 @@ public class FestivalController {
 	}
 	
 	
+	//축제 개수뽑기
 	@RequestMapping(value="festivalCount.do")
 	@ResponseBody
 	public String festivalcount() {
@@ -503,7 +507,29 @@ public class FestivalController {
 		String num = String.valueOf(count);
 		
 		return num;
+	}
+	
+	
+	//메인페이지 인스타 캐러셀
+	@RequestMapping(value="instar.do")
+	public String instar(Model model) {
+			
+		List<InstarVO> list = festivalService.instar();
 		
+		for (InstarVO vo : list) {
+			// ArrayList<Binary> image
+			ArrayList<String> imageList = new ArrayList<String>();
+			for (Binary img : vo.getImgs()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setImages(imageList);
+		}
+		
+		model.addAttribute("list", list);
+		
+		return "main";
+		//return list;
 	}
 	
 

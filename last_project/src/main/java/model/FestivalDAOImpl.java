@@ -29,6 +29,7 @@ import com.mongodb.client.result.UpdateResult;
 import com.mongodb.gridfs.GridFSDBFile;
 
 import main.java.vo.FestivalVO;
+import main.java.vo.InstarVO;
 import main.java.vo.RestaurantVO;
 
 @Repository("festivalDAO")
@@ -39,6 +40,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	
 	private final String festival = "festival"; // Collection_name
 	private final String restaurant = "restaurant"; // Collection_name
+	private final String instar = "instar"; // Collection_name
 	
 	@Override
 	public List<FestivalVO> test() {
@@ -282,6 +284,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	}
 
 
+	//축제 개수뽑기
 	@Override
 	public long festivalcount() {
 		// TODO Auto-generated method stub
@@ -297,6 +300,22 @@ public class FestivalDAOImpl implements FestivalDAO {
 		return result;
 	}
 
+
+
+	//인스타 사진 뽑기(메인페이지)
+	@Override
+	public List<InstarVO> instar() {
+		// TODO Auto-generated method stub
+		
+		List<InstarVO> list = mongoTemplate.findAll(InstarVO.class, instar);
+		
+		return list;
+	}
+
+	
+	
+	
+	
 	
 	
 	
