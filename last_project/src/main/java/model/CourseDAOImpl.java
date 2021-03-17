@@ -1,5 +1,7 @@
 package main.java.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -10,8 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.UpdateResult;
+import com.mongodb.BasicDBObject;
 
 import main.java.vo.CourseVO;
 
@@ -56,15 +57,10 @@ public class CourseDAOImpl implements CourseDAO {
 		query.addCriteria(Criteria.where("_id").is(_id));  // 조건2
 		return mongoTemplate.findOne(query, CourseVO.class, course);
 	}
-	// 내 코스에 담기
+	// 코스 생성
 	@Override
 	public CourseVO addMycourse(CourseVO vo) {
 		System.out.println("addMycourse DAO 접근");
-//		System.out.println(">>>>>>>>>>>_id:" + vo.get_id());  // 아직 _id 없지.
-//		System.out.println(">?>>>>>> cname :"+ vo.getCourseName());  // 이건 받아와
-		/*
-		 * 여기서, if문으로 정보를 넣으려는 코스가 이미 존재하면 update, 아니면 insert되게 ?
-		 */
 		return mongoTemplate.insert(vo, course);
 	}
 	// 코스 삭제
@@ -90,17 +86,31 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 	// 축제, 식당, 숙박을 코스에 담을 때 선택한 코스의 coursePath에 추가 되게.
 	@Override
-	public void updateCourse(CourseVO vo, String _id) {
-		System.out.println("updateCourse DAO 접근");
-		System.out.println(">>>>>_id="+_id);
-		Update update = new Update();
+	public void pushCoursePath(CourseVO vo, ObjectId _id) {
+		System.out.println("pushCoursePath DAO 접근");
 		Query query = new Query(Criteria.where("_id").is(_id));
-		
-		update.set("courseName", vo.getCourseName());
-		System.out.println("courseName="+ vo.getCourseName());
-		update.set("coursePath", vo.getCoursePath());
-		System.out.println("coursePath="+ vo.getCoursePath());
-		mongoTemplate.updateMulti(query, update, course);
+		Update update = new Update();
+		List<HashMap<String, Object>> array = new ArrayList<HashMap<String, Object>>();
+		array.addAll(vo.getCoursePath());
+		update.push("coursePath").each(array);
+		mongoTemplate.updateFirst(query, update, course);
+	}
+	// coursePath에서 빼기
+	@Override
+	public void pullCoursePath(String _id) {
+		System.out.println("pullCoursePath DAO 접근");
+		Query query = new Query(Criteria.where("_id").is(_id));
+		Update update = new Update();
+		update.pull("coursePath", new BasicDBObject("_id", _id));
+		mongoTemplate.updateFirst(query, update, course);
+	}
+	//
+	@Override
+	public CourseVO cId(String memberId, String cname) {
+		System.out.println("cId DAO 접근");
+		Query query = new Query(Criteria.where("writer").is(memberId));  // 조건1
+		query.addCriteria(Criteria.where("courseName").is(cname));  // 조건2
+		return mongoTemplate.findOne(query, CourseVO.class, course);
 	}
 	
 	

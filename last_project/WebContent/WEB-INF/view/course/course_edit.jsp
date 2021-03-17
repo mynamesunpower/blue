@@ -225,7 +225,7 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<div style="text-align: right; font-size: larger;">
-										<i class="icon-trash-7" style="cursor: pointer;"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
+										<i class="icon-trash-7" style="cursor: pointer;" id="pullCourse"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
 									</div>
 									<a class="box_news" href="javascript:void(0)">
 										<figure><img src="${coursePath.image}" alt="">
@@ -334,11 +334,11 @@
 									<p style="font-size: large;">코스 자랑 마당에 공유하기</p>
 									<div style="text-align: center;">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
 											<label class="form-check-label" for="inlineRadio1">Yes</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
 											<label class="form-check-label" for="inlineRadio2">No</label>
 										</div>
 									</div>
@@ -694,6 +694,23 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			/*
+			// 쓰레기통 아이콘 클릭
+			$(document).on("click", "#pullCourse", function(){
+				var cId = ${detail._id}
+				console.log(cId)
+				<c:forEach items="${detail.coursePath}" var="coursePath">
+					var _id = ${coursePath._id}
+				</c:forEach>
+				
+				$.ajax({
+					type : "POST",
+					url : "pullCoursePath.do"
+					
+				}) // end of ajax.
+				
+			})
+			*/
 			$("#editCourse").on('click', function(){
 				$.ajax({
 					type : "post",
