@@ -354,8 +354,8 @@ public class FestivalController {
 
 		Map<Double, ObjectId> map= new HashMap<Double, ObjectId>();
 
-		System.out.println(latitude);
-		System.out.println(longitude);
+		//System.out.println(latitude);
+		//System.out.println(longitude);
 		List<FestivalVO> list = festivalService.test();
 
 		for(FestivalVO vo : list) {
@@ -378,7 +378,7 @@ public class FestivalController {
 	        List<FestivalVO> lists= null;
 	        List<List<FestivalVO>> result = new ArrayList<>();
 	        for(int i=0; i<=2; i++) {
-	        	System.out.println("<><<><><><><><><>"+(map.get(keys.get(i))));
+	        	//System.out.println("<><<><><><><><><>"+(map.get(keys.get(i))));
 	        	
 
 
@@ -416,8 +416,7 @@ public class FestivalController {
 	public List<FestivalVO> tosss(int interval){
 
 		List<FestivalVO> list = festivalService.test();
-		System.out.println(list);
-
+		
 		for (FestivalVO vo : list) {
 
 			ArrayList<String> imageList = new ArrayList<String>();
@@ -496,14 +495,10 @@ public class FestivalController {
 	
 	@RequestMapping(value="festivalCount.do")
 	@ResponseBody
-	public String festivalcount(String test) {
-		
-		String test2 = test;
-		
+	public String festivalcount() {
+				
 		long count = festivalService.festivalcount();
-		
-		System.out.println("몽고디비 페스티벌:" +count);
-		
+					
 		String num = String.valueOf(count);
 		
 		return num;

@@ -16,14 +16,14 @@ public class FestivalServiceImpl implements FestivalService {
 	@Override
 	public List<FestivalVO> test() {
 		// TODO Auto-generated method stub
-		System.out.println("Service �젒洹�");
+		
 		return festivalDao.test();
 	}
 
 	@Override
 	public List<FestivalVO> month(String month) {
 		// TODO Auto-generated method stub
-		System.out.println("Service �젒洹�: month()");
+		System.out.println("Service : month()");
 		return festivalDao.month(month);
 	}
 

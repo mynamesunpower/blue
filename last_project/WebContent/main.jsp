@@ -565,7 +565,7 @@
                     <div class="feature_home">
                         <!-- <i class="icon_set_1_icon-30"></i> -->
                         <i class="icon-users"></i>
-                        <h3><span>+140</span> 식당</h3>
+                        <h3><span id="restaurantcount">+00</span> 식당</h3>
                         <p>
                             다양한 식당 정보를 확인하세요.
                         </p>
@@ -813,9 +813,7 @@
 	<script>
 $(document).ready(function(){
 
-	
-	alert("시작하니")
-	
+	//축제 개수 표시
 	$.ajax({
 					type : 'post',
 	        		//async : true,
@@ -830,8 +828,20 @@ $(document).ready(function(){
 					}
 				});
 	
-	
-	
+	//식당 개수 표시
+	$.ajax({
+		type:'post',
+		url:'/restaurantcount.do',
+		success: function(count){
+		$('#restaurantcount').html("+"+count)
+		},
+		error: function(error){
+			alert("restaurant_count 에러");
+			console.log('에러' + error)
+		}
+		
+		
+	});
 	
 	
 

@@ -26,6 +26,8 @@ public interface RestaurantDAO {
 	public List<HashMap> groupCategory();
 
 	public List<RestaurantVO> getCategoryData(String category, int pageNumber);
+	
+	public int count();
 
 
 	//관리자에서

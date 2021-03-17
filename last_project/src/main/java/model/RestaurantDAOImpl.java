@@ -177,4 +177,15 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return null;
 	}
 	
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		
+		List<RestaurantVO> vo = mongoTemplate.findAll(RestaurantVO.class, collectionName);
+		
+		int count= vo.size();
+		
+		return count;
+	}
+	
 }

@@ -72,36 +72,28 @@ public class FestivalDAOImpl implements FestivalDAO {
 	public List<FestivalVO> month(String month) {
 		System.out.println("DAO 에서: month()");
 
-		//Query query = new Query(Criteria.where(key));
-		//query.addCriteria(Criteria.where("text").regex("Joe"));
-		
-		//BasicDBObject query = new BasicDBObject();
-		//query.put("title", Pattern.compile(".02.")); //titledp keyword
-		//collection.find(filters.eq("speech","�븞�뀞")).forEach(printBlock)
+
 		int mon=0;
+		
 		 Query query = new Query();
 	     Criteria criteria = new Criteria();
+	     System.out.println("달이왔어"+month.length());
 	     if(month.length()==1) {
 	    	 month = "20210" + month+"31";
 	    	  mon = Integer.parseInt(month);
+	    	
 	     }else {
-	    	 month = "2021" + month+"31";
+	    	month = "2021" + month+"31";
 	    	 mon = Integer.parseInt(month);
+	    	
 	     }
 	     System.out.println("인트바꼈니:"+mon);
 	     //query.addCriteria(criteria.where("start_date").regex("^2021"+month));
-	     query = new Query(Criteria.where("startDate").lte(mon));  //조건1
-	     //query = new Query(Criteria.where("endDate").gte(20211017));  //조건1
-	    query.addCriteria(criteria.where("endDate").gte(mon));
-	     //query.fields().exclude("_id");
-	     List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
-	    // Stirng id = mongoTemplate.find(query,FestivalVO.class,"festival").getId();
-	     System.out.println("Dao에서 DAOmonth"+list);
-	     //FestivalVO vo =  mongoTemplate.findOne(query,FestivalVO.class,"festival");
-	     //System.out.println("�굹�룄�엳�떎"+vo.get_id());
-	     //System.out.println(vo.ge);
-	    // imagefile();
-	     System.out.println("dao의 list"+list);
+	    query = new Query(Criteria.where("startDate").lte(mon));  //조건1
+	     //query = new Query(Criteria.where("endDate").gte(20211017));  
+	    query.addCriteria(criteria.where("endDate").gte(mon));//조건2
+	   
+	    List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
 	     
 	     
 		return list;
