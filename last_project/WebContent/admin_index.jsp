@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -79,9 +78,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="admin_index.jsp" class="brand-link">
-    
-    	<!-- TODO 우리 로고 이미지로 바꾸기 -->
+    <a href="index3.jsp" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">축축빵빵</span>
     </a>
@@ -94,7 +91,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">${sessionScope.adminName}</a>
+          <a href="#" class="d-block">관리자1</a>
         </div>
       </div>
 
@@ -142,7 +139,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_mate.do" class="nav-link">
+                <a href="admin/admin_mate.jsp" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>
@@ -161,19 +158,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin/admin_festival.jsp" class="nav-link">
+                <a href="admin/admin_festival.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_lodgment.jsp" class="nav-link">
+                <a href="admin/admin_lodgment.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>숙박 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_restaurant.jsp" class="nav-link">
+                <a href="admin/admin_restaurant.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>식당 정보 관리</p>
                 </a>
@@ -206,7 +203,7 @@
             </ul>
           </li> <!-- 코스 관리 끝 -->
             
-            <!-- 리뷰 관리 -->    
+          <!-- 리뷰 관리 -->    
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -241,7 +238,7 @@
                 </a>
               </li>
             </ul>
-          </li> <!-- 코스 관리 끝 -->
+          </li> <!-- 리뷰 관리 끝 -->
             
             
           <li class="nav-item">
@@ -285,21 +282,15 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="admin/admin_what.jsp" class="nav-link">
+                <a href="admin/admin_what.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>뭐할까</p>
+                  <p>지역별 축제 분포</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_what.jsp" class="nav-link">
+                <a href="admin/admin_what2.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>고민을</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="admin/admin_what.jsp" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>해봐야겠어요</p>
+                  <p>축제 입장료 유/무</p>
                 </a>
               </li>
             </ul>
