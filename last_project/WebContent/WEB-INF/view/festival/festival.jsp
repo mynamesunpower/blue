@@ -5,7 +5,7 @@
 <html lang="ko">
 
 <head>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b&libraries=services"></script>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -176,14 +176,14 @@
 
 
         <div class="main_title">
-            <h2>근처 축제: <span> 내가 찍은 위치 </span></h2>
+            <h2>내가찍은 위치<span><div id="ppp">근처 축제:</div></span></h2>
             
            <!--  <a href="#" class="btn_1">자세히 보기</a> -->
         </div>
 
         <!-- 추천 축제 캐러셀 -->
         <div class="owl-carousel owl-theme list_carousel add_bottom_30">
-                <div class="item">
+                <div class="item" >
                     <div class="tour_container">
                     <c:forEach items="${list}" var="list" varStatus="var">
                     <c:if test="${scores[var.index] ge 3}">
@@ -203,7 +203,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="tour_title">
+                        <div class="tour_title" style="height:75px">
                             <h3><strong class="nearname1">꼴뚜기 투어</strong></h3>
                             <div class="rating" id="rating1">
                             
@@ -237,7 +237,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="tour_title">
+                        <div class="tour_title" style="height:75px;">
                             <h3><strong class="nearname2">매운탕 투어</strong></h3>
                             <div class="rating" id="rating2">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
@@ -269,7 +269,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="tour_title">
+                        <div class="tour_title" style="height:75px;">
                             <h3><strong class="nearname3">매운탕 투어</strong></h3>
                             <div class="rating" id="rating3">
                                 <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
@@ -381,13 +381,13 @@ $(document).ready(function() {
 	 					
 	 		
 	 				festivals1=''
-	 				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+	 				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
 
 	 				festivals2=''
-	 	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+	 	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
 	 	 	 			
 	 	 			festivals3=''
-	 	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+	 	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
 	 	 	 	
 
 	 				//지도 클릭시 사진 바뀜
@@ -448,12 +448,17 @@ $(document).ready(function() {
 					festivals +='<a href="/details.do?tel='+item.postcode+'">'
 					//festivals +='<a href="javascript:" onclick="festivaldetail('+item.tel+')">'
 					if(item.image==''){
-						festivals += '<div><img class="owl-slide cover img-fluid" src="img/img_cat_home_1.jpg"/></div>'
+						festivals += '<div><img height="300" width="400" class="owl-slide cover" src="/img/login/testfile.png"/></div>'
 						//festivals +='<img src="img/img_cat_home_1.jpg" class="img-fluid">'
 						//festivals +='<img src="data:image/jpg;base64,'+item.image[0].data+'" alt="" class="img-fluid">'
 						}else{
-							festivals += '<div><img class="owl-slide cover img-fluid" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
+							if(i == 0){
+								festivals += '<div><img alt="image" class="owl-slide cover img-fluid" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
+							}else{
+							festivals += '<div><img alt="image" height="300" width="400" class="owl-slide cover" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
 							//festivals +='<img  src="data:image/jpg;base64,'+item.image[0].data+'" class="img-fluid">'
+							}
+							
 						}
 
 
@@ -707,7 +712,8 @@ $(document).ready(function() {
  	    };
 
  	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+ 	
+ 
  	// 지도를 클릭한 위치에 표출할 마커입니다
  	var marker = new kakao.maps.Marker({
  	    // 지도 중심좌표에 마커를 생성합니다
@@ -718,7 +724,24 @@ $(document).ready(function() {
 
  	// 지도에 클릭 이벤트를 등록합니다
  	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+ 	   // 주소-좌표 변환 객체를 생성합니다
+ 	   	var geocoder = new kakao.maps.services.Geocoder();
+ 	   	
+ 	
+ 	var addre = ''
  	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+ 		searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+ 	        if (status === kakao.maps.services.Status.OK) {
+ 	            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+ 	            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+ 	            
+ 	            var content = '<div class="bAddr">' +
+ 	                            '<span class="title">법정동 주소정보</span>' + 
+ 	                            detailAddr + 
+ 	                        '</div>';
+				addre = detailAddr;
+ 	        }   
+ 	    });
 
  	    // 클릭한 위도, 경도 정보를 가져옵니다
  	    var latlng = mouseEvent.latLng;
@@ -733,6 +756,21 @@ $(document).ready(function() {
  	    resultDiv.innerHTML = message;
  	    
  	    sss();
+ 		/////////////////////////////////////////////////////
+ 	
+ 	   	
+ 	   	
+ 	   	function searchAddrFromCoords(coords, callback) {
+ 	   	    // 좌표로 행정동 주소 정보를 요청합니다
+ 	   	    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+ 	   	}
+
+ 	   	function searchDetailAddrFromCoords(coords, callback) {
+ 	   	    // 좌표로 법정동 상세 주소 정보를 요청합니다
+ 	   	    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+ 	   	}
+ 	   	/////////////////////////////////////////////////////////
+
  	    
  	  
  	    
@@ -747,13 +785,13 @@ $(document).ready(function() {
  			success: function(data) {
  	
  				festivals1=''
- 				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
 
  				festivals2=''
- 	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
  	 	 			
  	 			festivals3=''
- 	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="800" height="533" class="img-fluid nearimage" alt="image"></div>'
+ 	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
  	 	 	
 
  				//$('.aa1 div').remove()
@@ -775,6 +813,9 @@ $(document).ready(function() {
  				$(".nearname2").text(data[1][0].title);
 	 			$(".nearname3").text(data[2][0].title);
 	 			
+	 			
+	 			$("#ppp").html(addre);
+	 			
 	 			//평점
 	 						
 				
@@ -786,7 +827,9 @@ $(document).ready(function() {
 				//rating += '<i class="icon-star voted"></i>'
 				//rating += '<i class="icon-star-empty"></i>'
 													
-	 			//$('.rating').html();
+	 			$('#rating1').html(data[0][0].address);
+	 			$('#rating2').html(data[1][0].address);
+	 			$('#rating3').html(data[2][0].address);
  				
 	
  			},

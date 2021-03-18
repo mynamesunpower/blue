@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 축제 Detail</title>
+    <title>축제로 - 축제 Detail</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -110,7 +110,7 @@
 	<%@ include file="../../../header.jsp" %>
 <c:forEach items="${list}" var="list">
 <c:forEach items="${list.images}" var="image" begin="1" end="1" >
-	<section class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
+	<section style="width:58%; margin:0 auto;" class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
 	</c:forEach>
 	</c:forEach>
 		<div class="parallax-content-2">
@@ -144,7 +144,7 @@
 	<!-- End section -->
 
 	<main>
-		<div id="position">
+		<div id="position" style="width:58%; margin:0 auto;">
 			<div class="container">
 				<ul>
 					<li><a href="../main.jsp">Home</a>
@@ -168,9 +168,9 @@
        <!--  <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>--> 
     </em>
 </p>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <ul id="category">
+<div class="map_wrap" >
+    <div id="map" style="margin: 0 auto; width:58%;height:100%;position:relative;overflow:hidden;"></div>
+    <ul id="category" style="margin-left: 400px;">
         <li id="AT4" data-order="0"> 
             <span class="category_bg bank"></span>
             관광명소
@@ -439,7 +439,7 @@ marker.setMap(map);
                         <div class="owl-carousel owl-theme">
                         <c:forEach items="${list.images}" var="image" >
 			
-                            <div><img class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
+                            <div><img style="border-radius: 10px;" class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
                                 <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.0)">
                                     <div class="container">
                                         <div class="row justify-content-center justify-content-md-start">
@@ -783,12 +783,11 @@ function getTimeHTML(distance) {
 					</div>
 
 					<hr>
-                    
+                      <c:if test="${detail_instar.size() ne 0 }">
                     <div class="row">
 						<div class="col-lg-12">
                                                  
-            <!-- ------------- -->
-                            
+                               
                             <div class="container margin_60" id="instarss">
 
 			<div class="main_title">
@@ -806,7 +805,7 @@ function getTimeHTML(distance) {
                     <div class="tour_container">
                         <div class="img_container">
                             <a href="single_tour.html">
-                                <img src="data:image/jpg;base64,${image}" width="100" height="100" class="img-fluid" alt="image">
+                                <img style="border-radius: 20px;" src="data:image/jpg;base64,${image}" width="100" height="100" class="img-fluid" alt="image">
                             </a>
                         </div>
                     </div>
@@ -821,14 +820,11 @@ function getTimeHTML(distance) {
 		
 		
        </div>
-                            
-                            
-                            
-                            <!-- ----------------- -->
-                            
-                            
+          
 						</div>
 					</div>
+					<hr>
+					  
                     <div class="row">
 						<div class="col-lg-12">
                            <div class="main_title">
@@ -843,18 +839,8 @@ function getTimeHTML(distance) {
 						</div>
 					</div>
                     <hr>
-                    <div class="row">
-						<div class="col-lg-12">
-                            <h4>함께 축제에 갈 사람이 필요한가요?</h4>
-                            <div class="basic_button">
-								<!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                <!-- 메이트서비스 회원은 mate_index -->
-                                <button class="btn btn-warning basic_button">메이트 찾기</button>
-                            </div>
-						</div>
-					</div>
-                    <hr>
-
+                     </c:if>
+                 
 										<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
@@ -1023,7 +1009,7 @@ function getTimeHTML(distance) {
                                             
                             <div class="col-12 near-place-image">
                             		 <c:forEach items="${res[0].images}" var="image" begin="0" end="0">
-                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img style="border-radius: 10px;" class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
                                		 </c:forEach>
                                 </a>
                             </div>
@@ -1062,7 +1048,7 @@ function getTimeHTML(distance) {
                         <div class="row near-place">
                             <div class="col-12 near-place-image">
                             <c:forEach items="${accom[0].images}" var="image" begin="0" end="0">
-                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img style="border-radius: 10px;" class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
                                  </c:forEach>
                                 </a>
                             </div>
