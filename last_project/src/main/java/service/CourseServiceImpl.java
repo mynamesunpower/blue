@@ -68,9 +68,9 @@ public class CourseServiceImpl implements CourseService {
 		courseDao.pushCoursePath(vo, _id);
 	}
 	@Override
-	public void pullCoursePath(String _id, String cId) {
+	public void pullCoursePath(String cId, String p_id) {
 		System.out.println("pullCoursePath 서비스 접근");
-		courseDao.pullCoursePath(_id, cId);
+		courseDao.pullCoursePath(cId, p_id);
 	}
 	@Override
 	public CourseVO cId(String memberId, String cname) {

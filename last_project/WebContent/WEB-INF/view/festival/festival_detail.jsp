@@ -1270,7 +1270,8 @@ function getTimeHTML(distance) {
 						var img = "data:image/jpg;base64,${image}"
 					</c:forEach>
 					var data = {
-							"_id" : "${fes._id}",
+							"p_id" : "${fes._id}",
+							"postcode" : ${fes.postcode},
 							"title" : "${fes.title}",
 							"host" : "${fes.host}",
 							"address" : "${fes.address}",

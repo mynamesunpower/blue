@@ -1000,6 +1000,7 @@
 				var coursePath_arr = new Array();
 				<c:forEach items="${detail.coursePath}" var="coursePath">
 					var data = {
+							"p_id" : "${coursePath.p_id}",
 							"title" : "${coursePath.title}",
 							"address" : "${coursePath.address}",
 							"tel" : "${coursePath.tel}",
@@ -1011,7 +1012,7 @@
 				</c:forEach>
 				// 콘솔로 확인
 				console.log(coursePath_arr)
-				// 각 코스마다의 _id
+				// 내가 선택한 코스의 _id
 				var cId = $(this).parent().parent().next().val()
 				// 코스 collection에 넣을 데이터.
 				var info = {

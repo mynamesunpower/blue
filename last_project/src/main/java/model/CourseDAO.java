@@ -26,7 +26,7 @@ public interface CourseDAO {
 	// 축제, 식당, 숙박을 코스에 담을 때 선택한 코스의 coursePath에 추가 되게.
 	public void pushCoursePath(CourseVO vo, ObjectId _id);
 	// coursePath에서 빼기
-	public void pullCoursePath(String _id, String cId);
+	public void pullCoursePath(String cId, String p_id);
 	// 
 	public CourseVO cId(String memberId, String cname);
 }
