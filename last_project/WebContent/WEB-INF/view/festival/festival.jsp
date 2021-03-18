@@ -56,7 +56,7 @@
     <%@ include file="/../header.jsp" %>
 
     <!-- 메인 이미지 슬라이더 -->
-	<section id="hero">
+	<section id="hero" style="width:58%; margin:0 auto;">
 
 		<div class="intro_title">
 		 <!-- <img src="img/logo_sticky.png"> --> 
