@@ -108,8 +108,11 @@
 	<!-- End Preload -->
 
 	<%@ include file="../../../header.jsp" %>
-
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
+<c:forEach items="${list}" var="list">
+<c:forEach items="${list.images}" var="image" begin="1" end="1" >
+	<section class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
+	</c:forEach>
+	</c:forEach>
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">

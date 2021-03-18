@@ -177,7 +177,7 @@
 
         <div class="main_title">
             <h2>근처 축제: <span> 내가 찍은 위치 </span></h2>
-            <p>이근처??</p>
+            
            <!--  <a href="#" class="btn_1">자세히 보기</a> -->
         </div>
 
