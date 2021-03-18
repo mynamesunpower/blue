@@ -35,6 +35,16 @@
         <style type="text/css">  /* CSS 첫 이미지 고정 */
 
 	#container{height:1200px; background-size:cover; background-image:url("/background/img_1.jpg");}
+	
+	@media screen and (min-width: 769px) { 
+
+	#hero {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+	}
 
 </style>
 

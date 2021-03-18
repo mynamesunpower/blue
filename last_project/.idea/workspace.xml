@@ -2,51 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="302cac1f-cb2f-49dd-a4cf-0c2e711c7009" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WebContent/py/festival_data.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/py/lodgment_views.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin_plt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/CustomerService/memberChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/CustomerService/memberChat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/accommodation/accommodations_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/accommodation/accommodations_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/accommodation/accommodations_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/accommodation/accommodations_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_course.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_course.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_course_statistic.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_course_statistic.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_customer_chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_customer_chat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_customer_question.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_customer_question.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_festival.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_festival.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_festival_review.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_festival_review.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_lodgment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_lodgment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_lodgment_review.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_lodgment_review.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_lost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_lost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_mate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_mate.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_mate_review.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_mate_review.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_member.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_member.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_restaurant.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_restaurant.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_restaurant_review.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_restaurant_review.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_what.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_what.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_what2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/admin/admin_what2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/course_main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/course/mongoCourse.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_reset.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/instagramTest.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/search_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/search_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/main.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/member/memberJoin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/member/memberJoin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/member/mypage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/member/mypage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/restaurant/restaurant_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/restaurant/restaurant_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/restaurant/restaurants_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/restaurant/restaurants_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/admin_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/admin_index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/festival_copy.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/js/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/FestivalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/FestivalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/js/festival.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/admin/AdminPlt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/admin/AdminPlt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616040230745</updated>
-      <workItem from="1616040231837" duration="1473000" />
+      <workItem from="1616040231837" duration="1476000" />
     </task>
     <servers />
   </component>

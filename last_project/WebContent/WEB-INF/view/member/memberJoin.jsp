@@ -163,7 +163,7 @@
 		                                    <div class="col-sm-12">
 		                                        <h5 class="info-text"></h5>
 		                                        <h5 class="info-text">축제로의 가족이 되신 것을 환영합니다!</h5>
-		                                        <h4 class="info-text">좌측 하단 회원가입을 클릭해 완료해주세요.</h4>
+		                                        <h4 class="info-text">우측 하단 회원가입을 클릭해 완료해주세요.</h4>
 		                                    </div>
 		                                    
 		                                </div>

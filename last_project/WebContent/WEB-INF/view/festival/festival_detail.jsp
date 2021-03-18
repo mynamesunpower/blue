@@ -88,6 +88,17 @@
 .distanceInfo:after {content:none;}
 
 
+@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}
+
+
 </style>
 	
 	
@@ -110,7 +121,7 @@
 	<%@ include file="../../../header.jsp" %>
 <c:forEach items="${list}" var="list">
 <c:forEach items="${list.images}" var="image" begin="1" end="1" >
-	<section style="width:58%; margin:0 auto;" class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
 	</c:forEach>
 	</c:forEach>
 		<div class="parallax-content-2">
@@ -144,7 +155,7 @@
 	<!-- End section -->
 
 	<main>
-		<div id="position" style="width:58%; margin:0 auto;">
+		<div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="../main.jsp">Home</a>
@@ -169,7 +180,7 @@
     </em>
 </p>
 <div class="map_wrap" >
-    <div id="map" style="margin: 0 auto; width:58%;height:100%;position:relative;overflow:hidden;"></div>
+    <div id="map" style="height:100%;position:relative;overflow:hidden;"></div>
     <ul id="category" style="margin-left: 400px;">
         <li id="AT4" data-order="0"> 
             <span class="category_bg bank"></span>

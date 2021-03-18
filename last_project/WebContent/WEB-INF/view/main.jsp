@@ -193,6 +193,16 @@
 
    <!----> 
     
+@media screen and (min-width: 769px) { 
+
+	#rev_slider_13_1_wrapper {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}    
+    
    
 </style>
 	
