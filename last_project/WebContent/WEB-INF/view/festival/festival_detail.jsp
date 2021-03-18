@@ -108,8 +108,11 @@
 	<!-- End Preload -->
 
 	<%@ include file="../../../header.jsp" %>
-
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
+<c:forEach items="${list}" var="list">
+<c:forEach items="${list.images}" var="image" begin="1" end="1" >
+	<section class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
+	</c:forEach>
+	</c:forEach>
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -119,7 +122,15 @@
 						
 						<h1>${list.title }</h1>
 						<span class='fesaddress'>${list.address}</span>
-						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+						<div class="rating">
+							<c:forEach begin="1" end="${scores[4]}">
+								<i class="icon-star voted"></i>
+							</c:forEach>
+							<c:forEach begin="1" end="${5 - scores[4]}">
+								<i class=" icon-star-empty"></i>
+							</c:forEach>
+							<small>(${list.reviews.size()})</small>						
+							</div>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
@@ -775,15 +786,60 @@ function getTimeHTML(distance) {
                     
                     <div class="row">
 						<div class="col-lg-12">
-                            <h4>인스타그램 사진</h4>
-                            <table>
+                                                 
+            <!-- ------------- -->
                             
-                            </table>
+                            <div class="container margin_60" id="instarss">
+
+			<div class="main_title">
+			<c:forEach items='${detail_instar}' var='instar'>
+			
+			             <h2><span>ㅣ</span>${instar.title} 인스타그램 사진</h2>
+          </c:forEach>
+			</div>
+		
+			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
+		
+		<c:forEach items='${detail_instar}' var='instar'>
+		<c:forEach items="${instar.images}" var="image" >
+                <div class="item">
+                    <div class="tour_container">
+                        <div class="img_container">
+                            <a href="single_tour.html">
+                                <img src="data:image/jpg;base64,${image}" width="100" height="100" class="img-fluid" alt="image">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End box tour -->
+                </div>
+             
+                <!-- /item -->
+        </c:forEach>
+        </c:forEach>
+            </div>
+            <!-- /carousel -->
+		
+		
+       </div>
+                            
+                            
+                            
+                            <!-- ----------------- -->
+                            
+                            
 						</div>
 					</div>
                     <div class="row">
 						<div class="col-lg-12">
-                            <h4>연관된 키워드</h4>
+                           <div class="main_title">
+			<c:forEach items='${detail_instar}' var='instar'>
+			
+			             <h2><span>ㅣ</span>연관된 키워드</h2>
+			             <br/>
+			              <h2><span>${instar.tag_list}</span></h2>
+			             
+          </c:forEach>
+			</div>
 						</div>
 					</div>
                     <hr>
@@ -1018,7 +1074,7 @@ function getTimeHTML(distance) {
                              ${accom[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>1.5<span class="near-place-tel">${accom[0].tel}</span>
+								<span class="star">★</span>여기 바꾸기<span class="near-place-tel">${accom[0].tel}</span>
 								</div>
                                 <div class="col-12" class="near-place-text">
                                   <c:set var="num1" value="${accom[0].range }" />

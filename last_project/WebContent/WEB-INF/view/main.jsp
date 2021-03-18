@@ -265,7 +265,7 @@
             <div class="container margin_60">
                 <div class="row small-gutters categories_grid">
                     <div class="col-sm-12 col-md-6">
-                        <a href="festival.jsp"> <!--클릭하면 축제 메인 페이지로 이동하게-->
+                        <a href="festival.do"> <!--클릭하면 축제 메인 페이지로 이동하게-->
                             <img src="img/main/main_festa.jpg" alt="" class="img-fluid">
                             <div class="wrapper">
                                 <h2>축제</h2>
@@ -276,10 +276,10 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="row small-gutters mt-md-0 mt-sm-2">
                             <div class="col-sm-12 mt-sm-2">
-                                <a href="all_restaurants_list.jsp"> <!--클릭하면 메이트 메인 페이지로 이동하게-->
+                                <a href="festival_list.do"> <!--클릭하면 축제 리스트 페이지로 이동하게-->
                                     <img src="img/main/main_mate.jpg" alt="" class="img-fluid">
                                     <div class="wrapper">
-                                        <h2>메이트</h2>
+                                        <h2>축제 리스트</h2>
                                         <p>1223 macthed</p>
                                     </div>
                                 </a>
@@ -303,33 +303,6 @@
         </div>
         <!-- /white_bg -->
 
-<!-- ---------------------------------------------- -->
-
-
-
-
-
-
-
-
-<!--  -->
-<div class="tests">
-
-<div class="row" id="row1">
-
-</div>
-
-<div class="row" id="row2">
-
-</div>
-
-<div class="row" id="row3">
-
-</div>
-
-</div>
-
-
 
 		<div class="container margin_60" id="instarss">
 
@@ -344,7 +317,7 @@
                     <div class="tour_container">
                         <div class="img_container">
                             <a href="single_tour.html">
-                                <img src="data:image/jpg;base64,${image}" width="800" height="533" class="img-fluid" alt="image">
+                                <img src="data:image/jpg;base64,${image}" width="100" height="100" class="img-fluid" alt="image">
                             </a>
                         </div>
                     </div>
@@ -846,7 +819,7 @@
 	 
 	<script>
 $(document).ready(function(){
-$('#instarview').get(0).click();
+
 	//축제 개수 표시
 	$.ajax({
 					type : 'post',
@@ -876,91 +849,6 @@ $('#instarview').get(0).click();
 		
 		
 	});
-	
-	/*foreach 쓰고싶네요.. 그러게 main.jsp로는 모델을 보낼수가없나 ajax로 보냈다가 model로 받으려니 안되는거같아서.. 글게말여 형민이 bootrain할때 어떻게했었지?그때는 ajax쓴적이 없어요 ㅋㅋㅋ
-근데 어떻게 가져왔지..? ㅋㅋㅋㅋㅋㅋㅋ 함 봐보자
-			$.ajax({
-		
-		type:"post",
-		url:"/instar.do",
-		success: function(result){
-			alert("성공")
-
-			instar = ''
-			instar +=	'<div class="main_title">'
-            instar +='<h2><span>ㅣ</span>인스타그램 이미지 캐러셀</h2>'
-			instar += '</div>'
-	
-			instar +='<div class="owl-carousel owl-theme list_carousel add_bottom_30">'
-	
-			instar += '<div class="row">'
-	
-          
-			$.each(result, function(index,item){
-				//console.log("여기는2"+item.images[0])
-				instar += '<div>' + index + item + '</div>'	
-		//		instar +='<div class="item">'
-		//	    instar +='<div class="tour_container">'
-		//	    instar +='<div class="img_container">'
-			    //instar +='<div class="ribbon_3 popular"><span>Popular123</span></div>'
-		//	    instar +='<a href="single_tour.jsp">'
-		//	    instar += '<img src="">'
-				//instar +='<img width="200" height="200" class="img-fluid" alt="image" src="data:image/jpg;base64,'+item.images[0]+ '">'
-	   			//instar +='<img width="800" height="533" class="img-fluid" alt="image" src="data:image/jpg;base64,'+item.images[0]+" >'
-				//instar += ' <img width="800" height="533" class="img-fluid" alt="image" src="data:image/jpg;base64,'+item.images[0]+'" >'
-	   	//		instar +='</a>'
-          //		instar +='</div>'
-          //		instar +='</div>'
-          //		instar +='</div>'
-          		
-          			
-      
-       
-				
-					//if(index<=10){
-					//	$('#row1').html(ttt);
-					//}else if(index>10 && index<=20){
-					//	$('#row2').html(ttt);
-					//}else if(index>20){
-						//$('#row3').html(ttt);
-					//}
-					
-			});
-			instar += '</div>'
-			instar+='</div>'
-			
-			
-			console.log(instar);
-			$('#instarss').html(instar);
-			
-		
-			//instar =''
-			
-			//instar +='<div class="item">'
-           // instar +='<div class="tour_container">'
-           // instar +='<div class="ribbon_3 popular"><span>Popular</span></div>'
-           // instar +='<div class="img_container">'
-           // instar +='<a href="single_tour.jsp">'
-                    
-                    
-          //  instar +='            <img src="data:image/jpg;base64,${image}" width="800" height="533" class="img-fluid" alt="image">
-                       
-          // instar +='</a>''
-          // instar +='</div>'
-          // instar +='</div>'
-          // <!-- End box tour -->
-          // instart +='</div>''
-      
-      //  <!-- /item -->
-			
-			
-		},
-		error : function(error){
-			console.log('instar에러' + error)
-		}
-		
-	}); */
-	
 	
 
 });

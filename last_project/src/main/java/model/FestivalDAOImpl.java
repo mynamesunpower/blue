@@ -312,6 +312,20 @@ public class FestivalDAOImpl implements FestivalDAO {
 		return list;
 	}
 
+
+	@Override
+	public List<InstarVO> detail_instar(int tel) {
+		
+		 Query query = new Query();
+	     Criteria criteria = new Criteria();
+	
+	     query.addCriteria(criteria.where("postcode").is(tel));
+	    
+	     List<InstarVO> list =  mongoTemplate.find(query,InstarVO.class,"instar");
+		
+		return list;
+	}
+
 	
 	
 	

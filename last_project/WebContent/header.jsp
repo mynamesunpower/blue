@@ -75,7 +75,7 @@
                                 <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
                             </li>
                             <li class="submenu">
-                                <a href="festival.jsp" class="show-submenu" style="font-size: large;">축제<i class=""></i></a>
+                                <a href="festival.do" class="show-submenu" style="font-size: large;">축제<i class=""></i></a>
                             </li>
                             <li class="submenu">
                                 <a href="restaurants_list.do" class="show-submenu" style="font-size: large;">식당<i class=""></i></a>
