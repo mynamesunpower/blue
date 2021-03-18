@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,7 +106,7 @@ public class CourseController {
 	
 	// 코스 편집하기 페이지 진입
 	@RequestMapping(value = "course_edit.do")
-	public String courseEdit(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
+	public String courseEditpage(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
 		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요   __ 회원 id 받는게 필요한가 ? 나중에 점검.
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("memberId:"+memberId);
@@ -115,7 +116,7 @@ public class CourseController {
 		return "course/course_edit";
 	}
 	
-	// 내 코스에 담기
+	// 코스 만들기
 	@RequestMapping(value = "addMycourse.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String addMycourse(HttpSession session, /*HttpServletRequest req, */@RequestBody String jsonData, HttpServletResponse response){
@@ -141,18 +142,18 @@ public class CourseController {
 		
 		return null;
 	}
-	// 코스에 업데이트
-	@RequestMapping(value = "updateCourse.do", method = RequestMethod.POST)
+	// 코스 경로 추가
+	@RequestMapping(value = "pushCoursePath.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateCourse(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
+	public String pushCoursePath(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("id===="+memberId);
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
-			System.out.println("<<<<>>>>>"+vo.get_id());
-//			courseService.updateCourse(vo, vo.get_id());
+			System.out.println(">>>>>>>>>>>>>>>>>>>!!!!:"+vo.getCoursePath());
+			courseService.pushCoursePath(vo, vo.get_id());
 			System.out.println("됐어!");
 		} catch(Exception e) {
 			System.out.println("error:"+e);
@@ -160,6 +161,14 @@ public class CourseController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		return null;
+	}
+	
+	// 코스 경로에서 빼기
+	@RequestMapping(value = "pullCoursePath.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void pullCoursePath(HttpSession session, @RequestParam(value="cId") String cId, @RequestParam(value="p_id") String p_id) {
+		String memberId = (String) session.getAttribute("memberId");		
+		courseService.pullCoursePath(cId, p_id);
 	}
 	
 	// 코스 지우기
@@ -180,4 +189,12 @@ public class CourseController {
 		courseService.editCourse(vo, _id);
 		return "course/course_list";
 	}
+	
+	//  
+	@RequestMapping(value = "cId.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String cId(CourseVO vo) {
+		CourseVO cvo = courseService.cId(vo.getWriter(), vo.getCourseName());
+		return cvo.get_id().toString();
+	}	
 }

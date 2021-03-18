@@ -787,18 +787,17 @@ function getTimeHTML(distance) {
 						</div>
 					</div>
                     <hr>
+                    <!-- 메이트 빠이.... 사요나라~
                     <div class="row">
 						<div class="col-lg-12">
                             <h4>함께 축제에 갈 사람이 필요한가요?</h4>
                             <div class="basic_button">
-								<!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                <!-- 메이트서비스 회원은 mate_index -->
                                 <button class="btn btn-warning basic_button">메이트 찾기</button>
                             </div>
 						</div>
 					</div>
                     <hr>
-
+                     --> 
 										<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
@@ -1227,8 +1226,8 @@ function getTimeHTML(distance) {
 	<script src="js/infobox.js"></script>
 	-->
 
-	<!-- NOTIFY BUBBLES  -->
-	<script src="js/notify_func.js"></script>	
+	<!-- NOTIFY BUBBLES  
+	<script src="js/notify_func.js"></script> -->	
 	
 	<!-- 추가 script -->
 	<!-- 축제 정보 불러오기 -->
@@ -1338,6 +1337,8 @@ function getTimeHTML(distance) {
 						var img = "data:image/jpg;base64,${image}"
 					</c:forEach>
 					var data = {
+							"p_id" : "${fes._id}",
+							"postcode" : ${fes.postcode},
 							"title" : "${fes.title}",
 							"host" : "${fes.host}",
 							"address" : "${fes.address}",
@@ -1346,15 +1347,19 @@ function getTimeHTML(distance) {
 							"longitude" : ${fes.longitude},
 							"startDate" : ${fes.startDate},
 							"endDate" : ${fes.endDate},
-//							"fee" : "${fes.fee}", // fee안에 태그랑 "" 있는 경우있어서 오류 뜸.
 							"image" : img
+//							"fee" : "${fes.fee}", // fee안에 태그랑 "" 있는 경우있어서 오류 뜸.
 					}
 					console.log(data)
 					coursePath_arr.push(data)
 				</c:forEach>
 				// 콘솔로 확인
 				console.log(coursePath_arr)
+				// 각 코스마다의 _id
+				var cId = $(this).parent().parent().next().val()
+				// 코스 collection에 넣을 데이터.
 				var info = {
+					"_id" : cId,
 					"writer" : "${sessionScope.memberId}",
 					"courseName" : courseName,
 					"coursePath" : coursePath_arr
@@ -1365,15 +1370,9 @@ function getTimeHTML(distance) {
 				console.log("jsonData:"+jsonData)
 				console.log(typeof(jsonData))
 				
-				/*
-				if(_id = "코스 _id가 DB에 존재하면 그 DB에 정보를 추가하는 새로운 ajax 요청을 발송."){
-					그 새로운 ajax 요청이 여기 들어오고,    
-					
-					아닌 경우는 밑에 ajax로 새로 코스 생성 요청.     < - DAOImpl 에서 처리 ㄱ ?
-				}*/
 				$.ajax({
 					type : "POST",
-					url : "course/addMycourse.do",
+					url : "course/pushCoursePath.do",
 					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
 					data : jsonData,
@@ -1393,21 +1392,64 @@ function getTimeHTML(distance) {
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			// 코스 저장하기 클릭 시 - 팝업창에 내가 가진 코스명 리스트 띄워놓기
+			// 코스 저장하기 클릭 시 나오는 팝업창에 내가 가진 코스명 리스트 띄워놓기
 			<c:forEach items="${clist}" var="name">
 				$("#courseList").append(
 					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
 				);
+				// 코스 _id 써먹어야해서 필요
+				$("#courseList").append(
+						"<input type='hidden' value='${name._id}'>"		
+					);
 			</c:forEach>
 			
-			// 새 코스 추가 클릭 시
+			// '추가' 클릭 시
 			$("#addNewcourse").on('click', function(){
 				var courseName = $("#addcourseName").val();
+				// 팝업창에 입력한 코스명으로 행이 추가 되고
 				$("#courseList").append(
 					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
 				);
+				// 창 닫히고
 				$('#back').trigger('click');
+				// 초기화
 				$("#addcourseName").val("");
+				// DB 코스 컬렉션에 document 생성
+				var data = {
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName
+				}
+				var jsonData = JSON.stringify(data)
+				$.ajax({
+					type : "POST",
+					url : "course/addMycourse.do",
+					contentType : 'application/json;charset=UTF-8',
+					data : jsonData,
+					dataType : "json",					
+					success : function () {
+						alert("코스 생성!");
+					},
+					error : function (err) {
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
+						alert("코스 생성")
+						console.log("err:"+err)
+						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
+						$.ajax({
+							type : "POST",
+							url : "course/cId.do",
+							contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+							data : data,
+							success : function(data){
+								$("#courseList").append(
+									"<input type='hidden' value="+data+">"		
+								);
+							},
+							error : function(err){
+								alert("err:"+err)
+							}
+						}) // end of ajax.
+					}
+				}) // end of ajax.
 			}) // end of $("#addNewcourse").on('click', function(){}).
 		}) // end of jQuery.
 	</script>

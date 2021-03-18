@@ -63,8 +63,20 @@ public class CourseServiceImpl implements CourseService {
 		courseDao.editCourse(vo, _id);
 	}
 	@Override
-	public void updateCourse(CourseVO vo, String _id) {
-		System.out.println("updateCourse 서비스 접근");
-		courseDao.updateCourse(vo, _id);
+	public void pushCoursePath(CourseVO vo, ObjectId _id) {
+		System.out.println("pushCoursePath 서비스 접근");
+		courseDao.pushCoursePath(vo, _id);
 	}
+	@Override
+	public void pullCoursePath(String cId, String p_id) {
+		System.out.println("pullCoursePath 서비스 접근");
+		courseDao.pullCoursePath(cId, p_id);
+	}
+	@Override
+	public CourseVO cId(String memberId, String cname) {
+		System.out.println("cId 서비스 접근");
+		return courseDao.cId(memberId, cname);
+	}
+
+	
 }

@@ -759,12 +759,13 @@
 					var temp = "${keyword}"
 					keyword.push(temp)
 				</c:forEach>
-				// 콘솔로 확인
+				// 콘솔로 키워드 확인
 				console.log(keyword)
-				// 코스 경로
+				// 코스 경로 배열 생성.
 				var coursePath_arr = new Array();
 				<c:forEach items="${detail.coursePath}" var="coursePath">
 					var data = {
+							"p_id" : "${coursePath.p_id}",
 							"title" : "${coursePath.title}",
 							"address" : "${coursePath.address}",
 							"tel" : "${coursePath.tel}",
@@ -776,7 +777,11 @@
 				</c:forEach>
 				// 콘솔로 확인
 				console.log(coursePath_arr)
+				// 내가 선택한 코스의 _id
+				var cId = $(this).parent().parent().next().val()
+				// 코스 collection에 넣을 데이터.
 				var info = {
+					"_id" : cId,
 					"writer" : "${sessionScope.memberId}",
 					"courseName" : courseName,
 					"summary" : "${detail.summary}",					
@@ -794,7 +799,7 @@
 					
 				$.ajax({
 					type : "POST",
-					url : "updateCourse.do",
+					url : "pushCoursePath.do",
 					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
 					data : jsonData,
@@ -819,12 +824,13 @@
 				$("#courseList").append(
 					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
 				);
+				// 코스 _id 써먹어야해서 필요
 				$("#courseList").append(
-					"<h4>- <input type='text' style='width:35%;' value='${name._id}'><span style='padding-left: 70px;'><input type='button' value='test' class='btn_1' id='choice'></span></h4>"		
+					"<input type='hidden' value='${name._id}'>"		
 				);
 			</c:forEach>
 			
-			// 새 코스 추가 클릭 시
+			// '추가' 클릭 시
 			$("#addNewcourse").on('click', function(){
 				var courseName = $("#addcourseName").val();
 				// 팝업창에 입력한 코스명으로 행이 추가 되고
@@ -854,6 +860,21 @@
 //						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
 						alert("코스 생성")
 						console.log("err:"+err)
+						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
+						$.ajax({
+							type : "POST",
+							url : "cId.do",
+							contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+							data : data,
+							success : function(data){
+								$("#courseList").append(
+									"<input type='hidden' value="+data+">"		
+								);
+							},
+							error : function(err){
+								alert("err:"+err)
+							}
+						}) // end of ajax.
 					}
 				}) // end of ajax.
 			}) // end of $("#addNewcourse").on('click', function(){}).

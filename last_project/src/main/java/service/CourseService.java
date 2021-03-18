@@ -24,5 +24,9 @@ public interface CourseService {
 	
 	public void editCourse(CourseVO vo, String _id);
 	
-	public void updateCourse(CourseVO vo, String _id);
+	public void pushCoursePath(CourseVO vo, ObjectId _id);
+	
+	public void pullCoursePath(String cId, String p_id);
+	
+	public CourseVO cId(String memberId, String cname);
 }
