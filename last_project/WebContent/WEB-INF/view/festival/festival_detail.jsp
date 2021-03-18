@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 축제 Detail</title>
+    <title>축제로 - 축제 Detail</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">

@@ -312,6 +312,7 @@ const $owlCarousel = $("#carousel-home .owl-carousel").owlCarousel({
     }
 });
 
+
 $owlCarousel.on("changed.owl.carousel", function(e) {
     $(".owl-slide-animated").removeClass("is-transitioned");
     const $currentOwlItem = $(".owl-item").eq(e.item.index);

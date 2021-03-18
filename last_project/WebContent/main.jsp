@@ -265,7 +265,7 @@
             <div class="container margin_60">
                 <div class="row small-gutters categories_grid">
                     <div class="col-sm-12 col-md-6">
-                        <a href="festival.jsp"> <!--클릭하면 축제 메인 페이지로 이동하게-->
+                        <a href="festival.do"> <!--클릭하면 축제 메인 페이지로 이동하게-->
                             <img src="img/main/main_festa.jpg" alt="" class="img-fluid">
                             <div class="wrapper">
                                 <h2>축제</h2>
@@ -359,7 +359,7 @@
             <!-- /carousel -->
 		
 			<p class="text-center add_bottom_30">
-				<a href="/instar.do" id="instarview">인스타 사진보기</a>
+				<a href="/main.do" id="instarview">인스타 사진보기</a>
 			</p>
 
 			<hr class="mt-5 mb-5">
@@ -501,7 +501,7 @@
 			<p class="text-center nopadding">
 			<br/>
 			<br/>
-				<a href="festival.jsp" class="btn_1">축제 더 보기</a>
+				<a href="festival.do" class="btn_1">축제 더 보기</a>
 			</p>
 		</div>
 		<!-- End container -->
@@ -806,7 +806,7 @@
 						},
 						responsiveLevels:[1240,1024,778,778],
 						visibilityLevels:[1240,1024,778,778],
-						gridwidth:[1280,640,480,480],
+						gridwidth:[1480,640,480,480],
 						gridheight:[720,720,480,360],
 						lazyType:"none",
 						parallax: {
@@ -817,7 +817,7 @@
 						},
 						shadow:0,
 						spinner:"off",
-						stopLoop:"on",
+						stopLoop:"off",
 						stopAfterLoops:0,
 						stopAtSlide:1,
 						shuffle:"off",

@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="ddffddff.">
     <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 축제 Main</title>
+    <title>축제로 - 축제 Main</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -61,7 +61,7 @@
 		<div class="intro_title">
 		 <!-- <img src="img/logo_sticky.png"> --> 
 			<h3 class="animated fadeInDown ctitles">축제로 축제 <strong id="js-rotating ctitle" class="ctitle"></strong></h3>
-			<p class="animated fadeInDown">함께해요</p>
+			<p class="animated fadeInDown">함께 축제를 즐겨요!</p>
 			
 		<!--   <a href="festival_detail.jsp" class="animated fadeInUp button_intro">더 보기</a> -->
 		</div>
@@ -170,13 +170,13 @@
 
         <div id="map" style="width:100%;height:350px;"></div>
         <br>
-<p><em>지도를 클릭해주세요!</em></p> 
+<!--<p><em>지도를 클릭해주세요!</em></p>--> 
 <div id="clickLatlng"></div>
 
 
 
         <div class="main_title">
-            <h2>근처 축제: <span> 내가 찍은 위치 </span></h2>
+            <h2>근처 축제: <span> 지도를 클릭해주세요! </span></h2>
             
            <!--  <a href="#" class="btn_1">자세히 보기</a> -->
         </div>

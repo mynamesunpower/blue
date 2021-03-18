@@ -16,9 +16,9 @@
                     <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
                 </div>
                 <div class="col-md-4">
-                    <h3>축축빵빵</h3>
+                    <h3>축제로</h3>
                     <ul>
-                        <li><a href="#">축축빵빵은요!</a></li>
+                        <li><a href="#">축제로는요!</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#sign-in-dialog">로그인</a></li>
                         <li><a href="member/memberJoin.do">회원가입</a></li>
@@ -85,7 +85,7 @@
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
 					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
+					<input type="text" class="form-control" name="loginId" id="loginId" autofocus="">
 					<i class="icon_pencil"></i>
 				</div>
 				<div class="form-group">
@@ -101,7 +101,7 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <input type="button" value="로그인" class="btn_login">
+                    <input type="button" value="로그인" class="btn_login" id="btn_login">
                     <!-- <a type="button" class="btn_login">로그인</a> -->
                 </div>
 				<div class="text-center">

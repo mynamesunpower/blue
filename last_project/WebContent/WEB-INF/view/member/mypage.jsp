@@ -11,7 +11,7 @@
 
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>축축빵빵 - Mypage</title>
+	<title>축제로 - Mypage</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">

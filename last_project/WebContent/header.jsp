@@ -30,21 +30,21 @@
                             		<%if((kakaonickname ==null)&& (navernickname ==null)){ %>
               										 <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
               										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			               <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+              			               <li><a href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
               			               <li><a href="member/logout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
 
               									<%if(kakaonickname !=null){ %>
               										<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
               										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
               			              <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
 
               									<%if(navernickname !=null){ %>
               										<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
               										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
               			              <li><a href="naverlogout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
                             	</c:when>
@@ -107,35 +107,7 @@
                         <li>
                             <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
                         </li>
-                        <!-- 즐겨찾기.. 장바구니처럼 넣는 거 하느냐 마느냐~ 고민쓰-->
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-                                <ul class="dropdown-menu" id="cart_items">
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
-                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div>Total: <span>$120.00</span></div>
-                                        <a href="cart.jsp" class="button_drop">Go to cart</a>
-                                        <a href="payment.jsp" class="button_drop outline">Check out</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- End dropdown-cart-->
-                        </li>
+
                         </ul>
                 </nav>
             </div>

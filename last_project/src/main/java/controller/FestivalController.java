@@ -544,7 +544,7 @@ public class FestivalController {
 	
 	
 	//메인페이지 인스타 캐러셀
-	@RequestMapping(value="instar.do")
+	@RequestMapping(value="main.do")
 	public String instar(Model model) {
 			
 		List<InstarVO> list = festivalService.instar();
