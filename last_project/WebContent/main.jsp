@@ -754,64 +754,7 @@
     <script src="js/functions.js"></script>
     
     <!-- 로그인 -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn_login').on('click', login);
-			$('#password').on('keydown', function(evt) {
-				//evt.preventDefault();
-				//evt.stopPropagation();
-				if (evt.KeyCode == 13) {
-					login();
-				}
-			});
-		});
-		
-		function login() {
-			alert('로그인 버튼 클릭')
-			
-			if($.trim($('#loginId').val())==''){
-        		alert('아이디를 입력해 주세요');
-        		$('#loginId').focus();
-        		return;
-        	}
-			
-			if($.trim($('#password').val())==''){
-        		alert("비밀번호입력해주세요.");
-        		$('#password').focus();
-        		return;
-        	}
-			
-			if ($('#loginId').val() !== '' && $('#password').val() !== '') {
-				
-				alert('진입 확인' + $('#loginId').val() + '/' + $('#password').val());
-				
-				$.ajax({
-	        		type : 'post',
-	        		async : true,
-	        		url : "member/memberLogin.do",
-	        		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-	        		data : {
-	        			'id' : $('#loginId').val(),
-	        			'password' : $('#password').val()
-	        		},
-	        		success : function(result){
-	        			console.log(result)
-	        			if(result == 0){
-	        				alert('아이디와 비밀번호가 일치하지 않습니다.');
-	        				$("#loginId").val("");
-	        				$("#password").val("");
-	        				
-	        			}
-	        			else if(result==1){
-	        				location.replace('main.jsp')
-	        			}
-	        		},
-	        		error : function(err){console.log("에러요" + err)}
-	        	});	
-			}
-        		
-		}
-	</script>
+	<script src="js/login.js"></script>
 
     <!-- SLIDER REVOLUTION SCRIPTS  -->
     <script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.tools.min.js"></script>

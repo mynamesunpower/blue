@@ -22,7 +22,7 @@ public interface CourseService {
 	
 	public void deleteCourse(String _id);
 	
-	public void editCourse(CourseVO vo, String _id);
+	public void editCourse(CourseVO vo, ObjectId _id);
 	
 	public void pushCoursePath(CourseVO vo, ObjectId _id);
 	

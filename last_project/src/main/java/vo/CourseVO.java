@@ -25,17 +25,8 @@ public class CourseVO {
 	private String theme;      // 테마
 	private ArrayList<Binary> image;  // 어케 써먹지
 	private ArrayList<HashMap<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
-//	private List<Map<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
 	private ArrayList<HashMap<String, String>> reviews; // 리뷰
-	private String jsonData;
-//	private HashMap<String, String> coursePath2;
-	/*
-	public HashMap<String, String> getCoursePath2() {
-		return coursePath2;
-	}
-	public void setCoursePath2(HashMap<String, String> coursePath2) {
-		this.coursePath2 = coursePath2;
-	}*/
+	private String share;
 	
 	public ObjectId get_id() {
 		return _id;
@@ -105,14 +96,6 @@ public class CourseVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-	/*
-	public List<Map<String, Object>> getCoursePath() {
-		return coursePath;
-	}
-	public void setCoursePath(List<Map<String, Object>> coursePath) {
-		this.coursePath = coursePath;
-	}
-	*/
 	public ArrayList<HashMap<String, Object>> getCoursePath() {
 		return coursePath;
 	}
@@ -125,10 +108,11 @@ public class CourseVO {
 	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
 		this.reviews = reviews;
 	}
-	public String getJsonData() {
-		return jsonData;
+	public String getShare() {
+		return share;
 	}
-	public void setJsonData(String jsonData) {
-		this.jsonData = jsonData;
+	public void setShare(String share) {
+		this.share = share;
 	}
+	
 }

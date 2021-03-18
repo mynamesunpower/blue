@@ -58,7 +58,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public void editCourse(CourseVO vo, String _id) {
+	public void editCourse(CourseVO vo, ObjectId _id) {
 		System.out.println("editCourse 서비스 접근");
 		courseDao.editCourse(vo, _id);
 	}

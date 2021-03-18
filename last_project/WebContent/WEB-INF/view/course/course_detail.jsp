@@ -48,9 +48,9 @@
 	<div class="layer"></div>
 	<!-- Mobile menu overlay mask -->
 
-	<!-- Header================================================== -->
-	<header id="plain">
-		<div id="top_line">
+	<!-- ====================헤더========================= -->
+    <header>
+        <div id="top_line">
             <div class="container">
                 <div class="row">
                     <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
@@ -72,22 +72,22 @@
                 </div><!-- End row -->
             </div><!-- End container-->
         </div><!-- End top line-->
-
-		<div class="container">
-			<div class="row">
-				<div class="col-3">
-					<div id="logo_home">
-						<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
-					</div>
-				</div>
-				<nav class="col-9">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <div id="logo_home">
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    </div>
+                </div>
+                <nav class="col-9">
                     <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                     <div class="main-menu">
                         <div id="header_menu">
                             <img src="../img/logo_sticky.png" width="160" height="34" alt="City tours">
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
-                        <ul>
+                         <ul>
                             <li class="submenu">
                                 <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
                             </li>
@@ -97,28 +97,28 @@
                                     <li><a href="../festival.jsp">축제</a></li>
                                     <li><a href="../accommodations_list.jsp">숙박</a></li>
                                     <li><a href="../restaurants_list.jsp">식당</a></li>
-                                    <li class="third-level"><a href="javascript:void(0);">테스트</a>
+                                    <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
                                         <ul>
                                             <li><a href="#">테스트2</a></li>
                                             <li><a href="#">테스트3</a></li>
                                             <li><a href="#">테스트4</a></li>
                                             <li><a href="#">테스트5</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </li>
                             <li class="submenu">
-                                <!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                <!-- 메이트서비스 회원은 mate_index -->
                                 <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a>
-                                <ul> 
+                                <ul>
+                                    <!-- 메이트서비스 아닌 회원은 mate_index_default -->
+                                    <!-- 메이트서비스 회원은 mate_index -->
                                     <li><a href="../mate/mate_index_default.jsp">메이트 서비스는?</a></li>
                                     <li><a href="#">나의 메이트 </a></li>
                                 </ul>
                             </li>
-                            <li class="submenu">
+                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a>
-                                <ul>
+                               	<ul>
                                     <li><a href="course_main.do">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <c:choose>
@@ -130,15 +130,16 @@
                                     	</c:otherwise>
                                     </c:choose>
                                 </ul>
-                            </li>                            
+                            </li>
                         </ul>
-                    </div>                    
-                    <!-- End main-menu -->
-					
+                    </div><!-- End main-menu -->
+                    
+                    <!-- 헤더 메뉴 아이콘 -->
                     <ul id="top_tools">
                         <li>
                             <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
                         </li>
+                        <!-- 즐겨찾기.. 장바구니처럼 넣는 거 하느냐 마느냐~ 고민쓰-->
                         <li>
                             <div class="dropdown dropdown-cart">
                                 <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
@@ -168,11 +169,10 @@
                         </li>
                     </ul>
                 </nav>
-			</div>
-		</div>
-		<!-- container -->
-	</header>
-	<!-- End Header -->
+            </div>
+        </div><!-- container -->
+    </header><!-- ====================헤더 끝 ====================== -->
+	
 	<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0"> <!-- 첫 번째 장소의 이미지가 대문 이미지가 되게 -->
 		<section class="parallax-window" data-parallax="scroll" data-image-src="${coursePath.image}" data-natural-width="1400" data-natural-height="470"> 
 			<div class="parallax-content-2">
@@ -1039,12 +1039,11 @@
 					traditional : true,
 					data : jsonData,
 					dataType : "json",					
-					success : function () {
-						alert("코스에 담기 완료")
+					success : function (result) {
+						alert("코스에 담기 완료!")
 					},
 					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
-						alert("코스에 담기 완료")
+						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
 						console.log("err:"+err)
 					}
 				})  // end of ajax.
@@ -1079,7 +1078,8 @@
 				// DB 코스 컬렉션에 document 생성
 				var data = {
 					"writer" : "${sessionScope.memberId}",
-					"courseName" : courseName
+					"courseName" : courseName,
+					"share" : "NO"
 				}
 				var jsonData = JSON.stringify(data)
 				$.ajax({
@@ -1088,13 +1088,8 @@
 					contentType: 'application/json;charset=UTF-8',
 					data : jsonData,
 					dataType : "json",					
-					success : function () {
-						alert("코스 생성")
-					},
-					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
-						alert("코스 생성")
-						console.log("err:"+err)
+					success : function (result) {
+						alert("코스 생성!")
 						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
 						$.ajax({
 							type : "POST",
@@ -1110,6 +1105,10 @@
 								alert("err:"+err)
 							}
 						}) // end of ajax.
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
+						console.log("err:"+err)
 					}
 				}) // end of ajax.
 			}) // end of $("#addNewcourse").on('click', function(){}).

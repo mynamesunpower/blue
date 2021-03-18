@@ -120,7 +120,7 @@ public class CourseController {
 	// 코스 만들기
 	@RequestMapping(value = "addMycourse.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String addMycourse(HttpSession session, /*HttpServletRequest req, */@RequestBody String jsonData, HttpServletResponse response){
+	public int addMycourse(HttpSession session, /*HttpServletRequest req, */@RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("id===="+memberId);
@@ -141,12 +141,12 @@ public class CourseController {
 		}
 		response.setContentType("text/html; charset=UTF-8");
 		
-		return null;
+		return 0;
 	}
 	// 코스 경로 추가
 	@RequestMapping(value = "pushCoursePath.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String pushCoursePath(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
+	public int pushCoursePath(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println("id===="+memberId);
@@ -161,7 +161,7 @@ public class CourseController {
 		}
 		response.setContentType("text/html; charset=UTF-8");
 		
-		return null;
+		return 0;
 	}
 	
 	// 코스 경로에서 빼기
@@ -184,14 +184,23 @@ public class CourseController {
 	}
 	
 	// 코스 편집
-	@RequestMapping(value = "editCourse.do")
+	@RequestMapping(value = "editCourse.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String editCourse(@RequestBody CourseVO vo, @RequestParam String _id) {
-		courseService.editCourse(vo, _id);
-		return "course/course_list";
+	public int editCourse(@RequestBody String jsonData, HttpServletResponse response, HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
+			courseService.editCourse(vo, vo.get_id());
+		} catch(Exception e) {
+			System.out.println("error:"+e);
+		}
+		response.setContentType("text/html; charset=UTF-8");
+		
+		return 0;
 	}
 	
-	//  
+	// 코스에 담는 창에서, 방금 생성한 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기 위해 필요
 	@RequestMapping(value = "cId.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String cId(CourseVO vo) {

@@ -176,7 +176,7 @@
     </header>
     <!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/main/main_course.png" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>나의 코스 목록</h1>
@@ -258,7 +258,7 @@
 													</span>
 	                                        	</div>
 	                                        	<i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><medium>(${course.reviews.size()})</medium>
-	                                        </div>
+	                                        </div><br>
 	                                        <h3><strong>${course.courseName}</strong></h3>
 	                                        <c:forEach items="${course.keyword}" var="keyword">
 												<span>${keyword}</span>

@@ -75,29 +75,13 @@
                                 <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
                             </li>
                             <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
-                                <ul>
-                                    <li><a href="festival.jsp">축제</a></li>
-                                    <li><a href="accommodations_list.do">숙박</a></li>
-                                    <li><a href="restaurants_list.do">식당</a></li>
-                                    <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
-                                        <ul>
-                                            <li><a href="#">테스트2</a></li>
-                                            <li><a href="#">테스트3</a></li>
-                                            <li><a href="#">테스트4</a></li>
-                                            <li><a href="#">테스트5</a></li>
-                                        </ul>
-                                    </li> -->
-                                </ul>
+                                <a href="festival.do" class="show-submenu" style="font-size: large;">축제<i class=""></i></a>
                             </li>
                             <li class="submenu">
-                                <!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                <!-- 메이트서비스 회원은 mate_index -->
-                                <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a> <!--클릭하면 메이트 메인 페이지로 이동하게-->
-                                <ul>
-                                    <li><a href="mate/mate_index_default.jsp">메이트 서비스는?</a></li>
-                                    <li><a href="#">나의 메이트 </a></li>
-                                </ul>
+                                <a href="restaurants_list.do" class="show-submenu" style="font-size: large;">식당<i class=""></i></a>
+                            </li>
+                            <li class="submenu">
+                                <a href="accommodations_list.do" class="show-submenu" style="font-size: large;">숙박<i class=""></i></a>
                             </li>
                             <li class="submenu">
                                 <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->

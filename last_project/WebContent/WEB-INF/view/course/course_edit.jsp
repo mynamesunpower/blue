@@ -254,7 +254,7 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<p><strong>태그</strong></p>
-									<textarea rows="5" id="message_contact" name="message_contact" class="form-control" style="height:100px; margin-bottom: 5%;" placeholder="해시태그로 표현해주세요. ex) #힐링 #신남 #행복"><c:forEach items="${detail.keyword}" var="keyword">${keyword} </c:forEach></textarea>
+									<textarea rows="5" id="keyword" name="message_contact" class="form-control" style="height:100px; margin-bottom: 5%;" placeholder="해시태그로 표현해주세요. ex) #힐링 #신남 #행복"><c:forEach items="${detail.keyword}" var="keyword">${keyword} </c:forEach></textarea>
 								</div>
 							</div>
 						</div>
@@ -306,27 +306,27 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<h4>코스 테마 <i class="icon_camera_alt"></i></h4>
-									<select id="" class="form-control" name="">
-										<option value="" selected>${detail.theme}</option>
-										<option value="">가족과 함께</option>
-										<option value="">연인과 함께</option>
-										<option value="">메이트와 함께</option>
-										<option value="">반려동물과 함께</option>
-										<option value="">오감만족 코스</option>
-										<option value="">눈 정화 코스</option>
-										<option value="">귀 정화 코스</option>
-										<option value="">나홀로 YOLO</option>
+									<select id="theme" class="form-control">
+										<option value="${detail.theme}" selected>${detail.theme}</option>
+										<option value="가족과 함께">가족과 함께</option>
+										<option value="연인과 함께">연인과 함께</option>
+										<option value="메이트와 함께">메이트와 함께</option>
+										<option value="반려동물과 함께">반려동물과 함께</option>
+										<option value="오감만족 코스">오감만족 코스</option>
+										<option value="눈 정화 코스">눈 정화 코스</option>
+										<option value="귀 정화 코스">귀 정화 코스</option>
+										<option value="나홀로 YOLO">나홀로 YOLO</option>
 									</select>
 									<hr/>
 								</div>
 
 								<div class="col-sm-12">
 									<h4>코스 일정 <i class="icon-clock-1"></i></h4>
-									<select id="" class="form-control" name="">
-										<option value="" selected>${detail.schedule}</option>
-										<option value="">당일</option>
-										<option value="">1박 2일</option>
-										<option value="">2박 3일 이상</option>
+									<select id="schedule" class="form-control" name="">
+										<option value="${detail.schedule}" selected>${detail.schedule}</option>
+										<option value="당일">당일</option>
+										<option value="1박 2일">1박 2일</option>
+										<option value="2박 3일 이상">2박 3일 이상</option>
 									</select>
 									<hr/>
 								</div>
@@ -335,13 +335,9 @@
 									<p style="font-size: large;">코스 자랑 마당에 공유하기</p>
 									<div style="text-align: center;">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-											<label class="form-check-label" for="inlineRadio1">Yes</label>
-										</div>
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="YES">Yes</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
-											<label class="form-check-label" for="inlineRadio2">No</label>
-										</div>
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="NO">No</div>
 									</div>
 									<hr/>
 								</div>
@@ -695,10 +691,10 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			var cId = "${detail._id}"  // 코스의 _id
+			console.log(cId)
 			// 쓰레기통 아이콘 클릭
 			$(document).on("click", "#pullCourse", function(){
-				var cId = "${detail._id}"  // 코스의 _id
-				console.log(cId)
 				var p_id = $(this).next().val() // 각각 경로의 _id
 				console.log(p_id)
 				$.ajax({
@@ -711,7 +707,6 @@
 					},
 					success : function(){
 						alert("삭제 성공");
-//						$("#coursePath").load(window.location.href + "#coursePath");					
 					},
 					error : function(err){
 						console.log(err)
@@ -720,29 +715,60 @@
 				// 삭제한 row 화면에서 지우기.
 				$(this).parent().parent().parent().remove();
 				
-				// 경로 삭제에 따른 총 n건, 총 거리 새로고침...해야해..?ㅠㅠ 
+				// 경로 삭제에 따른 총 n건, 총 거리 새로고침...해야해..?ㅠㅠ
+						
+			}) // end of on("click", "#pullCourse", function()
+			// 테마 셀렉트 박스에서 선택한 테마 옵션 가져오기					
+			var theme = "${detail.theme}"
+			$("#theme").on("change", function(){
+				theme = $("#theme option:selected").val()
 			})
+			// 일정 셀렉트 박스에서 선택한 일정 옵션 가져오기
+			var schedule = "${detail.schedule}"
+			$("#schedule").on("change", function(){
+				schedule = $("#schedule option:selected").val()
+			})
+			// 공유 ON, OFF 값 가져오기.
+			var share = "${detail.share}"
+			$("input[name=inlineRadioOptions]").on("change", function(){
+				share = $("input[name=inlineRadioOptions]:checked").val()
+			})
+			if(share=="YES"){
+				$("#inlineRadio1").attr("checked",true);
+			}else{
+				$("#inlineRadio2").attr("checked",true);
+			}
 			
+			// '저장' 클릭 시
 			$("#editCourse").on('click', function(){
-				$.ajax({
-					type : "post",
-					url : "editCourse.do?_id=${detail._id}",
-					contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-					data : {
+				var keyword = $("#keyword").val().split(" ");
+				var info = {
+						"_id" : cId,
 						"courseName" : $("#courseName").val(),
-						"summary" : $("#summary").val()
-					},
+						"summary" : $("#summary").val(),
+						"keyword" : keyword,
+						"theme" : theme,
+						"schedule" : schedule,
+						"share" : share,
+				};
+				var jsonData = JSON.stringify(info);
+				$.ajax({
+					type : "POST",
+					url : "editCourse.do",
+					contentType : 'application/json;charset=UTF-8',
+					data : jsonData,
 					dataType : "json",
-					success : function(data){
-						alert("성공")
+					success : function(result){
+						alert("저장 완료")
+						location.href = "course_list.do"
 					},
 					error : function(err){
-						alert("에러 발생")
+						alert("에러 발생: 코스 편집 저장 쪽")
 						console.log(err)
 					}
 				}) // end of ajax				
 			}) // end of $('#editCourse') click function
-		})
+		}) // end of jQuery.
 	</script>
 </body>
 

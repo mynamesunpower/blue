@@ -540,7 +540,7 @@
 		</form>
 		<!--form -->
 	</div>
-	<!-- /Sign In Popup -->	
+	<!-- /Sign In Popup -->
 	
 	<!-- Modal put_into_course-->
 	<div class="modal fade" id="put_into_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">

@@ -22,11 +22,11 @@ public interface CourseDAO {
 	// 코스 지우기
 	public void deleteCourse(String _id);
 	// 코스 편집하기
-	public void editCourse(CourseVO vo, String _id);
+	public void editCourse(CourseVO vo, ObjectId _id);
 	// 축제, 식당, 숙박을 코스에 담을 때 선택한 코스의 coursePath에 추가 되게.
 	public void pushCoursePath(CourseVO vo, ObjectId _id);
 	// coursePath에서 빼기
 	public void pullCoursePath(String cId, String p_id);
-	// 
+ 	// 코스에 담는 창에서, 방금 생성한 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기 위해 필요
 	public CourseVO cId(String memberId, String cname);
 }

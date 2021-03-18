@@ -1350,7 +1350,8 @@ function getTimeHTML(distance) {
 				// DB 코스 컬렉션에 document 생성
 				var data = {
 					"writer" : "${sessionScope.memberId}",
-					"courseName" : courseName
+					"courseName" : courseName,
+					"share" : "NO"
 				}
 				var jsonData = JSON.stringify(data)
 				$.ajax({
@@ -1359,13 +1360,8 @@ function getTimeHTML(distance) {
 					contentType : 'application/json;charset=UTF-8',
 					data : jsonData,
 					dataType : "json",					
-					success : function () {
-						alert("코스 생성!");
-					},
-					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
-						alert("코스 생성")
-						console.log("err:"+err)
+					success : function (result) {
+						alert("코스 생성!!!");
 						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
 						$.ajax({
 							type : "POST",
@@ -1381,6 +1377,11 @@ function getTimeHTML(distance) {
 								alert("err:"+err)
 							}
 						}) // end of ajax.
+					},
+					error : function (err) {
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
+						alert("코스 생성")
+						console.log("err:"+err)
 					}
 				}) // end of ajax.
 			}) // end of $("#addNewcourse").on('click', function(){}).

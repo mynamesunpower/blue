@@ -33,7 +33,8 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public List<CourseVO> viewAllcourse() {
 		System.out.println("viewAllcourse DAO 접근");
-		return mongoTemplate.findAll(CourseVO.class, course);
+		Query query = new Query(Criteria.where("share").is("YES"));
+		return mongoTemplate.find(query, CourseVO.class, course);
 	}
 	// 코스 상세보기
 	@Override
@@ -74,13 +75,17 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 	// 코스 편집
 	@Override
-	public void editCourse(CourseVO vo, String _id) {
+	public void editCourse(CourseVO vo, ObjectId _id) {
 		System.out.println("editCourse DAO 접근");
 		Update update = new Update();
-		Query query = new Query(Criteria.where("courseName").is(_id));  // ??
+		Query query = new Query(Criteria.where("_id").is(_id));
 		
 		update.set("courseName",vo.getCourseName());
 		update.set("summary",vo.getSummary());
+		update.set("keyword", vo.getKeyword());
+		update.set("theme", vo.getTheme());
+		update.set("schedule", vo.getSchedule());
+		update.set("share", vo.getShare());
 		
 		mongoTemplate.updateMulti(query, update, course);
 	}
@@ -93,6 +98,10 @@ public class CourseDAOImpl implements CourseDAO {
 		List<HashMap<String, Object>> array = new ArrayList<HashMap<String, Object>>();
 		array.addAll(vo.getCoursePath());
 		update.push("coursePath").each(array);
+		update.set("sumaary", vo.getSummary());
+		update.set("theme", vo.getTheme());
+		update.set("schedule", vo.getSchedule());
+		
 		mongoTemplate.updateFirst(query, update, course);
 	}
 	// coursePath에서 빼기
@@ -104,7 +113,7 @@ public class CourseDAOImpl implements CourseDAO {
 		update.pull("coursePath", new BasicDBObject("p_id", p_id));
 		mongoTemplate.updateFirst(query, update, course);
 	}
-	//
+	// 코스에 담는 창에서, 방금 생성한 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기 위해 필요
 	@Override
 	public CourseVO cId(String memberId, String cname) {
 		System.out.println("cId DAO 접근");
