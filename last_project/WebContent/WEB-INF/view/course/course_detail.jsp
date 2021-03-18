@@ -987,7 +987,6 @@
 			// '선택' 클릭
 			$(document).on("click", "#choice", function(){
 				var courseName = $(this).parent().prev().val();
-				console.log(courseName);
 				// 코스의 키워드 뽑아서 배열에 넣기.
 				var keyword = new Array();
 				<c:forEach items="${detail.keyword}" var="keyword">
@@ -1026,12 +1025,7 @@
 					"theme" : "${detail.theme}",
 					"coursePath" : coursePath_arr
 				}
-				console.log(info)
-				console.log(typeof(info))
 				var jsonData = JSON.stringify(info)
-				console.log("jsonData:"+jsonData)
-				console.log(typeof(jsonData))
-					
 				$.ajax({
 					type : "POST",
 					url : "pushCoursePath.do",
@@ -1040,7 +1034,7 @@
 					data : jsonData,
 					dataType : "json",					
 					success : function (result) {
-						alert("코스에 담기 완료!")
+						alert("코스에 담기 완료")
 					},
 					error : function (err) {
 						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
@@ -1089,7 +1083,7 @@
 					data : jsonData,
 					dataType : "json",					
 					success : function (result) {
-						alert("코스 생성!")
+						alert("코스 생성 완료")
 						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
 						$.ajax({
 							type : "POST",

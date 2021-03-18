@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import main.java.model.FestivalDAO;
 import main.java.vo.FestivalVO;
+import main.java.vo.InstarVO;
 @Service("festivalService")
 public class FestivalServiceImpl implements FestivalService {
 	@Autowired
@@ -16,14 +17,14 @@ public class FestivalServiceImpl implements FestivalService {
 	@Override
 	public List<FestivalVO> test() {
 		// TODO Auto-generated method stub
-		System.out.println("Service test요청");
+		
 		return festivalDao.test();
 	}
 
 	@Override
 	public List<FestivalVO> month(String month) {
 		// TODO Auto-generated method stub
-		System.out.println("Service222222에서 month2222222 요청");
+		System.out.println("Service : month()");
 		return festivalDao.month(month);
 	}
 
@@ -60,9 +61,53 @@ public class FestivalServiceImpl implements FestivalService {
 		// TODO Auto-generated method stub
 		return festivalDao.updateRestaurantReview(reviews, _id);
 	}
+	
+		
 
+	@Override
+	public List<FestivalVO> search(String word) {
+		// TODO Auto-generated method stub
+		return festivalDao.search(word);
+	}
+	
 
+	@Override
+	public long festivalcount() {
+		// TODO Auto-generated method stub
+		return festivalDao.festivalcount();
+		
+	}
+	
+	
 
+	@Override
+	public List<InstarVO> instar() {
+		// TODO Auto-generated method stub
+		return festivalDao.instar();
+	}
+	
+	
+	@Override
+	public List<InstarVO> detail_instar(int tel) {
+		// TODO Auto-generated method stub
+		return festivalDao.detail_instar(tel);
+	}
 
+	//관리자에서
+	@Override
+	public FestivalVO insert_festival(FestivalVO vo) {
+		return festivalDao.insert_festival(vo);
+	}
+	
+	@Override
+	public FestivalVO modify_festival(FestivalVO vo) {
+		return festivalDao.modify_festival(vo);
+	}
 
+	@Override
+	public FestivalVO delete_festival(FestivalVO vo) {
+		return festivalDao.delete_festival(vo);
+	}
+	
+	
 }

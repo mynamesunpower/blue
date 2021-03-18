@@ -76,6 +76,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public int delete_member(MemberVO vo) {
 		return sqlSession.update(namespace + "deleteMember",vo);
 	}
+
+	@Override
+	public MemberVO selectOne(String user_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "selectOne", user_id);
+	}
 	
 	
 	

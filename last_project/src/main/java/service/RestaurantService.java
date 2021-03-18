@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
+import main.java.vo.AccomVO;
 import main.java.vo.RestaurantVO;
 
 public interface RestaurantService {
@@ -22,5 +23,16 @@ public interface RestaurantService {
 
 	public int getTotalSize();
 
+	public List<HashMap> getGroupCategory();
+
+	public List<RestaurantVO> getCategoryData(String word, int pageNumber);
+
 	public List<RestaurantVO> selectnear(ObjectId objectId);
+	
+	public int count();
+	
+	//관리자에서
+	public RestaurantVO insert_restaurant(RestaurantVO vo);
+	public RestaurantVO modify_restaurant(RestaurantVO vo);
+	public RestaurantVO delete_restaurant(RestaurantVO vo);
 }

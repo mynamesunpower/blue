@@ -718,18 +718,22 @@
 				// 경로 삭제에 따른 총 n건, 총 거리 새로고침...해야해..?ㅠㅠ
 						
 			}) // end of on("click", "#pullCourse", function()
-			// 테마 셀렉트 박스에서 선택한 테마 옵션 가져오기					
+			
+			// 코스의 기존 테마					
 			var theme = "${detail.theme}"
+			// 테마 셀렉트 박스에서 선택한 테마 옵션 가져오기					
 			$("#theme").on("change", function(){
 				theme = $("#theme option:selected").val()
 			})
-			// 일정 셀렉트 박스에서 선택한 일정 옵션 가져오기
+			// 코스의 기존 일정
 			var schedule = "${detail.schedule}"
+			// 일정 셀렉트 박스에서 선택한 일정 옵션 가져오기
 			$("#schedule").on("change", function(){
 				schedule = $("#schedule option:selected").val()
 			})
-			// 공유 ON, OFF 값 가져오기.
+			// 코스의 기존 공유 여부
 			var share = "${detail.share}"
+			// 공유 ON, OFF 값 가져오기.
 			$("input[name=inlineRadioOptions]").on("change", function(){
 				share = $("input[name=inlineRadioOptions]:checked").val()
 			})

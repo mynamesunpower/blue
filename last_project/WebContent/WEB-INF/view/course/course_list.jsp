@@ -258,7 +258,7 @@
 													</span>
 	                                        	</div>
 	                                        	<i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><medium>(${course.reviews.size()})</medium>
-	                                        </div><br>
+	                                        </div>
 	                                        <h3><strong>${course.courseName}</strong></h3>
 	                                        <c:forEach items="${course.keyword}" var="keyword">
 												<span>${keyword}</span>

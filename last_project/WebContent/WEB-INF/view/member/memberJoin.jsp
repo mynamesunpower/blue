@@ -8,7 +8,7 @@
 	
 	<!-- 타이틀 바 -->
     <link rel="shortcut icon" type="image/x-icon" href="img/logo_img.PNG" >
-	<title>축축빵빵 - 회원가입</title>
+	<title>축제로 - 회원가입</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -54,7 +54,7 @@
                 <img src="img/logo.PNG">
 	            </div>
 	            </a>
-	            <div class="brand">축축빵빵</div>
+	            <div class="brand">축제로</div>
 	            
 	        </div> -->
 
@@ -162,7 +162,8 @@
 		                                <div class="row">
 		                                    <div class="col-sm-12">
 		                                        <h5 class="info-text"></h5>
-		                                        <h5 class="info-text">축축빵빵의 가족이 되신 것을 환영합니다!</h5>
+		                                        <h5 class="info-text">축제로의 가족이 되신 것을 환영합니다!</h5>
+		                                        <h4 class="info-text">우측 하단 회원가입을 클릭해 완료해주세요.</h4>
 		                                    </div>
 		                                    
 		                                </div>
@@ -175,7 +176,7 @@
 		                            </div>
 
 		                            <div class="pull-left">
-		                                <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='이전' />
+		                                <input type='button' id='joinFormReset' class='btn btn-previous btn-default btn-wd' name='previous' value='이전' />
 		                            </div>
 		                            <div class="clearfix"></div>
 		                        </div>
@@ -194,6 +195,12 @@ $(document).ready(function() {
 	
 	// 휴대전화 인증 상태
 	let verified = false;
+	
+	// 이전 누르면 컴백시킨당
+	$('#joinFormReset').on('click', function() {
+		location.replace('/member/memberJoin.do')
+	})
+	
 	
 	$('#joinbtn').click(function () {
 		
@@ -229,7 +236,7 @@ $(document).ready(function() {
 		}
 		  
 	})
-
+	// ID 중복 확인
 	$('#customer_id').focusout(function(){
 		
 		if($('#customer_id').val().length < 3){
@@ -251,10 +258,10 @@ $(document).ready(function() {
 			});
 		}
 	})
-
+	// 인증번호 보내기
 	$('#getVerifyNumberButton').on('click', function() {
 		$('#sms').attr('disabled', false);
-		$('#sms').focus();
+		
 		
 		$.ajax({
 				url: "sendSms.do",
@@ -264,6 +271,7 @@ $(document).ready(function() {
 				type: "post",
 				success: function(result) {
 					console.log(result);
+					$('#sms').focus();
 					
 				}, 
 				error: function (error) {
@@ -272,7 +280,6 @@ $(document).ready(function() {
 		}); 
 		
 	})
-
 	$('#verifyButton').on('click', function() {
 		$.ajax({
 				url: "smsCheck.do",
@@ -295,8 +302,6 @@ $(document).ready(function() {
 		
 	})
 })
-
-
 </script>
 
 </body>

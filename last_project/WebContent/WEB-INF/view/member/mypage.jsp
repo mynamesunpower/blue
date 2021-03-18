@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
 
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>축축빵빵 - Mypage</title>
+	<title>축제로 - Mypage</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -44,124 +45,7 @@
 	</div>
 	<!-- End Preload -->
 
-	<div class="layer"></div>
-	<!-- Mobile menu overlay mask -->
-
-	<!-- Header================================================== -->
-	<header>
-		<!-- 로그인 세션이 있으면 모든 페이지의 헤더 부분이 이 부분으로 나와야 함. -->
-		<div id="top_line">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
-                    <div class="col-6">
-                        <ul id="top_links">
-							<li><span style="color: blue;">홍길동</span>님 환영합니다</li>
-                            <li><a href="mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-                            <li><a href="course_list.jsp" id="wishlist_link">나의 코스 목록</a></li>
-                            <li><a href="#" class="icon-logout">로그아웃</a></li>
-                        </ul>
-                    </div>
-                </div><!-- End row -->
-            </div><!-- End container-->
-        </div><!-- End top line-->
-		<!-- 여기까지 -->
-
-		<div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <div id="logo_home">
-                    	<h1><a href="mainAfterLogin.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
-                    </div>
-                </div>
-                <nav class="col-9">
-                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-                    <div class="main-menu">
-                        <div id="header_menu">
-                            <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">  <!--모바일 화면 우측 서랍 아이콘 눌렀을 때 로고 나오는 거-->
-                        </div>
-                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
-                        <ul>
-                            <li class="submenu">
-                                <a href="mainAfterLogin.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i>
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
-                                <ul>
-                                    <li><a href="festival.jsp">축제</a></li>
-                                    <li><a href="accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="restaurants_list.jsp">식당</a></li>
-                                    <!-- <li class="third-level"><a href="javascript:void(0);">테스트</a>
-                                        <ul>
-                                            <li><a href="#">테스트2</a></li>
-                                            <li><a href="#">테스트3</a></li>
-                                            <li><a href="#">테스트4</a></li>
-                                            <li><a href="#">테스트5</a></li>
-                                        </ul>
-                                    </li> -->
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                <!-- 메이트서비스 회원은 mate_index -->
-                                <a href="#" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a> <!--클릭하면 메이트 메인 페이지로 이동하게-->
-                                <ul> 
-                                    <li><a href="mate/mate_index_default.jsp">메이트 서비스는?</a></li>
-                                    <li><a href="#">나의 메이트 </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
-                                <ul>
-                                    <li><a href="course_main.jsp">코스 자랑 마당</a></li>
-                                    <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
-                                    <li><a href="course_list.jsp">나의 코스 목록</a></li>
-                                </ul>
-                            </li>                            
-                        </ul>
-                    </div>                    
-                    <!-- End main-menu -->
-
-                    <!-- 헤더 메뉴 아이콘 -->
-                    <ul id="top_tools">
-                        <li>
-                            <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
-                        </li>
-                        <!-- 즐겨찾기.. 장바구니처럼 넣는 거 하느냐 마느냐~ 고민쓰-->
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-                                <ul class="dropdown-menu" id="cart_items">
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
-                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div>Total: <span>$120.00</span></div>
-                                        <a href="cart.jsp" class="button_drop">Go to cart</a>
-                                        <a href="payment.jsp" class="button_drop outline">Check out</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- End dropdown-cart-->
-                        </li>
-                        </ul>
-                </nav>
-            </div>
-        </div><!-- container -->
-	</header>
-	<!-- End Header -->
+	<%@ include file="../../../header.jsp" %>
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="img/restaurant_top.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
@@ -214,7 +98,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>이름</label>
-											<input type="text" id="name" name="name" class="form-control">
+											<input type="text" id="name" name="name" class="form-control" value="${vo.name}" disabled>
 										</div>
 									</div>
 								</div>
@@ -222,7 +106,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>전화번호</label>
-											<input type="text" id="telephone" name="telephone" class="form-control">
+											<input type="text" id="telephone" name="telephone" class="form-control" value="${vo.tel}">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="changePhoneNumber">전화번호 변경</button>
 											</div>
@@ -231,7 +115,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>이메일</label>
-											<input type="email" id="email" name="email" class="form-control">
+											<input type="email" id="email" name="email" class="form-control" value="${vo.email}">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="changeEmail">이메일 변경</button>
 											</div>
@@ -242,10 +126,7 @@
 									<div class="col-sm-6">									
 										<div class="form-group">
 											<label>주소 </label>
-											<input type="text" placeholder="우편번호" id="zonecode" class="form-control">
-											<input type="text" size="35" placeholder="도로명주소 또는 지번주소" id="addr" class="form-control">
-											<input type="text" placeholder="상세 주소란" id="detailAddr" class="form-control">
-											<input type="text" placeholder="동" id="extraAddr" class="form-control">
+											<input type="text" id="addr" class="form-control" value="${vo.address}" style="width:100%;">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="findAddr">주소 변경</button>
 											</div>
@@ -270,24 +151,24 @@
 										<div class="card">
 											<div class="card-header">
 											<h4>
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseOne_faq">공부가 하기 싫어효<i class="indicator icon-minus float-right"></i></a>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseOne_faq">축제.. 좋아하세요?<i class="indicator icon-minus float-right"></i></a>
 											</h4>
 											</div>
 											<div id="collapseOne_faq" class="collapse show" data-parent="#faq">
 											<div class="card-body">
-												나가죽자
+												정말 좋아합니다. 이번엔 거짓이 아니라구요.
 											</div>
 											</div>
 										</div>
 										<div class="card">
 											<div class="card-header">
 											<h4>
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseTwo_faq">오늘 저녁은 뭘 먹죠<i class="indicator icon-plus float-right"></i></a>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseTwo_faq">메이트 서비스는요?<i class="indicator icon-plus float-right"></i></a>
 											</h4>
 											</div>
 											<div id="collapseTwo_faq" class="collapse" data-parent="#faq">
 											<div class="card-body">
-												식욕이 없어요.
+												죄송합니다. 제 실력이 부족하여 미구현입니다.
 											</div>
 											</div>
 										</div>
@@ -411,17 +292,17 @@
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>이름 <sup>*</sup>
 													</label>
-													<input type="text" name="field-name" value="" placeholder="" class="form-control">
+													<input type="text" name="field-name" value="" placeholder="" class="form-control" value="${vo.name}">
 												</div>
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>전화번호 <sup>*</sup>
 													</label>
-													<input type="text" name="field-name" value="" placeholder="" class="form-control">
+													<input type="text" name="field-name" value="" placeholder="" class="form-control" value="${vo.tel}">
 												</div>
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>이메일 <sup>*</sup>
 													</label>
-													<input type="email" name="field-name" value="" placeholder="" class="form-control">
+													<input type="email" name="field-name" value="" placeholder="" class="form-control" value="${vo.email}">
 												</div>
 												<div class="form-group col-md-12 col-sm-6 col-xs-12">
 													<label>문의 유형
@@ -429,13 +310,13 @@
 													<select class="custom-select">
 														<option selected>선택해주세요.</option>
 														<option value="1">코스 서비스</option>
-														<option value="2">메이트 서비스</option>
+														<option value="2">정보 오류 수정 </option>
 														<option value="3">기타</option>
 													</select>
 												</div>											
 												<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 													<label>문의 내역</label>
-													<textarea placeholder="문의 사항을 상세히 기재해주세요." class="form-control"></textarea>
+													<textarea id="cs_detail" placeholder="문의 사항을 상세히 기재해주세요." class="form-control"></textarea>
 												</div>
 											</div>
 											<div style="text-align: center;">
@@ -455,6 +336,7 @@
 					<div class="col-lg-12 add_bottom_15">
 						<div class="form_title">
 							<h3><strong class="icon_set_1_icon-85"></strong>실시간 1:1 문의</h3>
+							<a class="memberChat" href="#">관리자와 채팅</a>
 						</div>
 						<div id="inquire2Area">
 							<div class="step">
@@ -511,68 +393,15 @@
 			<!-- End row -->
 		</div>
 		<!-- End container -->
+		<form name="frmData" id="frmData" method="post">
+			<input type="hidden" name="name" id="mem_name" value="${vo.name}" /> 
+			<input type="hidden" name="id" id="mem_id" value="${vo.id}" />
+		</form>
+
 	</main>
 	<!-- End main -->
 
-	<footer class="revealed">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>도움이 필요하세요?</h3>
-                    <a href="tel://004542344599" id="phone">+82 10 3333 4444</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
-                </div>
-                <div class="col-md-4">
-                    <h3>축축빵빵</h3>
-                    <ul>
-                        <li><a href="#">축축빵빵은요!</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">로그인</a></li>
-                        <li><a href="member/memberJoin.do">회원가입</a></li>
-                         <li><a href="#">이용 약관</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>언어 선택</h3>
-                    <div class="styled-select">
-                        <select name="lang" id="lang">
-                            <option value="Korean" selected>한국어</option>
-                            <option value="English">English</option>
-                            <option value="Japanese">日本語</option>
-                        </select>
-                    </div>
-                </div>
-            </div><!-- End row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="social_footer">
-                        <ul>
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-google"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram"></i></a></li>
-                            <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#"><i class="icon-vimeo"></i></a></li>
-                            <li><a href="#"><i class="icon-youtube-play"></i></a></li>
-                        </ul>
-                        <p>© Kosmo73 - Blue 2021</p>
-                    </div>
-                </div>
-            </div><!-- End row -->
-        </div><!-- End container -->
-    </footer><!-- End footer -->
-
-	<div id="toTop"></div><!-- Back to top button -->
-	
-	<!-- Search Menu -->
-	<div class="search-overlay-menu">
-		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-		<form role="search" id="searchform" method="get">
-			<input value="" name="q" type="search" placeholder="Search..." />
-			<button type="submit"><i class="icon_set_1_icon-78"></i>
-			</button>
-		</form>
-	</div><!-- End Search Menu -->
+	<%@ include file="../../../footer.jsp" %>
 
 	<!-- Common scripts -->
 	<script src="js/jquery-3.5.1.min.js"></script>
@@ -587,8 +416,66 @@
 	<!-- Fixed sidebar -->
 	<script src="js/theia-sticky-sidebar.js"></script>
 	<script>
+	// 시간 format 변환
+		function getTimeStamp() {
+			var d = new Date();
+			var s = leadingZeros(d.getFullYear(), 4) + '-'
+					+ leadingZeros(d.getMonth() + 1, 2) + '-'
+					+ leadingZeros(d.getDate(), 2) + ' ' +
+					leadingZeros(d.getHours(), 2) + ':'
+					+ leadingZeros(d.getMinutes(), 2) + ':'
+					+ leadingZeros(d.getSeconds(), 2);
+			return s;
+		}
+		function leadingZeros(n, digits) {
+			var zero = '';
+			n = n.toString();
+			if (n.length < digits) {
+				for (i = 0; i < digits - n.length; i++)
+					zero += '0';
+			}
+			return zero + n;
+		}
+		
+		function openPop() {
+			var url = "../CustomerService/memberChat.do";
+			var pop_title = "관리자와 대화하기";
+			var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+			window.open(url, pop_title, option);
+		}
+		$('.memberChat').on('click', function() {
+			
+			
+			var date = getTimeStamp();
+			console.log(date)
+			
+			$.ajax({
+				type: 'post',
+				url: '../admin/admin_customer_chat.do',
+				contentType:'application/x-www-form-urlencoded;charset=euc-kr', // 한글처리
+				data: {
+					'id': $('#mem_id').val(),
+					'name': $('#mem_name').val(),
+					'first_date': date.split(' ')[0],
+					'second_date': date.split(' ')[1]
+				},
+				success: function(result) {
+					console.log('성공')
+				},
+				error: function(error) {
+					console.log(error)
+				},
+				complete: function(complete) {
+					console.log('끝나따')
+					
+					// 채팅창 열기!
+					openPop();
+				}
+			})
+			
+		});
 		jQuery('#sidebar').theiaStickySidebar({
-			additionalMarginTop: 80
+			additionalMarginTop : 80
 		});
 	</script>
 	<script>

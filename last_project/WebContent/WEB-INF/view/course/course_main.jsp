@@ -385,9 +385,10 @@
 											<br><medium> ${course.reviews.size()}개의 리뷰가 있어요!<medium>
 										</div>
 										<!-- end rating -->
+										<!--
 										<div class="wishlist">
 											<a class="tooltip_flip tooltip-effect-1" href="#" data-toggle="modal" data-target="#put_into_course">+<span class="tooltip-content-flip"><span class="tooltip-back">내 코스에 담기</span></span></a>
-										</div>
+										</div> -->
 										<!-- End wish list-->
 									</div>
 								</div>

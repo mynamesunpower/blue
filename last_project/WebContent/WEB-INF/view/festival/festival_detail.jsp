@@ -1260,8 +1260,8 @@ function getTimeHTML(distance) {
 		$(document).ready(function () {
 			// '선택' 클릭
 			$(document).on("click", "#choice", function(){
+				// 코스명
 				var courseName = $(this).parent().prev().val();
-				console.log(courseName);
 				// 코스 경로 배열 생성.
 				var coursePath_arr = new Array();
 				<c:forEach items="${list}" var="fes">
@@ -1283,7 +1283,6 @@ function getTimeHTML(distance) {
 							"image" : img
 //							"fee" : "${fes.fee}", // fee안에 태그랑 "" 있는 경우있어서 오류 뜸.
 					}
-					console.log(data)
 					coursePath_arr.push(data)
 				</c:forEach>
 				// 콘솔로 확인
@@ -1297,12 +1296,8 @@ function getTimeHTML(distance) {
 					"courseName" : courseName,
 					"coursePath" : coursePath_arr
 				}
-				console.log(info)
-				console.log(typeof(info))
+				// 직렬화
 				var jsonData = JSON.stringify(info)
-				console.log("jsonData:"+jsonData)
-				console.log(typeof(jsonData))
-				
 				$.ajax({
 					type : "POST",
 					url : "course/pushCoursePath.do",
@@ -1310,12 +1305,11 @@ function getTimeHTML(distance) {
 					traditional : true,
 					data : jsonData,
 					dataType : "json",					
-					success : function () {
+					success : function (result) {
 						alert("코스에 담기 완료")
 					},
 					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
-						alert("코스에 담기 완료")
+						alert("에러가 발생했습니다: festival_detail.jsp --- 코스 담기 에러");
 						console.log("err:"+err)
 					}
 				})  // end of ajax.
@@ -1332,8 +1326,8 @@ function getTimeHTML(distance) {
 				);
 				// 코스 _id 써먹어야해서 필요
 				$("#courseList").append(
-						"<input type='hidden' value='${name._id}'>"		
-					);
+					"<input type='hidden' value='${name._id}'>"		
+				);
 			</c:forEach>
 			
 			// '추가' 클릭 시
@@ -1361,7 +1355,7 @@ function getTimeHTML(distance) {
 					data : jsonData,
 					dataType : "json",					
 					success : function (result) {
-						alert("코스 생성!!!");
+						alert("코스 생성 완료");
 						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
 						$.ajax({
 							type : "POST",
@@ -1374,13 +1368,13 @@ function getTimeHTML(distance) {
 								);
 							},
 							error : function(err){
+								alert("에러가 발생했습니다: festival_detail.jsp --- 히든 인풋 만들기 에러")
 								alert("err:"+err)
 							}
 						}) // end of ajax.
 					},
 					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
-						alert("코스 생성")
+						alert("에러가 발생했습니다: festival_detail.jsp --- 코스 생성 에러");
 						console.log("err:"+err)
 					}
 				}) // end of ajax.

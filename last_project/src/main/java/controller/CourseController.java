@@ -46,16 +46,6 @@ public class CourseController {
 	@RequestMapping(value = "mongoCourse.do")
 	public String coursetest(Model model) {
 		List<CourseVO> list = courseService.test();
-		/*
-		for(CourseVO vo : list) {
-			ArrayList<String> imageList = new ArrayList<String>();
-			for(Binary img : vo.getImage()) {
-				String image = Base64.getEncoder().encodeToString(img.getData());
-				imageList.add(image);
-			}
-			vo.setCoursePath(imageList);
-		}
-		*/
 		model.addAttribute("list", list);
 		return "course/mongoCourse";
 	}
@@ -71,7 +61,6 @@ public class CourseController {
 	// 코스 상세보기 진입
 	@RequestMapping(value = "courseSelect.do")
 	public String courseDetail(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
-		System.out.println("course id:"+_id);
 		CourseVO cvo = courseService.courseSelect(vo, _id);
 		model.addAttribute("detail", cvo);
 		
@@ -89,18 +78,7 @@ public class CourseController {
 	public String courseList(Model model, HttpSession session) {
 		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("memberId:"+memberId);
-		List<CourseVO> list = courseService.viewMycourse(memberId);
-		/* 왜 이거 안해도 나오지???
-		for (CourseVO vo : list) {
-			ArrayList<String> imageList = new ArrayList<String>();
-			for(Binary img : vo.getImage()) {
-				String image = Base64.getEncoder().encodeToString(img.getData());
-				imageList.add(image);
-			}
-			vo.setCoursePath(imageList); // 여길 어떻게 해줘야 할까
-		}
-		*/
+		List<CourseVO> list = courseService.viewMycourse(memberId);		
 		model.addAttribute("list", list);
 		return "course/course_list";
 	}
@@ -110,8 +88,6 @@ public class CourseController {
 	public String courseEditpage(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
 		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요   __ 회원 id 받는게 필요한가 ? 나중에 점검.
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("memberId:"+memberId);
-		System.out.println("course id:"+_id);
 		CourseVO cvo = courseService.courseEdit(vo, memberId, _id);
 		model.addAttribute("detail", cvo);
 		return "course/course_edit";
@@ -123,7 +99,6 @@ public class CourseController {
 	public int addMycourse(HttpSession session, /*HttpServletRequest req, */@RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("id===="+memberId);
 		// 키워드 가져오는거 확인용
 		/*
 		String[] temp = req.getParameterValues("keyword");
@@ -135,7 +110,6 @@ public class CourseController {
 			ObjectMapper mapper = new ObjectMapper();
 			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
 			courseService.addMycourse(vo);
-			System.out.println("됐어!");
 		} catch(Exception e) {
 			System.out.println("error:"+e);
 		}
@@ -149,13 +123,10 @@ public class CourseController {
 	public int pushCoursePath(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("id===="+memberId);
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
-			System.out.println(">>>>>>>>>>>>>>>>>>>!!!!:"+vo.getCoursePath());
 			courseService.pushCoursePath(vo, vo.get_id());
-			System.out.println("됐어!");
 		} catch(Exception e) {
 			System.out.println("error:"+e);
 		}
@@ -177,8 +148,6 @@ public class CourseController {
 	public String deleteCourse(@RequestParam String _id, HttpSession session) {
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("id===="+memberId);
-		
 		courseService.deleteCourse(_id);
 		return "redirect:course_list.do?memberId="+memberId;
 	}

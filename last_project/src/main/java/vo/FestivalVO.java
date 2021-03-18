@@ -19,6 +19,7 @@ public class FestivalVO {
 	private int startDate;
 	private int endDate;
 	private String address;
+	private String address_detail;
 	private String fee;
 	private String tel;
 	private String homepage;
@@ -30,9 +31,21 @@ public class FestivalVO {
 	private ArrayList<String> images;
 	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews;
+	private int views;
+	
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
+	}
+	private int[] score;
 	
 	
 	
+	public int getEndDate() {
+		return endDate;
+	}
 	public ArrayList<HashMap<String, String>> getReviews() {
 		return reviews;
 	}
@@ -47,14 +60,6 @@ public class FestivalVO {
 	}
 	public void setPostcode(int postcode) {
 		this.postcode = postcode;
-	}
-	
-	
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	
 	public ArrayList<String> getImages() {
@@ -86,15 +91,10 @@ public class FestivalVO {
 	}
 
 
-	public int getStartDate() {
-		return startDate;
-	}
 	public void setStartDate(int startDate) {
 		this.startDate = startDate;
 	}
-	public int getEndDate() {
-		return endDate;
-	}
+
 	public void setEndDate(int endDate) {
 		this.endDate = endDate;
 	}
@@ -145,6 +145,32 @@ public class FestivalVO {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getStartDate() {
+		return startDate;
+	}
+	public String getAddress_detail() {
+		return address_detail;
+	}
+	public void setAddress_detail(String address_detail) {
+		this.address_detail = address_detail;
+	}
+	
+	
+	public int[] getScore() {
+		return score;
+	}
+	public void setScore(int[] score) {
+		this.score = score;
+	}
+
+	
+
 	
 	
 }

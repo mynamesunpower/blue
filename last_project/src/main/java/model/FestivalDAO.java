@@ -7,6 +7,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 import main.java.vo.FestivalVO;
+import main.java.vo.InstarVO;
 
 public interface FestivalDAO {
 
@@ -17,6 +18,21 @@ public interface FestivalDAO {
 	public List<FestivalVO> near(ObjectId objectId);
 	public ArrayList<HashMap<String, String>> getReviews(String _id);
 	public int updateRestaurantReview(ArrayList<HashMap<String, String>> reviews, String _id);
+	public List<FestivalVO> search(String word);
+	public long festivalcount();
+	
+	public List<InstarVO> instar();
+	public List<InstarVO> detail_instar(int tel);
+	
+	//관리자에서
+	public FestivalVO insert_festival(FestivalVO vo);
+	public FestivalVO modify_festival(FestivalVO vo);
+	public FestivalVO delete_festival(FestivalVO vo);
+	
+
+	
+	
+
 	
 	
 }
