@@ -22,11 +22,13 @@ public interface FestivalDAO {
 	public long festivalcount();
 	
 	public List<InstarVO> instar();
+	public List<InstarVO> detail_instar(int tel);
 	
 	//관리자에서
 	public FestivalVO insert_festival(FestivalVO vo);
 	public FestivalVO modify_festival(FestivalVO vo);
 	public FestivalVO delete_festival(FestivalVO vo);
+	
 
 	
 	

@@ -85,6 +85,13 @@ public class FestivalServiceImpl implements FestivalService {
 		// TODO Auto-generated method stub
 		return festivalDao.instar();
 	}
+	
+	
+	@Override
+	public List<InstarVO> detail_instar(int tel) {
+		// TODO Auto-generated method stub
+		return festivalDao.detail_instar(tel);
+	}
 
 	//관리자에서
 	@Override

@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>축축빵빵 - 축제 Main</title>
+	<title>축제로 - 축제 리스트</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -49,8 +49,8 @@
 	<section class="parallax-window" data-parallax="scroll" data-image-src="img/accommodation/main.png" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>축제 리스트</h1>
-				<p>검색된 축제 리스트입니다.</p>
+				<h1>축제로 축제 리스트</h1>
+				
 			</div>
 		</div>
 	</section>
@@ -62,9 +62,9 @@
 				<ul>
 					<li><a href="main.jsp">Home</a>
 					</li>
-					<li><a href="festival.jsp">축제</a>
+					<li><a href="festival.do">축제</a>
 					</li>
-					<li>검색결과</li>
+					<li>축제로 축제 리스트</li>
 				</ul>
 			</div>
 		</div>

@@ -187,7 +187,7 @@
                     <div class="tour_container">
                     <c:forEach items="${list}" var="list" varStatus="var">
                     <c:if test="${scores[var.index] ge 3}">
-                        <div class="ribbon_3 popular"><span>축제로</span></div>
+                        <div class="ribbon_3 popular"><span>인기</span></div>
                         </c:if>
                         </c:forEach>
                         <div class="img_container">
@@ -217,9 +217,13 @@
                     <!-- End box tour -->
                 </div>
                 <!-- /item -->
-                <div class="item">
+                  <div class="item">
                     <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>축제로</span></div>
+                    <c:forEach items="${list}" var="list" varStatus="var">
+                    <c:if test="${scores[var.index] ge 3}">
+                        <div class="ribbon_3 popular"><span>인기</span></div>
+                        </c:if>
+                        </c:forEach>
                         <div class="img_container">
                         
                             <a href="single_tour.jsp" class="clickurl2">
@@ -245,9 +249,13 @@
                     <!-- End box tour -->
                 </div>
                 <!-- /item -->
-                <div class="item">
+                  <div class="item">
                     <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>축제로:</span></div>
+                    <c:forEach items="${list}" var="list" varStatus="var">
+                    <c:if test="${scores[var.index] ge 3}">
+                        <div class="ribbon_3 popular"><span>인기</span></div>
+                        </c:if>
+                        </c:forEach>
                         <div class="img_container">
                 
                            <a href="single_tour.jsp" class="clickurl3">

@@ -276,10 +276,10 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="row small-gutters mt-md-0 mt-sm-2">
                             <div class="col-sm-12 mt-sm-2">
-                                <a href="all_restaurants_list.jsp"> <!--클릭하면 메이트 메인 페이지로 이동하게-->
+                                <a href="festival_list.do"> <!--클릭하면 축제 리스트 페이지로 이동하게-->
                                     <img src="img/main/main_mate.jpg" alt="" class="img-fluid">
                                     <div class="wrapper">
-                                        <h2>메이트</h2>
+                                        <h2>축제 리스트</h2>
                                         <p>1223 macthed</p>
                                     </div>
                                 </a>
@@ -302,33 +302,6 @@
             <!-- /container -->
         </div>
         <!-- /white_bg -->
-
-<!-- ---------------------------------------------- -->
-
-
-
-
-
-
-
-
-<!--  -->
-<div class="tests">
-
-<div class="row" id="row1">
-
-</div>
-
-<div class="row" id="row2">
-
-</div>
-
-<div class="row" id="row3">
-
-</div>
-
-</div>
-
 
 
 		<div class="container margin_60" id="instarss">

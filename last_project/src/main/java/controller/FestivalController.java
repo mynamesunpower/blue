@@ -290,7 +290,7 @@ public class FestivalController {
 		    	  
 		    	  Double distanceMeter = distance(latitude, longitude, accom_latitue, accom_longitude, "kilometer");
 		    	  
-		    	  accommap.put(distanceMeter, vo.get_id());
+		    	  accommap.put(distanceMeter, vo.get_id());	
 		    	
 		      }
 		      
@@ -327,6 +327,24 @@ public class FestivalController {
 		        	
 		        }
 		        
+		        
+		        
+		        //축제 상세페이지 인스타그램 사진
+		        List<InstarVO> detail_instar = festivalService.detail_instar(tel);
+				
+				for (InstarVO vo : detail_instar) {
+					// ArrayList<Binary> image
+					ArrayList<String> imageList = new ArrayList<String>();
+					for (Binary img : vo.getImgs()) {
+						String image = Base64.getEncoder().encodeToString(img.getData());
+						imageList.add(image);
+					}
+					vo.setImages(imageList);
+				}
+				
+				
+		        
+		        
 
 		ArrayList<HashMap<String, String>> reviews = list.get(0).getReviews();
 
@@ -339,6 +357,7 @@ public class FestivalController {
 		model.addAttribute("list", list);
 		model.addAttribute("reslist", result);
 		model.addAttribute("accom", result2);
+		model.addAttribute("detail_instar", detail_instar);
 		
 		return "festival/festival_detail";
 	}
@@ -526,11 +545,15 @@ public class FestivalController {
 		}
 		
 		model.addAttribute("list", list);
-		System.out.println("여기오고");
+		
 		return "main";
 		//return list;
+		
 	}
 	
+	
+	
+	//축제 페이지 가기
 	@RequestMapping(value="festival.do")
 	public String festival(Model model) {
 		
@@ -572,6 +595,31 @@ public class FestivalController {
 		return "festival/festival";
 	}
 	
+	
+	
+	//축제 리스트
+
+	@RequestMapping(value="festival_list.do")
+	public String festival_list(Model model) {
+		
+		List<FestivalVO> list = festivalService.test();
+		
+		for (FestivalVO vo : list) {
+			//  ArrayList<Binary> image瑜�
+			//System.out.println(vo.get_id());
+			ArrayList<String> imageList = new ArrayList<String>();
+			for (Binary img : vo.getImage()) {
+				String image = Base64.getEncoder().encodeToString(img.getData());
+				imageList.add(image);
+			}
+			vo.setImages(imageList);
+			
+		}
+		
+		model.addAttribute("list",list);
+		
+		return "festival/festival_list";
+	}
 
 
 
