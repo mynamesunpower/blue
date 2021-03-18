@@ -51,6 +51,19 @@
 			<div class="animated fadeInDown">
 				<h1>축제 리스트</h1>
 				<p>검색된 축제 리스트입니다.</p>
+				<c:forEach items="${list}" var="list" varStatus="var">
+	 						
+	 							 <c:if test="${list == null }">
+	 						 <div class="col-lg-6 col-md-6">
+	 							<div class="tour_list_desc">
+											<div class="rating"></div>
+											<h3>검색결과가 없습니다</h3>
+											<p>다시 검색해 주세요</p>
+										</div>
+										</div>	
+	 						</c:if>
+	 						</c:forEach>
+				
 			</div>
 		</div>
 	</section>
@@ -224,7 +237,7 @@
 					<div id="search_list">
 	 					<c:forEach items="${list}" var="list" varStatus="var">
 	 						
-	 						 <c:if test="${list.title == null }">
+	 							 <c:if test="${list == null }">
 	 						 <div class="col-lg-6 col-md-6">
 	 							<div class="tour_list_desc">
 											<div class="rating"></div>
@@ -235,6 +248,10 @@
 	 						</c:if>
 							<div class="strip_all_tour_list wow fadeIn restaurant" data-wow-delay="0.1s">
 								<div class="row">
+								 <c:if test="${list.title == null }">
+								 <h3>검색결과가 없습니다</h3>
+											<p>다시 검색해 주세요</p>
+								 </c:if>
 									<div class="col-lg-4 col-md-4">
 										<div class="ribbon_3 popular"><span>축제로</span>
 										</div>

@@ -307,7 +307,7 @@
 		<div class="container margin_30" id="instarss">
 
 			<div class="main_title">
-                <h2><span>ㅣ</span>인스타그램 이미지 캐러셀</h2>
+                <h2><span>ㅣ</span>인스타그램 이미지</h2>
 			</div>
 		
 			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
@@ -316,7 +316,7 @@
                 <div class="item">
                     <div class="tour_container">
                         <div class="img_container">
-                            <a href="single_tour.html">
+                            <a href="/details.do?tel=${list.postcode}">
                                 <img src="data:image/jpg;base64,${image}" width="100" height="100" class="img-fluid" alt="image">
                             </a>
                         </div>
@@ -474,7 +474,7 @@
 			<p class="text-center nopadding">
 			<br/>
 			<br/>
-				<a href="festival.do" class="btn_1">축제 더 보기</a>
+				<a href="festival_list.do" class="btn_1">축제 더 보기</a>
 			</p>
 		</div>
 		<!-- End container -->
