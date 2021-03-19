@@ -39,7 +39,7 @@ $(document).ready(function(){
 		});
 
 		function login() {
-			alert('로그인 버튼 클릭')
+//			alert('로그인 버튼 클릭')
 
 			if($.trim($('#loginId').val())==''){
         		alert('아이디를 입력해 주세요');

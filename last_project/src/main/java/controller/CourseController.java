@@ -36,19 +36,11 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Controller
-@RequestMapping(value = "course/")
+@RequestMapping
 public class CourseController {
 	
 	@Autowired
 	private CourseService courseService;
-
-	// DB내용 가져오기 테스트용
-	@RequestMapping(value = "mongoCourse.do")
-	public String coursetest(Model model) {
-		List<CourseVO> list = courseService.test();
-		model.addAttribute("list", list);
-		return "course/mongoCourse";
-	}
 	
 	// 코스 메인 진입 
 	@RequestMapping(value = "course_main.do")
@@ -96,16 +88,9 @@ public class CourseController {
 	// 코스 만들기
 	@RequestMapping(value = "addMycourse.do", method = RequestMethod.POST)
 	@ResponseBody
-	public int addMycourse(HttpSession session, /*HttpServletRequest req, */@RequestBody String jsonData, HttpServletResponse response){
+	public int addMycourse(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
-		// 키워드 가져오는거 확인용
-		/*
-		String[] temp = req.getParameterValues("keyword");
-		for(String keyword : temp) {
-			System.out.println("keyword:"+keyword);
-		}
-		*/
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
