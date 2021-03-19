@@ -193,6 +193,16 @@
 
    <!----> 
     
+@media screen and (min-width: 769px) { 
+
+	#rev_slider_13_1_wrapper {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}    
+    
    
 </style>
 	
@@ -304,7 +314,7 @@
         <!-- /white_bg -->
 
 
-		<div class="container margin_60" id="instarss">
+		<div class="container margin_30" id="instarss">
 
 			<div class="main_title">
                 <h2><span>ㅣ</span>인스타그램 이미지</h2>
@@ -334,12 +344,8 @@
        
        
             <!-- /carousel -->
-		
-			<p class="text-center add_bottom_30">
-				<!-- <a href="/instar.do" id="instarview">인스타 사진보기</a> -->
-			</p>
 
-			<hr class="mt-5 mb-5">
+			<hr class="mt-3 mb-3">
 
 			<div class="main_title">
 				<h2><span>ㅣ</span>축제 <span>지역별</span> 정보</h2>
@@ -482,73 +488,7 @@
 			</p>
 		</div>
 		<!-- End container -->
-        <div class="white_bg">
-            <div class="container margin_60">
-                <div class="main_title">
-                    <h2><span>ㅣ</span>테마별 축제이야기 & 기획기사</h2>
-                </div>
-                <div class="row">
-	                <div class="col-lg-6">
-	                    <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=79409b07-a8a3-47d5-927d-a3e11a4277a0&con_type=10700">
-	                        <figure><img src="img/main/main_news1.jpg" alt="">
-	                        </figure>
-	                        <ul>
-	                            <li>등록일</li>
-	                            <li>2020.12.16</li>
-	                        </ul>
-	                        <h4>청정 자연에서 즐기는 힐링 축제</h4>
-	                        <p>맑고 깨끗한 자연은 언제나 눈과 마음을 편안하게 만든다. 바쁜 일상에서 잠시 벗어나 아름다운 자연 앞에서 느끼는 감동과 위로만큼 확실한 힐링이 또 있을까.</p>
-	                    </a>
-	                </div>
-                    <!-- /box_news -->
-                    <div class="col-lg-6">
-                        <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=21b4f671-fc92-40a4-abe1-82d523d3a106&con_type=10700">
-                            <figure><img src="img/main/main_news2.jpg" alt="">
-                            </figure>
-                            <ul>
-                                <li>등록일</li>
-                                <li>2020.12.18</li>
-                            </ul>
-                            <h4>전통과 만나는 가장 재미있는 방법!</h4>
-                            <p>시간이 흐름에 따라 전통이라는 단어에는 왠지 모를 무게감과 거리감이 더해진 것만 같다. 사실 굳이 각을 잡고 어려운 책을 펼치지 않더라도 전통을 느끼고 배우는 방법은 다양하다. 그중에서도 가장 재미있는 방법은 뭐니 뭐니 해도 역시 축제가 아닐까?</p>
-                        </a>
-                    </div>
-                    <!-- /box_news -->
-                    <div class="col-lg-6">
-                        <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=0fc60f77-6868-49a7-a962-baede7ab3e17&con_type=10700">
-                            <figure><img src="img/main/main_news3.jpg" alt="">
-                            </figure>
-                            <ul>
-                                <li>등록일</li>
-                               	<li>2020.12.18</li>
-                            </ul>
-                            <h4>안전하게 즐기는 비대면 온라인 축제</h4>
-                            <p>코로나19로 평범한 일상마저 멈춰야 했던 2020년. 함께 어울려 웃으며 즐겼던 수많은 축제들도 줄줄이 취소되며 많은 아쉬움을 남겼다. 그러나 안전하게 즐기는 비대면 온라인 축제로 집콕생활에 지친 이들에게 작으나마 기쁨과 희망을 선물해준 축제들도 있다. 내년에는 직접 찾아가 즐길 수 있기를 바라는 마음을 담아 이들 온라인 축제를 모아 보았다.</p>
-                        </a>
-                    </div>
-                    <!-- /box_news -->
-                    <div class="col-lg-6">
-                        <a class="box_news" href="https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=ada9e2f2-e78e-4c7e-a9c6-227db2e89254&con_type=10700">
-                            <figure><img src="img/main/main_news4.png" alt="">
-                            </figure>
-                            <ul>
-                                <li>등록일</li>
-                                <li>2020.12.04</li>
-                            </ul>
-                            <h4>낮보다 아름다운 순간, 그 축제의 밤</h4>
-                            <p>밤이 낮보다 아름다운 순간이 있다. 흩뿌려져 있는 별빛, 따뜻하게 빛나는 불빛. 그래서 우린 어떤 여행지를 가든 어둠 속에서 형형색색 빛나는불빛을 찾으며 함께 웃고, 때로는 따뜻한 위로 받는 시간을 사랑한다. 이것이 우리가 늦은 밤 숙소를 나서는 이유가 아닐까. 별이 빛나는 밤, 소중한 사람들과 함께 특별한 추억을 남길 수 있는 심야의 시간으로 당신을 이끌고자 한다.</p>
-                        </a>
-                    </div>
-                    <!-- /box_news -->
-                </div>
-                <!-- /row -->
-                <p class="text-center nopadding">
-                    <a href="https://korean.visitkorea.or.kr/other/other_list.do?otdid=4e706603-293b-11eb-b8bd-020027310001&moreTag=%ED%85%8C%EB%A7%88%EB%B3%84%EC%B6%95%EC%A0%9C%EC%9D%B4%EC%95%BC%EA%B8%B0%7C%7C" class="btn_1">이야기 더 보기</a>
-                </p>
-            </div>
-            <!-- End container -->
-        </div>
-        <!-- End white_bg -->
+
         <div class="container margin_60">
             <div class="main_title">
                 <h2>축제로를 이용하는 <span>이유</span> </h2>
@@ -564,7 +504,7 @@
                         <p>
                             많은 축제가 당신을 기다리고 있어요.
                         </p>
-                        <a href="festival.jsp" class="btn_1 outline">더 알아보기</a>
+                        <a href="festival.do" class="btn_1 outline">더 알아보기</a>
                     </div>
                 </div>
 

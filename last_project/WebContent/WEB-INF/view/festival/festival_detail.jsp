@@ -88,6 +88,17 @@
 .distanceInfo:after {content:none;}
 
 
+@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}
+
+
 </style>
 	
 	
@@ -110,7 +121,7 @@
 	<%@ include file="../../../header.jsp" %>
 <c:forEach items="${list}" var="list">
 <c:forEach items="${list.images}" var="image" begin="1" end="1" >
-	<section style="width:58%; margin:0 auto;" class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
 	</c:forEach>
 	</c:forEach>
 		<div class="parallax-content-2">
@@ -144,7 +155,7 @@
 	<!-- End section -->
 
 	<main>
-		<div id="position" style="width:58%; margin:0 auto;">
+		<div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="../main.jsp">Home</a>
@@ -169,7 +180,7 @@
     </em>
 </p>
 <div class="map_wrap" >
-    <div id="map" style="margin: 0 auto; width:58%;height:100%;position:relative;overflow:hidden;"></div>
+    <div id="map" style="height:100%;position:relative;overflow:hidden;"></div>
     <ul id="category" style="margin-left: 400px;">
         <li id="AT4" data-order="0"> 
             <span class="category_bg bank"></span>
@@ -1109,11 +1120,7 @@ function getTimeHTML(distance) {
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
-					<div>
-						<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
-							<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-							<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
-						</h4>
+					<div id="courseList">
 					</div>
 					<div style="text-align: center;">
 						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
@@ -1129,16 +1136,16 @@ function getTimeHTML(distance) {
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myReviewLabel">새 코스 추가</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span id="back" aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div id="message-review">
 					</div>
 					<div class="form-group">
-						<input type="text" placeholder="코스명을 입력해주세요.">
+						<input type="text" placeholder="코스명을 입력해주세요." id="addcourseName">
 					</div>
 					<div style="text-align: center;">
-						<input type="button" value="추가" class="btn btn-success">
+						<input type="button" value="추가" class="btn btn-success" id="addNewcourse">
 						<!-- 추가 누르면 창이 닫히고, 입력한 코스명으로 부모 페이지에 코스가 추가 입력 되어져야함.-->
 					</div>
 				</div>
@@ -1273,8 +1280,8 @@ function getTimeHTML(distance) {
 	<script src="js/infobox.js"></script>
 	-->
 
-	<!-- NOTIFY BUBBLES  -->
-	<script src="js/notify_func.js"></script>	
+	<!-- NOTIFY BUBBLES  
+	<script src="js/notify_func.js"></script> -->	
 	
 	<!-- 추가 script -->
 	<!-- 축제 정보 불러오기 -->
@@ -1368,58 +1375,137 @@ function getTimeHTML(distance) {
 	</script>
 	<!-- 로그인 -->
 	<script src="../../js/login.js"></script>
-	<!-- 코스 -->
+	
+	<!-- 내 코스에 저장 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			<c:forEach items="${list}" var="fes">
-				var title = "${fes.title}"
-				var address = "${fes.address}"
-				var startDate = ${fes.startDate}
-				var endDate = ${fes.endDate}
-				var fee = "${fes.fee}"
-				var festel = "${fes.tel}"
-				var host = "${fes.host}"
-			</c:forEach>
-			$("#choice").on('click', function () {
-				var fesInfo = [];
-				fesInfo.push({
-					"title" : title,
-					"address" : address,
-					"startDate" : startDate,
-					"endDate" : endDate,
-					"fee" : fee,
-					"festel" : festel,
-					"host" : host
-				})
-				console.log(typeof(fesInfo))
-				console.log(fesInfo);
-				
-				var jsonData = JSON.stringify(fesInfo)
+			// '선택' 클릭
+			$(document).on("click", "#choice", function(){
+				var courseName = $(this).parent().prev().val();
+				console.log(courseName);
+				// 코스 경로 배열 생성.
+				var coursePath_arr = new Array();
+				<c:forEach items="${list}" var="fes">
+					// 첫 번째 이미지 가져오기
+					<c:forEach items="${fes.images}" var="image" begin="0" end="0">
+						var img = "data:image/jpg;base64,${image}"
+					</c:forEach>
+					var data = {
+							"p_id" : "${fes._id}",
+							"postcode" : ${fes.postcode},
+							"title" : "${fes.title}",
+							"host" : "${fes.host}",
+							"address" : "${fes.address}",
+							"tel" : "${fes.tel}",
+							"latitude" : ${fes.latitude},
+							"longitude" : ${fes.longitude},
+							"startDate" : ${fes.startDate},
+							"endDate" : ${fes.endDate},
+							"image" : img
+//							"fee" : "${fes.fee}", // fee안에 태그랑 "" 있는 경우있어서 오류 뜸.
+					}
+					console.log(data)
+					coursePath_arr.push(data)
+				</c:forEach>
+				// 콘솔로 확인
+				console.log(coursePath_arr)
+				// 각 코스마다의 _id
+				var cId = $(this).parent().parent().next().val()
+				// 코스 collection에 넣을 데이터.
+				var info = {
+					"_id" : cId,
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName,
+					"coursePath" : coursePath_arr
+				}
+				console.log(info)
+				console.log(typeof(info))
+				var jsonData = JSON.stringify(info)
+				console.log("jsonData:"+jsonData)
 				console.log(typeof(jsonData))
-				console.log(jsonData)
+				
 				$.ajax({
-					type : "post",
-					async : true,
-					url : "addMycourse_festival.do",
-					contentType: 'application/json; charset=utf-8', // 한글처리
+					type : "POST",
+					url : "course/pushCoursePath.do",
+					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
-					data : {
-						"writer" : "${sessionScope.memberId}",
-						"courseName" : $('#courseName').val(),
-						"jsonData" : jsonData					
-					},
+					data : jsonData,
 					dataType : "json",					
-					success : function (data) {
-						alert("완료")
+					success : function () {
+						alert("코스에 담기 완료")
 					},
 					error : function (err) {
-						alert("에러가 발생했습니다");
-						console.log(err)
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
+						alert("코스에 담기 완료")
+						console.log("err:"+err)
+					}
+				})  // end of ajax.
+			}) // end of $(document).on("click", "#choice", function()
+		}) // end of jQuery.
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 코스 저장하기 클릭 시 나오는 팝업창에 내가 가진 코스명 리스트 띄워놓기
+			<c:forEach items="${clist}" var="name">
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 코스 _id 써먹어야해서 필요
+				$("#courseList").append(
+						"<input type='hidden' value='${name._id}'>"		
+					);
+			</c:forEach>
+			
+			// '추가' 클릭 시
+			$("#addNewcourse").on('click', function(){
+				var courseName = $("#addcourseName").val();
+				// 팝업창에 입력한 코스명으로 행이 추가 되고
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 창 닫히고
+				$('#back').trigger('click');
+				// 초기화
+				$("#addcourseName").val("");
+				// DB 코스 컬렉션에 document 생성
+				var data = {
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName
+				}
+				var jsonData = JSON.stringify(data)
+				$.ajax({
+					type : "POST",
+					url : "course/addMycourse.do",
+					contentType : 'application/json;charset=UTF-8',
+					data : jsonData,
+					dataType : "json",					
+					success : function () {
+						alert("코스 생성!");
+					},
+					error : function (err) {
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
+						alert("코스 생성")
+						console.log("err:"+err)
+						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
+						$.ajax({
+							type : "POST",
+							url : "course/cId.do",
+							contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+							data : data,
+							success : function(data){
+								$("#courseList").append(
+									"<input type='hidden' value="+data+">"		
+								);
+							},
+							error : function(err){
+								alert("err:"+err)
+							}
+						}) // end of ajax.
 					}
 				}) // end of ajax.
-			})
-			
-		})
+			}) // end of $("#addNewcourse").on('click', function(){}).
+		}) // end of jQuery.
 	</script>
 </body>
 

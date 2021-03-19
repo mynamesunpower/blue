@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-	<title>축축빵빵 - 코스 편집하기</title>
+	<title>축제로 - 코스 편집하기</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="../img/logo_img.PNG" type="image/x-icon">
@@ -78,7 +78,7 @@
 			<div class="row">
 				<div class="col-3">
 					<div id="logo_home">
-                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축제로</a></h1>
 					</div>
 				</div>
 				<nav class="col-9">
@@ -217,7 +217,7 @@
 						</div>
 						<div id="single_tour_feat" style="text-align: center;">
 							<ul>
-								<li><i class="pe-7s-map-marker"></i>총<span style="font-size: large; color: cadetblue"> ${detail.coursePath.size()}</span> 건</li>
+								<li><i class="pe-7s-map-marker"></i>총<span style="font-size: large; color: cadetblue" id="count"> ${detail.coursePath.size()}</span> 건</li>
 								<li><i class="pe-7s-graph1"></i>코스 총 거리 :<span style="font-size: large; color: cadetblue;"> ${detail.distance}</span> km</li>
 							</ul>
 						</div>
@@ -225,9 +225,10 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<div style="text-align: right; font-size: larger;">
-										<i class="icon-trash-7" style="cursor: pointer;"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
+										<i class="icon-trash-7" style="cursor: pointer;" id="pullCourse"></i>  <!-- 쓰레기통 클릭 시 해당 칸 삭제-->
+										<input type="hidden" value="${coursePath.p_id}">
 									</div>
-									<a class="box_news" href="blog.jsp">
+									<a class="box_news" href="../details.do?tel=${coursePath.postcode}"> <!-- 축제는 postcode 값으로 상세페이지 진입하게 해놨네..??? 식당 숙박은 다를텐데..... -->
 										<figure><img src="${coursePath.image}" alt="">
 											<figcaption><strong>${vs.count}</strong></figcaption>  <!-- figcaption 넘 큰뎅.. 작게하고 싶다-->
 										</figure>
@@ -235,9 +236,9 @@
 										<p><i class="icon-location-7"></i>${coursePath.address}</p>
 										<p><i class="icon-phone-3"></i>${coursePath.tel}</p>
 									</a>
+									<hr/>
 								</div>
 							</div>
-							<hr/>
 						</c:forEach>
 						<!-- /box_news -->						
 						<div class="row">
@@ -334,11 +335,11 @@
 									<p style="font-size: large;">코스 자랑 마당에 공유하기</p>
 									<div style="text-align: center;">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
 											<label class="form-check-label" for="inlineRadio1">Yes</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
 											<label class="form-check-label" for="inlineRadio2">No</label>
 										</div>
 									</div>
@@ -370,9 +371,9 @@
                     <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
                 </div>
                 <div class="col-md-4">
-                    <h3>축축빵빵</h3>
+                    <h3>축제로</h3>
                     <ul>
-                        <li><a href="#">축축빵빵은요!</a></li>
+                        <li><a href="#">축제로은요!</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#sign-in-dialog">로그인</a></li>
                         <li><a href="../member/memberJoin.do">회원가입</a></li>
@@ -694,6 +695,34 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			// 쓰레기통 아이콘 클릭
+			$(document).on("click", "#pullCourse", function(){
+				var cId = "${detail._id}"  // 코스의 _id
+				console.log(cId)
+				var p_id = $(this).next().val() // 각각 경로의 _id
+				console.log(p_id)
+				$.ajax({
+					type : "POST",
+					url : "pullCoursePath.do",
+					contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					data : {
+						"cId" : cId,
+						"p_id" : p_id,
+					},
+					success : function(){
+						alert("삭제 성공");
+//						$("#coursePath").load(window.location.href + "#coursePath");					
+					},
+					error : function(err){
+						console.log(err)
+					}
+				}) // end of ajax.
+				// 삭제한 row 화면에서 지우기.
+				$(this).parent().parent().parent().remove();
+				
+				// 경로 삭제에 따른 총 n건, 총 거리 새로고침...해야해..?ㅠㅠ 
+			})
+			
 			$("#editCourse").on('click', function(){
 				$.ajax({
 					type : "post",

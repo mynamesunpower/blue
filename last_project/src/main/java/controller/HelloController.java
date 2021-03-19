@@ -23,12 +23,4 @@ public class HelloController {
 
 	}
 
-
-	@RequestMapping(value = "mypage.do", method = RequestMethod.GET)
-	public String mypage(@RequestParam String user_id) {
-
-		System.out.println(user_id);
-
-		return "member/mypage";
-	}
 }

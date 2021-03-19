@@ -2,6 +2,7 @@ package main.java.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +34,9 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<CourseVO> viewMycourse(CourseVO vo, String memberId) {
+	public List<CourseVO> viewMycourse(String memberId) {
 		System.out.println("viewMycourse 서비스 접근");
-		return courseDao.viewMycourse(vo, memberId);
+		return courseDao.viewMycourse(memberId);
 	}
 
 	@Override
@@ -61,4 +62,21 @@ public class CourseServiceImpl implements CourseService {
 		System.out.println("editCourse 서비스 접근");
 		courseDao.editCourse(vo, _id);
 	}
+	@Override
+	public void pushCoursePath(CourseVO vo, ObjectId _id) {
+		System.out.println("pushCoursePath 서비스 접근");
+		courseDao.pushCoursePath(vo, _id);
+	}
+	@Override
+	public void pullCoursePath(String cId, String p_id) {
+		System.out.println("pullCoursePath 서비스 접근");
+		courseDao.pullCoursePath(cId, p_id);
+	}
+	@Override
+	public CourseVO cId(String memberId, String cname) {
+		System.out.println("cId 서비스 접근");
+		return courseDao.cId(memberId, cname);
+	}
+
+	
 }

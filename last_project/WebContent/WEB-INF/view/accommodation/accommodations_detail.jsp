@@ -12,7 +12,7 @@
 <meta name="description"
 	content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 <meta name="author" content="Ansonika">
-<title>축축빵빵 - 숙박 Detail</title>
+<title>축제로 - 숙박 Detail</title>
 
 <!-- Favicons-->
 <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -85,7 +85,14 @@
 
 
 		<section class="parallax-window" data-parallax="scroll"
-			data-image-src="data:image/jpg;base64,${detail.images.get(0)}" data-natural-width="1400"
+			<c:choose>
+				<c:when test="${detail.images.size() gt 0}">
+				data-image-src="data:image/jpg;base64,${detail.images.get(0)}" data-natural-width="1400"	
+				</c:when>
+				<c:otherwise>
+				data-image-src="img/sample1400-470.jpg" data-natural-width="1400"
+				</c:otherwise>
+			</c:choose>
 			data-natural-height="470">
 			<div class="parallax-content-2">
 				<div class="container">
@@ -140,21 +147,21 @@
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     <ul id="category">
-        <li id="BK9" data-order="0"> 
+        <li id="AT4" data-order="0"> 
             <span class="category_bg bank"></span>
-            은행
+            관광명소
         </li>       
         <li id="MT1" data-order="1"> 
             <span class="category_bg mart"></span>
             마트
         </li>  
-        <li id="PM9" data-order="2"> 
+        <li id="FD6" data-order="2"> 
             <span class="category_bg pharmacy"></span>
-            약국
+            음식점
         </li>  
-        <li id="OL7" data-order="3"> 
+        <li id="AD5" data-order="3"> 
             <span class="category_bg oil"></span>
-            주유소
+            숙박
         </li>  
         <li id="CE7" data-order="4"> 
             <span class="category_bg cafe"></span>
@@ -393,8 +400,11 @@ marker.setMap(map);
 								data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 숨기기</a>
 						</p>
 						<!-- Map button for tablets/mobiles -->
-						<div id="Img_carousel" class="slider-pro">
-							<div class="sp-slides">		
+					<c:choose>
+						<c:when test="${detail.images.size() gt 0}">
+							<div id="Img_carousel" class="slider-pro">
+							<div class="sp-slides">
+										
 								<c:forEach items="${detail.images}" var="image">
 								<div class="sp-slide">
 								
@@ -444,7 +454,13 @@ marker.setMap(map);
 									
 							</div>
 						</div>
-
+							
+						</c:when>
+						<c:otherwise>
+							이미지 정보가 없습니다.
+						</c:otherwise>
+					</c:choose>
+					
 						<hr>
 
 						<div class="row">
@@ -458,9 +474,6 @@ marker.setMap(map);
 											<li>체크인 ${detail.check_in}</li>
 											<li>체크아웃 ${detail.check_out}</li>
 											<li>주차가능여부 ${detail.parking}</li>
-											<li>아이디 ${detail._id}</li>
-											<li>요거랑</li>
-											<li>이거!</li>
 										</ul>
 									</div>
 								</div>

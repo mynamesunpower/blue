@@ -9,19 +9,32 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationExpression;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators.ArrayElemAt;
+import org.springframework.data.mongodb.core.aggregation.GroupOperation;
 import org.springframework.data.mongodb.core.aggregation.LimitOperation;
+import org.springframework.data.mongodb.core.aggregation.MatchOperation;
+import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
 import org.springframework.data.mongodb.core.aggregation.SkipOperation;
+import org.springframework.data.mongodb.core.aggregation.SortOperation;
+import org.springframework.data.mongodb.core.aggregation.StringOperators;
+import org.springframework.data.mongodb.core.aggregation.StringOperators.Split;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.client.model.Field;
 import com.mongodb.client.result.UpdateResult;
 
 import main.java.vo.AccomVO;
+import main.java.vo.RestaurantVO;
 
 @Repository("accomDAO")
 public class AccomDAOImpl implements AccomDAO{
@@ -33,12 +46,17 @@ public class AccomDAOImpl implements AccomDAO{
 	
 	private int postPerPage = 5;
 	
-	// 페이지에 맞게끔 숙소 목록 조회
+	// pageNumber에 맞게끔 숙소 목록 조회
 	@Override
 	public List<AccomVO> selectPageList(int pageNumber) {
 		
-		SkipOperation skip = new SkipOperation((pageNumber-1) * 10);
+		// 전체 데이터에서 skip만큼 넘어간다.
+		SkipOperation skip = new SkipOperation((pageNumber-1) * postPerPage);
+		
+		
 		LimitOperation limit = new LimitOperation(postPerPage);
+		
+		
 		Aggregation aggregation = Aggregation.newAggregation(skip, limit);
 		AggregationResults<AccomVO> result = mongoTemplate.aggregate(aggregation, lodgment, AccomVO.class);
 		
@@ -60,13 +78,50 @@ public class AccomDAOImpl implements AccomDAO{
 	@Override
 	public AccomVO detail(String _id) {
 		// TODO Auto-generated method stub
-		System.out.println("상세 DAO 접근");
+		System.out.println("숙박 -> 상세 DAO 접근");
+		
 		AccomVO vo = mongoTemplate.findById(_id, AccomVO.class, lodgment);
-		System.out.println(vo);
+		int views = vo.getViews();
+		views++;
+		// 숙박, 식당은 정보 하나 가져올때 vo로 가져와서
+		// 
+		Query query = new Query(Criteria.where("_id").is(_id));
+		Update update = new Update();
+		update.set("views", views);
+		// 요래해주면 업데이트 잘 대는데
+		UpdateResult result = mongoTemplate.updateFirst(query, update, lodgment);
+		System.out.println("update 갯수 -> " + result.getModifiedCount());
 		
 		return vo;
 	}
+	
+	// 지역 카테고리 나누기
+	@Override
+	public List<HashMap> groupRegion() {
+			
+			ProjectionOperation project = 
+					Aggregation.project()
+					.and(StringOperators.Split.valueOf("address").split(" "))
+					.as("region");
+			
+			ProjectionOperation project2 = 
+					Aggregation.project()
+					.and(ArrayOperators.arrayOf("region").elementAt(0))
+					.as("region");
+			
+			GroupOperation group = Aggregation.group("region").count().as("regionCount");
+			
+			SortOperation sort = Aggregation.sort(Sort.Direction.DESC, "regionCount");
 
+			Aggregation aggregation = Aggregation.newAggregation(project, project2, group, sort);
+			AggregationResults<HashMap> results = mongoTemplate.aggregate(aggregation, lodgment, HashMap.class);
+			
+			
+			return results.getMappedResults();
+	} 
+	
+
+	// ArrayList reviews에 새 review를 담아 업데이트.
 	@Override
 	public int updateAccomReview(ArrayList<HashMap<String, String>> reviews, String _id) {
 		
@@ -80,6 +135,21 @@ public class AccomDAOImpl implements AccomDAO{
 		return (int)result.getModifiedCount();
 	}
 
+	// 지역 데이터 가져오기
+	@Override
+	public List<AccomVO> getRegionData(String region, int pageNumber) {
+		
+		SkipOperation skip = new SkipOperation((pageNumber-1) * postPerPage);
+		LimitOperation limit = new LimitOperation(postPerPage);
+		MatchOperation where = Aggregation.match(new Criteria().andOperator(Criteria.where("address").regex(region)));
+		Aggregation aggregation = Aggregation.newAggregation(where, skip, limit);
+		
+		AggregationResults<AccomVO> result = mongoTemplate.aggregate(aggregation, lodgment, AccomVO.class);
+		
+		return result.getMappedResults();
+	}
+	
+	// _id에 있는 reviews ArrayList 가져오기.
 	@Override
 	public ArrayList<HashMap<String, String>> getReviews(String _id) {
 		
@@ -88,13 +158,12 @@ public class AccomDAOImpl implements AccomDAO{
 		
 		AccomVO vo = mongoTemplate.findById(_id, AccomVO.class, lodgment);
 		//List<RestaurantVO> vo = mongoTemplate.find(query, RestaurantVO.class, collectionName);
-		System.out.println(vo.getAddress());
-		System.out.println(vo.getLatitude());
-		System.out.println(vo.get_id());
 		
 		return vo.getReviews();
 	}	
-		
+	
+	
+	// _id(PK)로 1개 데이터 찾기.
 	public List<AccomVO> selectOne(Object object) {
 		
 		Query query = new Query(Criteria.where("_id").is(object));
@@ -104,10 +173,14 @@ public class AccomDAOImpl implements AccomDAO{
 		
 		return list;
 	}
+	
+	
+	// 아래는 관리자 CUD
 	public AccomVO insert_lodgment(AccomVO vo) {
 		return mongoTemplate.insert(vo, lodgment);
 	}
 
+	
 	public AccomVO modify_lodgment(AccomVO vo) {		
 		Query query = new Query();
         //업데이트 할 항목 정의
@@ -125,6 +198,7 @@ public class AccomDAOImpl implements AccomDAO{
                 	     	     
 	
         mongoTemplate.updateMulti(query, update, "lodgment");
+        
         return null;
 	}
 
@@ -136,6 +210,8 @@ public class AccomDAOImpl implements AccomDAO{
 	    mongoTemplate.remove(query, "lodgment");
 		return null;
 	}
+
+	
 
 	
 

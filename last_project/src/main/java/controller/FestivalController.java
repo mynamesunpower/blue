@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
@@ -20,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.AccomService;
+import main.java.service.CourseService;
 import main.java.service.FestivalService;
 import main.java.service.RestaurantService;
 import main.java.vo.AccomVO;
+import main.java.vo.CourseVO;
 import main.java.vo.FestivalVO;
 import main.java.vo.RestaurantVO;
 import main.java.vo.InstarVO;
@@ -37,6 +40,9 @@ public class FestivalController {
 
 	@Autowired
 	private  RestaurantService restaurantService;
+	
+	@Autowired
+	private CourseService courseService;
 	
 
 	 public static Double distance(Double lat1, Double lon1, Double lat2, Double lon2, String unit) {
@@ -192,10 +198,11 @@ public class FestivalController {
 
 	//축제 상세페이지
 	@RequestMapping(value = "/details.do")
-	public String details(Model model,int tel) {
+	public String details(Model model, int tel, HttpSession session) {
 		System.out.println("FestivalController 에서 details.do 요청");
 
 		List<FestivalVO> list = festivalService.detail(tel);
+		
 
 		//이미지 바이너리
 				for (FestivalVO vo : list) {
@@ -358,6 +365,14 @@ public class FestivalController {
 		model.addAttribute("reslist", result);
 		model.addAttribute("accom", result2);
 		model.addAttribute("detail_instar", detail_instar);
+		
+		// 축제 상세 페이지에서 '코스에 담기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
+		String memberId = (String) session.getAttribute("memberId");
+		List<CourseVO> clist = courseService.viewMycourse(memberId);
+		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("list", list); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("list", list);를 해주게 함.
+		if (list != null) {
+			model.addAttribute("clist", clist);
+		} // 여기까지
 		
 		return "festival/festival_detail";
 	}
@@ -529,7 +544,7 @@ public class FestivalController {
 	
 	
 	//메인페이지 인스타 캐러셀
-	@RequestMapping(value="instar.do")
+	@RequestMapping(value="main.do")
 	public String instar(Model model) {
 			
 		List<InstarVO> list = festivalService.instar();

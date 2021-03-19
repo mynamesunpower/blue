@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>축축빵빵 | 일반 회원 관리</title>
+  <title>축제로 | 일반 회원 관리</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -32,7 +32,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../admin_index.jsp" class="nav-link">축축빵빵 Main</a>
+        <a href="../admin_index.jsp" class="nav-link">축제로 Main</a>
       </li>
     </ul>
 
@@ -133,7 +133,7 @@
     <!-- Brand Logo -->
     <a href="../admin_index.jsp" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">축축빵빵</span>
+      <span class="brand-text font-weight-light">축제로</span>
     </a>
 
     <!-- Sidebar -->
@@ -458,7 +458,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="festival.do">축축빵빵</a>. </strong>All rights reserved.
+    <strong>Copyright &copy; 2021 <a href="festival.do">축제로</a>. </strong>All rights reserved.
 
     <div class="float-right d-none d-sm-inline-block">
       <b>밥은 먹으면서 합시다!</b> 행복해져야죠

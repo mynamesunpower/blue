@@ -55,7 +55,10 @@ public class AccomServiceImpl implements AccomService {
 		return accomDAO.selectOne(object);
 	}
 	
-	
+	@Override
+	public List<HashMap> groupRegion() {
+		return accomDAO.groupRegion();
+	}
 	
 	
 	//관리자에서
@@ -72,6 +75,12 @@ public class AccomServiceImpl implements AccomService {
 	@Override
 	public AccomVO delete_lodgment(AccomVO vo) {
 		return accomDAO.delete_lodgment(vo);
+	}
+
+	@Override
+	public List<AccomVO> getRegionData(String region, int pageNumber) {
+		// TODO Auto-generated method stub
+		return accomDAO.getRegionData(region, pageNumber);
 	}
 
 }

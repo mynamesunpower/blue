@@ -1,11 +1,12 @@
 $(document).ready(function(){
 			$('.btn_login').on('click', login);
-			$('#password').on('keydown', function(evt) {
-				//evt.preventDefault();
-				//evt.stopPropagation();
-				if (evt.KeyCode == 13) {
-					login();
-				}
+			
+			var input = document.getElementById("password");
+			input.addEventListener("keyup", function(event) {
+			  if (event.keyCode === 13) {
+			    event.preventDefault();
+			    document.getElementById("btn_login").click();
+			  }
 			});
 			
 			$('#findPassBtn').off().on('click', function(evt) {

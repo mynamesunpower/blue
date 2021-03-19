@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 코스 상세 보기</title>
+    <title>축제로 - 코스 상세 보기</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="../img/logo_img.PNG" type="image/x-icon">
@@ -530,27 +530,23 @@
 	<%@ include file="../../../footer.jsp" %>
 	
 	<!-- Modal put_into_course-->
-			<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						</div>
-						<div class="modal-body" style="text-align: center;">
-							<div id="courseList">
-								<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
-									<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-									<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1"></span>
-								</h4>
-							</div>
-							<div style="text-align: center;">
-								<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
-							</div>
-						</div>
+	<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					<div id="courseList">
+					</div>
+					<div style="text-align: center;">
+						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
  	<!-- End of Modal put_into_course-->
 
 	<!-- Modal add_course-->
@@ -750,10 +746,11 @@
 	<!-- 로그인 -->
 	<script src="../../js/login.js"></script>
 	
-	<!-- 내 코스에 저장.. 현재 실패 중.. 코스 경로 넣는게 어렵쓰 -->
+	<!-- 내 코스에 저장 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$("#courseList span > input").on('click',function () {
+			// '선택' 클릭
+			$(document).on("click", "#choice", function(){
 				var courseName = $(this).parent().prev().val();
 				console.log(courseName);
 				// 코스의 키워드 뽑아서 배열에 넣기.
@@ -762,71 +759,127 @@
 					var temp = "${keyword}"
 					keyword.push(temp)
 				</c:forEach>
-				// 콘솔로 확인
+				// 콘솔로 키워드 확인
 				console.log(keyword)
-				
-				// 코스 경로
+				// 코스 경로 배열 생성.
 				var coursePath_arr = new Array();
-				var obj = new Object();
 				<c:forEach items="${detail.coursePath}" var="coursePath">
-					var title = "${coursePath.title}";
-					obj.title = title;
-					var address = "${coursePath.address}";
-					obj.address  = address;
-					var tel = "${coursePath.tel}";
-					obj.tel = tel;
-				/*
 					var data = {
+							"p_id" : "${coursePath.p_id}",
 							"title" : "${coursePath.title}",
 							"address" : "${coursePath.address}",
-							"tel" : "${coursePath.tel}"
+							"tel" : "${coursePath.tel}",
+							"latitude" : ${coursePath.latitude},
+							"longitude" : ${coursePath.longitude},
+							"image" : "${coursePath.image}"
 					}
-				*/
-					coursePath_arr.push(obj)
+					coursePath_arr.push(data)
 				</c:forEach>
 				// 콘솔로 확인
 				console.log(coursePath_arr)
-				var jsonData = JSON.stringify(coursePath_arr)
+				// 내가 선택한 코스의 _id
+				var cId = $(this).parent().parent().next().val()
+				// 코스 collection에 넣을 데이터.
+				var info = {
+					"_id" : cId,
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName,
+					"summary" : "${detail.summary}",					
+					"keyword" : keyword,							
+					"distance" : ${detail.distance},
+					"schedule" : "${detail.schedule}",									
+					"theme" : "${detail.theme}",
+					"coursePath" : coursePath_arr
+				}
+				console.log(info)
+				console.log(typeof(info))
+				var jsonData = JSON.stringify(info)
 				console.log("jsonData:"+jsonData)
 				console.log(typeof(jsonData))
+					
 				$.ajax({
-					type : "post",
-					async : true,
-					url : "addMycourse.do",
-					contentType: 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+					type : "POST",
+					url : "pushCoursePath.do",
+					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
-					data : {
-						"writer" : "${sessionScope.memberId}",
-						"courseName" : courseName,
-						"summary" : "${detail.summary}",					
-						"keyword" : keyword,							
-						"distance" : "${detail.distance}",
-						"schedule" : "${detail.schedule}",									
-						"theme" : "${detail.theme}",
-//						"coursePath" : jsonData
-					},
+					data : jsonData,
 					dataType : "json",					
-					success : function (data) {
+					success : function () {
 						alert("코스에 담기 완료")
 					},
 					error : function (err) {
-						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
-						console.log(err)
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
+						alert("코스에 담기 완료")
+						console.log("err:"+err)
 					}
 				})  // end of ajax.
-			}) // end of $('#choice') click function
-			
-			$("#addNewcourse").on('click', function(){
-				var courseName = $("#addcourseName").val();
-				$("#courseList").append(
-					"<h4>- <input type='text' style='width:35%;' id='courseName' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1'></span></h4>"		
-				);
-				$('#back').trigger('click');
-			})
+			}) // end of $(document).on("click", "#choice", function()
 		}) // end of jQuery.
-	
 	</script>
 	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 코스 저장하기 클릭 시 - 팝업창에 내가 가진 코스명 리스트 띄워놓기
+			<c:forEach items="${list}" var="name">
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 코스 _id 써먹어야해서 필요
+				$("#courseList").append(
+					"<input type='hidden' value='${name._id}'>"		
+				);
+			</c:forEach>
+			
+			// '추가' 클릭 시
+			$("#addNewcourse").on('click', function(){
+				var courseName = $("#addcourseName").val();
+				// 팝업창에 입력한 코스명으로 행이 추가 되고
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 창 닫히고
+				$('#back').trigger('click');
+				// 초기화
+				$("#addcourseName").val("");
+				// DB 코스 컬렉션에 document 생성
+				var data = {
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName
+				}
+				var jsonData = JSON.stringify(data)
+				$.ajax({
+					type : "POST",
+					url : "addMycourse.do",
+					contentType: 'application/json;charset=UTF-8',
+					data : jsonData,
+					dataType : "json",					
+					success : function () {
+						alert("코스 생성")
+					},
+					error : function (err) {
+//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
+						alert("코스 생성")
+						console.log("err:"+err)
+						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
+						$.ajax({
+							type : "POST",
+							url : "cId.do",
+							contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+							data : data,
+							success : function(data){
+								$("#courseList").append(
+									"<input type='hidden' value="+data+">"		
+								);
+							},
+							error : function(err){
+								alert("err:"+err)
+							}
+						}) // end of ajax.
+					}
+				}) // end of ajax.
+			}) // end of $("#addNewcourse").on('click', function(){}).
+		}) // end of jQuery.
+	</script>
 </body>
 
 </html>

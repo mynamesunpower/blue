@@ -85,8 +85,18 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	public RestaurantVO selectOne(String _id) {
 		// TODO Auto-generated method stub
 		//Query query = new Query(Criteria.where("_id").is(_id));
-
-		return mongoTemplate.findById(_id, RestaurantVO.class, collectionName);
+		RestaurantVO vo = mongoTemplate.findById(_id, RestaurantVO.class, collectionName);
+		int views = vo.getViews();
+		views++;
+		
+		Query query = new Query(Criteria.where("_id").is(_id));
+		Update update = new Update();
+		update.set("views", views);
+		
+		UpdateResult result = mongoTemplate.updateFirst(query, update, collectionName);
+		System.out.println("update 갯수 -> " + result.getModifiedCount());
+		
+		return vo;
 	}
 
 	@Override

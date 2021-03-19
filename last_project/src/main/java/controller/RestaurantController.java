@@ -32,6 +32,9 @@ public class RestaurantController {
 	private final int pageScale = 5;
 	
 	
+	// 식당 목록 불러오기.
+	// param -> int page : 페이지 번호
+	// param -> String word : 카테고리명 
 	@RequestMapping(value = "/restaurants_list.do")
 	public String helloRestaurant(ModelMap model, 
 			@RequestParam(value = "page", defaultValue = "1") int pageNumber, 
@@ -69,6 +72,7 @@ public class RestaurantController {
 		// 카테고리를 클릭했다면
 		else {
 			System.out.println("카테고리 -> " + word);
+			
 			List<RestaurantVO> categoryList = restaurantService.getCategoryData(word, pageNumber);
 			scores = new int[categoryList.size()];
 			System.out.println(categoryList.size());
@@ -89,30 +93,16 @@ public class RestaurantController {
 			model.addAttribute("list", categoryList);
 		}
 		
-		// 카테고리 가져오기
+		// 왼쪽 사이드에 띄우기 위해서 카테고리 가져오기
 		List<HashMap> categories = restaurantService.getGroupCategory();
 		int countSum = 0;
 		for (HashMap hashMap : categories) {
 			countSum += (Integer) hashMap.get("countA");
 		}
 		
-		// 페이징 처리
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		int pageGroup = (int)Math.ceil((double) pageNumber / 5);
-		System.out.println("pageGroup -> " + pageGroup);
-		long startPage = ((pageGroup - 1) * pageScale) + 1;
-		long endPage = startPage + pageScale - 1;
-		long previousPage = (pageGroup - 2) * pageScale + 1;
-		long nextPage = pageGroup * pageScale + 1;
+		// 페이징 처리를 위한 map 만들기
+		HashMap<String, Object> resultMap = getPagingResultMap(pageNumber, pageScale, totalSize);
 		
-		resultMap.put("pageGroup", pageGroup);
-		resultMap.put("total", totalSize);
-		resultMap.put("page", pageNumber);
-		resultMap.put("pageScale", pageScale);
-		resultMap.put("startPage", startPage);
-		resultMap.put("endPage", endPage);
-		resultMap.put("nextPage", nextPage);
-		resultMap.put("previousPage", previousPage);
 		model.addAttribute("countSum", countSum);
 		model.addAttribute("categories", categories);
 		model.addAttribute("resultMap", resultMap);
@@ -181,6 +171,31 @@ public class RestaurantController {
 		restaurantVO.setImages(imageList);
 		
 	}
+	
+	// paging 처리용 hashmap 만들기.
+	public static HashMap<String, Object> getPagingResultMap(int pageNumber, int pageScale, int totalSize) {
+		
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int pageGroup = (int)Math.ceil((double) pageNumber / 5);
+		System.out.println("pageGroup -> " + pageGroup);
+		long startPage = ((pageGroup - 1) * pageScale) + 1;
+		long endPage = startPage + pageScale - 1;
+		long previousPage = (pageGroup - 2) * pageScale + 1;
+		long nextPage = pageGroup * pageScale + 1;
+		
+		resultMap.put("pageGroup", pageGroup);
+		resultMap.put("total", totalSize);
+		resultMap.put("page", pageNumber);
+		resultMap.put("pageScale", pageScale);
+		resultMap.put("startPage", startPage);
+		resultMap.put("endPage", endPage);
+		resultMap.put("nextPage", nextPage);
+		resultMap.put("previousPage", previousPage);
+		System.out.println(pageGroup + " / " + totalSize + " / " + pageNumber + " / " + pageScale + " / " + startPage + " / " + endPage + " / " + nextPage + " / " + previousPage);
+		
+		return resultMap;
+	} 
+	
 	
 	public static int[] scoresAverage(ArrayList<HashMap<String, String>> reviews, String firstScoreName) {
 		

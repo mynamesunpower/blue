@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 식당 Detail</title>
+    <title>축제로 - 식당 Detail</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -124,21 +124,21 @@
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     <ul id="category">
-        <li id="BK9" data-order="0"> 
+        <li id="AT4" data-order="0"> 
             <span class="category_bg bank"></span>
-            은행
+            관광명소
         </li>       
         <li id="MT1" data-order="1"> 
             <span class="category_bg mart"></span>
             마트
         </li>  
-        <li id="PM9" data-order="2"> 
+        <li id="FD6" data-order="2"> 
             <span class="category_bg pharmacy"></span>
-            약국
+            음식점
         </li>  
-        <li id="OL7" data-order="3"> 
+        <li id="AD5" data-order="3"> 
             <span class="category_bg oil"></span>
-            주유소
+            숙박
         </li>  
         <li id="CE7" data-order="4"> 
             <span class="category_bg cafe"></span>

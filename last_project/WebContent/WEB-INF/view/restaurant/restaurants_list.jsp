@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>축축빵빵 - 식당 Main</title>
+	<title>축제로 - 식당 Main</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -134,9 +134,14 @@
 										<div class="img_list">
 											<a href="restaurant_detail.do?_id=${list._id}">
 											
-												<c:if test="${list.images.size() gt 0}">
-													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
-												</c:if>
+												<c:choose>
+													<c:when test="${list.images.size() gt 0}">
+														<img class="img-fluid" src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
+													</c:when>
+													<c:otherwise>
+														<img class="img-fluid" src="img/no-image2.jpg">
+													</c:otherwise>
+												</c:choose>
 												
 												<div class="short_info" style="padding-left:10px;">${list.category}</div>
 											</a>

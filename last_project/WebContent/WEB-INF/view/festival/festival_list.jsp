@@ -29,6 +29,19 @@
 
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
+	
+	<style>
+	
+	@media screen and (min-width: 769px) { 
+
+	.carousel_parallax {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+	}
+	</style>
 
 </head>
 
@@ -46,7 +59,7 @@
 
 	<%@ include file="../../../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/accommodation/main.png" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="img/accommodation/main.png" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>축제로 축제 리스트</h1>
