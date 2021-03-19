@@ -11,10 +11,18 @@ import java.util.regex.Pattern;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
+import org.springframework.data.mongodb.core.aggregation.GroupOperation;
+import org.springframework.data.mongodb.core.aggregation.LimitOperation;
 import org.springframework.data.mongodb.core.aggregation.MatchOperation;
+import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
+import org.springframework.data.mongodb.core.aggregation.SkipOperation;
+import org.springframework.data.mongodb.core.aggregation.SortOperation;
+import org.springframework.data.mongodb.core.aggregation.StringOperators;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -28,6 +36,7 @@ import com.mongodb.client.gridfs.model.GridFSFile;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.gridfs.GridFSDBFile;
 
+import main.java.vo.AccomVO;
 import main.java.vo.FestivalVO;
 import main.java.vo.InstarVO;
 import main.java.vo.RestaurantVO;
@@ -41,6 +50,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	private final String festival = "festival"; // Collection_name
 	private final String restaurant = "restaurant"; // Collection_name
 	private final String instar = "instar"; // Collection_name
+	private int postPerPage = 5;
 	
 	@Override
 	public List<FestivalVO> test() {
@@ -101,26 +111,6 @@ public class FestivalDAOImpl implements FestivalDAO {
 		return list;
 	}
 	
-	
-	//아직 아무 기능없음
-	@Override
-	public List<FestivalVO> recommand(){
-		System.out.println("DAO 에서: recommand()");
-		
-		 Query query = new Query();
-	     Criteria criteria = new Criteria();
-	     query = new Query(Criteria.where("number").in(123));  //조건1
-	     //query.addCriteria(criteria.where("start_date").gte(123);
-	     List<FestivalVO> list =  mongoTemplate.find(query,FestivalVO.class,"festival");
-	   
-	     
-	     System.out.println("DAOrecommand"+list);
-	     
-		
-		return null;
-	}
-	
-
 	
 	
 	//축제 상세페이지 정보
@@ -273,8 +263,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	//축제 검색
 	@Override
 	public List<FestivalVO> search(String word) {
-		// TODO Auto-generated method stub
-		
+			
 		// where(title컬럼)에서 word 있는애들 찾음
 				MatchOperation where = Aggregation.match(new Criteria().andOperator(Criteria.where("title").regex(word)));
 				Aggregation aggregation = Aggregation.newAggregation(where);
@@ -287,12 +276,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	//축제 개수뽑기
 	@Override
 	public long festivalcount() {
-		// TODO Auto-generated method stub
-		
-		//Query query = new Query(Criteria.where("_id"));
-		
-		//long result = mongoTemplate.count(null, FestivalVO.class);
-		
+						
 		List<FestivalVO> list = mongoTemplate.findAll(FestivalVO.class, festival);
 
 		long result = list.size();
@@ -305,8 +289,7 @@ public class FestivalDAOImpl implements FestivalDAO {
 	//인스타 사진 뽑기(메인페이지)
 	@Override
 	public List<InstarVO> instar() {
-		// TODO Auto-generated method stub
-		
+			
 		List<InstarVO> list = mongoTemplate.findAll(InstarVO.class, instar);
 		
 		return list;
@@ -329,10 +312,64 @@ public class FestivalDAOImpl implements FestivalDAO {
 	
 	
 	
+	@Override
+	public List<FestivalVO> selectPageList(int pageNumber) {
+		
+		// 전체 데이터에서 skip만큼 넘어간다.
+		SkipOperation skip = new SkipOperation((pageNumber-1) * postPerPage);
+		
+		
+		LimitOperation limit = new LimitOperation(postPerPage);
+		
+		
+		Aggregation aggregation = Aggregation.newAggregation(skip, limit);
+		AggregationResults<FestivalVO> result = mongoTemplate.aggregate(aggregation, festival, FestivalVO.class);
+		
+		return result.getMappedResults();
+		
+	}
 	
 	
 	
+	// 지역 데이터 가져오기
+		@Override
+		public List<FestivalVO> getRegionData(String region, int pageNumber) {
+			
+			SkipOperation skip = new SkipOperation((pageNumber-1) * postPerPage);
+			LimitOperation limit = new LimitOperation(postPerPage);
+			MatchOperation where = Aggregation.match(new Criteria().andOperator(Criteria.where("address").regex(region)));
+			Aggregation aggregation = Aggregation.newAggregation(where, skip, limit);
+			
+			AggregationResults<FestivalVO> result = mongoTemplate.aggregate(aggregation, festival, FestivalVO.class);
+			
+			return result.getMappedResults();
+		}
 	
+		
+		// 지역 카테고리 나누기
+		@Override
+		public List<HashMap> groupRegion() {
+				
+				ProjectionOperation project = 
+						Aggregation.project()
+						.and(StringOperators.Split.valueOf("address").split(" "))
+						.as("region");
+				
+				ProjectionOperation project2 = 
+						Aggregation.project()
+						.and(ArrayOperators.arrayOf("region").elementAt(0))
+						.as("region");
+				
+				GroupOperation group = Aggregation.group("region").count().as("regionCount");
+				
+				SortOperation sort = Aggregation.sort(Sort.Direction.DESC, "regionCount");
+
+				Aggregation aggregation = Aggregation.newAggregation(project, project2, group, sort);
+				AggregationResults<HashMap> results = mongoTemplate.aggregate(aggregation, festival, HashMap.class);
+				
+				
+				return results.getMappedResults();
+		} 
 	
 
 	

@@ -1072,7 +1072,7 @@ function getTimeHTML(distance) {
                              ${accom[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>여기 바꾸기<span class="near-place-tel">${accom[0].tel}</span>
+								<span class="star">★</span>${accom[0].averageScore}<span class="near-place-tel">${accom[0].tel}</span>
 								</div>
                                 <div class="col-12" class="near-place-text">
                                   <c:set var="num1" value="${accom[0].range }" />

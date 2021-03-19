@@ -186,7 +186,7 @@
 
 
         <div class="main_title">
-            <h2>근처 축제: <span> 지도를 클릭해주세요! </span></h2>
+            <h2>근처 축제: <span><div id="ppp">지도를 클릭해주세요!</div> </span></h2>
             
            <!--  <a href="#" class="btn_1">자세히 보기</a> -->
         </div>
@@ -441,40 +441,29 @@ $(document).ready(function() {
 			type: "POST",
 			data: {"month" : cur_month},
 			success: function(data) {
-		//근처축제 기본값
 			
- 				
-		
-		
-		///기본값 끝 (근처축제)
-		
 				var count = data;
-				//alert("iss = "+count.length);
+				
 				 $.each(data, function (i, item) {
-					 //console.log(item.image)
+				
 					 console.log("나는ss"+item.image)
 					festivals = '';
 					festivals += '<div>'
 					festivals +='<a href="/details.do?tel='+item.postcode+'">'
-					//festivals +='<a href="javascript:" onclick="festivaldetail('+item.tel+')">'
+			
 					if(item.image==''){
 						festivals += '<div><img height="300" width="400" class="owl-slide cover" src="/img/login/testfile.png"/></div>'
-						//festivals +='<img src="img/img_cat_home_1.jpg" class="img-fluid">'
-						//festivals +='<img src="data:image/jpg;base64,'+item.image[0].data+'" alt="" class="img-fluid">'
+					
 						}else{
 							if(i == 0){
 								festivals += '<div><img alt="image" class="owl-slide cover img-fluid" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
 							}else{
 							festivals += '<div><img alt="image" height="300" width="400" class="owl-slide cover" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
-							//festivals +='<img  src="data:image/jpg;base64,'+item.image[0].data+'" class="img-fluid">'
+					
 							}
 							
 						}
 
-
-					//festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'
-					///festivals +='<img src="D:/Temp/test.png" alt="" class="img-fluid">'
-					//festivals +='<img src="'+item.image+'" alt="" class="img-fluid">'
 					festivals +='<div class="wrapper">'
 					festivals +='<h2>'+item.title+'</h2>'
 					festivals +='<p>'+item.startDate+'~'+item.endDate+'</p>'
@@ -482,10 +471,9 @@ $(document).ready(function() {
 					festivals +='</a>'
 					festivals +='</div>'
 
-						//alert(count.length)
+				
 					if(count.length <2){
-						//alert(count.length)
-						//alert("지워")
+					
 						$("#a2>div ").remove();
 						$("#a3 >div").remove();
 						$("#a4 >div").remove();
@@ -504,35 +492,24 @@ $(document).ready(function() {
 					}
 
 
-
-
-
-
-                    //alert("items : "+item.size);
-
                     if(i ==0){
-                    ///$('.areas1 > h2').html(item.title);
+         
                     $('#a1').html(festivals);
-                    //alert(i)
+          
                     }else if(i ==1){
-                    	//alert(i)
-                        //$('.areas2 > h2').html(item.title);
+                 
                     	$('#a2').html(festivals);
                     }else if(i ==2){
-                    	//alert(i)
-                        //$('.areas3 > h2').html(item.title);
+                   
                     	$('#a3').html(festivals);
                     }else if(i ==3){
-                    	//alert(i)
-                        //$('.areas4 > h2').html(item.title);
+                    
                     	$('#a4').html(festivals);
                     }else if(i ==4){
-                    	//alert(i)
-                        //$('.areas5 > h2').html(item.title);
+                    
                     	$('#a5').html(festivals);
                     }
-                    //alert("item : "+item.title);
-                    //alert("item : "+item.start_date);
+                  
                 });
 
 				console.log(data)
@@ -802,12 +779,7 @@ $(document).ready(function() {
  	 	 			
  	 			festivals3=''
  	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
- 	 	 	
-
- 				//$('.aa1 div').remove()
- 				//$('.aa2 div').remove()
- 				//$('.aa3 div').remove()
-
+ 	 	
  				//지도 클릭시 사진 바뀜
  				$(".aa1").html(festivals1);
  				$(".aa2").html(festivals2);
@@ -826,16 +798,6 @@ $(document).ready(function() {
 	 			
 	 			$("#ppp").html(addre);
 	 			
-	 			//평점
-	 						
-				
-				//$.each(data.score function(index,item)){
-					
-				//}
-													
-				//rating = ''
-				//rating += '<i class="icon-star voted"></i>'
-				//rating += '<i class="icon-star-empty"></i>'
 													
 	 			$('#rating1').html(data[0][0].address);
 	 			$('#rating2').html(data[1][0].address);

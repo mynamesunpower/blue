@@ -2,7 +2,6 @@ package main.java.controller;
 import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +15,10 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.AccomService;
@@ -34,6 +35,9 @@ import main.java.vo.InstarVO;
 public class FestivalController {
 	@Autowired
 	private FestivalService festivalService;
+	
+	// 페이징 숫자 폭
+	private final int pageScale = 5;
 
 	@Autowired
 	private AccomService AccomService;
@@ -44,6 +48,17 @@ public class FestivalController {
 	@Autowired
 	private CourseService courseService;
 	
+	
+	public void BinaryImageToString(FestivalVO festivalVO) {
+
+		ArrayList<String> imageList = new ArrayList<String>();
+		for (Binary img : festivalVO.getImage()) {
+			String image = Base64.getEncoder().encodeToString(img.getData());
+			imageList.add(image);
+		}
+		festivalVO.setImages(imageList);
+
+	}
 
 	 public static Double distance(Double lat1, Double lon1, Double lat2, Double lon2, String unit) {
       	        Double theta = lon1 - lon2;
@@ -111,51 +126,6 @@ public class FestivalController {
 	}
 
 
-//	//축제페이지 가기
-//		@RequestMapping(value = "/mongomonths.do")
-//		public String month(Model model) {
-//			System.out.println("FestivalController 에서 month() 요청");
-//
-//			Calendar cal = Calendar.getInstance();
-//
-//		//현재 년 월 일
-//			int year = cal.get ( cal.YEAR );
-//			int months = cal.get ( cal.MONTH ) + 1 ;
-//			int date = cal.get ( cal.DATE ) ;
-//			String mon = Integer.toString(months);
-//			System.out.println(mon);
-//			List<FestivalVO> list = festivalService.month(mon);
-//
-//
-//
-//			//이미지 뽑기
-//			for (FestivalVO vo : list) {
-//				// ArrayList<Binary> image瑜�
-//				ArrayList<String> imageList = new ArrayList<String>();
-//				for (Binary img : vo.getImage()) {
-//					String image = Base64.getEncoder().encodeToString(img.getData());
-//					imageList.add(image);
-//				}
-//				vo.setImages(imageList);
-//			}
-//
-//			String name = list.get(0).getTitle();
-//			int startdate = list.get(0).getStartDate();
-//			int enddate = list.get(0).getEndDate();
-//
-//			model.addAttribute("list",list);
-//
-//			model.addAttribute("name", name);
-//			model.addAttribute("startdate", startdate);
-//			model.addAttribute("enddate", enddate);
-//
-//			for(FestivalVO i:list) {
-//			System.out.println("여기는"+i.getTitle());
-//		}
-//
-//			return "festival/festival_reset";
-//		}
-
 
 	@RequestMapping(value = "/insert_festival_review.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -185,15 +155,6 @@ public class FestivalController {
 	}
 
 
-	//추천축제할곳
-	@RequestMapping("value=/mongorecommand.do")
-	@ResponseBody
-	public List<FestivalVO> recommand(){
-		List<FestivalVO> list = festivalService.recommand();
-
-		return list;
-	}
-
 
 
 	//축제 상세페이지
@@ -206,7 +167,7 @@ public class FestivalController {
 
 		//이미지 바이너리
 				for (FestivalVO vo : list) {
-					// 몽고디비 ArrayList<Binary> image瑜�
+					// 몽고디비 ArrayList<Binary> image
 					ArrayList<String> imageList = new ArrayList<String>();
 					for (Binary img : vo.getImage()) {
 						String image = Base64.getEncoder().encodeToString(img.getData());
@@ -328,6 +289,10 @@ public class FestivalController {
 		    			vo.setImages(imageList);
 		    			//숙박 거리
 		    			vo.setRange(keys2.get(a));
+		    			
+		    			int averageScore = RestaurantController.scoreAverage(vo.getReviews(), "lodgment");
+		    			System.out.println(averageScore);
+		    			vo.setAverageScore(averageScore);
 		    			
 		    		}
 		        	result2.add(acc);
@@ -521,13 +486,6 @@ public class FestivalController {
 	}
 	
 	
-	//축제 리스트
-	@RequestMapping(value="/festivallist.do")
-	public String festivallist(Model model) {
-		
-		
-		return "festival/festival_list";
-	}
 	
 	
 	//축제 개수뽑기
@@ -612,30 +570,70 @@ public class FestivalController {
 	
 	
 	
-	//축제 리스트
-
-	@RequestMapping(value="festival_list.do")
-	public String festival_list(Model model) {
-		
-		List<FestivalVO> list = festivalService.test();
-		
-		for (FestivalVO vo : list) {
-			//  ArrayList<Binary> image瑜�
-			//System.out.println(vo.get_id());
-			ArrayList<String> imageList = new ArrayList<String>();
-			for (Binary img : vo.getImage()) {
-				String image = Base64.getEncoder().encodeToString(img.getData());
-				imageList.add(image);
-			}
-			vo.setImages(imageList);
+	//축제 리스트 조회
+		@RequestMapping(value="/festival_list.do")
+		public String test2(ModelMap m, @RequestParam(value = "page", defaultValue = "1") int pageNumber, 
+										@RequestParam(value = "region", required = false) String region) {
 			
-		}
-		
-		model.addAttribute("list",list);
-		
-		return "festival/festival_list";
-	}
+			
+			int totalSize;
+	
+			
+			
+			//List<FestivalVO> list = festivalService.test();
+			List<FestivalVO> list = festivalService.selectPageList(pageNumber);
+			int[] scores = new int[list.size()];
+			for (FestivalVO vo : list) {
+				//  ArrayList<Binary> image瑜�
+				//System.out.println(vo.get_id());
+				ArrayList<String> imageList = new ArrayList<String>();
+				for (Binary img : vo.getImage()) {
+					String image = Base64.getEncoder().encodeToString(img.getData());
+					imageList.add(image);
+				}
+				vo.setImages(imageList);
+				
+			}
+			
+			for (int i = 0; i < list.size(); i++) {
+				
+				FestivalVO vo = list.get(i);
+				
+				ArrayList<String> imageList = new ArrayList<String>();
+				for (Binary img : vo.getImage()) {
+					String image = Base64.getEncoder().encodeToString(img.getData());
+					imageList.add(image);
+				}
+				vo.setImages(imageList);
+				
+				scores[i] = RestaurantController.scoreAverage(vo.getReviews(), "festival");
+				
+			}
+			
+				totalSize = (int) festivalService.festivalcount();
 
+					
+
+			// 페이징 처리를 위한 hashmap
+			HashMap<String, Object> resultMap = RestaurantController.getPagingResultMap(pageNumber, pageScale, totalSize);
+			
+			//m.addAttribute("countSum", countSum);
+			//m.addAttribute("regionList", regionList);
+			m.addAttribute("list", list);
+			m.addAttribute("resultMap", resultMap);
+			m.addAttribute("scores", scores);
+			
+			return "festival/festival_list";
+			
+	}
+		
+
+		
+		
+
+
+
+			
 
 
 }

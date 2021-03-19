@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import main.java.model.FestivalDAO;
+import main.java.vo.AccomVO;
 import main.java.vo.FestivalVO;
 import main.java.vo.InstarVO;
 @Service("festivalService")
@@ -28,10 +29,7 @@ public class FestivalServiceImpl implements FestivalService {
 		return festivalDao.month(month);
 	}
 
-	@Override
-	public List<FestivalVO> recommand(){
-		return festivalDao.recommand();
-	}
+
 	@Override
 	public List<FestivalVO> detail(int tel) {
 
@@ -92,6 +90,27 @@ public class FestivalServiceImpl implements FestivalService {
 		// TODO Auto-generated method stub
 		return festivalDao.detail_instar(tel);
 	}
+	
+	
+
+	@Override
+	public List<FestivalVO> selectPageList(int pageNumber){
+		return festivalDao.selectPageList(pageNumber);
+	}
+	
+		
+
+	@Override
+	public List<FestivalVO> getRegionData(String region, int pageNumber) {
+		// TODO Auto-generated method stub
+		return festivalDao.getRegionData(region, pageNumber);
+	}
+	
+	@Override
+	public List<HashMap> groupRegion() {
+		return festivalDao.groupRegion();
+	}
+	
 
 	//관리자에서
 	@Override

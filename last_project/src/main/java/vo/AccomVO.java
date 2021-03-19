@@ -33,6 +33,7 @@ public class AccomVO {
 	private Double range;
 
 	private int views;
+	private int averageScore;
 	
 	public int getViews() {
 		return views;
@@ -158,6 +159,13 @@ public class AccomVO {
 	public void setRange(Double range) {
 		this.range = range;
 	}
+	public int getAverageScore() {
+		return averageScore;
+	}
+	public void setAverageScore(int averageScore) {
+		this.averageScore = averageScore;
+	}
+	
 	
 	
 
