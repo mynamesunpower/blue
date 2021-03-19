@@ -369,7 +369,7 @@ public class FestivalController {
 		// 축제 상세 페이지에서 '코스에 담기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
 		String memberId = (String) session.getAttribute("memberId");
 		List<CourseVO> clist = courseService.viewMycourse(memberId);
-		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("list", list); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("list", list);를 해주게 함.
+		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("clist", clist); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("clist", clist);를 해주게 함.
 		if (list != null) {
 			model.addAttribute("clist", clist);
 		} // 여기까지

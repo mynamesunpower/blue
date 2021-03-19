@@ -5,6 +5,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.AccomService;
+import main.java.service.CourseService;
 import main.java.vo.AccomVO;
+import main.java.vo.CourseVO;
 import main.java.vo.RestaurantVO;
 
 @Controller
@@ -26,6 +30,9 @@ public class AccomController {
 	//의존관계 주입 => AccomServiceImpl 생성
 	@Autowired
 	private AccomService AccomService;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	// 페이징 숫자 폭
 	private final int pageScale = 5;
@@ -101,7 +108,7 @@ public class AccomController {
 	
 	//숙박 상세 페이지
 	@RequestMapping(value="/accommodations_detail.do")
-	public String test3(ModelMap m, @RequestParam("_id") String _id) {
+	public String test3(ModelMap m, @RequestParam("_id") String _id, HttpSession session) {
 		System.out.println("AccomController 상세 요청 : "+ _id);
 		
 		AccomVO vo = AccomService.detail(_id);
@@ -120,6 +127,15 @@ public class AccomController {
 		m.addAttribute("scores", RestaurantController.scoresAverage(reviews, "lodgment"));
 		m.addAttribute("detail", vo);		
 		System.out.println(vo.get_id());
+		
+		// 숙박 상세 페이지에서 '코스에 담기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
+		String memberId = (String) session.getAttribute("memberId");
+		List<CourseVO> clist = courseService.viewMycourse(memberId);
+		// 코스 데이터가 없는 유저의 경우 vo에 아무것도 없기 때문에 model.addAttribute("clist", clist); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("clist", clist);를 해주게 함.
+		if (vo != null) {
+			m.addAttribute("clist", clist);
+		} // 여기까지
+		
 		return "accommodation/accommodations_detail";
 	}
 	

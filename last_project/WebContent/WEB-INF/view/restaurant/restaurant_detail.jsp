@@ -102,9 +102,6 @@
 				<ul>
 					<li><a href="../main.jsp">Home</a>
 					</li>
-					<!-- 로그인 세션이 있다면, Home 클릭 시 mainAfterLogin.jsp로 이동되게-->
-					<!-- <li><a href="mainAfterLogin.jsp">Home</a>
-					</li> -->
 					<li><a href="festival.jsp">축제</a>
 					</li>
 					<li><a href="restaurants_list.do">식당</a>
@@ -585,9 +582,7 @@ marker.setMap(map);
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
-					<div>
-						<h4>- 내 코스 1<span style="padding-left: 250px;"><input type="button" value="선택" class="btn_1" id=""></span></h4>
-						<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
+					<div id="courseList">
 					</div>
 					<div style="text-align: center;">
 						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
@@ -603,16 +598,16 @@ marker.setMap(map);
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myReviewLabel">새 코스 추가</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span id="back" aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div id="message-review">
 					</div>
 					<div class="form-group">
-						<input type="text" placeholder="코스명을 입력해주세요.">
+						<input type="text" placeholder="코스명을 입력해주세요." id="addcourseName">
 					</div>
 					<div style="text-align: center;">
-						<input type="button" value="추가" class="btn btn-success">
+						<input type="button" value="추가" class="btn btn-success" id="addNewcourse">
 						<!-- 추가 누르면 창이 닫히고, 입력한 코스명으로 부모 페이지에 코스가 추가 입력 되어져야함.-->
 					</div>
 				</div>
@@ -852,6 +847,132 @@ marker.setMap(map);
 	<script src="../../js/map_single_restaurant.js"></script>
 	<script src="../../js/infobox.js"></script>
 	-->
+	
+	<!-- 내 코스에 저장 -->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// '선택' 클릭
+			$(document).on("click", "#choice", function(){
+				// 코스명
+				var courseName = $(this).parent().prev().val();
+				// 코스 경로 배열 생성.
+				var coursePath_arr = new Array();
+				// 첫 번째 이미지 가져오기
+				<c:forEach items="${restaurantVO.images}" var="image" begin="0" end="0">
+					var img = "data:image/jpg;base64,${image}"
+				</c:forEach>
+				var data = {
+						"p_id" : "${restaurantVO._id}",
+						"title" : "${restaurantVO.title}",
+						"open_time" : "${restaurantVO.open_time}",
+						"close_time" : "${restaurantVO.close_time}",
+						"rest_day" : "${restaurantVO.rest_day}",
+						"address" : "${restaurantVO.address}",
+						"tel" : "${restaurantVO.tel}",
+						"latitude" : ${restaurantVO.latitude},
+						"longitude" : ${restaurantVO.longitude},
+						"category" : "${restaurantVO.category}",
+						"image" : img
+				}
+				coursePath_arr.push(data)
+					
+				// 콘솔로 확인
+				console.log(coursePath_arr)
+				// 각 코스마다의 _id
+				var cId = $(this).parent().parent().next().val()
+				// 코스 collection에 넣을 데이터.
+				var info = {
+					"_id" : cId,
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName,
+					"coursePath" : coursePath_arr
+				}
+				// 직렬화
+				var jsonData = JSON.stringify(info)
+				$.ajax({
+					type : "POST",
+					url : "course/pushCoursePath.do",
+					contentType: 'application/json;charset=UTF-8',
+					traditional : true,
+					data : jsonData,
+					dataType : "json",					
+					success : function (result) {
+						alert("코스에 담기 완료")
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다: restaurant_detail.jsp --- 코스 담기 에러");
+						console.log("err:"+err)
+					}
+				})  // end of ajax.
+			}) // end of $(document).on("click", "#choice", function()
+		}) // end of jQuery.
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 코스 저장하기 클릭 시 나오는 팝업창에 내가 가진 코스명 리스트 띄워놓기
+			<c:forEach items="${clist}" var="name">
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 코스 _id 써먹어야해서 필요
+				$("#courseList").append(
+					"<input type='hidden' value='${name._id}'>"		
+				);
+			</c:forEach>
+			
+			// '추가' 클릭 시
+			$("#addNewcourse").on('click', function(){
+				var courseName = $("#addcourseName").val();
+				// 팝업창에 입력한 코스명으로 행이 추가 되고
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 창 닫히고
+				$('#back').trigger('click');
+				// 초기화
+				$("#addcourseName").val("");
+				// DB 코스 컬렉션에 document 생성
+				var data = {
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName,
+					"share" : "NO"
+				}
+				var jsonData = JSON.stringify(data)
+				$.ajax({
+					type : "POST",
+					url : "course/addMycourse.do",
+					contentType : 'application/json;charset=UTF-8',
+					data : jsonData,
+					dataType : "json",					
+					success : function (result) {
+						alert("코스 생성 완료");
+						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
+						$.ajax({
+							type : "POST",
+							url : "course/cId.do",
+							contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+							data : data,
+							success : function(data){
+								$("#courseList").append(
+									"<input type='hidden' value="+data+">"		
+								);
+							},
+							error : function(err){
+								alert("에러가 발생했습니다: restaurant_detail.jsp --- 히든 인풋 만들기 에러")
+								alert("err:"+err)
+							}
+						}) // end of ajax.
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다: restaurant_detail.jsp --- 코스 생성 에러");
+						console.log("err:"+err)
+					}
+				}) // end of ajax.
+			}) // end of $("#addNewcourse").on('click', function(){}).
+		}) // end of jQuery.
+	</script>
+	
 </body>
 
 </html>

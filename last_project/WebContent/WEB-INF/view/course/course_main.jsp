@@ -11,7 +11,7 @@
 
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>축축빵빵 - 코스 Main</title>
+	<title>축제로 - 코스 Main</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="../img/logo_img.PNG" type="image/x-icon">
@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-3">
                     <div id="logo_home">
-                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축축빵빵</a></h1>
+                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축제로</a></h1>
                     </div>
                 </div>
                 <nav class="col-9">
@@ -177,8 +177,7 @@
 	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>프로계획러 메이트가 직접 추천하는 축제 코스</h1>
-				<p>사용자 코스 참여 방법</p>
+				<h1>코스 자랑 마당</h1>
 			</div>
 		</div>
 	</section>
@@ -439,9 +438,9 @@
                     <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
                 </div>
                 <div class="col-md-4">
-                    <h3>축축빵빵</h3>
+                    <h3>축제로</h3>
                     <ul>
-                        <li><a href="#">축축빵빵은요!</a></li>
+                        <li><a href="#">축제로은요!</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#sign-in-dialog">로그인</a></li>
                         <li><a href="../member/memberJoin.do">회원가입</a></li>

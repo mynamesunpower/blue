@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.model.RestaurantDAOImpl;
+import main.java.service.CourseService;
 import main.java.service.RestaurantServiceImpl;
+import main.java.vo.CourseVO;
 import main.java.vo.RestaurantVO;
 
 @Controller
@@ -27,6 +31,9 @@ public class RestaurantController {
 
 	@Autowired
 	private RestaurantServiceImpl restaurantService;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	// 페이징 번호 갯수
 	private final int pageScale = 5;
@@ -113,7 +120,7 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value = "restaurant_detail.do", method = RequestMethod.GET)
-	public String restaurantDetail(@RequestParam("_id") String _id, Model model) {
+	public String restaurantDetail(@RequestParam("_id") String _id, Model model, HttpSession session) {
 		System.out.println(_id);
 		
 		// _id (PK)로 식당을 선택해 VO 객체를 가져온다.
@@ -129,6 +136,14 @@ public class RestaurantController {
 		model.addAttribute("restaurantVO", restaurantVO);
 		System.out.println(restaurantVO.getLatitude());
 		System.out.println(restaurantVO.getLongitude());
+		
+		// 식당 상세 페이지에서 '코스에 담기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
+		String memberId = (String) session.getAttribute("memberId");
+		List<CourseVO> clist = courseService.viewMycourse(memberId);
+		// 코스 데이터가 없는 유저의 경우 vo에 아무것도 없기 때문에 model.addAttribute("clist", clist); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("clist", clist);를 해주게 함.
+		if (restaurantVO != null) {
+			model.addAttribute("clist", clist);
+		} // 여기까지
 		
 		return "restaurant/restaurant_detail";
 	}
