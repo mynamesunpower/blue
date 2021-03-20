@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.client.result.UpdateResult;
 
 import main.java.vo.CourseVO;
 
@@ -38,7 +39,7 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 	// 코스 상세보기
 	@Override
-	public CourseVO courseSelect(CourseVO vo, String _id) {
+	public CourseVO courseSelect(String _id) {
 		System.out.println("viewOnecourse DAO 접근");
 		Query query = new Query(Criteria.where("_id").is(_id));
 		return mongoTemplate.findOne(query, CourseVO.class, course);
@@ -126,6 +127,27 @@ public class CourseDAOImpl implements CourseDAO {
 		Query query = new Query(Criteria.where("writer").is(memberId));  // 조건1
 		query.addCriteria(Criteria.where("courseName").is(cname));  // 조건2
 		return mongoTemplate.findOne(query, CourseVO.class, course);
+	}
+	// _id에 있는 reviews ArrayList 가져오기.
+	@Override
+	public ArrayList<HashMap<String, String>> getReviews(String _id) {
+		System.out.println("getReviews DAO 접근");
+		CourseVO vo = mongoTemplate.findById(_id, CourseVO.class, course);
+		return vo.getReviews();
+	}
+	//	ArrayList reviews에 새 review를 담아 업데이트.
+	@Override
+	public int updateCourseReview(ArrayList<HashMap<String, String>> reviews, String _id) {
+		System.out.println("updateCourseReview DAO 접근");
+		
+		Query query = new Query(Criteria.where("_id").is(_id));
+		
+		Update update = new Update();
+		update.set("reviews", reviews);
+		
+		UpdateResult result = mongoTemplate.updateFirst(query, update, course);
+		
+		return (int)result.getModifiedCount();
 	}
 	
 	

@@ -409,40 +409,67 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
-							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							<c:if test="${sessionScope.memberId ne null}">
+								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							</c:if>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">${detail.reviews.size()} Reviews
+							<div id="general_rating">${detail.reviews.size()} 개의 후기
 								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+									<c:forEach begin="1" end="${scores[4]}">
+										<i class="icon-smile voted"></i>
+									</c:forEach>
+									<c:forEach begin="1" end="${5-scores[4]}">
+										<i class="icon-smile"></i>
+									</c:forEach>
 								</div>
 							</div>
 							<!-- End general_rating -->
 							<div class="row" id="rating_summary">
 								<div class="col-md-6">
 									<ul>
-										<li>보라돌이
+										<li>위치
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
-										<li>뚜비
+										<li>재미
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
 									</ul>
 								</div>
 								<div class="col-md-6">
 									<ul>
-										<li>나나
+										<li>비용
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
-										<li>뽀
+										<li>추천도
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
 									</ul>
@@ -604,20 +631,12 @@
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="#" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
+					<form method="post" action="insert_course_review.do" name="review_tour" id="review_tour">
+						<input name="_id" id="_id" type="hidden" value="${detail._id}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="name_review" id="name_review" type="text" placeholder="이름" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="email_review" id="email_review" type="email" placeholder="이메일" class="form-control">
+									<input name="review_userId" id="review_userId" type="text" placeholder="이름" class="form-control" value="${sessionScope.memberId}" disabled>
 								</div>
 							</div>
 						</div>
@@ -629,26 +648,24 @@
 									<label>위치</label>
 									<select class="form-control" name="position_review" id="position_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>청결</label>
-									<select class="form-control" name="guide_review" id="guide_review">
+									<label>비용</label>
+									<select class="form-control" name="price_review" id="price_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
@@ -657,39 +674,34 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>서비스</label>
-									<select class="form-control" name="price_review" id="price_review">
+									<label>재미</label>
+									<select class="form-control" name="fun_review" id="fun_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>가격</label>
-									<select class="form-control" name="quality_review" id="quality_review">
+									<label>추천도</label>
+									<select class="form-control" name="recommend_review" id="recommend_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
 						<div class="form-group">
-							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="항목, 내용들 여기에 알맞게 수정해야해~~.."></textarea>
-						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="인간이라면 답을 적어주세요 4 + 1 = ?">
+							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="이 코스 어떠셨나요? 자세한 후기를 남겨주세요."></textarea>
 						</div>
 						<input type="submit" value="작성" class="btn_1" id="submit-review">
 					</form>
@@ -889,6 +901,85 @@
 				}) // end of ajax.
 			}) // end of $("#addNewcourse").on('click', function(){}).
 		}) // end of jQuery.
+	</script>
+	
+	<!-- 리뷰! -->
+	<script type="text/javascript">
+	// 시간 format 변환
+	function getTimeStamp() {
+	  var d = new Date();
+	
+	  var s =
+	    leadingZeros(d.getFullYear(), 4) + '-' +
+	    leadingZeros(d.getMonth() + 1, 2) + '-' +
+	    leadingZeros(d.getDate(), 2) + ' ' +
+	
+	    leadingZeros(d.getHours(), 2) + ':' +
+	    leadingZeros(d.getMinutes(), 2) + ':' +
+	    leadingZeros(d.getSeconds(), 2);
+	
+	  return s;
+	}
+	
+	function leadingZeros(n, digits) {
+	  var zero = '';
+	  n = n.toString();
+	
+	  if (n.length < digits) {
+	    for (i = 0; i < digits - n.length; i++)
+	      zero += '0';
+	  }
+	  return zero + n;
+	}
+	
+	$('#submit-review').on('click', function() {
+		
+		var date = getTimeStamp();
+		const id = $('#review_userId').val();
+		
+		const review = {
+			'id' : id,
+			'date': date,
+			'content' : $('#review_text').val(),
+			'position': $('#position_review').val(),
+			'price': $('#price_review').val(),
+			'fun': $('#fun_review').val(),
+			'recommend': $('#recommend_review').val()
+		}
+		
+		const _id =	$('#_id').val()
+		
+		$.ajax({
+			type : 'post',
+    		async : true,
+    		url : "insert_course_review.do",
+    		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+    		data : {
+    			'_id': _id,
+ 				'review': review
+    		},
+			success: function(result) {
+				
+				$('#review_text').val("")
+				$('#position_review').val(""),
+				$('#price_review').val(""),
+				$('#fun_review').val(""),
+				$('#recommend_review').val("")
+				
+				if ( result == 1 ) {
+					alert('리뷰가 등록되었습니다.');
+					$('.close').trigger('click');
+					location.replace('courseSelect.do?_id='+_id);
+				}
+				else {
+					alert('리뷰가 등록되질 않았습니다. 왜일까')
+				}
+			},
+			error: function(error) {
+				console.log('에러' + error)
+			}
+		})
+	})
 	</script>
 </body>
 

@@ -51,7 +51,7 @@
 
 	<%@ include file="/../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/main/main_slide3.png" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>코스 자랑 마당</h1>
@@ -66,9 +66,6 @@
 				<ul>
 					<li><a href="../main.jsp">Home</a>
 					</li>
-					<!-- 로그인 세션이 있다면, Home 클릭 시 mainAfterLogin.jsp로 이동되게-->
-					<!-- <li><a href="mainAfterLogin.jsp">Home</a>
-					</li> -->
 					<li><a href="course_main.do">코스</a>
 					</li>
 					<li>코스 자랑 마당</li>
@@ -91,21 +88,21 @@
 
 					<div class="box_style_cat">
 						<ul id="cat_nav">
-							<li><a href="#" id="active"><i class="icon-users"></i>가족과 함께<span>(141)</span></a>
+							<li><a href="javascript:void(0);" id="active"><i class="icon-users"></i>가족과 함께<span>(141)</span></a>
 							</li>							
-							<li><a href="#"><i class="icon-heart-8"></i>연인과 함께<span>(16)</span></a>
+							<li><a href="javascript:void(0);"><i class="icon-heart-8"></i>연인과 함께<span>(16)</span></a>
 							</li>
-							<li><a href="#"><i class="icon-school"></i>메이트와 함께 <span>(12)</span></a>
+							<li><a href="javascript:void(0);"><i class="icon-school"></i>메이트와 함께 <span>(12)</span></a>
 							</li>
-							<li><a href="#"><i class="icon-guidedog"></i>반려동물과 함께 <span>(08)</span></a>
+							<li><a href="javascript:void(0);"><i class="icon-guidedog"></i>반려동물과 함께 <span>(08)</span></a>
 							</li>
-							<li><a href="#"><i class="icon-thumbs-up-5"></i>오감만족 코스 <span>(11)</span></a>
+							<li><a href="javascript:void(0);"><i class="icon-thumbs-up-5"></i>오감만족 코스 <span>(11)</span></a>
 							</li>
-							<li><a href="#"><i class="icon-picture-1"></i>눈 정화 코스 <span>(20)</span></a>
+							<li><a href="javascript:void(0);"><i class="icon-picture-1"></i>눈 정화 코스 <span>(20)</span></a>
 							</li>
-							<li><a href="#"><i class="icon-headphones-3"></i>귀 정화 코스 <span>(11)</span></a>
+							<li><a href="javascript:void(0);"><i class="icon-headphones-3"></i>귀 정화 코스 <span>(11)</span></a>
 							</li>
-							<li><a href="#"><i class="icon-adult"></i>나홀로 YOLO<span>(20)</span></a>
+							<li><a href="javascript:void(0);"><i class="icon-adult"></i>나홀로 YOLO<span>(20)</span></a>
 							</li>
 						</ul>
 					</div>
@@ -193,7 +190,7 @@
 								</div>
 							</div>
 							<div class="col-md-9 col-sm-4 d-none d-sm-block text-right">
-								<a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="javascript:void(0);" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 						</div>
 					</div>
@@ -285,8 +282,8 @@
 							</li>
 							<li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span></span>
 							</li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+							<li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
 							<li class="page-item">
 								<a class="page-link" href="#" aria-label="Next">
 									<span aria-hidden="true">&raquo;</span>

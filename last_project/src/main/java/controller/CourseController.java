@@ -52,10 +52,15 @@ public class CourseController {
 	
 	// 코스 상세보기 진입
 	@RequestMapping(value = "courseSelect.do")
-	public String courseDetail(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
-		CourseVO cvo = courseService.courseSelect(vo, _id);
-		model.addAttribute("detail", cvo);
+	public String courseDetail(Model model, HttpSession session, @RequestParam String _id) {
+		CourseVO vo = courseService.courseSelect(_id);
+		model.addAttribute("detail", vo);
 		
+		ArrayList<HashMap<String, String>> reviews = vo.getReviews();
+		// 에러 나네
+//		model.addAttribute("scores", RestaurantController.scoresAverage(reviews, "course"));
+		
+		// '코스 저장하기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
 		String memberId = (String) session.getAttribute("memberId");
 		List<CourseVO> list = courseService.viewMycourse(memberId);
 		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("list", list); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("list", list);를 해주게 함.
@@ -160,5 +165,21 @@ public class CourseController {
 	public String cId(CourseVO vo) {
 		CourseVO cvo = courseService.cId(vo.getWriter(), vo.getCourseName());
 		return cvo.get_id().toString();
-	}	
+	}
+	
+	// 리뷰 입력
+	@RequestMapping(value = "insert_course_review.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int insertCourseReview(CourseVO vo, String _id) {
+		HashMap<String, String> review = vo.getReview();
+		String id = review.get("id");
+
+		// 현재 데이터의 리뷰 List 가져오기
+		ArrayList<HashMap<String, String>> reviews = courseService.getReviews(_id);
+		// List에 review를 추가.
+		reviews.add(review);
+		// 바뀐 list로 update 쿼리 실행
+		int result = courseService.updateCourseReview(reviews, _id);
+		return result;
+	}
 }

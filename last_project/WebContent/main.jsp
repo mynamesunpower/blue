@@ -30,11 +30,15 @@
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
 
-    <!-- REVOLUTION SLIDER CSS -->
+    <!-- REVOLUTION SLIDER CSS
 	<link rel="stylesheet" type="text/css" href="rev-slider-files/fonts/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="rev-slider-files/css/settings.css">
+     -->
+    
+    <!-- REVOLUTION SLIDER CSS -->
+	<link href="../layerslider/css/layerslider.css" rel="stylesheet">
 
-    <!-- REVOLUTION LAYERS STYLES -->
+    <!-- REVOLUTION LAYERS STYLES 
 	<style>
 		.tp-caption.News-Title,
 		.News-Title {
@@ -109,7 +113,7 @@
 			height: 100%
 		}
 	</style>
-	
+	-->
 	
 	<!-- 마커별 정보표시 css -->
 	 <style>
@@ -187,53 +191,36 @@
 	<%@ include file="/../header.jsp" %>
 
 	<main>
-        <!-- Slider -->
-		<div id="rev_slider_13_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="highlight-carousel1" data-source="gallery" style="margin:0px auto;background:#000000;padding:0px;margin-top:0px;margin-bottom:0px;">
-			<!-- START REVOLUTION SLIDER 5.4.1 fullwidth mode -->
-			<div id="rev_slider_13_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
-				<ul>
-					<!-- SLIDE  -->
-					<li data-index="rs-30" data-transition="slideoverhorizontal" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="rev-slider-files/assets/100x50_newspaper_bg1.jpg" data-rotate="0" data-fstransition="fade" data-fsmasterspeed="1000" data-fsslotamount="7" data-saveperformance="off" data-title="Discover" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-						<!-- MAIN IMAGE -->
-						<img src="img/main/main_slide1.png" alt="" data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-						<!-- LAYERS -->
-
-						<!-- LAYER NR. 1 -->
-						<div class="tp-caption News-Title   tp-resizeme" id="slide-30-layer-1" data-x="['left','left','left','left']" data-hoffset="['80','80','40','40']" data-y="['top','top','top','top']" data-voffset="['450','450','274','274']" data-fontsize="['50','65','50','50']" data-lineheight="['60','60','50','50']" data-width="364" data-height="133" data-whitespace="normal" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5; min-width: 364px; max-width: 364px; max-width: 133px; max-width: 133px; white-space: normal; font-size: 65px;font-family:Montserrat;">모든 축제<br> 정보 </div>
-
-						<!-- LAYER NR. 2 -->
-						<div class="tp-caption   tp-resizeme" id="slide-30-layer-2" data-x="['left','left','left','left']" data-hoffset="['80','80','40','40']" data-y="['top','top','top','top']" data-voffset="['587','587','382','382']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6;"><img src="rev-slider-files/assets/bluebar.png" alt="" data-ww="['350px','350px','350px','350px']" data-hh="['4px','4px','4px','4px']" data-no-retina> </div>
-
-						<!-- LAYER NR. 3 -->
-						<div class="tp-caption News-Subtitle   tp-resizeme" id="slide-30-layer-3" data-x="['left','left','left','left']" data-hoffset="['81','81','41','41']" data-y="['top','top','top','top']" data-voffset="['605','605','401','401']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"},{"frame":"hover","speed":"300","ease":"Power3.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 0.65);br:0 0 0px 0;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:pointer;">전국 모든 축제 정보와 주변 숙소, 식당을<br> 확인해보세요. </div>
-
-						<!-- LAYER NR. 4 -->
-                        <div class="tp-caption -   tp-resizeme" id="slide-30-layer-4" data-x="['left','left','left','left']" data-hoffset="['360','423','383','383']" data-y="['top','top','top','top']" data-voffset="['607','607','403','403']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(0,210,255,1);"><div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="" role="button">더 알아보기</a></div></div>
-					</li>
-					<!-- SLIDE  -->
-
-					<li data-index="rs-32" data-transition="slideoverhorizontal" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="assets/100x50_newspaper_bg2.jpg" data-rotate="0" data-saveperformance="off" data-title="Trip" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-						<!-- MAIN IMAGE -->
-						<img src="img/main/main_slide3.png" alt="" data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-						<!-- LAYERS -->
-
-						<!-- LAYER NR. 9 -->
-						<div class="tp-caption News-Title   tp-resizeme" id="slide-32-layer-1" data-x="['left','left','left','left']" data-hoffset="['80','80','40','40']" data-y="['top','top','top','top']" data-voffset="['450','450','269','269']" data-fontsize="['50','70','50','50']" data-lineheight="['60','60','50','50']" data-width="364" data-height="133" data-whitespace="normal" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5; min-width: 364px; max-width: 364px; max-width: 133px; max-width: 133px; white-space: normal;font-family:Montserrat;">축제 코스<br>추천 </div>
-
-						<!-- LAYER NR. 10 -->
-						<div class="tp-caption   tp-resizeme" id="slide-32-layer-2" data-x="['left','left','left','left']" data-hoffset="['80','80','40','40']" data-y="['top','top','top','top']" data-voffset="['587','587','382','382']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6;"><img src="rev-slider-files/assets/bluebar.png" alt="" data-ww="" data-hh="" data-no-retina> </div>
-
-						<!-- LAYER NR. 11 -->
-						<div class="tp-caption News-Subtitle   tp-resizeme" id="slide-32-layer-3" data-x="['left','left','left','left']" data-hoffset="['81','81','41','41']" data-y="['top','top','top','top']" data-voffset="['605','605','401','401']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"},{"frame":"hover","speed":"300","ease":"Power3.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 0.65);br:0 0 0px 0;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:pointer;">어디를 가야할지 모르겠다구요? </div>
-
-						<!-- LAYER NR. 12 -->
-                        <div class="tp-caption -   tp-resizeme" id="slide-30-layer-4" data-x="['left','left','left','left']" data-hoffset="['360','423','383','383']" data-y="['top','top','top','top']" data-voffset="['607','607','403','403']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(0,210,255,1);"><div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="course/course_main.do" role="button">더 알아보기</a></div></div>
-					</li>
-				</ul>
-				<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+		<!-- Slider -->
+		<div id="full-slider-wrapper">
+			<div id="layerslider" style="width:100%;height:600px;">
+				<div class="ls-slide" data-ls="slidedelay: 2500; transition2d:4;">
+					<img src="img/main/main_slide1.png" class="ls-bg" alt="Slide background">
+					<h3 class="ls-l slide_typo" style="top: 52%; left:50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;" >모든 축제 정보</h3>
+					<p class="ls-l slide_typo_2" style="top:67%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">전국 모든 축제 정보와 주변 숙소, 식당을 확인해보세요.</p>
+					<a class="ls-l button_intro_2 outline" style="top:450px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='festival.do'>자세히 보기</a>
+				</div>
+				<div class="ls-slide" data-ls="slidedelay: 2500; transition2d:4;">
+					<img src="img/main/main_slide3.png" class="ls-bg" alt="Slide background">
+					<h3 class="ls-l slide_typo" style="top: 52%; left:50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">축제 코스 추천</h3>
+					<p class="ls-l slide_typo_2" style="top:67%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">어디를 가야할지 모르겠다구요?</p>
+					<a class="ls-l button_intro_2 outline" style="top:450px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='course_main.do'>자세히 보기</a>
+				</div>
+				<div class="ls-slide" data-ls="slidedelay: 2500; transition2d:4;">
+					<img src="img/restaurant/main.jpg" class="ls-bg" alt="Slide background">
+					<h3 class="ls-l slide_typo" style="top: 52%; left:50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">식당 정보</h3>
+					<p class="ls-l slide_typo_2" style="top:67%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">숨은 맛집 찾아라</p>
+					<a class="ls-l button_intro_2 outline" style="top:450px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='/restaurants_list.do'>자세히 보기</a>
+				</div>
+				<div class="ls-slide" data-ls="slidedelay: 2500; transition2d:4;">
+					<img src="img/accommodation/main.png" class="ls-bg" alt="Slide background">
+					<h3 class="ls-l slide_typo" style="top: 52%; left:50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">숙박 정보</h3>
+					<p class="ls-l slide_typo_2" style="top:67%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">꿀잠자야지~</p>
+					<a class="ls-l button_intro_2 outline" style="top:450px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='/accommodations_list.do'>자세히 보기</a>
+				</div>
 			</div>
 		</div>
-		<!-- END REVOLUTION SLIDER -->
+		<!-- End layerslider -->
         <div class="white_bg">
             <div class="container margin_60">
                 <div class="row small-gutters categories_grid">
@@ -602,11 +589,29 @@
     <script src="js/common_scripts_min.js"></script>
     <script src="js/functions.js"></script>
 
-    <!-- 로그인 -->
+    <!-- 상단 캐러셀-->
+	<script src="js/jquery-migrate.min.js"></script>
+	<script src="layerslider/js/greensock.js"></script>
+	<script src="layerslider/js/layerslider.transitions.js"></script>
+	<script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			'use strict';
+			$('#layerslider').layerSlider({
+				autoStart: true,
+				responsive: true,
+				responsiveUnder: 1280,
+				layersContainer: 1170,
+				skinsPath: 'layerslider/skins/'
+					// Please make sure that you didn't forget to add a comma to the line endings
+					// except the last line!
+			});
+		});
+	</script>
 
 
 
-    <!-- SLIDER REVOLUTION SCRIPTS  -->
+    <!-- SLIDER REVOLUTION SCRIPTS  
     <script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.tools.min.js"></script>
 	<script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.revolution.min.js"></script>
 	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.actions.min.js"></script>
@@ -706,6 +711,8 @@
 				}
 			});	/*ready*/
 	</script>
+	-->
+	 
 	
 	
 	 
