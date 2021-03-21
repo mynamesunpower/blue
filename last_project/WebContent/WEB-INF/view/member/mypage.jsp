@@ -81,9 +81,7 @@
 								</li>
 								<li><a href="#lostArea"><i class="icon_set_1_icon-42"></i>분실물 제보 게시판</a>
 								</li>
-								<li><a href="#inquireArea"><i class="icon_set_1_icon-57"></i>문의하기</a>
-								</li>
-								<li><a href="#inquire2Area"><i class="icon_set_1_icon-85"></i>실시간 1:1 문의 </a>
+								<li><a href="#inquire2Area"><i class="icon_set_1_icon-85"></i>1:1 문의 </a>
 								</li>
 							</ul>
 						</div>
@@ -334,7 +332,7 @@
 					<!-- 1:1 문의 start-->
 					<div class="col-lg-12 add_bottom_15">
 						<div class="form_title">
-							<h3><strong class="icon_set_1_icon-85"></strong>실시간 1:1 문의</h3>
+							<h3><strong class="icon_set_1_icon-85"></strong>1:1 문의</h3>
 							<a class="memberChat" href="#">관리자와 채팅</a>
 						</div>
 						<div id="inquire2Area">
@@ -349,12 +347,12 @@
 
 										<div class="msg-bubble">
 										  <div class="msg-info">
-											<div class="msg-info-name">BOT</div>
+											<div class="msg-info-name">미구현 봇</div>
 											<div class="msg-info-time">12:45</div>
 										  </div>
 
 										  <div class="msg-text">
-											안녕하세요, 무엇을 도와드릴까요? 😄
+											묻지 말아 주세요 😄
 										  </div>
 										</div>
 									  </div>
@@ -477,7 +475,7 @@
 
 			var url = "../CustomerService/memberChat.do?memberId="+$('#mem_id').val();
 			var pop_title = "관리자와 대화하기";
-			var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+			var option = "width = 350, height = 650, top = 100, left = 200, location = no";
 
 			window.open(url, pop_title, option);
 		}

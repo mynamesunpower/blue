@@ -37,7 +37,7 @@
 	@media screen and (min-width: 769px) { 
 
 	.carousel_parallax, div#position, div#map {
-		width: 58%;
+		width: 58% !important;
 		margin: 0 auto;
 	} 
 

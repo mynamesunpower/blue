@@ -10,6 +10,32 @@
 	float: left;
 	margin: 5px;
 }
+
+body {
+	text-align: center;
+}
+
+#messageTextArea {
+	width: 300px;
+	height: 540px;
+	resize: none;
+	margin-bottom: 10px;
+	overflow-y: auto;
+}
+
+form {
+	
+}
+
+#textMessage {
+	width: 240px;
+	height: 30px;
+}
+
+#send {
+	width: 50px;
+	height: 30px;
+}
 </style>
 </head>
 <body>

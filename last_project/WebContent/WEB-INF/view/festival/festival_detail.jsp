@@ -1431,6 +1431,7 @@ function getTimeHTML(distance) {
 					"_id" : cId,
 					"writer" : "${sessionScope.memberId}",
 					"courseName" : courseName,
+					"reviews": new Array(),
 					"coursePath" : coursePath_arr
 				}
 				// 직렬화
@@ -1482,6 +1483,7 @@ function getTimeHTML(distance) {
 				var data = {
 					"writer" : "${sessionScope.memberId}",
 					"courseName" : courseName,
+					"reviews": new Array(),
 					"share" : "NO"
 				}
 				var jsonData = JSON.stringify(data)

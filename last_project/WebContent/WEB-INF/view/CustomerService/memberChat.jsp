@@ -19,6 +19,7 @@
         height: 540px;
         resize: none;
         margin-bottom: 10px;
+        overflow-y: auto;
     }
     
     form {
@@ -95,7 +96,8 @@
         
 		// **서버로부터 메시지가 도착하면 콘솔 화면에 메시지를 남긴다.
 		webSocket.onmessage = function(message) {
-			messageTextArea.value += "(operator) => " + message.data + "\n";
+			messageTextArea.value += " 운영자 ▷ " + message.data + "\n\n";
+			document.documentElement.scrollTop = document.body.scrollHeight;
 		};
         
     

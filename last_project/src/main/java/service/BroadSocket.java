@@ -17,8 +17,6 @@ import main.java.admin.AdminCSController;
 @ServerEndpoint("/broadsocket")
 public class BroadSocket {
 	
-	private AdminCSController adminCScontroller;
-	
 	// searchUser 함수의 filter 표현식을 위한 인터페이스
 	private interface SearchExpression {
 		// 람다식을 위한 함수
@@ -108,7 +106,6 @@ public class BroadSocket {
 			// 운영자 Client에 유저 key로 접속 종료를 알린다.
 			AdminChat.bye(user.key);
 			System.out.println("유저 종료");
-			adminCScontroller.chatClose();
 			// 위 유저 접속 리스트에서 유저를 삭제한다.
 			sessionUsers.remove(user);
 		}

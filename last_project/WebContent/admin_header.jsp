@@ -45,7 +45,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- 대시보드 -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="/admin_index.jsp" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -53,7 +53,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li> <!-- 대시보드 끝 -->
+          </li> --> <!-- 대시보드 끝 -->
           
           <!-- 회원관리 -->
           <li class="nav-item">
@@ -184,24 +184,24 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-                <li class="nav-item">
+               <!--  <li class="nav-item">
                 <a href="/admin/admin_customer_question.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 문의 관리</p>
                 </a>
-              </li>
+              </li>  -->
               <li class="nav-item">
                 <a href="/admin/admin_customer_chat.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 1:1 채팅</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!--<li class="nav-item">
                 <a href="/admin/admin_lost.jsp" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>분실물 관리</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li> <!-- 고객센터 끝 -->
             
