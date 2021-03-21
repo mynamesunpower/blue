@@ -490,7 +490,7 @@
 									</div>
 								</div>
 								<!-- End review strip -->
-							</c:forEach>							
+							</c:forEach>
 						</div>
 					</div>
 				</div>

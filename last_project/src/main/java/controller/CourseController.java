@@ -58,7 +58,7 @@ public class CourseController {
 		
 		ArrayList<HashMap<String, String>> reviews = vo.getReviews();
 		// 에러 나네
-//		model.addAttribute("scores", RestaurantController.scoresAverage(reviews, "course"));
+//		model.addAttribute("scores", scoresAverage(reviews, "position"));
 		
 		// '코스 저장하기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
 		String memberId = (String) session.getAttribute("memberId");
@@ -181,5 +181,32 @@ public class CourseController {
 		// 바뀐 list로 update 쿼리 실행
 		int result = courseService.updateCourseReview(reviews, _id);
 		return result;
+	}
+	
+	public static int[] scoresAverage(ArrayList<HashMap<String, String>> reviews, String firstScoreName) {
+		
+		int[] scores = new int[5];
+		int[] scoresAvg = new int[5];
+		
+		// 리뷰가 없을  경우엔
+		if (reviews.size() > 0) {
+			
+			for (HashMap<String, String> review : reviews) {
+				
+				scores[0] += Integer.parseInt(review.get(firstScoreName));
+				scores[1] += Integer.parseInt(review.get("price"));
+				scores[2] += Integer.parseInt(review.get("fun"));
+				scores[3] += Integer.parseInt(review.get("recommend"));
+				scores[4] = (scores[0] + scores[1] + scores[2] + scores[3]) / 4;
+				
+			}
+			
+			for (int i = 0; i < scoresAvg.length; i++) {
+				scoresAvg[i] = scores[i]/reviews.size();
+			}
+			
+		}
+		
+		return scoresAvg;
 	}
 }
