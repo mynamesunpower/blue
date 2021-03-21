@@ -77,7 +77,7 @@ $(document).ready(function(){
 	        				location.replace(document.location.href);
 	        			}
 	        			else if(result=="admin") {
-	        				location.replace('../admin_index.jsp')
+	        				location.replace('http://localhost:8080/admin/admin_member.do')
 	        			}
 	        			else {
 	        				$("#loginId").val("");
