@@ -29,6 +29,17 @@
 
 	<!-- CUSTOM CSS -->
 	<link href="../css/custom.css" rel="stylesheet">
+	<style>
+	@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}
+	</style>
 </head>
 
 <body>

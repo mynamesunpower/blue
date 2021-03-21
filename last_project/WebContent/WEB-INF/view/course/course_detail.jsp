@@ -31,6 +31,17 @@
 	<link href="../css/custom.css" rel="stylesheet">
 	<link href="../css/tourDetail.css" rel="stylesheet">
 	<link href="../css/Maptest.css" rel="stylesheet">
+	<style>
+	@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}
+	</style>
 </head>
 
 <body>
@@ -49,7 +60,7 @@
 
 
 	<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0"> <!-- 첫 번째 장소의 이미지가 대문 이미지가 되게 -->
-		<section class="parallax-window" data-parallax="scroll" data-image-src="${coursePath.image}" data-natural-width="1400" data-natural-height="470">
+		<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="${coursePath.image}" data-natural-width="1400" data-natural-height="470">
 			<div class="parallax-content-2">
 				<div class="container">
 					<div class="row">

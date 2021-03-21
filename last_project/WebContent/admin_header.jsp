@@ -15,7 +15,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="admin_index.jsp" class="nav-link">Home</a>
+        <a href="/admin_index.jsp" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -64,7 +64,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">관리자1</a>
@@ -88,7 +88,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- 대시보드 -->
           <li class="nav-item">
-            <a href="admin_index.jsp" class="nav-link active">
+            <a href="/admin_index.jsp" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 대시보드
@@ -108,14 +108,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="admin/admin_member.do" class="nav-link">
+              <a href="/admin/admin_member.do" class="nav-link">
                 <!--<a href="admin/admin_member.jsp" class="nav-link">  -->
                   <i class="far fa-circle nav-icon"></i>
                   <p>일반 회원 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_mate.jsp" class="nav-link">
+                <a href="/admin/admin_mate.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 관리</p>
                 </a>
@@ -134,19 +134,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin/admin_festival.do" class="nav-link">
+                <a href="/admin/admin_festival.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_lodgment.do" class="nav-link">
+                <a href="/admin/admin_lodgment.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>숙박 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_restaurant.do" class="nav-link">
+                <a href="/admin/admin_restaurant.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>식당 정보 관리</p>
                 </a>
@@ -165,13 +165,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin/admin_course.jsp" class="nav-link">
+                <a href="/admin/admin_course.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 정보 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_course_statistic.jsp" class="nav-link">
+                <a href="/admin/admin_course_statistic.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>코스 통계</p>
                 </a>
@@ -190,25 +190,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin/admin_festival_review.jsp" class="nav-link">
+                <a href="/admin/admin_festival_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_restaurant_review.jsp" class="nav-link">
+                <a href="/admin/admin_restaurant_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>식당 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_lodgment_review.jsp" class="nav-link">
+                <a href="/admin/admin_lodgment_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>숙박 리뷰 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_mate_review.jsp" class="nav-link">
+                <a href="/admin/admin_mate_review.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>메이트 리뷰 관리</p>
                 </a>
@@ -227,19 +227,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="admin/admin_customer_question.do" class="nav-link">
+                <a href="/admin/admin_customer_question.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 문의 관리</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_customer_chat.do" class="nav-link">
+                <a href="/admin/admin_customer_chat.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>고객 1:1 채팅</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_lost.jsp" class="nav-link">
+                <a href="/admin/admin_lost.jsp" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>분실물 관리</p>
                 </a>
@@ -258,13 +258,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="admin/admin_what.do" class="nav-link">
+                <a href="/admin/admin_what.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>지역별 축제 분포</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/admin_what2.do" class="nav-link">
+                <a href="/admin/admin_what2.do" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>축제 입장료 유/무</p>
                 </a>

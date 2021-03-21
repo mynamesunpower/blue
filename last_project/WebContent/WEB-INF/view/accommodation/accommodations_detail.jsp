@@ -65,6 +65,16 @@
 .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+
+@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58% !important;
+		margin: 0 auto;
+	} 
+
+
+}
 </style>
 
 </head>
@@ -84,7 +94,7 @@
 	<%@ include file="../../../header.jsp" %>
 
 
-		<section class="parallax-window" data-parallax="scroll"
+		<section class="parallax-window carousel_parallax" data-parallax="scroll"
 			<c:choose>
 				<c:when test="${detail.images.size() gt 0}">
 				data-image-src="data:image/jpg;base64,${detail.images.get(0)}" data-natural-width="1400"

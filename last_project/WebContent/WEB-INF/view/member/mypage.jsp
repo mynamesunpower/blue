@@ -31,6 +31,16 @@
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
 	<link href="css/realtime_inquire.css" rel="stylesheet">
+	<style>
+	@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+}
+	</style>
 </head>
 
 <body>
@@ -47,7 +57,7 @@
 
 	<%@ include file="../../../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/restaurant_top.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="img/restaurant_top.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>마이 페이지에용~</h1>
@@ -446,7 +456,7 @@
 
 		function openPop() {
 
-			var url = "../CustomerService/memberChat.do";
+			var url = "../CustomerService/memberChat.do?memberId="+$('#mem_id').val();
 			var pop_title = "관리자와 대화하기";
 			var option = "width = 500, height = 500, top = 100, left = 200, location = no";
 

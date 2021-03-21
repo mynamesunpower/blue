@@ -92,5 +92,14 @@ public class AdminCSController {
 		return "admin/adminChat";
 	}
 	
+	// Admin의 고객센터 1:1 채팅 입장 요청
+	@RequestMapping(value = "admin/chatClose.do")
+	@ResponseBody
+	public String chatClose() {
+		System.out.println("챗 종료 요청");
+		return "zzz";
+	}
+		
+	
 	
 }

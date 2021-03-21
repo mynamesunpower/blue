@@ -4,9 +4,10 @@
 <html>
 <head>
 <title>축제로 | 고객센터 채팅</title>
-</head>
-    
-<style>
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+
+<style type="text/css">
     
     body {
         text-align: center;
@@ -34,6 +35,10 @@
     }
     
 </style>
+
+
+</head>
+    
 <body>
 	<br/>
 	<!-- 서버와 메시지를 주고 받는 콘솔 텍스트 영역 -->
@@ -62,6 +67,23 @@
 		// 접속이 끝기는 경우는 브라우저를 닫는 경우이기 떄문에 이 이벤트는 의미가 없음.
 		webSocket.onclose = function(message) {
             // 부모 창에 console.log(찍어보기)
+            /* $.ajax({
+				type: 'post',
+				url: '../admin/chatClose.do',
+				contentType:'application/x-www-form-urlencoded;charset=euc-kr', // 한글처리
+				data: {
+					'id': request.getParameter('memberId')
+				},
+				success: function(result) {
+					console.log('닫을 때 성공')
+				},
+				error: function(error) {
+					console.log(error)
+				},
+				complete: function(complete) {
+					console.log('닫기가 끝나따')
+				}
+			}) */
 		};
         
 		// 에러가 발생하면
@@ -129,6 +151,27 @@
 			}
 			return true;
 		}
+		
+		
 	</script>
+	<script type="text/javascript">  
+    var Request = function() {  
+        this.getParameter = function(name) {  
+            var rtnval = '';  
+            var nowAddress = unescape(location.href);  
+            var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
+                    nowAddress.length)).split('&');  
+            for (var i = 0; i < parameters.length; i++) {  
+                var varName = parameters[i].split('=')[0];  
+                if (varName.toUpperCase() == name.toUpperCase()) {  
+                    rtnval = parameters[i].split('=')[1];  
+                    break;  
+                }  
+            }  
+            return rtnval;  
+        }  
+    }  
+    var request = new Request();  
+</script>  
 </body>
 </html>
