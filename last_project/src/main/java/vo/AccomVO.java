@@ -19,7 +19,7 @@ public class AccomVO {
 	private String parking;
 	private double latitude;
 	private double longitude;
-	
+
 	private String title;
 	private String address;
 	private String tel;
@@ -34,7 +34,7 @@ public class AccomVO {
 
 	private int views;
 	private int averageScore;
-	
+
 	public int getViews() {
 		return views;
 	}
@@ -91,8 +91,8 @@ public class AccomVO {
 		this.title = title;
 	}
 
-	
-	
+
+
 	public String getAddress() {
 		return address;
 	}
@@ -105,8 +105,8 @@ public class AccomVO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	
-	
+
+
 	public String getCheckin() {
 		return checkin;
 	}
@@ -119,15 +119,15 @@ public class AccomVO {
 	public void setCheckout(String checkout) {
 		this.checkout = checkout;
 	}
-	
-	
+
+
 	public String getBooking_url() {
 		return booking_url;
 	}
 	public void setBooking_url(String booking_url) {
 		this.booking_url = booking_url;
 	}
-	
+
 	public ArrayList<String> getImages() {
 		return images;
 	}
@@ -165,9 +165,9 @@ public class AccomVO {
 	public void setAverageScore(int averageScore) {
 		this.averageScore = averageScore;
 	}
-	
-	
-	
+
+
+
 
 
 }

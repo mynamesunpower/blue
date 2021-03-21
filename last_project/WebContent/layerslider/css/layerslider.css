@@ -9,13 +9,13 @@
 */
 
 /** Layes slider typography ab buttons **/   
-h3.slide_typo {lwhite-space:nowrap; color:#fff !important; font-weight:normal; text-transform:uppercase; font-size:40px;line-height:1.2;font-weight:900;font-family: 'Montserrat', sans-serif;}
-.slide_typo_2{color:#fff; font-size:16px; white-space:nowrap; text-transform:uppercase}
+h3.slide_typo {lwhite-space:nowrap; color:black !important; font-weight:bold; text-transform:uppercase; font-size:50px;line-height:1.2;font-weight:900;font-family: 'Montserrat', sans-serif;}
+.slide_typo_2{color:black; font-size:22px; white-space:nowrap; text-transform:uppercase}
 a.button_intro_2, .button_intro_2  {
 	border: none;
 	font-weight:normal;
 	font-style:normal;
-	color:#fff !important;
+	color:black !important;
 	background: #e04f67;
 	cursor: pointer;
 	padding: 10px 20px;
@@ -34,12 +34,13 @@ a.button_intro_2, .button_intro_2  {
 	font-weight:900;
 }
 a.button_intro_2:hover, .button_intro_2:hover {
+	border: 2px solid #fff;
 	background: #fff;
 	color:#e04f67 !important;
 }
 a.button_intro_2.outilne, .button_intro_2.outline  {
-	border: 2px solid #fff;
-	color:#fff;
+	border: 2px solid black;
+	color: #fff;
 	background: none;
 	padding: 8px 18px;
 }

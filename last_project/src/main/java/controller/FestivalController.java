@@ -35,7 +35,7 @@ import main.java.vo.InstarVO;
 public class FestivalController {
 	@Autowired
 	private FestivalService festivalService;
-	
+
 	// 페이징 숫자 폭
 	private final int pageScale = 5;
 
@@ -44,11 +44,11 @@ public class FestivalController {
 
 	@Autowired
 	private  RestaurantService restaurantService;
-	
+
 	@Autowired
 	private CourseService courseService;
-	
-	
+
+
 	public void BinaryImageToString(FestivalVO festivalVO) {
 
 		ArrayList<String> imageList = new ArrayList<String>();
@@ -163,7 +163,7 @@ public class FestivalController {
 		System.out.println("FestivalController 에서 details.do 요청");
 
 		List<FestivalVO> list = festivalService.detail(tel);
-		
+
 
 		//이미지 바이너리
 				for (FestivalVO vo : list) {
@@ -185,7 +185,7 @@ public class FestivalController {
 		double longitude = list.get(0).getLongitude();
 
 
-		//주변 식당 정보 가져오기 
+		//주변 식당 정보 가져오기
 		List<RestaurantVO> lists = restaurantService.selectAll();
 
 		for(RestaurantVO vo : lists) {
@@ -200,23 +200,23 @@ public class FestivalController {
 
 			map.put(distanceMeter, vo.get_id());
 		}
-		
-				
-			
+
+
+
 			   List<Double> keySet = new ArrayList<>(map.keySet());
 			   System.out.println("식당:"+keySet);
 		        System.out.println("==Key 값 기준으로 오름차순 정렬==");
 		        List<Double> keys = new ArrayList<>(map.keySet());
 		        Collections.sort(keys);
-		        
+
 		        System.out.println("식당sssssss:"+keys);
 		        List<RestaurantVO> res= null;
 		        List<List<RestaurantVO>> result = new ArrayList<>();
 		        for(int i=0; i<=2; i++) {
-		      
+
 		        	res= restaurantService.selectnear(map.get(keys.get(i)));
-		        	
-		    
+
+
 
 		        	for (RestaurantVO vo : res) {
 
@@ -228,57 +228,57 @@ public class FestivalController {
 		    			vo.setImages(imageList);
 		    			//식당 거리
 		    			vo.setRange(keys.get(i));
-		    			
+
 		    			int averageScore = RestaurantController.scoreAverage(vo.getReviews(), "food");
 		    			System.out.println(averageScore);
 		    			vo.setAverageScore(averageScore);
-		    			
+
 		    		}
 
 
 		        	result.add(res);
-		        	
+
 
 		        }	//여기까지 식당 정보
-		        
-		        
-		       
-		        
+
+
+
+
 		        Map<Double, Object> accommap = new HashMap<Double, Object>();
-		       
+
 		        //숙박 정보 가져오기
-		       		       
+
 		       List<AccomVO> accom = AccomService.test();
-		       
+
 		      for(AccomVO vo : accom) {
-		    	  
+
 		    	  //숙박도 위도 경도가 바껴있음
 		    	  Double accom_latitue = vo.getLongitude();
 		    	  Double accom_longitude = vo.getLatitude();
-		    	  
+
 		    	  Double distanceMeter = distance(latitude, longitude, accom_latitue, accom_longitude, "kilometer");
-		    	  
-		    	  accommap.put(distanceMeter, vo.get_id());	
-		    	
+
+		    	  accommap.put(distanceMeter, vo.get_id());
+
 		      }
-		      
-		     
+
+
 		      	List<Double> keySets = new ArrayList<>(accommap.keySet());
 		      	 System.out.println("숙박"+keySets);
 		        List<Double> keys2 = new ArrayList<>(accommap.keySet());
 		        Collections.sort(keys2);
 		        System.out.println("숙박sssssss"+keys2);
-		     
-	
-		     
-		      
+
+
+
+
 		      List<AccomVO> acc= null;
 		      List<List<AccomVO>> result2 = new ArrayList<>();
-		        
+
 		        for(int a=0; a<=2; a++) {
-		        	
+
 		        	acc = AccomService.selectOne(accommap.get(keys2.get(a)));
-		        		        	
+
 		        	for (AccomVO vo : acc) {
 
 		    			ArrayList<String> imageList = new ArrayList<String>();
@@ -289,21 +289,21 @@ public class FestivalController {
 		    			vo.setImages(imageList);
 		    			//숙박 거리
 		    			vo.setRange(keys2.get(a));
-		    			
+
 		    			int averageScore = RestaurantController.scoreAverage(vo.getReviews(), "lodgment");
 		    			System.out.println(averageScore);
 		    			vo.setAverageScore(averageScore);
-		    			
+
 		    		}
 		        	result2.add(acc);
-		        	
+
 		        }
-		        
-		        
-		        
+
+
+
 		        //축제 상세페이지 인스타그램 사진
 		        List<InstarVO> detail_instar = festivalService.detail_instar(tel);
-				
+
 				for (InstarVO vo : detail_instar) {
 					// ArrayList<Binary> image
 					ArrayList<String> imageList = new ArrayList<String>();
@@ -313,37 +313,37 @@ public class FestivalController {
 					}
 					vo.setImages(imageList);
 				}
-				
-				
-		        
-		        
+
+
+
+
 
 		ArrayList<HashMap<String, String>> reviews = list.get(0).getReviews();
 
-		
+
 		System.out.println(result.get(0).get(0).getRange());
 		System.out.println(result2.get(0).get(0).getRange());
-		
+
 		model.addAttribute("scores", RestaurantController.scoresAverage(reviews, "festival"));
 		model.addAttribute("scores", scoresAverage(reviews));
 		model.addAttribute("list", list);
 		model.addAttribute("reslist", result);
 		model.addAttribute("accom", result2);
 		model.addAttribute("detail_instar", detail_instar);
-		
+
 		// 축제 상세 페이지에서 '코스에 담기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
 		String memberId = (String) session.getAttribute("memberId");
 		List<CourseVO> clist = courseService.viewMycourse(memberId);
-		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("list", list); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("list", list);를 해주게 함.
+		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("clist", clist); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("clist", clist);를 해주게 함.
 		if (list != null) {
 			model.addAttribute("clist", clist);
 		} // 여기까지
-		
+
 		return "festival/festival_detail";
 	}
 
-	
-	
+
+
 
 
 
@@ -351,7 +351,7 @@ public class FestivalController {
 	@RequestMapping(value="/nearnear.do")
 	@ResponseBody
 	public List<List<FestivalVO>> near(Double latitude, Double longitude){
-		
+
 		Map<Double, ObjectId> map= new HashMap<Double, ObjectId>();
 
 		//System.out.println(latitude);
@@ -366,19 +366,19 @@ public class FestivalController {
 			map.put(distanceMeter, vo.get_id() );
 	}
 
-		
+
 		 List<Double> keySet = new ArrayList<>(map.keySet());
 
 	        System.out.println("==Key 값 기준으로 오름차순 정렬==");
 	        List<Double> keys = new ArrayList<>(map.keySet());
 	        Collections.sort(keys);
-	     
-	      
-	        
+
+
+
 	        List<FestivalVO> lists= null;
 	        List<List<FestivalVO>> result = new ArrayList<>();
 	        for(int i=0; i<=2; i++) {
-	        		        	
+
 	        	lists = festivalService.near(map.get(keys.get(i)));
 
 	        	//ArrayList<HashMap<String, String>> reviews = lists.get(i).getReviews();
@@ -390,17 +390,17 @@ public class FestivalController {
 	    				imageList.add(image);
 	    			}
 	    			vo.setImages(imageList);
-	    			
+
 	    			//int[] score = RestaurantController.scoresAverage(reviews, "festival");
 	    			//vo.setScore(score);
-	    		
+
 	    		}
 
 	        	result.add(lists);
 
 	        }
-	        
-	       
+
+
 
 	       //정렬된 키밸류 뽑기
 //	        for (Double key : keys) {
@@ -418,7 +418,7 @@ public class FestivalController {
 	public List<FestivalVO> tosss(int interval){
 
 		List<FestivalVO> list = festivalService.test();
-		
+
 		for (FestivalVO vo : list) {
 
 			ArrayList<String> imageList = new ArrayList<String>();
@@ -459,16 +459,16 @@ public class FestivalController {
 		return scoresAvg;
 	}
 
-	
-	
+
+
 	//축제 검색
 	@RequestMapping(value="/search.do")
 	public String search(HttpServletRequest requset,Model model) {
-		
+
 		String word = requset.getParameter("q");
-		
+
 		List<FestivalVO> list = festivalService.search(word);
-		
+
 		for (FestivalVO vo : list) {
 			// ArrayList<Binary> image
 			ArrayList<String> imageList = new ArrayList<String>();
@@ -478,35 +478,35 @@ public class FestivalController {
 			}
 			vo.setImages(imageList);
 		}
-		
+
 		model.addAttribute("list", list);
-		
+
 		return "festival/search_list";
-		
+
 	}
-	
-	
-	
-	
+
+
+
+
 	//축제 개수뽑기
 	@RequestMapping(value="festivalCount.do")
 	@ResponseBody
 	public String festivalcount() {
-				
+
 		long count = festivalService.festivalcount();
-					
+
 		String num = String.valueOf(count);
 		System.out.println("여기오니");
 		return num;
 	}
-	
-	
+
+
 	//메인페이지 인스타 캐러셀
 	@RequestMapping(value="main.do")
 	public String instar(Model model) {
-			
+
 		List<InstarVO> list = festivalService.instar();
-		
+
 		for (InstarVO vo : list) {
 			// ArrayList<Binary> image
 			ArrayList<String> imageList = new ArrayList<String>();
@@ -516,21 +516,21 @@ public class FestivalController {
 			}
 			vo.setImages(imageList);
 		}
-		
+
 		model.addAttribute("list", list);
-		
+
 		return "main";
 		//return list;
-		
+
 	}
-	
-	
-	
+
+
+
 	//축제 페이지 가기
 	@RequestMapping(value="festival.do")
 	public String festival(Model model) {
-		
-		
+
+
 		List<FestivalVO> list = festivalService.test();
 
 		int[] scores = new int[list.size()];
@@ -543,43 +543,43 @@ public class FestivalController {
 				imageList.add(image);
 			}
 			vo.setImages(imageList);
-			
+
 		}
-		
+
 		for (int i = 0; i < list.size(); i++) {
-			
+
 			FestivalVO vo = list.get(i);
-			
+
 			ArrayList<String> imageList = new ArrayList<String>();
 			for (Binary img : vo.getImage()) {
 				String image = Base64.getEncoder().encodeToString(img.getData());
 				imageList.add(image);
 			}
 			vo.setImages(imageList);
-			
+
 			scores[i] = RestaurantController.scoreAverage(vo.getReviews(), "festival");
-			
+
 		}
-		
-		
-	
+
+
+
 		model.addAttribute("list",list);
-		
+
 		return "festival/festival";
 	}
-	
-	
-	
+
+
+
 	//축제 리스트 조회
 		@RequestMapping(value="/festival_list.do")
-		public String test2(ModelMap m, @RequestParam(value = "page", defaultValue = "1") int pageNumber, 
+		public String test2(ModelMap m, @RequestParam(value = "page", defaultValue = "1") int pageNumber,
 										@RequestParam(value = "region", required = false) String region) {
-			
-			
+
+
 			int totalSize;
-	
-			
-			
+
+
+
 			//List<FestivalVO> list = festivalService.test();
 			List<FestivalVO> list = festivalService.selectPageList(pageNumber);
 			int[] scores = new int[list.size()];
@@ -592,48 +592,48 @@ public class FestivalController {
 					imageList.add(image);
 				}
 				vo.setImages(imageList);
-				
+
 			}
-			
+
 			for (int i = 0; i < list.size(); i++) {
-				
+
 				FestivalVO vo = list.get(i);
-				
+
 				ArrayList<String> imageList = new ArrayList<String>();
 				for (Binary img : vo.getImage()) {
 					String image = Base64.getEncoder().encodeToString(img.getData());
 					imageList.add(image);
 				}
 				vo.setImages(imageList);
-				
+
 				scores[i] = RestaurantController.scoreAverage(vo.getReviews(), "festival");
-				
+
 			}
-			
+
 				totalSize = (int) festivalService.festivalcount();
 
-					
+
 
 			// 페이징 처리를 위한 hashmap
 			HashMap<String, Object> resultMap = RestaurantController.getPagingResultMap(pageNumber, pageScale, totalSize);
-			
+
 			//m.addAttribute("countSum", countSum);
 			//m.addAttribute("regionList", regionList);
 			m.addAttribute("list", list);
 			m.addAttribute("resultMap", resultMap);
 			m.addAttribute("scores", scores);
-			
+
 			return "festival/festival_list";
-			
+
 	}
-		
-
-		
-		
 
 
 
-			
+
+
+
+
+
 
 
 }

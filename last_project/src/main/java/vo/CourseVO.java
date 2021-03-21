@@ -16,26 +16,16 @@ public class CourseVO {
 	
 	private String writer;     // 코스 작성자 id       // = 유저 id
 	private String courseName; // 코스명
-//	private String district;   // 코스 대표 지역	    // 코스 경로 첫번째 장소의 주소로 쓰기     
-//	private String mainImage;  // 코스 대표 이미지      // 코스 경로의 첫번째 장소의 이미지 중 첫번째꺼로 쓰기.
 	private String summary;    // 코스 설명
 	private ArrayList<String> keyword; // #태그(키워드)
 	private int distance;   // 코스 총 거리           // 코스 경로의 주소로 1번에서 2번 장소 거리 + 2번에서 3번 장소 거리 + ... + = 값 
 	private String schedule;   // 일정
 	private String theme;      // 테마
-	private ArrayList<Binary> image;  // 어케 써먹지
-	private ArrayList<HashMap<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
-//	private List<Map<String, Object>> coursePath; // 코스 경로    // 요 안에 이미지가 있어
+	private ArrayList<Binary> image; // 지워도 될 듯
+	private ArrayList<HashMap<String, Object>> coursePath; // 코스 경로
+	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews; // 리뷰
-	private String jsonData;
-//	private HashMap<String, String> coursePath2;
-	/*
-	public HashMap<String, String> getCoursePath2() {
-		return coursePath2;
-	}
-	public void setCoursePath2(HashMap<String, String> coursePath2) {
-		this.coursePath2 = coursePath2;
-	}*/
+	private String share;
 	
 	public ObjectId get_id() {
 		return _id;
@@ -55,20 +45,6 @@ public class CourseVO {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-	/*
-	public String getDistrict() {
-		return district;
-	}
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-	public String getMainImage() {
-		return mainImage;
-	}
-	public void setMainImage(String mainImage) {
-		this.mainImage = mainImage;
-	}
-	*/
 	public String getSummary() {
 		return summary;
 	}
@@ -105,19 +81,17 @@ public class CourseVO {
 	public void setImage(ArrayList<Binary> image) {
 		this.image = image;
 	}
-	/*
-	public List<Map<String, Object>> getCoursePath() {
-		return coursePath;
-	}
-	public void setCoursePath(List<Map<String, Object>> coursePath) {
-		this.coursePath = coursePath;
-	}
-	*/
 	public ArrayList<HashMap<String, Object>> getCoursePath() {
 		return coursePath;
 	}
 	public void setCoursePath(ArrayList<HashMap<String, Object>> coursePath) {
 		this.coursePath = coursePath;
+	}
+	public HashMap<String, String> getReview() {
+		return review;
+	}
+	public void setReview(HashMap<String, String> review) {
+		this.review = review;
 	}
 	public ArrayList<HashMap<String, String>> getReviews() {
 		return reviews;
@@ -125,10 +99,11 @@ public class CourseVO {
 	public void setReviews(ArrayList<HashMap<String, String>> reviews) {
 		this.reviews = reviews;
 	}
-	public String getJsonData() {
-		return jsonData;
+	public String getShare() {
+		return share;
 	}
-	public void setJsonData(String jsonData) {
-		this.jsonData = jsonData;
+	public void setShare(String share) {
+		this.share = share;
 	}
+	
 }

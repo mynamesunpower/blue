@@ -16,7 +16,7 @@ public class AccomServiceImpl implements AccomService {
 
 	@Autowired
 	private AccomDAOImpl accomDAO;
-	
+
 	public List<AccomVO> test() {
 		System.out.println("숙박 Service 접근");
 		return accomDAO.test();
@@ -27,7 +27,7 @@ public class AccomServiceImpl implements AccomService {
 		System.out.println("숙박 상세 Service 접근");
 		return accomDAO.detail(_id);
 	}
-	
+
 	@Override
 	public int getTotalSize() {
 		return accomDAO.test().size();
@@ -43,7 +43,7 @@ public class AccomServiceImpl implements AccomService {
 		// TODO Auto-generated method stub
 		return accomDAO.updateAccomReview(reviews, _id);
 	}
-	
+
 	@Override
 	public ArrayList<HashMap<String, String>> getReviews(String _id) {
 		// TODO Auto-generated method stub
@@ -51,16 +51,16 @@ public class AccomServiceImpl implements AccomService {
 		return accomDAO.getReviews(_id);
 	}
 	public List<AccomVO> selectOne(Object object) {
-		
+
 		return accomDAO.selectOne(object);
 	}
-	
+
 	@Override
 	public List<HashMap> groupRegion() {
 		return accomDAO.groupRegion();
 	}
-	
-	
+
+
 	//관리자에서
 	@Override
 	public AccomVO insert_lodgment(AccomVO vo) {

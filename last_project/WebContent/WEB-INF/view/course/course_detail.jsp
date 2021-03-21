@@ -26,7 +26,7 @@
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 	<link href="../css/vendors.css" rel="stylesheet">
-	
+
 	<!-- CUSTOM CSS -->
 	<link href="../css/custom.css" rel="stylesheet">
 	<link href="../css/tourDetail.css" rel="stylesheet">
@@ -46,10 +46,10 @@
 	<!-- End Preload -->
 
 	<%@ include file="../../../header.jsp" %>
-	
-	
+
+
 	<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0"> <!-- 첫 번째 장소의 이미지가 대문 이미지가 되게 -->
-		<section class="parallax-window" data-parallax="scroll" data-image-src="${coursePath.image}" data-natural-width="1400" data-natural-height="470"> 
+		<section class="parallax-window" data-parallax="scroll" data-image-src="${coursePath.image}" data-natural-width="1400" data-natural-height="470">
 			<div class="parallax-content-2">
 				<div class="container">
 					<div class="row">
@@ -82,7 +82,7 @@
 
 		<div class="collapse show" id="collapseMap">
 			<!-- <div id="map" class="map"></div> -->
-			<!-- 지표 
+			<!-- 지표
 			<p style="margin-top:-12px">
 			    <em class="link">
 			         <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>
@@ -91,63 +91,63 @@
 			<div class="map_wrap">
 			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 			    <ul id="category">
-			        <li id="AT4" data-order="0"> 
+			        <li id="AT4" data-order="0">
 			            <span class="category_bg bank"></span>
 			            관광명소
-			        </li>       
-			        <li id="MT1" data-order="1"> 
+			        </li>
+			        <li id="MT1" data-order="1">
 			            <span class="category_bg mart"></span>
 			            마트
-			        </li>  
-			        <li id="FD6" data-order="2"> 
+			        </li>
+			        <li id="FD6" data-order="2">
 			            <span class="category_bg pharmacy"></span>
 			            음식점
-			        </li>  
-			        <li id="AD5" data-order="3"> 
+			        </li>
+			        <li id="AD5" data-order="3">
 			            <span class="category_bg oil"></span>
 			            숙박
-			        </li>  
-			        <li id="CE7" data-order="4"> 
+			        </li>
+			        <li id="CE7" data-order="4">
 			            <span class="category_bg cafe"></span>
 			            카페
-			        </li>  
-			        <li id="CS2" data-order="5"> 
+			        </li>
+			        <li id="CS2" data-order="5">
 			            <span class="category_bg store"></span>
 			            편의점
-			        </li>      
+			        </li>
 			    </ul>
 			</div>
-			
+
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b&libraries=services,clusterer,drawing"></script>
 			<script>
 			// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
-			var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
-			    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+			var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
+			    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
 			    markers = [], // 마커를 담을 배열입니다
 			    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
-			 
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			    mapOption = {
 					<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0">
-			        	center: new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude}), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소)   
+			        	center: new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude}), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소)
 			        </c:forEach>
 			        level: 7, // 지도의 확대 레벨
 			        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-			    };  
-			// 지도를 생성합니다    
-			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			    };
+			// 지도를 생성합니다
+			var map = new kakao.maps.Map(mapContainer, mapOption);
 			// 장소 검색 객체를 생성합니다
-			var ps = new kakao.maps.services.Places(map); 
+			var ps = new kakao.maps.services.Places(map);
 			// 지도에 idle 이벤트를 등록합니다
 			kakao.maps.event.addListener(map, 'idle', searchPlaces);
-			// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+			// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다
 			contentNode.className = 'placeinfo_wrap';
 			// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
-			// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+			// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다
 			addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
 			addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 			// 커스텀 오버레이 컨텐츠를 설정합니다
-			placeOverlay.setContent(contentNode);  
+			placeOverlay.setContent(contentNode);
 			// 각 카테고리에 클릭 이벤트를 등록합니다
 			addCategoryClickEvent();
 			// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
@@ -163,13 +163,13 @@
 			    if (!currCategory) {
 			        return;
 			    }
-			    
-			    // 커스텀 오버레이를 숨깁니다 
+
+			    // 커스텀 오버레이를 숨깁니다
 			    placeOverlay.setMap(null);
 			    // 지도에 표시되고 있는 마커를 제거합니다
 			    removeMarker();
-			    
-			    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+
+			    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true});
 			}
 			// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 			function placesSearchCB(data, status, pagination) {
@@ -180,7 +180,7 @@
 			        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
 			    } else if (status === kakao.maps.services.Status.ERROR) {
 			        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
-			        
+
 			    }
 			}
 			// 지도에 마커를 표출하는 함수입니다
@@ -188,7 +188,7 @@
 			    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
 			    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
 			    var order = document.getElementById(currCategory).getAttribute('data-order');
-			    
+
 			    for ( var i=0; i<places.length; i++ ) {
 			            // 마커를 생성하고 지도에 표시합니다
 			            var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
@@ -204,7 +204,7 @@
 			// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 			function addMarker(position, order) {
 			    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-			    //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			    //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 			    //var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';
 			        imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
 			        imgOptions =  {
@@ -215,7 +215,7 @@
 			        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
 			            marker = new kakao.maps.Marker({
 			            position: position, // 마커의 위치
-			            image: markerImage 
+			            image: markerImage
 			        });
 			    marker.setMap(map); // 지도 위에 마커를 표출합니다
 			    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
@@ -225,26 +225,26 @@
 			function removeMarker() {
 			    for ( var i = 0; i < markers.length; i++ ) {
 			        markers[i].setMap(null);
-			    }   
+			    }
 			    markers = [];
 			}
 			// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 			function displayPlaceInfo (place) {
 			    var content = '<div class="placeinfo">' +
-			                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+			                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';
 			    if (place.road_address_name) {
 			        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
 			                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
 			    }  else {
 			        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
-			    }                
-			   
-			    content += '    <span class="tel">' + place.phone + '</span>' + 
-			                '</div>' + 
+			    }
+
+			    content += '    <span class="tel">' + place.phone + '</span>' +
+			                '</div>' +
 			                '<div class="after"></div>';
 			    contentNode.innerHTML = content;
 			    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-			    placeOverlay.setMap(map);  
+			    placeOverlay.setMap(map);
 			}
 			// 각 카테고리에 클릭 이벤트를 등록합니다
 			function addCategoryClickEvent() {
@@ -279,15 +279,15 @@
 			    }
 			    if (el) {
 			        el.className = 'on';
-			    } 
+			    }
 			}
-			var arr = new Array(); // 장소 별 위도, 경도를 담을 배열 생성				
+			var arr = new Array(); // 장소 별 위도, 경도를 담을 배열 생성
 			<c:forEach items="${detail.coursePath}" var="coursePath">
-				var markerPosition = new kakao.maps.LatLng("${coursePath.latitude}", "${coursePath.longitude}");
+				var markerPosition = new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude});
 				arr.push(markerPosition); // 배열에 위도, 경도 데이터 넣어줌.
 			</c:forEach>
 //			console.log("last_arr:"+arr); // 최종적으로 배열에 담긴 데이터 값 확인.
-			
+
 			// 마커를 생성합니다
 			for(var i=0; i<arr.length; i++){
 				var marker = new kakao.maps.Marker({
@@ -340,7 +340,7 @@
 								</c:when>
 								<c:when test="${detail.theme eq '나홀로 YOLO'}">
 									<li><i class="icon-adult"></i>나홀로 YOLO</li>
-								</c:when>	
+								</c:when>
 							</c:choose>
 						</ul>
 					</div>
@@ -352,7 +352,7 @@
 							<div class="sp-slides">
 								<div class="sp-slide">
 									<img alt="Image" class="sp-image" src="../css/images/blank.gif" data-src="${coursePath.image}" data-small="${coursePath.image}" data-medium="${coursePath.image}" data-large="${coursePath.image}" data-retina="${coursePath.image}">
-								</div>												
+								</div>
 							</div>
 						</c:forEach>
 						<div class="sp-thumbnails">
@@ -383,11 +383,11 @@
 												<li><i class="icon-road-1"></i> 내 위치에서 333.3km</li>
 												<li><i class="icon-phone-3"></i> ${coursePath.tel}</li>
 											</ul>
-										</div>									
+										</div>
 									</div>
 									<!-- End row  -->
 									<div class="owl-carousel owl-theme carousel-thumbs-2 magnific-gallery">
-										<div class="item">											
+										<div class="item">
 											<a href="${coursePath.image}" data-effect="mfp-zoom-in"><img src="${coursePath.image}" alt="Image">
 											</a>
 										</div>
@@ -407,40 +407,67 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
-							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							<c:if test="${sessionScope.memberId ne null}">
+								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
+							</c:if>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">${detail.reviews.size()} Reviews
+							<div id="general_rating">${detail.reviews.size()} 개의 후기
 								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+									<c:forEach begin="1" end="${scores[4]}">
+										<i class="icon-smile voted"></i>
+									</c:forEach>
+									<c:forEach begin="1" end="${5-scores[4]}">
+										<i class="icon-smile"></i>
+									</c:forEach>
 								</div>
 							</div>
 							<!-- End general_rating -->
 							<div class="row" id="rating_summary">
 								<div class="col-md-6">
 									<ul>
-										<li>Position
+										<li>위치
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
-										<li>Tourist guide
+										<li>재미
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
 									</ul>
 								</div>
 								<div class="col-md-6">
 									<ul>
-										<li>Price
+										<li>비용
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
-										<li>Quality
+										<li>추천도
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
+												<c:forEach begin="1" end="${scores[0]}">
+													<i class="icon-smile voted"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-scores[0]}">
+													<i class="icon-smile"></i>
+												</c:forEach>
 											</div>
 										</li>
 									</ul>
@@ -451,7 +478,7 @@
 							<c:forEach items="${detail.reviews }" var="review">
 								<div class="review_strip_single">
 									<img src="../img/avatar1.jpg" alt="Image" class="rounded-circle">
-									<small> - 10 March 2015 -</small>
+									<!-- <small> - 10 March 2015 -</small> -->
 									<h4>${review.reviewWriter }</h4>
 									<p>
 										${review.reviewContent }
@@ -461,7 +488,7 @@
 									</div>
 								</div>
 								<!-- End review strip -->
-							</c:forEach>							
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -507,7 +534,7 @@
 								<br>
 								<div class="col-sm-12">
 									<div style="text-align: center;">
-										<input type="button" value="코스 저장하기" class="btn_1" data-toggle="modal" data-target="#put_into_course">
+										<input type="button" value="코스 저장하기" class="btn_1" data-toggle="modal" data-target="#put_into_course" id="saveCourse">
 										<!-- 비로그인 상태면 로그인을 하게 할거고, 로그인 상태면 코스 생성, 저장 팝업 띄울거임.-->
 									</div>
 								</div>
@@ -520,34 +547,53 @@
 			<!--End row -->
 		</div>
 		<!--End container -->
-        
+
         <div id="overlay"></div>
 		<!-- Mask on input focus -->
-    
+
 	</main>
 	<!-- End main -->
 
-	<%@ include file="../../../footer.jsp" %>
-	
-	<!-- Modal put_into_course-->
-	<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div id="courseList">
-					</div>
-					<div style="text-align: center;">
-						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+	<%@ include file="/../footer.jsp"%>
+
+	<!-- Common scripts -->
+	<script src="/../js/jquery-3.5.1.min.js"></script>
+	<script src="/../js/common_scripts_min.js"></script>
+	<script src="/../js/functions.js"></script>
+
+	<!-- 비로그인 상태에서 코스 저장하기 누르면, 로그인하라고 안내.. 팝업 띄우기..어렵귀찮네?-->
+	<c:choose>
+		<c:when test="${sessionScope.memberId ne null}">
+			<!-- Modal put_into_course-->
+			<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myReviewLabel">코스 저장하기</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body" style="text-align: center;">
+							<div id="courseList">
+							</div>
+							<div style="text-align: center;">
+								<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
- 	<!-- End of Modal put_into_course-->
+		 	<!-- End of Modal put_into_course-->
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#saveCourse").on('click', function(){
+						alert("로그인 후 이용해주세요.")
+					})
+				})
+			</script>
+		</c:otherwise>
+	</c:choose>
 
 	<!-- Modal add_course-->
 	<div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -583,20 +629,12 @@
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="#" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
+					<form method="post" action="insert_course_review.do" name="review_tour" id="review_tour">
+						<input name="_id" id="_id" type="hidden" value="${detail._id}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input name="name_review" id="name_review" type="text" placeholder="이름" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input name="email_review" id="email_review" type="email" placeholder="이메일" class="form-control">
+									<input name="review_userId" id="review_userId" type="text" placeholder="이름" class="form-control" value="${sessionScope.memberId}" disabled>
 								</div>
 							</div>
 						</div>
@@ -608,26 +646,24 @@
 									<label>위치</label>
 									<select class="form-control" name="position_review" id="position_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>청결</label>
-									<select class="form-control" name="guide_review" id="guide_review">
+									<label>비용</label>
+									<select class="form-control" name="price_review" id="price_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
@@ -636,39 +672,34 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>서비스</label>
-									<select class="form-control" name="price_review" id="price_review">
+									<label>재미</label>
+									<select class="form-control" name="fun_review" id="fun_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>가격</label>
-									<select class="form-control" name="quality_review" id="quality_review">
+									<label>추천도</label>
+									<select class="form-control" name="recommend_review" id="recommend_review">
 										<option value="">만족도를 선택하세요</option>
-										<option value="Low">구리구리</option>
-										<option value="Sufficient">적절</option>
-										<option value="Good">낫배도</option>
-										<option value="Excellent">개굳</option>
-										<option value="Superb">킹왕짱</option>
-										<option value="Not rated">나도모룹니다</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
 						<div class="form-group">
-							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="항목, 내용들 여기에 알맞게 수정해야해~~.."></textarea>
-						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="인간이라면 답을 적어주세요 4 + 1 = ?">
+							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="이 코스 어떠셨나요? 자세한 후기를 남겨주세요."></textarea>
 						</div>
 						<input type="submit" value="작성" class="btn_1" id="submit-review">
 					</form>
@@ -680,12 +711,9 @@
 
 	<!-- Common scripts -->
 	<script src="../js/login.js"></script>
-	<script src="../js/jquery-3.5.1.min.js"></script>
-	<script src="../js/common_scripts_min.js"></script>
-	<script src="../js/functions.js"></script>
 
 	<!-- 이미지 캐러셀 -->
-	<script src="../js/jquery.sliderPro.min.js"></script>
+	<script src="/../js/jquery.sliderPro.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function ($) {
 			$('#Img_carousel').sliderPro({
@@ -704,23 +732,23 @@
 			});
 		});
 	</script>
-	
-	<!--Review modal validation -->
-	<script src="../assets/validate.js"></script>
 
-	<!-- Map 
+	<!--Review modal validation -->
+	<script src="/../assets/validate.js"></script>
+
+	<!-- Map
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="../js/map.js"></script>
 	<script src="../js/infobox.js"></script> -->
 
 	<!-- Fixed sidebar -->
-	<script src="../js/theia-sticky-sidebar.js"></script>
+	<script src="/../js/theia-sticky-sidebar.js"></script>
 	<script>
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
 	</script>
-	
+
 	<!-- Carousel -->
 	<script>
 		$('.carousel-thumbs-2').owlCarousel({
@@ -742,17 +770,16 @@
 		}
 	});
 	</script>
-	
+
 	<!-- 로그인 -->
-	<script src="../../js/login.js"></script>
-	
+	<script src="/../js/login.js"></script>
+
 	<!-- 내 코스에 저장 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
 			// '선택' 클릭
 			$(document).on("click", "#choice", function(){
 				var courseName = $(this).parent().prev().val();
-				console.log(courseName);
 				// 코스의 키워드 뽑아서 배열에 넣기.
 				var keyword = new Array();
 				<c:forEach items="${detail.keyword}" var="keyword">
@@ -784,58 +811,52 @@
 					"_id" : cId,
 					"writer" : "${sessionScope.memberId}",
 					"courseName" : courseName,
-					"summary" : "${detail.summary}",					
-					"keyword" : keyword,							
+					"summary" : "${detail.summary}",
+					"keyword" : keyword,
 					"distance" : ${detail.distance},
-					"schedule" : "${detail.schedule}",									
+					"schedule" : "${detail.schedule}",
 					"theme" : "${detail.theme}",
 					"coursePath" : coursePath_arr
 				}
-				console.log(info)
-				console.log(typeof(info))
 				var jsonData = JSON.stringify(info)
-				console.log("jsonData:"+jsonData)
-				console.log(typeof(jsonData))
-					
 				$.ajax({
 					type : "POST",
 					url : "pushCoursePath.do",
 					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
 					data : jsonData,
-					dataType : "json",					
-					success : function () {
+					dataType : "json",
+					success : function (result) {
 						alert("코스에 담기 완료")
 					},
 					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
-						alert("코스에 담기 완료")
+						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
 						console.log("err:"+err)
 					}
 				})  // end of ajax.
 			}) // end of $(document).on("click", "#choice", function()
 		}) // end of jQuery.
 	</script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			// 코스 저장하기 클릭 시 - 팝업창에 내가 가진 코스명 리스트 띄워놓기
 			<c:forEach items="${list}" var="name">
 				$("#courseList").append(
-					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"
 				);
 				// 코스 _id 써먹어야해서 필요
 				$("#courseList").append(
-					"<input type='hidden' value='${name._id}'>"		
+					"<input type='hidden' value='${name._id}'>"
 				);
 			</c:forEach>
-			
+
 			// '추가' 클릭 시
 			$("#addNewcourse").on('click', function(){
 				var courseName = $("#addcourseName").val();
 				// 팝업창에 입력한 코스명으로 행이 추가 되고
 				$("#courseList").append(
-					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"
 				);
 				// 창 닫히고
 				$('#back').trigger('click');
@@ -844,7 +865,8 @@
 				// DB 코스 컬렉션에 document 생성
 				var data = {
 					"writer" : "${sessionScope.memberId}",
-					"courseName" : courseName
+					"courseName" : courseName,
+					"share" : "NO"
 				}
 				var jsonData = JSON.stringify(data)
 				$.ajax({
@@ -852,14 +874,9 @@
 					url : "addMycourse.do",
 					contentType: 'application/json;charset=UTF-8',
 					data : jsonData,
-					dataType : "json",					
-					success : function () {
-						alert("코스 생성")
-					},
-					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
-						alert("코스 생성")
-						console.log("err:"+err)
+					dataType : "json",
+					success : function (result) {
+						alert("코스 생성 완료")
 						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
 						$.ajax({
 							type : "POST",
@@ -868,17 +885,100 @@
 							data : data,
 							success : function(data){
 								$("#courseList").append(
-									"<input type='hidden' value="+data+">"		
+									"<input type='hidden' value="+data+">"
 								);
 							},
 							error : function(err){
 								alert("err:"+err)
 							}
 						}) // end of ajax.
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
+						console.log("err:"+err)
 					}
 				}) // end of ajax.
 			}) // end of $("#addNewcourse").on('click', function(){}).
 		}) // end of jQuery.
+	</script>
+
+	<!-- 리뷰! -->
+	<script type="text/javascript">
+	// 시간 format 변환
+	function getTimeStamp() {
+	  var d = new Date();
+
+	  var s =
+	    leadingZeros(d.getFullYear(), 4) + '-' +
+	    leadingZeros(d.getMonth() + 1, 2) + '-' +
+	    leadingZeros(d.getDate(), 2) + ' ' +
+
+	    leadingZeros(d.getHours(), 2) + ':' +
+	    leadingZeros(d.getMinutes(), 2) + ':' +
+	    leadingZeros(d.getSeconds(), 2);
+
+	  return s;
+	}
+
+	function leadingZeros(n, digits) {
+	  var zero = '';
+	  n = n.toString();
+
+	  if (n.length < digits) {
+	    for (i = 0; i < digits - n.length; i++)
+	      zero += '0';
+	  }
+	  return zero + n;
+	}
+
+	$('#submit-review').on('click', function() {
+
+		var date = getTimeStamp();
+		const id = $('#review_userId').val();
+
+		const review = {
+			'id' : id,
+			'date': date,
+			'content' : $('#review_text').val(),
+			'position': $('#position_review').val(),
+			'price': $('#price_review').val(),
+			'fun': $('#fun_review').val(),
+			'recommend': $('#recommend_review').val()
+		}
+
+		const _id =	$('#_id').val()
+
+		$.ajax({
+			type : 'post',
+    		async : true,
+    		url : "insert_course_review.do",
+    		contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+    		data : {
+    			'_id': _id,
+ 				'review': review
+    		},
+			success: function(result) {
+
+				$('#review_text').val("")
+				$('#position_review').val(""),
+				$('#price_review').val(""),
+				$('#fun_review').val(""),
+				$('#recommend_review').val("")
+
+				if ( result == 1 ) {
+					alert('리뷰가 등록되었습니다.');
+					$('.close').trigger('click');
+					location.replace('courseSelect.do?_id='+_id);
+				}
+				else {
+					alert('리뷰가 등록되질 않았습니다. 왜일까')
+				}
+			},
+			error: function(error) {
+				console.log('에러' + error)
+			}
+		})
+	})
 	</script>
 </body>
 

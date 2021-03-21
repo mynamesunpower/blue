@@ -20,13 +20,13 @@ public interface RestaurantDAO {
 	public ArrayList<HashMap<String, String>> getReviews(String _id);
 
 	public List<RestaurantVO> selectPageList(int pageNumber);
-	
+
 	public List<RestaurantVO> selectnear(ObjectId objectId);
 
 	public List<HashMap> groupCategory();
 
 	public List<RestaurantVO> getCategoryData(String category, int pageNumber);
-	
+
 	public int count();
 
 

@@ -29,15 +29,15 @@
 
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
-	
+
 	<style>
-	
-	@media screen and (min-width: 769px) { 
+
+	@media screen and (min-width: 769px) {
 
 	.carousel_parallax {
 		width: 58%;
 		margin: 0 auto;
-	} 
+	}
 
 
 	}
@@ -63,7 +63,7 @@
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>축제로 축제 리스트</h1>
-				
+
 			</div>
 		</div>
 	</section>
@@ -91,20 +91,20 @@
 		<div class="container margin_60">
 
 			<div class="row">
-				
+
 
 				<div class="col-lg-9">
 
 					<div id="tools">
 						<div class="row">
 							<div class="col-md-3 col-sm-4 col-6">
-							
+
 							</div>
 							<div class="col-md-3 col-sm-4 col-6">
-								
+
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								
+
 							</div>
 						</div>
 					</div>
@@ -112,8 +112,8 @@
 
 					<div id="search_list">
 	 					<c:forEach items="${list}" var="list" varStatus="var">
-	 						
-	 					
+
+
 							<div class="strip_all_tour_list wow fadeIn restaurant" data-wow-delay="0.1s">
 								<div class="row">
 									<div class="col-lg-4 col-md-4">
@@ -124,7 +124,7 @@
 										</div>
 										<div class="img_list">
 											<a href="details.do?tel=${list.postcode}">
-											
+
 												<c:if test="${list.images.size() gt 0}">
 													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
 												</c:if>
@@ -154,7 +154,7 @@
 								</div>
 							</div>
 							<!--End strip -->
-							
+
 						</c:forEach>
 					</div>
 
@@ -170,18 +170,18 @@
 									</a>
 								</li>
 							</c:if>
-							
+
 							<c:forEach var="i" begin="${resultMap.startPage}" end="${resultMap.endPage > resultMap.total? resultMap.total : resultMap.endPage}" varStatus="status">
 								<c:choose>
 									<c:when test="${resultMap.page eq i}">
-										<li class="page-item active"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>		
+										<li class="page-item active"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-							
+
 							<c:if test="${resultMap.nextPage <= resultMap.total}">
 								<li class="page-item">
 									<a class="page-link" href="javascript:fnGoPaging(<c:out value="${resultMap.nextPage}"/>)" aria-label="Next">
@@ -192,7 +192,7 @@
 							</c:if>
 						</ul>
 					</nav>
-					
+
 					<!-- end pagination-->
 
 				</div>
@@ -222,7 +222,7 @@
 		   checkboxClass: 'icheckbox_square-grey',
 		   radioClass: 'iradio_square-grey'
 		 });
-		
+
 		function fnGoPaging(page) {
            location.replace("festival_list.do?page="+page)
       }
@@ -231,4 +231,4 @@
 
 </body>
 
-</html> 
+</html>

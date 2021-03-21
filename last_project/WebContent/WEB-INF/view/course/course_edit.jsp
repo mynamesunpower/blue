@@ -21,12 +21,12 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	
+
 	<!-- COMMON CSS -->
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 	<link href="../css/vendors.css" rel="stylesheet">
-	
+
 	<!-- CUSTOM CSS -->
 	<link href="../css/custom.css" rel="stylesheet">
 
@@ -49,135 +49,17 @@
 	<div class="layer"></div>
 	<!-- Mobile menu overlay mask -->
 
-	<!-- Header================================================== -->
-	<header id="plain">
-		<div id="top_line">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6"><i class="icon-phone"></i><strong>02-1234-5678</strong></div>
-                    <div class="col-6">
-                        <ul id="top_links">
-                            <c:choose>
-                            	<c:when test="${sessionScope.memberId eq null}">
-                            		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
-                            	</c:when>
-                            	<c:when test="${sessionScope.memberId ne null}">
-                            		<li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
-                            		<li><a href="../mypage.jsp" id="mypage" class="icon-key-4">myPage</a></li>
-	                            	<li><a id="wishlist_link" href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
-                            		<li><a href="#" class="icon-logout">로그아웃</a></li>
-                            	</c:when>
-                            </c:choose>
-                        </ul>
-                    </div>
-                </div><!-- End row -->
-            </div><!-- End container-->
-        </div><!-- End top line-->
-
-		<div class="container">
-			<div class="row">
-				<div class="col-3">
-					<div id="logo_home">
-                    	<h1><a href="../main.jsp" title="메인 페이지 앵커">축제로</a></h1>
-					</div>
-				</div>
-				<nav class="col-9">
-                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-                    <div class="main-menu">
-                        <div id="header_menu">
-                            <img src="../img/logo_sticky.png" width="160" height="34" alt="City tours">
-                        </div>
-                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
-                        <ul>
-                            <li class="submenu">
-                                <a href="../main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">축제 <i class="icon-down-open-mini"></i></a> <!--클릭하면 축제 메인 페이지로 이동하게-->
-                                <ul>
-                                    <li><a href="../festival.jsp">축제</a></li>
-                                    <li><a href="../accommodations_list.jsp">숙박</a></li>
-                                    <li><a href="../restaurants_list.jsp">식당</a></li>
-                                    <li class="third-level"><a href="javascript:void(0);">테스트</a>
-                                        <ul>
-                                            <li><a href="#">테스트2</a></li>
-                                            <li><a href="#">테스트3</a></li>
-                                            <li><a href="#">테스트4</a></li>
-                                            <li><a href="#">테스트5</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="javascript:void(0);" class="show-submenu" style="font-size: large;">메이트 <i class="icon-down-open-mini"></i></a> <!--클릭하면 메이트 메인 페이지로 이동하게-->
-                                <ul> 
-                                    <li><a href="#">메이트 서비스는?</a></li>
-                                    <li><a href="#">나의 메이트 </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
-                                <ul>
-									<li><a href="course_main.do">코스 자랑 마당</a></li>
-                                    <li><a href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
-                                </ul>
-                            </li>                            
-                        </ul>
-                    </div>
-					<!-- End main-menu -->
-
-                    <ul id="top_tools">
-                        <li>
-                            <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
-                        </li>
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-                                <ul class="dropdown-menu" id="cart_items">
-                                    <li>
-                                        <div class="image"><img src="../img/thumb_cart_1.jpg" alt="image"></div>
-                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="../img/thumb_cart_2.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="../img/thumb_cart_3.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div>Total: <span>$120.00</span></div>
-                                        <a href="cart.jsp" class="button_drop">Go to cart</a>
-                                        <a href="payment.jsp" class="button_drop outline">Check out</a>
-                                    </li>
-                                </ul>
-                            </div><!-- End dropdown-cart-->
-                        </li>
-                    </ul>
-                </nav>
-			</div>
-		</div>
-		<!-- container -->
-	</header>
-	<!-- End Header -->
+	<%@ include file="/../header.jsp" %>
 
 	<main>
 		<!-- Slider -->
 		<div id="full-slider-wrapper">
 			<div id="layerslider" style="width:100%;height:600px;">
-				<!-- first slide -->
 				<c:forEach items="${detail.coursePath}" var="coursePath">
 					<div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;">
 						<img src="${coursePath.image}" class="ls-bg" alt="Slide background">
-						<!-- 
-						<h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">여기다간</h3>
-						<p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">사람들이 올려놓은 인기있는 코스</p>
-						<a class="ls-l button_intro_2 outline" style="top:370px; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;" href='all_tour_list.jsp'>자세히 보기</a>
-						-->
+						<h3 class="ls-l slide_typo" style="top: 45%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">코스 편집</h3>
+						<p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">코스에 대해 소개해주세요.</p>
 					</div>
 				</c:forEach>
 			</div>
@@ -203,7 +85,7 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form_title">
-						<h3><strong><i class="icon-pencil"></i></strong>코스 편집하기</h3>						
+						<h3><strong><i class="icon-pencil"></i></strong>코스 편집하기</h3>
 					</div>
 					<div class="step">
 						<!-- <div id="message-contact"></div> -->
@@ -240,7 +122,7 @@
 								</div>
 							</div>
 						</c:forEach>
-						<!-- /box_news -->						
+						<!-- /box_news -->
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="form-group">
@@ -254,7 +136,7 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<p><strong>태그</strong></p>
-									<textarea rows="5" id="message_contact" name="message_contact" class="form-control" style="height:100px; margin-bottom: 5%;" placeholder="해시태그로 표현해주세요. ex) #힐링 #신남 #행복"><c:forEach items="${detail.keyword}" var="keyword">${keyword} </c:forEach></textarea>
+									<textarea rows="5" id="keyword" name="message_contact" class="form-control" style="height:100px; margin-bottom: 5%;" placeholder="해시태그로 표현해주세요. ex) #힐링 #신남 #행복"><c:forEach items="${detail.keyword}" var="keyword">${keyword} </c:forEach></textarea>
 								</div>
 							</div>
 						</div>
@@ -265,30 +147,30 @@
 									<div class="map_wrap">
 								    	<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 									    <ul id="category">
-									        <li id="AT4" data-order="0"> 
+									        <li id="AT4" data-order="0">
 									            <span class="category_bg bank"></span>
 									            관광명소
-									        </li>       
-									        <li id="MT1" data-order="1"> 
+									        </li>
+									        <li id="MT1" data-order="1">
 									            <span class="category_bg mart"></span>
 									            마트
-									        </li>  
-									        <li id="FD6" data-order="2"> 
+									        </li>
+									        <li id="FD6" data-order="2">
 									            <span class="category_bg pharmacy"></span>
 									            음식점
-									        </li>  
-									        <li id="AD5" data-order="3"> 
+									        </li>
+									        <li id="AD5" data-order="3">
 									            <span class="category_bg oil"></span>
 									            숙박
-									        </li>  
-									        <li id="CE7" data-order="4"> 
+									        </li>
+									        <li id="CE7" data-order="4">
 									            <span class="category_bg cafe"></span>
 									            카페
-									        </li>  
-									        <li id="CS2" data-order="5"> 
+									        </li>
+									        <li id="CS2" data-order="5">
 									            <span class="category_bg store"></span>
 									            편의점
-									        </li>      
+									        </li>
 									    </ul>
 									</div>
 								</div>
@@ -306,27 +188,27 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<h4>코스 테마 <i class="icon_camera_alt"></i></h4>
-									<select id="" class="form-control" name="">
-										<option value="" selected>${detail.theme}</option>
-										<option value="">가족과 함께</option>
-										<option value="">연인과 함께</option>
-										<option value="">메이트와 함께</option>
-										<option value="">반려동물과 함께</option>
-										<option value="">오감만족 코스</option>
-										<option value="">눈 정화 코스</option>
-										<option value="">귀 정화 코스</option>
-										<option value="">나홀로 YOLO</option>
+									<select id="theme" class="form-control">
+										<option value="${detail.theme}" selected>${detail.theme}</option>
+										<option value="가족과 함께">가족과 함께</option>
+										<option value="연인과 함께">연인과 함께</option>
+										<option value="메이트와 함께">메이트와 함께</option>
+										<option value="반려동물과 함께">반려동물과 함께</option>
+										<option value="오감만족 코스">오감만족 코스</option>
+										<option value="눈 정화 코스">눈 정화 코스</option>
+										<option value="귀 정화 코스">귀 정화 코스</option>
+										<option value="나홀로 YOLO">나홀로 YOLO</option>
 									</select>
 									<hr/>
 								</div>
 
 								<div class="col-sm-12">
 									<h4>코스 일정 <i class="icon-clock-1"></i></h4>
-									<select id="" class="form-control" name="">
-										<option value="" selected>${detail.schedule}</option>
-										<option value="">당일</option>
-										<option value="">1박 2일</option>
-										<option value="">2박 3일 이상</option>
+									<select id="schedule" class="form-control" name="">
+										<option value="${detail.schedule}" selected>${detail.schedule}</option>
+										<option value="당일">당일</option>
+										<option value="1박 2일">1박 2일</option>
+										<option value="2박 3일 이상">2박 3일 이상</option>
 									</select>
 									<hr/>
 								</div>
@@ -335,13 +217,9 @@
 									<p style="font-size: large;">코스 자랑 마당에 공유하기</p>
 									<div style="text-align: center;">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-											<label class="form-check-label" for="inlineRadio1">Yes</label>
-										</div>
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="YES">Yes</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
-											<label class="form-check-label" for="inlineRadio2">No</label>
-										</div>
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="NO">No</div>
 									</div>
 									<hr/>
 								</div>
@@ -362,118 +240,7 @@
 	</main>
 	<!-- End main -->
 
-	<footer class="revealed">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>도움이 필요하세요?</h3>
-                    <a href="tel://004542344599" id="phone">+82 10 3333 4444</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
-                </div>
-                <div class="col-md-4">
-                    <h3>축제로</h3>
-                    <ul>
-                        <li><a href="#">축제로은요!</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#sign-in-dialog">로그인</a></li>
-                        <li><a href="../member/memberJoin.do">회원가입</a></li>
-                         <li><a href="#">이용 약관</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>언어 선택</h3>
-                    <div class="styled-select">
-                        <select name="lang" id="lang">
-                            <option value="Korean" selected>한국어</option>
-                            <option value="English">English</option>
-                            <option value="Japanese">日本語</option>
-                        </select>
-                    </div>
-                </div>
-            </div><!-- End row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="social_footer">
-                        <ul>
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-google"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram"></i></a></li>
-                            <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#"><i class="icon-vimeo"></i></a></li>
-                            <li><a href="#"><i class="icon-youtube-play"></i></a></li>
-                        </ul>
-                        <p>© Kosmo73 - Blue 2021</p>
-                    </div>
-                </div>
-            </div><!-- End row -->
-        </div><!-- End container -->
-    </footer><!-- End footer -->
-
-	<div id="toTop"></div><!-- Back to top button -->
-	
-	<!-- Search Menu -->
-	<div class="search-overlay-menu">
-		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-		<form role="search" id="searchform" method="get">
-			<input value="" name="q" type="search" placeholder="Search..." />
-			<button type="submit"><i class="icon_set_1_icon-78"></i>
-			</button>
-		</form>
-	</div><!-- End Search Menu -->
-	
-	<!-- Sign In Popup -->
-	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-		<div class="small-dialog-header">
-			<h3>로그인</h3>
-		</div>
-		<form>
-			<div class="sign-in-wrapper">
-                <div class="snsLogin" style="text-align: center;">
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/naver_login.png); border: 0; outline: 0;" >
-                    <input type="button" style="width: 270px; height: 48px; background-color: #FFFFFF; background: url(../img/login/kakao_login.png); border: 0; outline: 0;" >
-                </div>
-				<div class="divider"><span>Or</span></div>
-				<div class="form-group">
-					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
-					<i class="icon_pencil"></i>
-				</div>
-				<div class="form-group">
-					<label>Password</label>
-					<input type="password" class="form-control" name="password" id="password" value="">
-					<i class="icon_lock_alt"></i>
-				</div>
-				<div class="clearfix add_bottom_15">
-					<div class="checkboxes float-left">
-						<input id="remember-me" type="checkbox" name="check">
-						<label for="remember-me">기억하기</label>
-					</div>
-					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
-				</div>
-				<div class="text-center">
-                    <input type="button" value="로그인" class="btn_login">
-                    <!-- <a type="button" class="btn_login">로그인</a> -->
-                </div>
-				<div class="text-center">
-					계정이 없으신가요? <a href="../member/memberJoin.do">회원가입</a>
-				</div>
-				<div id="forgot_pw">
-					<div class="form-group">
-						<!-- <label>Please confirm login email below</label> -->
-                        <label>하단에 로그인 이메일을 작성해주세요.</label>
-						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
-						<i class="icon_mail_alt"></i>
-					</div>
-					<!-- <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p> -->
-                    <p>새 비밀번호로 재설정 할 수 있는 링크가 포함된 이메일을 받게됩니다.</p>
-					<div class="text-center"><input type="submit" value="비밀번호 재설정" class="btn_1"></div>
-				</div>
-			</div>
-		</form>
-		<!--form -->
-	</div>
-	<!-- /Sign In Popup -->
+	<%@ include file="/../footer.jsp"%>
 
 	<!-- Common scripts -->
 	<script src="../js/jquery-3.5.1.min.js"></script>
@@ -482,40 +249,40 @@
 
 	<!-- Specific scripts -->
 	<script src="../assets/validate.js"></script>
-	<!-- Map 
+	<!-- Map
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script type="text/javascript" src="../js/map_home.js"></script>
 	<script type="text/javascript" src="../js/infobox.js"></script> -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b&libraries=services,clusterer,drawing"></script>
 	<script>
 		// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
-		var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
-		    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+		var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
+		    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
 		    markers = [], // 마커를 담을 배열입니다
 		    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
-			 
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		    mapOption = {
 				<c:forEach items="${detail.coursePath}" var="coursePath" begin="0" end="0">
-		        	center: new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude}), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소)   
+		        	center: new kakao.maps.LatLng(${coursePath.latitude}, ${coursePath.longitude}), // 지도의 중심좌표. -> 코스의 시작점 (첫번째 장소)
 		        </c:forEach>
 		        level: 7, // 지도의 확대 레벨
 		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-		    };  
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		    };
+		// 지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption);
 		// 장소 검색 객체를 생성합니다
-		var ps = new kakao.maps.services.Places(map); 
+		var ps = new kakao.maps.services.Places(map);
 		// 지도에 idle 이벤트를 등록합니다
 		kakao.maps.event.addListener(map, 'idle', searchPlaces);
-		// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+		// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다
 		contentNode.className = 'placeinfo_wrap';
 		// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
-		// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+		// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다
 		addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
 		addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 		// 커스텀 오버레이 컨텐츠를 설정합니다
-		placeOverlay.setContent(contentNode);  
+		placeOverlay.setContent(contentNode);
 		// 각 카테고리에 클릭 이벤트를 등록합니다
 		addCategoryClickEvent();
 		// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
@@ -531,13 +298,13 @@
 		    if (!currCategory) {
 		        return;
 		    }
-		    
-		    // 커스텀 오버레이를 숨깁니다 
+
+		    // 커스텀 오버레이를 숨깁니다
 		    placeOverlay.setMap(null);
 		    // 지도에 표시되고 있는 마커를 제거합니다
 		    removeMarker();
-		    
-		    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+
+		    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true});
 		}
 		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 		function placesSearchCB(data, status, pagination) {
@@ -548,7 +315,7 @@
 		        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
 		    } else if (status === kakao.maps.services.Status.ERROR) {
 		        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
-		        
+
 		    }
 		}
 		// 지도에 마커를 표출하는 함수입니다
@@ -556,7 +323,7 @@
 		    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
 		    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
 		    var order = document.getElementById(currCategory).getAttribute('data-order');
-		    
+
 		    for ( var i=0; i<places.length; i++ ) {
 		            // 마커를 생성하고 지도에 표시합니다
 		            var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
@@ -572,7 +339,7 @@
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 		function addMarker(position, order) {
 		    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-		    //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+		    //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 		    //var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';
 		        imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
 		        imgOptions =  {
@@ -583,7 +350,7 @@
 		        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
 		            marker = new kakao.maps.Marker({
 		            position: position, // 마커의 위치
-		            image: markerImage 
+		            image: markerImage
 		        });
 		    marker.setMap(map); // 지도 위에 마커를 표출합니다
 		    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
@@ -593,26 +360,26 @@
 		function removeMarker() {
 		    for ( var i = 0; i < markers.length; i++ ) {
 		        markers[i].setMap(null);
-		    }   
+		    }
 		    markers = [];
 		}
 		// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 		function displayPlaceInfo (place) {
 		    var content = '<div class="placeinfo">' +
-		                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+		                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';
 		    if (place.road_address_name) {
 		        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
 		                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
 		    }  else {
 		        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
-		    }                
-		   
-		    content += '    <span class="tel">' + place.phone + '</span>' + 
-		                '</div>' + 
+		    }
+
+		    content += '    <span class="tel">' + place.phone + '</span>' +
+		                '</div>' +
 		                '<div class="after"></div>';
 		    contentNode.innerHTML = content;
 		    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-		    placeOverlay.setMap(map);  
+		    placeOverlay.setMap(map);
 		}
 		// 각 카테고리에 클릭 이벤트를 등록합니다
 		function addCategoryClickEvent() {
@@ -647,15 +414,15 @@
 		    }
 		    if (el) {
 		        el.className = 'on';
-		    } 
+		    }
 		}
-		var arr = new Array(); // 장소 별 위도, 경도를 담을 배열 생성				
+		var arr = new Array(); // 장소 별 위도, 경도를 담을 배열 생성
 		<c:forEach items="${detail.coursePath}" var="coursePath">
 			var markerPosition = new kakao.maps.LatLng("${coursePath.latitude}", "${coursePath.longitude}");
 			arr.push(markerPosition); // 배열에 위도, 경도 데이터 넣어줌.
 		</c:forEach>
 //			console.log("last_arr:"+arr); // 최종적으로 배열에 담긴 데이터 값 확인.
-			
+
 		// 마커를 생성합니다
 		for(var i=0; i<arr.length; i++){
 			var marker = new kakao.maps.Marker({
@@ -665,7 +432,7 @@
 			marker.setMap(map);
 		}
 		</script>
-	
+
 	<!-- 상단 캐러셀-->
 	<script src="../js/jquery-migrate.min.js"></script>
 	<script src="../layerslider/js/greensock.js"></script>
@@ -692,13 +459,13 @@
 			additionalMarginTop: 80
 		});
 	</script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
+			var cId = "${detail._id}"  // 코스의 _id
+			console.log(cId)
 			// 쓰레기통 아이콘 클릭
 			$(document).on("click", "#pullCourse", function(){
-				var cId = "${detail._id}"  // 코스의 _id
-				console.log(cId)
 				var p_id = $(this).next().val() // 각각 경로의 _id
 				console.log(p_id)
 				$.ajax({
@@ -711,7 +478,6 @@
 					},
 					success : function(){
 						alert("삭제 성공");
-//						$("#coursePath").load(window.location.href + "#coursePath");					
 					},
 					error : function(err){
 						console.log(err)
@@ -719,30 +485,65 @@
 				}) // end of ajax.
 				// 삭제한 row 화면에서 지우기.
 				$(this).parent().parent().parent().remove();
-				
-				// 경로 삭제에 따른 총 n건, 총 거리 새로고침...해야해..?ㅠㅠ 
+
+				// 경로 삭제에 따른 총 n건, 총 거리 새로고침...해야해..?ㅠㅠ
+
+			}) // end of on("click", "#pullCourse", function()
+
+			// 코스의 기존 테마
+			var theme = "${detail.theme}"
+			// 테마 셀렉트 박스에서 선택한 테마 옵션 가져오기
+			$("#theme").on("change", function(){
+				theme = $("#theme option:selected").val()
 			})
-			
+			// 코스의 기존 일정
+			var schedule = "${detail.schedule}"
+			// 일정 셀렉트 박스에서 선택한 일정 옵션 가져오기
+			$("#schedule").on("change", function(){
+				schedule = $("#schedule option:selected").val()
+			})
+			// 코스의 기존 공유 여부
+			var share = "${detail.share}"
+			// 공유 ON, OFF 값 가져오기.
+			$("input[name=inlineRadioOptions]").on("change", function(){
+				share = $("input[name=inlineRadioOptions]:checked").val()
+			})
+			if(share=="YES"){
+				$("#inlineRadio1").attr("checked",true);
+			}else{
+				$("#inlineRadio2").attr("checked",true);
+			}
+
+			// '저장' 클릭 시
 			$("#editCourse").on('click', function(){
-				$.ajax({
-					type : "post",
-					url : "editCourse.do?_id=${detail._id}",
-					contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
-					data : {
+				var keyword = $("#keyword").val().split(" ");
+				var info = {
+						"_id" : cId,
 						"courseName" : $("#courseName").val(),
-						"summary" : $("#summary").val()
-					},
+						"summary" : $("#summary").val(),
+						"keyword" : keyword,
+						"theme" : theme,
+						"schedule" : schedule,
+						"share" : share,
+				};
+				var jsonData = JSON.stringify(info);
+				$.ajax({
+					type : "POST",
+					url : "editCourse.do",
+					contentType : 'application/json;charset=UTF-8',
+					data : jsonData,
 					dataType : "json",
-					success : function(data){
-						alert("성공")
+					success : function(result){
+						alert("저장 완료")
+						location.href = "course_list.do"
 					},
 					error : function(err){
-						alert("에러 발생")
+						alert("에러 발생: 코스 편집 저장 쪽")
 						console.log(err)
 					}
-				}) // end of ajax				
+				}) // end of ajax
 			}) // end of $('#editCourse') click function
-		})
+		}) // end of jQuery.
 	</script>
 </body>
 

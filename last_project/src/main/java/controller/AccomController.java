@@ -5,6 +5,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,95 +19,100 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.java.service.AccomService;
+import main.java.service.CourseService;
 import main.java.vo.AccomVO;
+import main.java.vo.CourseVO;
 import main.java.vo.RestaurantVO;
 
 @Controller
 public class AccomController {
-		
+
 	//의존관계 주입 => AccomServiceImpl 생성
 	@Autowired
 	private AccomService AccomService;
-	
+
+	@Autowired
+	private CourseService courseService;
+
 	// 페이징 숫자 폭
 	private final int pageScale = 5;
-	
+
 	private final String firstScoreName = "lodgment";
-	
+
 	//숙박 리스트 조회
 	@RequestMapping(value="/accommodations_list.do")
-	public String test2(ModelMap m, @RequestParam(value = "page", defaultValue = "1") int pageNumber, 
+	public String test2(ModelMap m, @RequestParam(value = "page", defaultValue = "1") int pageNumber,
 									@RequestParam(value = "region", required = false) String region) {
-		
-		
+
+
 		int totalSize;
 		int[] scores;
-		
+
 		// 지역을 선택하지 않았다면
 		if (region == null) {
-			
+
 			List<AccomVO> list = AccomService.selectPageList(pageNumber);
-			
+
 			scores = new int[list.size()];
-			
+
 			// vo에 있는 binary 이미지들을 base64 String 컨버트
 			for (int i = 0; i < list.size(); i++) {
-				
+
 				AccomVO vo = list.get(i);
 				BinaryImageToString(vo);
 				scores[i] = RestaurantController.scoreAverage(vo.getReviews(), "lodgment");
-				
+
 			}
-			
+
 			// 리스트의 총 갯수
 			totalSize = AccomService.getTotalSize();
 
 			m.addAttribute("list", list);
-			
+
 		}
 		else {
-			
+
 			List<AccomVO> regionList = AccomService.getRegionData(region, pageNumber);
 			scores = new int[regionList.size()];
 			totalSize = regionList.size();
-			
+
 			for (int i = 0; i < totalSize; i++) {
 				AccomVO vo = regionList.get(i);
 				BinaryImageToString(vo);
 				scores[i] = RestaurantController.scoreAverage(vo.getReviews(), firstScoreName);
-				
+
 			}
-			
+
 			m.addAttribute("list", regionList);
 		}
-		
-		
+
+
 		// 사이드바 지역 설정하기
 		List<HashMap> regionList = AccomService.groupRegion();
 		int countSum = 0;
 		for (HashMap hashMap : regionList) {
 			countSum += (Integer) hashMap.get("regionCount");
 		}
-		
+
 		// 페이징 처리를 위한 hashmap
 		HashMap<String, Object> resultMap = RestaurantController.getPagingResultMap(pageNumber, pageScale, totalSize);
-		
+
 		m.addAttribute("countSum", countSum);
 		m.addAttribute("regionList", regionList);
 		m.addAttribute("resultMap", resultMap);
 		m.addAttribute("scores", scores);
-		
+
 		return "accommodation/accommodations_list";
-		
+
 	}
-	
+
 	//숙박 상세 페이지
 	@RequestMapping(value="/accommodations_detail.do")
-	public String test3(ModelMap m, @RequestParam("_id") String _id) {
+	public String test3(ModelMap m, @RequestParam("_id") String _id, HttpSession session) {
 		System.out.println("AccomController 상세 요청 : "+ _id);
-		
+
 		AccomVO vo = AccomService.detail(_id);
-		
+
 		// 이미지 띄우기
 		ArrayList<String> imageList = new ArrayList<String>();
 		for (Binary img : vo.getImage()) {
@@ -113,22 +120,31 @@ public class AccomController {
 			imageList.add(image);
 		}
 		vo.setImages(imageList);
-		
+
 		ArrayList<HashMap<String, String>> reviews = vo.getReviews();
-		
+
 		//m.addAttribute("", vo);
 		m.addAttribute("scores", RestaurantController.scoresAverage(reviews, "lodgment"));
-		m.addAttribute("detail", vo);		
+		m.addAttribute("detail", vo);
 		System.out.println(vo.get_id());
+
+		// 숙박 상세 페이지에서 '코스에 담기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
+		String memberId = (String) session.getAttribute("memberId");
+		List<CourseVO> clist = courseService.viewMycourse(memberId);
+		// 코스 데이터가 없는 유저의 경우 vo에 아무것도 없기 때문에 model.addAttribute("clist", clist); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("clist", clist);를 해주게 함.
+		if (vo != null) {
+			m.addAttribute("clist", clist);
+		} // 여기까지
+
 		return "accommodation/accommodations_detail";
 	}
-	
+
 	@RequestMapping(value = "/insert_lodgment_review.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int insertLodgmentReview(AccomVO vo, String _id) {
-		
+
 		System.out.println(_id);
-		
+
 		HashMap<String, String> review = vo.getReview();
 		String id = review.get("id");
 		System.out.println(vo.getReview().get("id"));
@@ -137,20 +153,20 @@ public class AccomController {
 		System.out.println(vo.getReview().get("service"));
 		System.out.println(vo.getReview().get("price"));
 		System.out.println(vo.getReview().get("quality"));
-		
+
 		// 현재 데이터의 리뷰 List 가져오기
 		ArrayList<HashMap<String, String>> reviews = AccomService.getReviews(_id);
-		
+
 		// List에 review를 추가.
 		reviews.add(review);
-		
+
 		// 바뀐 list로 update 쿼리 실행
 		int result = AccomService.updateAccomReview(reviews, _id);
-		
+
 		return result;
 	}
-	
-	
+
+
 	public void BinaryImageToString(AccomVO accomVO) {
 
 		ArrayList<String> imageList = new ArrayList<String>();

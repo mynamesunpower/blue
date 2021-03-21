@@ -18,7 +18,7 @@ public class FestivalServiceImpl implements FestivalService {
 	@Override
 	public List<FestivalVO> test() {
 		// TODO Auto-generated method stub
-		
+
 		return festivalDao.test();
 	}
 
@@ -59,65 +59,65 @@ public class FestivalServiceImpl implements FestivalService {
 		// TODO Auto-generated method stub
 		return festivalDao.updateRestaurantReview(reviews, _id);
 	}
-	
-		
+
+
 
 	@Override
 	public List<FestivalVO> search(String word) {
 		// TODO Auto-generated method stub
 		return festivalDao.search(word);
 	}
-	
+
 
 	@Override
 	public long festivalcount() {
 		// TODO Auto-generated method stub
 		return festivalDao.festivalcount();
-		
+
 	}
-	
-	
+
+
 
 	@Override
 	public List<InstarVO> instar() {
 		// TODO Auto-generated method stub
 		return festivalDao.instar();
 	}
-	
-	
+
+
 	@Override
 	public List<InstarVO> detail_instar(int tel) {
 		// TODO Auto-generated method stub
 		return festivalDao.detail_instar(tel);
 	}
-	
-	
+
+
 
 	@Override
 	public List<FestivalVO> selectPageList(int pageNumber){
 		return festivalDao.selectPageList(pageNumber);
 	}
-	
-		
+
+
 
 	@Override
 	public List<FestivalVO> getRegionData(String region, int pageNumber) {
 		// TODO Auto-generated method stub
 		return festivalDao.getRegionData(region, pageNumber);
 	}
-	
+
 	@Override
 	public List<HashMap> groupRegion() {
 		return festivalDao.groupRegion();
 	}
-	
+
 
 	//관리자에서
 	@Override
 	public FestivalVO insert_festival(FestivalVO vo) {
 		return festivalDao.insert_festival(vo);
 	}
-	
+
 	@Override
 	public FestivalVO modify_festival(FestivalVO vo) {
 		return festivalDao.modify_festival(vo);
@@ -127,6 +127,6 @@ public class FestivalServiceImpl implements FestivalService {
 	public FestivalVO delete_festival(FestivalVO vo) {
 		return festivalDao.delete_festival(vo);
 	}
-	
-	
+
+
 }

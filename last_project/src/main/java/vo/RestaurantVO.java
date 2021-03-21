@@ -26,10 +26,10 @@ public class RestaurantVO {
 	private ArrayList<String> images;
 	private HashMap<String, String> review;
 	private ArrayList<HashMap<String, String>> reviews;
-	
+
 	private int averageScore;
 	private int views;
-	
+
 	public int getViews() {
 		return views;
 	}

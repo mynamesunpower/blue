@@ -52,7 +52,7 @@
 				<h1>축제 리스트</h1>
 				<p>검색된 축제 리스트입니다.</p>
 				<c:forEach items="${list}" var="list" varStatus="var">
-	 						
+
 	 							 <c:if test="${list == null }">
 	 						 <div class="col-lg-6 col-md-6">
 	 							<div class="tour_list_desc">
@@ -60,10 +60,10 @@
 											<h3>검색결과가 없습니다</h3>
 											<p>다시 검색해 주세요</p>
 										</div>
-										</div>	
+										</div>
 	 						</c:if>
 	 						</c:forEach>
-				
+
 			</div>
 		</div>
 	</section>
@@ -91,18 +91,18 @@
 		<div class="container margin_60">
 
 			<div class="row">
-				
+
 
 				<div class="col-lg-9">
 
 					<div id="tools">
 						<div class="row">
-						
+
 							<div class="col-md-3 col-sm-4 col-6">
-								
+
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								
+
 							</div>
 						</div>
 					</div>
@@ -110,7 +110,7 @@
 
 					<div id="search_list">
 	 					<c:forEach items="${list}" var="list" varStatus="var">
-	 						
+
 	 							 <c:if test="${list == null }">
 	 						 <div class="col-lg-6 col-md-6">
 	 							<div class="tour_list_desc">
@@ -118,7 +118,7 @@
 											<h3>검색결과가 없습니다</h3>
 											<p>다시 검색해 주세요</p>
 										</div>
-										</div>	
+										</div>
 	 						</c:if>
 							<div class="strip_all_tour_list wow fadeIn restaurant" data-wow-delay="0.1s">
 								<div class="row">
@@ -134,7 +134,7 @@
 										</div>
 										<div class="img_list">
 											<a href="details.do?tel=${list.postcode}">
-											
+
 												<c:if test="${list.images.size() gt 0}">
 													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
 												</c:if>
@@ -164,7 +164,7 @@
 								</div>
 							</div>
 							<!--End strip -->
-							
+
 						</c:forEach>
 					</div>
 
@@ -180,18 +180,18 @@
 									</a>
 								</li>
 							</c:if>
-							
+
 							<c:forEach var="i" begin="${resultMap.startPage}" end="${resultMap.endPage > resultMap.total? resultMap.total : resultMap.endPage}" varStatus="status">
 								<c:choose>
 									<c:when test="${resultMap.page eq i}">
-										<li class="page-item active"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>		
+										<li class="page-item active"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-							
+
 							<c:if test="${resultMap.nextPage <= resultMap.total}">
 								<li class="page-item">
 									<a class="page-link" href="javascript:fnGoPaging(<c:out value="${resultMap.nextPage}"/>)" aria-label="Next">
@@ -232,7 +232,7 @@
 	//	   checkboxClass: 'icheckbox_square-grey',
 	//	   radioClass: 'iradio_square-grey'
 	//	 });
-		
+
 	//	function fnGoPaging(page) {
    //         location.replace("accommodations_list.do?page="+page)
    //     }
@@ -241,4 +241,4 @@
 
 </body>
 
-</html> 
+</html>

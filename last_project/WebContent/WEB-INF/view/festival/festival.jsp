@@ -33,19 +33,14 @@
     <link href="css/hmcss.css" rel="stylesheet">
 
         <style type="text/css">  /* CSS 첫 이미지 고정 */
-
 	#container{height:1200px; background-size:cover; background-image:url("/background/img_1.jpg");}
 	
 	@media screen and (min-width: 769px) { 
-
 	#hero {
 		width: 58%;
 		margin: 0 auto;
 	} 
-
-
 	}
-
 </style>
 
 
@@ -66,7 +61,7 @@
     <%@ include file="/../header.jsp" %>
 
     <!-- 메인 이미지 슬라이더 -->
-	<section id="hero" style="width:58%; margin:0 auto;">
+	<section id="hero">
 
 		<div class="intro_title">
 		 <!-- <img src="img/logo_sticky.png"> --> 
@@ -105,8 +100,6 @@
                     </div>
                 </div>
                 </div>
-
-
                 <div class="col-sm-12 col-md-12">
                     <div class="row small-gutters mt-md-0 mt-sm-2">
                         <div class="col-sm-3">
@@ -122,7 +115,6 @@
                             </div>
                         </div>
                         </div>
-
                         <div class="col-sm-3">
                         <div id = 'a3'>
                         <div>
@@ -136,7 +128,6 @@
                             </div>
                             </div>
                         </div>
-
                         <div class="col-sm-3">
                         <div id = 'a4'>
                         <div>
@@ -150,7 +141,6 @@
                             </div>
                             </div>
                         </div>
-
                         <div class="col-sm-3">
                         <div id = 'a5'  width="300px" height="196px">
                         <div>
@@ -168,7 +158,6 @@
                 </div>
             </div> <br><br>
         <!-- 월별 축제 이미지 끝 -->
-
         <!-- 추천 축제 -->
         
         <div class="main_title">
@@ -177,20 +166,15 @@
        <br><br> 
         
         <!-- 내 근처의 축제 -->
-
         <div id="map" style="width:100%;height:350px;"></div>
         <br>
 <!--<p><em>지도를 클릭해주세요!</em></p>--> 
 <div id="clickLatlng"></div>
-
-
-
         <div class="main_title">
-            <h2>근처 축제: <span><div id="ppp">지도를 클릭해주세요!</div> </span></h2>
+            <h2>근처 축제: <span> 지도를 클릭해주세요! </span></h2>
             
            <!--  <a href="#" class="btn_1">자세히 보기</a> -->
         </div>
-
         <!-- 추천 축제 캐러셀 -->
         <div class="owl-carousel owl-theme list_carousel add_bottom_30">
                 <div class="item" >
@@ -293,22 +277,15 @@
                 <!-- /item -->
             </div>
             <!-- 추천 축제 캐러셀 끝 -->
-
     </div><!-- End container -->
-
     </main>
 	<!-- End main -->
-
 	<%@ include file="/../footer.jsp" %>
-
  	<!-- Common scripts -->
-
-
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-
  	<!-- Specific scripts -->
 	<script src="js/morphext.min.js"></script>
 	<script>
@@ -320,7 +297,6 @@
 			// Overrides default empty function
 		}
 	});
-
 $(document).ready(function() {
 	document.getElementById("hero").style.backgroundImage = "url('/img/main/main_festa.jpg')";
 	 var k =1;
@@ -373,7 +349,6 @@ $(document).ready(function() {
 			});
 		
 		}, 3000);
-
 		var cur_month = 0;
 		var fes_oMonth = new Date();
 		fes_oMonth.setDate(1);
@@ -392,14 +367,12 @@ $(document).ready(function() {
 	 		
 	 				festivals1=''
 	 				festivals1 += '<div><img src="data:image/jpg;base64,'+data[0][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
-
 	 				festivals2=''
 	 	 			festivals2 += '<div><img src="data:image/jpg;base64,'+data[1][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
 	 	 	 			
 	 	 			festivals3=''
 	 	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
 	 	 	 	
-
 	 				//지도 클릭시 사진 바뀜
 	 				$(".aa1").html(festivals1);
 	 				$(".aa2").html(festivals2);
@@ -429,9 +402,6 @@ $(document).ready(function() {
 	
 		
 	})
-
-
-
 	//달에 해당하는 데이타 가져오기
  	function getMonthData() {
  		//alert("118로들옴")
@@ -441,39 +411,48 @@ $(document).ready(function() {
 			type: "POST",
 			data: {"month" : cur_month},
 			success: function(data) {
+		//근처축제 기본값
 			
+ 				
+		
+		
+		///기본값 끝 (근처축제)
+		
 				var count = data;
-				
+				//alert("iss = "+count.length);
 				 $.each(data, function (i, item) {
-				
+					 //console.log(item.image)
 					 console.log("나는ss"+item.image)
 					festivals = '';
 					festivals += '<div>'
 					festivals +='<a href="/details.do?tel='+item.postcode+'">'
-			
+					//festivals +='<a href="javascript:" onclick="festivaldetail('+item.tel+')">'
 					if(item.image==''){
 						festivals += '<div><img height="300" width="400" class="owl-slide cover" src="/img/login/testfile.png"/></div>'
-					
+						//festivals +='<img src="img/img_cat_home_1.jpg" class="img-fluid">'
+						//festivals +='<img src="data:image/jpg;base64,'+item.image[0].data+'" alt="" class="img-fluid">'
 						}else{
 							if(i == 0){
 								festivals += '<div><img alt="image" class="owl-slide cover img-fluid" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
 							}else{
 							festivals += '<div><img alt="image" height="300" width="400" class="owl-slide cover" src="data:image/jpg;base64,'+item.image[0].data+'"/></div>'
-					
+							//festivals +='<img  src="data:image/jpg;base64,'+item.image[0].data+'" class="img-fluid">'
 							}
 							
 						}
-
+					//festivals +='<img src="img/img_cat_home_1.jpg" alt="" class="img-fluid">'
+					///festivals +='<img src="D:/Temp/test.png" alt="" class="img-fluid">'
+					//festivals +='<img src="'+item.image+'" alt="" class="img-fluid">'
 					festivals +='<div class="wrapper">'
 					festivals +='<h2>'+item.title+'</h2>'
 					festivals +='<p>'+item.startDate+'~'+item.endDate+'</p>'
 					festivals +='</div>'
 					festivals +='</a>'
 					festivals +='</div>'
-
-				
+						//alert(count.length)
 					if(count.length <2){
-					
+						//alert(count.length)
+						//alert("지워")
 						$("#a2>div ").remove();
 						$("#a3 >div").remove();
 						$("#a4 >div").remove();
@@ -492,24 +471,35 @@ $(document).ready(function() {
 					}
 
 
+
+
+
+
+                    //alert("items : "+item.size);
+
                     if(i ==0){
-         
+                    ///$('.areas1 > h2').html(item.title);
                     $('#a1').html(festivals);
-          
+                    //alert(i)
                     }else if(i ==1){
-                 
+                    	//alert(i)
+                        //$('.areas2 > h2').html(item.title);
                     	$('#a2').html(festivals);
                     }else if(i ==2){
-                   
+                    	//alert(i)
+                        //$('.areas3 > h2').html(item.title);
                     	$('#a3').html(festivals);
                     }else if(i ==3){
-                    
+                    	//alert(i)
+                        //$('.areas4 > h2').html(item.title);
                     	$('#a4').html(festivals);
                     }else if(i ==4){
-                    
+                    	//alert(i)
+                        //$('.areas5 > h2').html(item.title);
                     	$('#a5').html(festivals);
                     }
-                  
+                    //alert("item : "+item.title);
+                    //alert("item : "+item.start_date);
                 });
 
 				console.log(data)
@@ -779,7 +769,12 @@ $(document).ready(function() {
  	 	 			
  	 			festivals3=''
  	 	 		festivals3 += '<div><img src="data:image/jpg;base64,'+data[2][0].image[0].data+'" width="500" height="300" class="nearimage" alt="image"></div>'
- 	 	
+ 	 	 	
+
+ 				//$('.aa1 div').remove()
+ 				//$('.aa2 div').remove()
+ 				//$('.aa3 div').remove()
+
  				//지도 클릭시 사진 바뀜
  				$(".aa1").html(festivals1);
  				$(".aa2").html(festivals2);
@@ -798,6 +793,16 @@ $(document).ready(function() {
 	 			
 	 			$("#ppp").html(addre);
 	 			
+	 			//평점
+	 						
+				
+				//$.each(data.score function(index,item)){
+					
+				//}
+													
+				//rating = ''
+				//rating += '<i class="icon-star voted"></i>'
+				//rating += '<i class="icon-star-empty"></i>'
 													
 	 			$('#rating1').html(data[0][0].address);
 	 			$('#rating2').html(data[1][0].address);
@@ -822,27 +827,15 @@ $(document).ready(function() {
  <script>
  
  
-
-
 <!--  <script type="text/javascript"> /* 사용자가 새로고침, F5 눌럿을 때만, 배경화면이 자동 변경 자바스크립트 함수*/
-
 	//window.onload = function(){
-
 		//var background_img = "/img/main";
-
 		//var number = Math.floor(Math.random() * 16) + 1;
-
 		//var container = document.getElementById("container");
 		//var container = document.getElementById("hero");
-
-
-
 		//background_img += number + ".jpg";
-
 		//container.style.backgroundImage = "url('" + background_img + "')";
-
 	//}-->
-
 </script>
 
 

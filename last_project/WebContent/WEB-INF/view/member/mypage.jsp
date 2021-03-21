@@ -22,12 +22,12 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	
+
 	<!-- COMMON CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<link href="css/vendors.css" rel="stylesheet">
-	
+
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
 	<link href="css/realtime_inquire.css" rel="stylesheet">
@@ -123,7 +123,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-sm-6">									
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label>주소 </label>
 											<input type="text" id="addr" class="form-control" value="${vo.address}" style="width:100%;">
@@ -313,7 +313,7 @@
 														<option value="2">정보 오류 수정 </option>
 														<option value="3">기타</option>
 													</select>
-												</div>											
+												</div>
 												<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 													<label>문의 내역</label>
 													<textarea id="cs_detail" placeholder="문의 사항을 상세히 기재해주세요." class="form-control"></textarea>
@@ -340,45 +340,45 @@
 						</div>
 						<div id="inquire2Area">
 							<div class="step">
-								<section class="msger">																  
+								<section class="msger">
 									<main class="msger-chat">
 									  <div class="msg left-msg">
 										<div
 										 class="msg-img"
 										 style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
 										></div>
-								  
+
 										<div class="msg-bubble">
 										  <div class="msg-info">
 											<div class="msg-info-name">BOT</div>
 											<div class="msg-info-time">12:45</div>
 										  </div>
-								  
+
 										  <div class="msg-text">
 											안녕하세요, 무엇을 도와드릴까요? 😄
 										  </div>
 										</div>
 									  </div>
-								  
+
 									  <!-- <div class="msg right-msg">
 										<div
 										 class="msg-img"
 										 style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
 										></div>
-								  
+
 										<div class="msg-bubble">
 										  <div class="msg-info">
 											<div class="msg-info-name">YOU</div>
 											<div class="msg-info-time">12:46</div>
 										  </div>
-								  
+
 										  <div class="msg-text">
 											You can change your name in JS section!
 										  </div>
 										</div>
 									  </div> -->
 									</main>
-								  
+
 									<form class="msger-inputarea">
 									  <input type="text" class="msger-input" placeholder="메시지를 입력해주세요.">
 									  <button type="submit" class="msger-send-btn">전송</button>
@@ -394,7 +394,7 @@
 		</div>
 		<!-- End container -->
 		<form name="frmData" id="frmData" method="post">
-			<input type="hidden" name="name" id="mem_name" value="${vo.name}" /> 
+			<input type="hidden" name="name" id="mem_name" value="${vo.name}" />
 			<input type="hidden" name="id" id="mem_id" value="${vo.id}" />
 		</form>
 
@@ -443,7 +443,7 @@
 			}
 			return zero + n;
 		}
-		
+
 		function openPop() {
 
 			var url = "../CustomerService/memberChat.do";
@@ -454,11 +454,11 @@
 		}
 
 		$('.memberChat').on('click', function() {
-			
-			
+
+
 			var date = getTimeStamp();
 			console.log(date)
-			
+
 			$.ajax({
 				type: 'post',
 				url: '../admin/admin_customer_chat.do',
@@ -477,12 +477,12 @@
 				},
 				complete: function(complete) {
 					console.log('끝나따')
-					
+
 					// 채팅창 열기!
 					openPop();
 				}
 			})
-			
+
 		});
 
 		jQuery('#sidebar').theiaStickySidebar({
@@ -491,7 +491,7 @@
 	</script>
 	<script>
 	$('#faq_box a[href^="#"]').click(function() {
-		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
 			|| location.hostname == this.hostname) {
 			var target = $(this.hash);
 			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
@@ -504,7 +504,7 @@
 		}
 	});
 	</script>
-	
+
 	<script src="js/realtime_inquire.js"></script>
 	<!-- Cat nav mobile -->  <!--모바일 화면에서 메뉴 접어서 보여주는거-->
 	<!-- <script src="js/cat_nav_mobile.js"></script>
@@ -516,7 +516,7 @@
 	<!-- <script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/map_restaurants.js"></script>
 	<script src="js/infobox.js"></script> -->
-	
+
 	<!-- Check box and radio style iCheck -->
 	<!-- <script>
 		$('input').iCheck({
@@ -524,7 +524,7 @@
 		   radioClass: 'iradio_square-grey'
 		 });
 	</script> -->
-	
+
 </body>
 
 </html>

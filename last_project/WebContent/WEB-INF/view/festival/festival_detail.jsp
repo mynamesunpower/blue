@@ -1003,7 +1003,7 @@ function getTimeHTML(distance) {
 					</p> <!-- 지도 끝 -->
                     <!-- 코스에 담기 -->
                     <p>
-                        <a href="#" class="btn_map" data-toggle="modal" data-target="#put_into_course">코스에 담기</a>
+                        <a href="#" class="btn_map" data-toggle="modal" data-target="#put_into_course" id="saveCourse">코스에 담기</a>
                     </p> <!-- 코스에 담기 끝 -->
                     <!-- 티켓 구매하기 -->
                    <!-- <p>
@@ -1110,25 +1110,45 @@ function getTimeHTML(distance) {
 	<!-- End main -->
 
 	<%@ include file="../../../footer.jsp" %>
+	
+	<!-- Common scripts -->
+	<script src="/../js/jquery-3.5.1.min.js"></script>
+	<script src="/../js/common_scripts_min.js"></script>
+	<script src="/../js/functions.js"></script>
 
-	<!-- Modal put_into_course-->
-	<div class="modal fade" id="put_into_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div id="courseList">
-					</div>
-					<div style="text-align: center;">
-						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+	<!-- 비로그인 상태에서 코스에 담기 누르면, 로그인하라고 안내.. 팝업 띄우기는..어렵귀찮네?-->
+	<c:choose>
+		<c:when test="${sessionScope.memberId ne null}">
+			<!-- Modal put_into_course-->
+			<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body" style="text-align: center;">
+							<div id="courseList">
+							</div>
+							<div style="text-align: center;">
+								<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div> <!-- End of Modal put_into_course-->
+		 	<!-- End of Modal put_into_course-->
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#saveCourse").on('click', function(){
+						alert("로그인 후 이용해주세요.")
+					})
+				})
+			</script>
+		</c:otherwise>
+	</c:choose>
 
 	<!-- Modal add_course-->
 	<div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -1252,11 +1272,7 @@ function getTimeHTML(distance) {
 		</div>
 	</div>
 	<!-- End modal review -->
-
-	<!-- Common scripts -->
-	<script src="js/jquery-3.5.1.min.js"></script>
-	<script src="js/common_scripts_min.js"></script>
-	<script src="js/functions.js"></script>
+	
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"></script>-->
 	<!-- Date and time pickers -->
 	
@@ -1381,8 +1397,8 @@ function getTimeHTML(distance) {
 		$(document).ready(function () {
 			// '선택' 클릭
 			$(document).on("click", "#choice", function(){
+				// 코스명
 				var courseName = $(this).parent().prev().val();
-				console.log(courseName);
 				// 코스 경로 배열 생성.
 				var coursePath_arr = new Array();
 				<c:forEach items="${list}" var="fes">
@@ -1404,7 +1420,6 @@ function getTimeHTML(distance) {
 							"image" : img
 //							"fee" : "${fes.fee}", // fee안에 태그랑 "" 있는 경우있어서 오류 뜸.
 					}
-					console.log(data)
 					coursePath_arr.push(data)
 				</c:forEach>
 				// 콘솔로 확인
@@ -1418,25 +1433,20 @@ function getTimeHTML(distance) {
 					"courseName" : courseName,
 					"coursePath" : coursePath_arr
 				}
-				console.log(info)
-				console.log(typeof(info))
+				// 직렬화
 				var jsonData = JSON.stringify(info)
-				console.log("jsonData:"+jsonData)
-				console.log(typeof(jsonData))
-				
 				$.ajax({
 					type : "POST",
-					url : "course/pushCoursePath.do",
+					url : "pushCoursePath.do",
 					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
 					data : jsonData,
 					dataType : "json",					
-					success : function () {
+					success : function (result) {
 						alert("코스에 담기 완료")
 					},
 					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 담기 에러");
-						alert("코스에 담기 완료")
+						alert("에러가 발생했습니다: festival_detail.jsp --- 코스 담기 에러");
 						console.log("err:"+err)
 					}
 				})  // end of ajax.
@@ -1453,8 +1463,8 @@ function getTimeHTML(distance) {
 				);
 				// 코스 _id 써먹어야해서 필요
 				$("#courseList").append(
-						"<input type='hidden' value='${name._id}'>"		
-					);
+					"<input type='hidden' value='${name._id}'>"		
+				);
 			</c:forEach>
 			
 			// '추가' 클릭 시
@@ -1471,26 +1481,22 @@ function getTimeHTML(distance) {
 				// DB 코스 컬렉션에 document 생성
 				var data = {
 					"writer" : "${sessionScope.memberId}",
-					"courseName" : courseName
+					"courseName" : courseName,
+					"share" : "NO"
 				}
 				var jsonData = JSON.stringify(data)
 				$.ajax({
 					type : "POST",
-					url : "course/addMycourse.do",
+					url : "addMycourse.do",
 					contentType : 'application/json;charset=UTF-8',
 					data : jsonData,
 					dataType : "json",					
-					success : function () {
-						alert("코스 생성!");
-					},
-					error : function (err) {
-//						alert("에러가 발생했습니다: course_detail.jsp --- 코스 생성 에러");
-						alert("코스 생성")
-						console.log("err:"+err)
+					success : function (result) {
+						alert("코스 생성 완료");
 						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
 						$.ajax({
 							type : "POST",
-							url : "course/cId.do",
+							url : "cId.do",
 							contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
 							data : data,
 							success : function(data){
@@ -1499,9 +1505,14 @@ function getTimeHTML(distance) {
 								);
 							},
 							error : function(err){
+								alert("에러가 발생했습니다: festival_detail.jsp --- 히든 인풋 만들기 에러")
 								alert("err:"+err)
 							}
 						}) // end of ajax.
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다: festival_detail.jsp --- 코스 생성 에러");
+						console.log("err:"+err)
 					}
 				}) // end of ajax.
 			}) // end of $("#addNewcourse").on('click', function(){}).

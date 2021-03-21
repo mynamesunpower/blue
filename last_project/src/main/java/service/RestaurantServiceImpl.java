@@ -21,12 +21,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public List<RestaurantVO> selectAll() {
 		return restaurantDAO.selectAll();
 	}
-	
+
 	@Override
 	public int getTotalSize() {
 		return restaurantDAO.selectAll().size();
 	}
-	
+
 	@Override
 	public RestaurantVO selectOne(String _id) {
 		// TODO Auto-generated method stub
@@ -63,12 +63,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.getCategoryData(word, pageNumber);
 	}
 	public List<RestaurantVO> selectnear(ObjectId objectId) {
-		
+
 		return restaurantDAO.selectnear(objectId);
 	}
-	
-	
-	
+
+
+
 	//관리자에서
 	public RestaurantVO insert_restaurant(RestaurantVO vo) {
 		return restaurantDAO.insert_restaurant(vo);
@@ -81,11 +81,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public RestaurantVO delete_restaurant(RestaurantVO vo) {
 		return restaurantDAO.delete_restaurant(vo);
 	}
-	
+
 	@Override
 	public int count() {
 		// TODO Auto-generated method stub
 		return restaurantDAO.count();
 	}
-	
+
 }
