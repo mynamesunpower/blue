@@ -57,11 +57,11 @@
 
 	<%@ include file="../../../header.jsp" %>
 
-	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="img/restaurant_top.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="img/restaurant_top2.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>마이 페이지에용~</h1>
-				<p>이 부분 없으면 페이지가 이상해지네용~</p>
+				<h1>마이페이지</h1>
+				<p></p>
 			</div>
 		</div>
 	</section>
@@ -116,7 +116,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>전화번호</label>
-											<input type="text" id="telephone" name="telephone" class="form-control" value="${vo.tel}">
+											<input type="text" id="tel" name="telephone" class="form-control" value="${vo.tel}">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="changePhoneNumber">전화번호 변경</button>
 											</div>
@@ -182,18 +182,6 @@
 											</div>
 											</div>
 										</div>
-										<div class="card">
-											<div class="card-header">
-												<h4>
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseThree_faq">게임업계 개발자 연봉이 올랐대여<i class="indicator icon-plus float-right"></i></a>
-												</h4>
-											</div>
-											<div id="collapseThree_faq" class="collapse" data-parent="#faq">
-												<div class="card-body">
-													대박대박
-												</div>
-											</div>
-										</div>
 									</div>
 									<!--End FAQ -->
 								</div>
@@ -205,7 +193,7 @@
 					<!-- 분실물 start-->
 					<div class="col-lg-12 add_bottom_15">
 						<div class="form_title">
-							<h3><strong class="icon_set_1_icon-42"></strong>분실물 제보 게시판</h3>
+							<h3><strong class="icon_set_1_icon-42"></strong>분실물 제보 게시판 (미구현)</h3>
 						</div>
 						<div id="lostArea">
 							<div class="step">
@@ -289,6 +277,7 @@
 					</div><!-- 분실물 end-->
 					<hr>
 					<!-- 문의 start-->
+					<!-- 
 					<div class="col-lg-12 add_bottom_15">
 						<div class="form_title">
 							<h3><strong class="icon_set_1_icon-57"></strong>문의하기</h3>
@@ -297,7 +286,7 @@
 							<div class="step">
 								<div class="billing-details">
 									<div class="shop-form">
-										<form method="post">  <!-- 주문 양식 따온거라 form으로 묶여져있네-->
+										<form method="post">
 											<div class="row">
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>이름 <sup>*</sup>
@@ -336,10 +325,10 @@
 										</form>
 									</div>
 								</div>
-							</div>
-							<!--End step -->
+							</div>  
+
 						</div>
-					</div>
+					</div> -->
 					<!--End 문의하기-->
 					<hr>
 					<!-- 1:1 문의 start-->
@@ -417,6 +406,36 @@
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
+	<script>
+	$(document).ready(function() {
+		
+		$('#changePhoneNumber').on('click', function() {
+			$.ajax({
+				type: 'post',
+				url: '/member/memberModify.do',
+				data: {
+					'id': $('#mem_id').val(),
+					'name': $('#name').val(),
+					'tel': $('#tel').val(),
+					'email': $('#email').val(),
+					'address': $('#addr').val()
+				},
+				contentType:'application/x-www-form-urlencoded;charset=euc-kr',
+				success: function(result) {
+					console.log(result)
+					if (result == 1) {
+						alert('정보 수정 완료')
+					}
+				},
+				error: function(err) {
+					console.log('에러' + err)
+				}
+			})		
+		})
+	})
+	
+	</script>
+
 
 	<!-- Specific scripts -->
 	<!-- 주소 찾기 기능-->

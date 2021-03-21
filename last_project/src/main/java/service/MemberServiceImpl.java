@@ -78,5 +78,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.selectOne(user_id);
 	}
+
+	@Override
+	public int memberUpdateMypage(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return memberDao.memberUpdateMypage(vo);
+	}
 	
 }

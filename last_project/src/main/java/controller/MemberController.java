@@ -350,5 +350,16 @@ public class MemberController {
             e.printStackTrace();
         }
     }
+    
+    @RequestMapping(value = "memberModify.do")
+    @ResponseBody
+    public int modify(MemberVO vo) {
+    	
+    	System.out.println(vo.getId() + "/" + vo.getName());
+    	int result = memberService.memberUpdateMypage(vo);
+    	System.out.println("업데이트 완료");
+    	
+    	return result;
+    }
 
 }

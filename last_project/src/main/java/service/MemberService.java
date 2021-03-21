@@ -29,5 +29,7 @@ public interface MemberService {
 	public int delete_member(MemberVO vo);
 
 	public MemberVO selectOne(String user_id);
+
+	public int memberUpdateMypage(MemberVO vo);
 	
 }

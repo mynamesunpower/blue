@@ -16,4 +16,5 @@ public interface MemberDAO {
 	public List<MemberVO> addtable();
 	public int modify_member(MemberVO vo);
 	public MemberVO selectOne(String user_id);
+	public int memberUpdateMypage(MemberVO vo);
 }
