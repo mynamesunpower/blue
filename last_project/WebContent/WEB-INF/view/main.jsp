@@ -164,7 +164,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-12 mt-sm-2">
-                                <a href="course/course_main.do"> <!--클릭하면 코스 메인 페이지로 이동하게-->
+                                <a href="/course_main.do"> <!--클릭하면 코스 메인 페이지로 이동하게-->
                                     <img src="img/main/main_course.png" alt="" class="img-fluid" width="800" height="343">
                                     <div class="wrapper">
                                         <h2>코스</h2>
