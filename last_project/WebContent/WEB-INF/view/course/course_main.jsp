@@ -254,7 +254,7 @@
 											<c:forEach items="${course.coursePath}" var="coursePath" begin="0" end="0">
 												<li>시작 지역 : <span>${coursePath.address}</span></li>
 											</c:forEach>
-											<li>코스 총거리 : <span>${course.distance}</span>km</li>
+											<!-- <li>코스 총거리 : <span>${course.distance}</span>km</li> -->
 										</ul>
 										<h3><strong>코스 경로</strong></h3>
 

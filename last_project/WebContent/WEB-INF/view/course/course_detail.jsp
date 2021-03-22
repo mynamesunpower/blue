@@ -98,7 +98,7 @@
 						<div class="col-md-8">
 							<h1>${detail.courseName }</h1>
 							<i class="pe-7s-map-marker"></i><span> ${coursePath.address}</span><br>
-							<i class="pe-7s-graph1"></i> 코스 총 거리 :<span style="font-size: large;"> ${detail.distance}</span> km<br>
+							<!-- <i class="pe-7s-graph1"></i> 코스 총 거리 :<span style="font-size: large;"> ${detail.distance}</span> km<br> -->
 							<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><medium>(${detail.reviews.size()}개의 리뷰)</medium></span>
 						</div>
 					</div>
@@ -422,7 +422,7 @@
 										<div class="col-md-12">
 											<ul class="list_icons">
 												<li><i class="icon-location-7"></i> ${coursePath.address}</li>
-												<li><i class="icon-road-1"></i> 내 위치에서 333.3km</li>
+												<!-- <li><i class="icon-road-1"></i> 내 위치에서 333.3km</li> -->
 												<li><i class="icon-phone-3"></i> ${coursePath.tel}</li>
 											</ul>
 										</div>
@@ -539,20 +539,6 @@
 														</c:forEach>
 													</div>
 												</li>
-												<li>비용
-													<div class="rating">
-														<c:forEach begin="1" end="${Integer.parseInt(review.price)}">
-															<i class="icon-smile voted"></i>
-														</c:forEach>
-														<c:forEach begin="1" end="${5 - Integer.parseInt(review.price)}">
-															<i class="icon-smile"></i>
-														</c:forEach>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="col-md-6">
-											<ul>
 												<li>재미
 													<div class="rating">
 														<c:forEach begin="1" end="${Integer.parseInt(review.fun)}">
@@ -563,7 +549,21 @@
 														</c:forEach>
 													</div>
 												</li>
-												<li>만족도
+											</ul>
+										</div>
+										<div class="col-md-6">
+											<ul>
+												<li>비용
+													<div class="rating">
+														<c:forEach begin="1" end="${Integer.parseInt(review.price)}">
+															<i class="icon-smile voted"></i>
+														</c:forEach>
+														<c:forEach begin="1" end="${5 - Integer.parseInt(review.price)}">
+															<i class="icon-smile"></i>
+														</c:forEach>
+													</div>
+												</li>
+												<li>추천도
 													<div class="rating">
 														<c:forEach begin="1" end="${Integer.parseInt(review.recommend)}">
 															<i class="icon-smile voted"></i>
