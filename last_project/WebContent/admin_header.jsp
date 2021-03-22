@@ -113,7 +113,7 @@
           </li>
             
           <!-- 코스 관리 -->    
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -135,9 +135,10 @@
                 </a>
               </li>
             </ul>
-          </li> <!-- 코스 관리 끝 -->
+          </li>  --><!-- 코스 관리 끝 -->
             
-          <!-- 리뷰 관리 -->    
+          <!-- 리뷰 관리 -->   
+          <!--  
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -172,7 +173,7 @@
                 </a>
               </li>
             </ul>
-          </li> <!-- 리뷰 관리 끝 -->
+          </li>  --><!-- 리뷰 관리 끝 -->
             
             
           <li class="nav-item">

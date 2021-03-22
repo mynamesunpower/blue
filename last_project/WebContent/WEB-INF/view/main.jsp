@@ -190,8 +190,8 @@
 			</div>
 
 			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
-			<c:forEach items="${list}" var="list">
-			<c:forEach items="${list.images}" var="image" >
+			<c:forEach items="${list}" var="list" begin="2" end="6">
+			<c:forEach items="${list.images}" var="image" begin="1" end="1">
                 <div class="item">
                     <div class="tour_container">
                         <div class="img_container">
@@ -503,7 +503,7 @@
 	</main>
 	<!-- End main -->
 
-	<%@ include file="/../footer.jsp" %>
+	<%@ include file="../../footer.jsp" %>
 
 
 

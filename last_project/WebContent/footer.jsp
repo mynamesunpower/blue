@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,9 @@
                     <ul>
                         <li><a href="#">축제로는요!</a></li>
                         <li><a href="#">FAQ</a></li>
-                        <li><a href="#sign-in-dialog">로그인</a></li>
+                        <c:if test="${sessionScope.memberId eq null}">
+                     		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                     	</c:if>
                         <li><a href="member/memberJoin.do">회원가입</a></li>
                          <li><a href="#">이용 약관</a></li>
                     </ul>
