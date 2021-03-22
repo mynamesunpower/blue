@@ -80,8 +80,10 @@ img {
             </button>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="text-align: center;">
           	<img src="data:image/png;base64, ${base64Img}" alt="" />
+          	<div>전국에서 축제가 많이 개최되는 지역을 순위로 나타낸 그래프 <br>
+          	1위인 서울 종로구가 눈에 띄게 많고, 부산 해운대구, 서울 강남구 순으로 2위부터는 전반적으로 소소한 차이로 감소하는 것을 알 수 있다.</div>
         </div>
         <!-- /.card-body -->
         <!-- <div class="card-footer">

@@ -36,39 +36,46 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-public class AdminPlt{
-	
+public class AdminPlt {
+
 	@GetMapping("admin/admin_what.do")
 	public ModelAndView viewChart() {
-	     ModelAndView mv = new ModelAndView("admin/admin_what");
-	     final String uri = "http://localhost:5000/getBarChartBase64";
-	     RestTemplate restTemplate = new RestTemplate();
-	     String base64Img = restTemplate.getForObject(uri, String.class);
-	     mv.addObject("base64Img", base64Img);
-	     return mv;
+		ModelAndView mv = new ModelAndView("admin/admin_what");
+		final String uri = "http://localhost:5000/getBarChartBase64";
+		RestTemplate restTemplate = new RestTemplate();
+		String base64Img = restTemplate.getForObject(uri, String.class);
+		mv.addObject("base64Img", base64Img);
+		return mv;
 	}
-	
-	
+
 	@GetMapping("admin/admin_what2.do")
 	public ModelAndView viewChart2() {
-	     ModelAndView mv = new ModelAndView("admin/admin_what2");
-	     final String uri = "http://localhost:5000/getPieChartBase64";
-	     final String uri2 = "http://localhost:5000/getBarChartBase64_2";
-	     RestTemplate restTemplate = new RestTemplate();
-	     String base64Img = restTemplate.getForObject(uri, String.class);
-	     String base64Img_2 = restTemplate.getForObject(uri2, String.class);
-	     mv.addObject("base64Img", base64Img);
-	     mv.addObject("base64Img_2", base64Img_2);
-	     return mv;
+		ModelAndView mv = new ModelAndView("admin/admin_what2");
+		final String uri = "http://localhost:5000/getPieChartBase64";
+		final String uri2 = "http://localhost:5000/getBarChartBase64_2";
+		RestTemplate restTemplate = new RestTemplate();
+		String base64Img = restTemplate.getForObject(uri, String.class);
+		String base64Img_2 = restTemplate.getForObject(uri2, String.class);
+		mv.addObject("base64Img", base64Img);
+		mv.addObject("base64Img_2", base64Img_2);
+		return mv;
 	}
 	
-	/*
-	 * @GetMapping("admin/admin_what2.do") public ModelAndView viewChart3() {
-	 * ModelAndView mv = new ModelAndView("admin/admin_what2"); final String uri =
-	 * "http://localhost:5000/getBarChartBase64_2"; RestTemplate restTemplate = new
-	 * RestTemplate(); String base64Img = restTemplate.getForObject(uri,
-	 * String.class); mv.addObject("base64Img_2", base64Img); return mv; }
-	 */
+	@GetMapping("admin/admin_what3.do")
+	public ModelAndView viewChart3() {
+		ModelAndView mv = new ModelAndView("admin/admin_what3");
+		final String uri = "http://localhost:5000/getBarChartLodgment";
+		final String uri2 = "http://localhost:5000/getBarChartRestaurant";
+		final String uri3 = "http://localhost:5000/getBarChartFestival";
+		RestTemplate restTemplate = new RestTemplate();
+		String base64Img = restTemplate.getForObject(uri, String.class);
+		String base64Img_2 = restTemplate.getForObject(uri2, String.class);
+		String base64Img_3 = restTemplate.getForObject(uri3, String.class);
+		mv.addObject("base64Img", base64Img);
+		mv.addObject("base64Img_2", base64Img_2);
+		mv.addObject("base64Img_3", base64Img_3);
+		return mv;
+	}
 
-
+	
 }

@@ -79,9 +79,12 @@ img {
             </button>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="text-align: center;">
           <img src="data:image/png;base64, ${base64Img}" alt="" /> 
           <img src="data:image/png;base64, ${base64Img_2}" alt="" />
+          <div>파이 차트는 축제의 입장료 등을 포함한 이용요금 여부를 보여주고 있다. <br> 전국 축제의 절반 정도는 53.9%로 유료로 진행되지만, 
+          무료도 32.9%로 꽤 높은 비율을 보인다. <br> 구체적으로 축제 형태를 온라인, 오프라인으로 구분해 살펴보면 전체 수는 크게 차이나는 수준은 아니지만,<br> 
+          이용요금 유/무 여부를 살펴보면 온라인으로 개최되는 축제가 무료인 비율이 오프라인 축제에 비해 2배 가량 높음을 알 수 있다. </div>
         </div>
         <!-- /.card-body -->
         <!-- <div class="card-footer">
