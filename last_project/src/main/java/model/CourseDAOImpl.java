@@ -90,7 +90,7 @@ public class CourseDAOImpl implements CourseDAO {
 		
 		mongoTemplate.updateMulti(query, update, course);
 	}
-	// 축제, 식당, 숙박을 코스에 담을 때 선택한 코스의 coursePath에 추가 되게함.
+	// 축제, 식당, 숙박, 코스를 내 코스에 담을 때 선택한 코스의 coursePath에 추가 되게함.
 	@Override
 	public void pushCoursePath(CourseVO vo, ObjectId _id) {
 		System.out.println("pushCoursePath DAO 접근");

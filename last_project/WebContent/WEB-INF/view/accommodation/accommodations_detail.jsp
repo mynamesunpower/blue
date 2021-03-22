@@ -997,7 +997,6 @@ marker.setMap(map);
 						"latitude" : ${detail.latitude},
 						"longitude" : ${detail.longitude},
 						"homepage" : "${detail.homepage}",
-						"parking" : "${detail.parking}",
 						"booking_url" : "${detail.booking_url}",
 						"image" : img
 				}
