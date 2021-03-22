@@ -10,9 +10,10 @@
 img {
 	width: auto;
 	height: auto;
-	max-width: 700px;
-	max-height: 700px;
+	max-width: 750px;
+	max-height: 750px;
 }
+
 </style>
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -428,7 +429,7 @@ img {
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">축제 입장료 유무</h3>
+          <h3 class="card-title">방문자 수 통계</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -440,11 +441,10 @@ img {
           </div>
         </div>
         <div class="card-body" style="text-align: center;">
-          <img src="data:image/png;base64, ${base64Img}" alt="" /> 
-          <img src="data:image/png;base64, ${base64Img_2}" alt="" />
-          <div>파이 차트는 축제의 입장료 등을 포함한 이용요금 여부를 보여주고 있다. <br> 전국 축제의 절반 정도는 53.9%로 유료로 진행되지만, 
-          무료도 32.9%로 꽤 높은 비율을 보인다. <br> 구체적으로 축제 형태를 온라인, 오프라인으로 구분해 살펴보면 전체 수는 크게 차이나는 수준은 아니지만,<br> 
-          이용요금 유/무 여부를 살펴보면 온라인으로 개최되는 축제가 무료인 비율이 오프라인 축제에 비해 2배 가량 높음을 알 수 있다. </div>
+          <img style="width: auto; height: auto; max-width: 1400px; max-height: 750px;" src="data:image/png;base64, ${base64Img_3}" alt=""/> 
+          <br><br><br>
+          <img src="data:image/png;base64, ${base64Img}" alt="" id=img_lodg/>
+          <img src="data:image/png;base64, ${base64Img_2}" alt="" id=img_rest/>
         </div>
         <!-- /.card-body -->
         <!-- <div class="card-footer">
