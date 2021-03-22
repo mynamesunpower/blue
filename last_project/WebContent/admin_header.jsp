@@ -228,6 +228,12 @@
                   <p>축제 입장료 유/무</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/admin/admin_what3.do" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>방문자 통계</p>
+                </a>
+              </li>
             </ul>
           </li> <!-- 시각화 끝 -->
         </ul>
