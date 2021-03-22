@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mateMapper">
+
+<!-- 메이트 테이블 불러오기 --> 
+<select id='mateSelectAll' resultType="mate">
+
+	 SELECT * 
+	 FROM mate
+	 
+</select>
+
+<!-- 메이트 가입 가능 여부 -->
+<select id='idCheck' resultType="member">
+	
+	SELECT *
+	FROM member
+	WHERE id = #{id}
+
+</select>
+
+<!-- 메이트 가입 -->
+<insert id="mateInsert" parameterType="mate">
+
+     INSERT INTO mate(id, nickname, photo_dir, photo_score, profile_score, cash, gender, interest, introduce)
+     VALUES (#{id}, #{nickname}, "없음", #{photo_score}, 50.0, #{cash}, #{gender}, #{interest}, #{introduce})
+     
+</insert>
+
+<!-- 메이트 정보 수정 -->
+<update id="mateUpdate" parameterType="mate">
+
+	UPDATE mate
+	SET nickname = #{nickname}, photo_dir = "없음", photo_score = #{photo_score}, profile_score = 50.0, cash = #{cash}, gender = #{gender}, interest = #{interest}, introduce = #{introduce}
+	WHERE id = #{id}
+
+</update>
+
+<!-- 메이트 정보 삭제 -->
+<delete id="mateDelete" parameterType="mate">
+
+	DELETE FROM mate
+	WHERE id = #{id}
+
+</delete>
+
+
+
+</mapper>

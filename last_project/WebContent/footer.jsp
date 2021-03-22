@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+</style>
+</head>
 <body>
     <footer class="revealed">
         <div class="container">

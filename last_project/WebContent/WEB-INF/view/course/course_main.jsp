@@ -22,16 +22,26 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	
+
 	<!-- COMMON CSS -->
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 	<link href="../css/vendors.css" rel="stylesheet">
-	
+
 	<!-- CUSTOM CSS -->
 	<link href="../css/custom.css" rel="stylesheet">
 	<!-- <link href="css/courseGrid.css" rel="stylesheet"> -->
+	<style>
+	@media screen and (min-width: 769px) { 
 
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}
+	</style>
 </head>
 
 <body>
@@ -51,7 +61,7 @@
 
 	<%@ include file="/../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/main/main_slide3.png" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="../img/main/main_slide3.png" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>코스 자랑 마당</h1>
@@ -89,7 +99,7 @@
 					<div class="box_style_cat">
 						<ul id="cat_nav">
 							<li><a href="javascript:void(0);" id="active"><i class="icon-users"></i>가족과 함께<span>(141)</span></a>
-							</li>							
+							</li>
 							<li><a href="javascript:void(0);"><i class="icon-heart-8"></i>연인과 함께<span>(16)</span></a>
 							</li>
 							<li><a href="javascript:void(0);"><i class="icon-school"></i>메이트와 함께 <span>(12)</span></a>
@@ -114,19 +124,19 @@
 								<h6>기간</h6>
 								<ul>
 									<li>
-										<label>											
+										<label>
 											<input type="checkbox"> 당일 코스
-										</label>										
+										</label>
 									</li>
 									<li>
-										<label>											
+										<label>
 											<input type="checkbox"> 1박 2일
-										</label>										
+										</label>
 									</li>
 									<li>
-										<label>											
+										<label>
 											<input type="checkbox"> 2박 3일 이상
-										</label>										
+										</label>
 									</li>
 								</ul>
 							</div>
@@ -169,11 +179,11 @@
 										</label>
 									</li>
 								</ul>
-							</div>							
+							</div>
 						</div>
 						<!--End collapse -->
 					</div>
-					<!--End filters col-->				
+					<!--End filters col-->
 				</aside>
 				<!--End aside -->
 
@@ -194,7 +204,7 @@
 							</div>
 						</div>
 					</div>
-					<!--End tools -->					
+					<!--End tools -->
 					<div class="row">
 						<c:forEach items="${list}" var="course">
 							<div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
@@ -243,11 +253,11 @@
 										<ul style="list-style: none;">
 											<c:forEach items="${course.coursePath}" var="coursePath" begin="0" end="0">
 												<li>시작 지역 : <span>${coursePath.address}</span></li>
-											</c:forEach>			
-											<li>코스 총거리 : <span>${course.distance}</span>km</li>		
+											</c:forEach>
+											<li>코스 총거리 : <span>${course.distance}</span>km</li>
 										</ul>
 										<h3><strong>코스 경로</strong></h3>
-										
+
 										<ul class="course_route">
 											<c:forEach items="${course.coursePath}" var="coursePath">
 												<li><span>${coursePath.title}</span></li>
@@ -304,7 +314,7 @@
 	<!-- End main -->
 
 	<%@ include file="/../footer.jsp"%>
-	
+
 	<!-- Common scripts -->
 	<script src="/../js/jquery-3.5.1.min.js"></script>
 	<script src="/../js/common_scripts_min.js"></script>
@@ -316,12 +326,12 @@
 	<script>
 		$('#cat_nav').mobileMenu();
 	</script>
-	
+
 	<!-- Map -->
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="/../js/map.js"></script>
 	<script src="/../js/infobox.js"></script>
-	
+
 	<!-- Check box and radio style iCheck -->
 	<script>
 		$('input').iCheck({
@@ -329,10 +339,10 @@
 		   radioClass: 'iradio_square-grey'
 		 });
 	</script>
-	
+
 	<!-- 로그인 -->
 	<script src="/../js/login.js"></script>
-	
+
 
 </body>
 

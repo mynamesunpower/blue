@@ -8,10 +8,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class InstarVO {
-	
+
 	@Id
 	private ObjectId _id;
-	
+
 	private String title;
 	private String host;
 	private int startDate;
@@ -30,8 +30,8 @@ public class InstarVO {
 	private ArrayList<String> tag_list;
 	//private HashMap<String, String> review;
 	//private ArrayList<HashMap<String, String>> reviews;
-	
-	
+
+
 	public ObjectId get_id() {
 		return _id;
 	}
@@ -134,7 +134,7 @@ public class InstarVO {
 	public void setTag_list(ArrayList<String> tag_list) {
 		this.tag_list = tag_list;
 	}
-	
-	
+
+
 
 }

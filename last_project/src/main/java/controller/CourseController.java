@@ -32,8 +32,7 @@ import com.google.gson.reflect.TypeToken;
 import main.java.service.CourseService;
 import main.java.vo.CourseVO;
 import main.java.vo.FestivalVO;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+
 
 @Controller
 @RequestMapping
@@ -57,8 +56,7 @@ public class CourseController {
 		model.addAttribute("detail", vo);
 		
 		ArrayList<HashMap<String, String>> reviews = vo.getReviews();
-		// 에러 나네
-//		model.addAttribute("scores", scoresAverage(reviews, "position"));
+		model.addAttribute("scores", scoresAverage(reviews, "position"));
 		
 		// '코스 저장하기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
 		String memberId = (String) session.getAttribute("memberId");
@@ -173,40 +171,43 @@ public class CourseController {
 	public int insertCourseReview(CourseVO vo, String _id) {
 		HashMap<String, String> review = vo.getReview();
 		String id = review.get("id");
-
+		System.out.println(id + "/" + review.get("content"));
+		
 		// 현재 데이터의 리뷰 List 가져오기
 		ArrayList<HashMap<String, String>> reviews = courseService.getReviews(_id);
 		// List에 review를 추가.
 		reviews.add(review);
 		// 바뀐 list로 update 쿼리 실행
 		int result = courseService.updateCourseReview(reviews, _id);
+		System.out.println("업데이트가 " + result +"개 되었습니당.");
 		return result;
 	}
 	
-	public static int[] scoresAverage(ArrayList<HashMap<String, String>> reviews, String firstScoreName) {
-		
+	
+	public int[] scoresAverage(ArrayList<HashMap<String, String>> reviews, String firstScoreName) {
+
 		int[] scores = new int[5];
 		int[] scoresAvg = new int[5];
-		
-		// 리뷰가 없을  경우엔
+
+		// 리뷰가 없을 경우엔
 		if (reviews.size() > 0) {
-			
+
 			for (HashMap<String, String> review : reviews) {
-				
+
 				scores[0] += Integer.parseInt(review.get(firstScoreName));
-				scores[1] += Integer.parseInt(review.get("price"));
-				scores[2] += Integer.parseInt(review.get("fun"));
+				scores[1] += Integer.parseInt(review.get("fun"));
+				scores[2] += Integer.parseInt(review.get("price"));
 				scores[3] += Integer.parseInt(review.get("recommend"));
 				scores[4] = (scores[0] + scores[1] + scores[2] + scores[3]) / 4;
-				
+
 			}
-			
+
 			for (int i = 0; i < scoresAvg.length; i++) {
 				scoresAvg[i] = scores[i]/reviews.size();
 			}
-			
+
 		}
-		
+
 		return scoresAvg;
 	}
 }

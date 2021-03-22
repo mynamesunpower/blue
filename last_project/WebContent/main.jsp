@@ -34,11 +34,11 @@
 	<link rel="stylesheet" type="text/css" href="rev-slider-files/fonts/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="rev-slider-files/css/settings.css">
      -->
-    
+
     <!-- REVOLUTION SLIDER CSS -->
 	<link href="../layerslider/css/layerslider.css" rel="stylesheet">
 
-    <!-- REVOLUTION LAYERS STYLES 
+    <!-- REVOLUTION LAYERS STYLES
 	<style>
 		.tp-caption.News-Title,
 		.News-Title {
@@ -79,7 +79,7 @@
 			border-width: 0px;
 			border-radius: 0 0 0px 0
 		}
-		
+
 	</style>
 	<style type="text/css">
 		.hermes.tp-bullets {}
@@ -113,8 +113,9 @@
 			height: 100%
 		}
 	</style>
+
 	-->
-	
+
 	<!-- 마커별 정보표시 css -->
 	 <style>
     .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
@@ -131,48 +132,32 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
-    
-   <!---->
- .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-.wrap * {padding: 0;margin: 0;}
-.wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-.info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.info .close:hover {cursor: pointer;}
-.info .body {position: relative;overflow: hidden;}
-.info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-.info .link {color: #5085BB;}
- 
+
 .map_wrap {position:relative;overflow:hidden;}
-.radius_border{border:1px solid #919191;border-radius:5px;}    
+.radius_border{border:1px solid #919191;border-radius:5px;}
 .custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
 .custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
-.custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}      
+.custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}
 .custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
-.custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}   
+.custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}
 .custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
-.custom_typecontrol .selected_btn:hover {color:#fff;}  
+.custom_typecontrol .selected_btn:hover {color:#fff;}
 .custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;}
-.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}    
-.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}            
+.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}
+.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}
 .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}
-   <!----> 
-    
-@media screen and (min-width: 769px) { 
+   <!---->
+
+@media screen and (min-width: 769px) {
 	#rev_slider_13_1_wrapper {
 		width: 58%;
 		margin: 0 auto;
-	} 
-}    
-    
-   
+	}
+}
+
+
 </style>
-	
+
 	<!-- 마커별 정보표시 css 끝 -->
 
 </head>
@@ -269,7 +254,7 @@
 			<div class="main_title">
                 <h2><span>ㅣ</span>인스타그램 이미지</h2>
 			</div>
-		
+
 			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
 			<c:forEach items="${list}" var="list">
 			<c:forEach items="${list.images}" var="image" >
@@ -288,24 +273,27 @@
                 <!-- /item -->
             </div>
             <!-- /carousel -->
-		
-		
+
+
        </div>
-       
-       
+
+
             <!-- /carousel -->
+			<p class="text-center add_bottom_30">
+				<a href="/main.do" id="instarview">인스타 사진보기</a>
+			</p>
 
 			<hr class="mt-3 mb-3">
-
+			
 			<div class="main_title">
 				<h2><span>ㅣ</span>축제 <span>지역별</span> 정보</h2>
 			</div>
-           
-            
+
+
             <!-- 지역별??축제 지도 -->
-            
+
               <p style="margin-top:-12px">
-  
+
 </p>
 <div id="map" style="width:100%;height:350px;"></div>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -336,92 +324,92 @@
        var markers = $(data).map(function(i, data) {
     	   //console.log("data는"+data)
           //  return new kakao.maps.Marker({
-            	
-            	
+
+
             	//content: data.title,
-            	
+
                // position : new kakao.maps.LatLng(data.latitude, data.longitude	)
             //});
-            
+
     	   var maks = new kakao.maps.Marker({
-    		   
+
     		   map: map,
     		   position : new kakao.maps.LatLng(data.latitude, data.longitude)
-    	   	
-    		  
+
+
     	   });
-    	  
+
     	   var infowindow = new kakao.maps.InfoWindow({
-    		   
+
     		      content: '<div style="text-align:center; width:max-content; margin:5px; background-color:beige;"><br/>'+data.title +
     		      '                <div><a href="details.do?tel='+data.postcode+' ">자세히보기</a></div></div>',
     		      removable : true
-    		 
+
     	 });
     	   kakao.maps.event.addListener(maks, 'click', makeOverListener(map, maks, infowindow));
-    	   
+
     	  //kakao.maps.event.addListener(maks, 'mouseout', makeOutListener(infowindow));
-    	 
-    	    
-    
+
+
+
            return maks;
-            
+
         });
-      
-    
+
+
         // 클러스터러에 마커들을 추가합니다
-        
+
         clusterer.addMarkers(markers);
-     
+
         //console.log(markers)
-       
-       
-        
+
+
+
     });
-      
+
       // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-    
+
           function makeOverListener(map, marker, infowindow) {
-     
+
               infowindow.close();
               return function() {
-    
+
                   infowindow.open(map, marker);
-      
+
               };
-     
+
           }
-     
-       
-    
+
+
+
           // 인포윈도우를 닫는 클로저를 만드는 함수입니다
        function makeOutListener(infowindow) {
-     
+
               return function() {
-      
+
                   infowindow.close();
-      
+
               };
-      
+
           }
-      
-    
+
+
     // 마커 클러스터러에 클릭이벤트를 등록합니다
     // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
     // 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
     kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
-	
+
 	console.log("클러스터"+clusterer)
         // 현재 지도 레벨에서 1레벨 확대한 레벨
         var level = map.getLevel()-1;
         // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
         map.setLevel(level, {anchor: cluster.getCenter()});
     });
-    
- 
+
+
 </script>
                 <!-- /지역별?? 축제 지도 end -->
-         
+
             <!-- /carousel -->
 			<p class="text-center nopadding">
 			<br/>
@@ -435,7 +423,7 @@
             <div class="main_title">
                 <h2>축제로를 이용하는 <span>이유</span> </h2>
                 <p>
-                    
+
                 </p>
             </div>
             <div class="row">
@@ -499,7 +487,7 @@
 
         </div>
         <!-- End container -->
-        
+
         <!-- 8칸짜리 공간
         <div class="white_bg">
             <div class="container margin_60">
@@ -535,6 +523,7 @@
                             <span>지역명</span>
                         </div>
                     </div>
+
                     <div class="col-lg-3">
                         <div class="main_title">
                             <h3><span>ㅣ</span>입안가득 맛의 축제</h3>
@@ -550,6 +539,7 @@
                             <span>지역명</span>
                         </div>
                     </div>
+
                     <div class="col-lg-3">
                         <div class="main_title">
                             <h3><span>ㅣ</span>과거로 시간여행 축제</h3>
@@ -573,7 +563,7 @@
 	</main>
 	<!-- End main -->
 
-	<%@ include file="/../footer.jsp" %>
+	<%@ include file="footer.jsp" %>
 
 
 
@@ -584,10 +574,6 @@
 
     <!-- 로그인 -->
 	<script src="js/login.js"></script>
-
-
-    <script src="js/common_scripts_min.js"></script>
-    <script src="js/functions.js"></script>
 
     <!-- 상단 캐러셀-->
 	<script src="js/jquery-migrate.min.js"></script>
@@ -611,7 +597,7 @@
 
 
 
-    <!-- SLIDER REVOLUTION SCRIPTS  
+    <!-- SLIDER REVOLUTION SCRIPTS
     <script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.tools.min.js"></script>
 	<script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.revolution.min.js"></script>
 	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.actions.min.js"></script>
@@ -680,7 +666,7 @@
 						},
 						responsiveLevels:[1240,1024,778,778],
 						visibilityLevels:[1240,1024,778,778],
-						gridwidth:[1280,640,480,480],
+						gridwidth:[1480,640,480,480],
 						gridheight:[720,720,480,360],
 						lazyType:"none",
 						parallax: {
@@ -691,7 +677,7 @@
 						},
 						shadow:0,
 						spinner:"off",
-						stopLoop:"on",
+						stopLoop:"off",
 						stopAfterLoops:0,
 						stopAtSlide:1,
 						shuffle:"off",
@@ -712,27 +698,29 @@
 			});	/*ready*/
 	</script>
 	-->
-	 
-	
-	
-	 
+
+
+
+
+
 	<script>
 $(document).ready(function(){
+$('#instarview').get(0).click();
 	//축제 개수 표시
 	$.ajax({
 					type : 'post',
 	        		//async : true,
 	        		url : "/festivalCount.do",
-	        	
+
 					success: function(result) {
-							
+
 						$('.festivalcount').html("+"+result)
 					},
 					error: function(error) {
 						console.log('에러' + error)
 					}
 				});
-	
+
 	//식당 개수 표시
 	$.ajax({
 		type:'post',
@@ -744,10 +732,13 @@ $(document).ready(function(){
 			alert("restaurant_count 에러");
 			console.log('에러' + error)
 		}
-		
-		
+
+
 	});
-	
+
+
+
+
 });
 	</script>
 </body>

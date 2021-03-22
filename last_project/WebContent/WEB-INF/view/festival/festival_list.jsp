@@ -29,14 +29,17 @@
 
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
-	
+
 	<style>
-	
-	@media screen and (min-width: 769px) { 
+
+	@media screen and (min-width: 769px) {
+
 	.carousel_parallax {
 		width: 58%;
 		margin: 0 auto;
-	} 
+	}
+
+
 	}
 	</style>
 
@@ -60,7 +63,7 @@
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>축제로 축제 리스트</h1>
-				
+
 			</div>
 		</div>
 	</section>
@@ -74,7 +77,7 @@
 					</li>
 					<li><a href="festival.do">축제</a>
 					</li>
-					<li>축제로 축제 리스트</li>
+					<li>축제로 리스트</li>
 				</ul>
 			</div>
 		</div>
@@ -88,144 +91,20 @@
 		<div class="container margin_60">
 
 			<div class="row">
-				<aside class="col-lg-3">
-					<p>
-						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
-					</p>
 
-					<div id="filters_col">
-						<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>필터</a>
-						<div class="collapse show" id="collapseFilters">
-							<div class="filter_type">
-								<h6>별점</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i>
-											</span>(15)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i>
-											</span>(45)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(35)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(25)
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox"><span class="rating">
-											<i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-											</span>(15)
-										</label>
-									</li>
-								</ul>
-							</div>
-							<div class="filter_type">
-								<h6>지역</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox">서울
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">경기/인천
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">부산
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">제주
-										</label>
-									</li>
-								</ul>
-							</div>
-							<div class="filter_type">
-								<h6>시설</h6>
-								<ul>
-									<li>
-										<label>
-											<input type="checkbox">반려동물 동반 가능
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">와이파이
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">스파
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">조식 제공
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">수영장
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">주차 가능
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">운동 시설
-										</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!--End collapse -->
-					</div>
-					<!--End filters col-->
-				</aside>
-				<!--End aside -->
 
-				<div class="col-lg-9">
+				<div class="offset-lg-1 col-lg-10">
 
 					<div id="tools">
 						<div class="row">
 							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
-									<select name="sort_rating" id="sort_rating">
-										<option value="" selected>랭킹 순 정렬</option>
-										<option value="lower">랭킹 낮은 순</option>
-										<option value="higher">랭킹 높은 순</option>
-									</select>
-								</div>
+
 							</div>
 							<div class="col-md-3 col-sm-4 col-6">
-								
+
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								
+
 							</div>
 						</div>
 					</div>
@@ -233,8 +112,8 @@
 
 					<div id="search_list">
 	 					<c:forEach items="${list}" var="list" varStatus="var">
-	 						
-	 					
+
+
 							<div class="strip_all_tour_list wow fadeIn restaurant" data-wow-delay="0.1s">
 								<div class="row">
 									<div class="col-lg-4 col-md-4">
@@ -245,7 +124,7 @@
 										</div>
 										<div class="img_list">
 											<a href="details.do?tel=${list.postcode}">
-											
+
 												<c:if test="${list.images.size() gt 0}">
 													<img src="data:image/jpg;base64,${list.images.get(0)}" alt="${list.title}">
 												</c:if>
@@ -275,12 +154,12 @@
 								</div>
 							</div>
 							<!--End strip -->
-							
+
 						</c:forEach>
 					</div>
 
 					<hr>
-<!--
+
 					<nav aria-label="Page navigation">
 						<ul class="pagination justify-content-center">
 							<c:if test="${resultMap.pageGroup > 1}">
@@ -291,18 +170,18 @@
 									</a>
 								</li>
 							</c:if>
-							
+
 							<c:forEach var="i" begin="${resultMap.startPage}" end="${resultMap.endPage > resultMap.total? resultMap.total : resultMap.endPage}" varStatus="status">
 								<c:choose>
 									<c:when test="${resultMap.page eq i}">
-										<li class="page-item active"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>		
+										<li class="page-item active"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link" href="javascript:fnGoPaging(${i})">${i}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-							
+
 							<c:if test="${resultMap.nextPage <= resultMap.total}">
 								<li class="page-item">
 									<a class="page-link" href="javascript:fnGoPaging(<c:out value="${resultMap.nextPage}"/>)" aria-label="Next">
@@ -313,7 +192,7 @@
 							</c:if>
 						</ul>
 					</nav>
-					-->
+
 					<!-- end pagination-->
 
 				</div>
@@ -339,17 +218,17 @@
 
 	<!-- Check box and radio style iCheck -->
 	<script>
-	//	$('input').iCheck({
-	//	   checkboxClass: 'icheckbox_square-grey',
-	//	   radioClass: 'iradio_square-grey'
-	//	 });
-		
-	//	function fnGoPaging(page) {
-   //         location.replace("accommodations_list.do?page="+page)
-   //     }
+		$('input').iCheck({
+		   checkboxClass: 'icheckbox_square-grey',
+		   radioClass: 'iradio_square-grey'
+		 });
+
+		function fnGoPaging(page) {
+           location.replace("festival_list.do?page="+page)
+      }
 	</script>
 
 
 </body>
 
-</html> 
+</html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,9 +26,20 @@
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 	<link href="../css/vendors.css" rel="stylesheet">
-	
+
 	<!-- CUSTOM CSS -->
 	<link href="../css/custom.css" rel="stylesheet">
+	<style>
+	@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58% !important;
+		margin: 0 auto;
+	} 
+
+
+}
+	</style>
 </head>
 
 <body>
@@ -48,7 +59,7 @@
 
 	 <%@ include file="/../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/main/main_course.png" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="../img/main/main_course.png" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>나의 코스 목록</h1>
@@ -75,7 +86,7 @@
 			<div class="row">
 				<div class="col-lg-12">
                     <div class="form_title">
-						<h3><strong><i class="icon-pencil"></i></strong>나의 코스 목록</h3>						
+						<h3><strong><i class="icon-pencil"></i></strong>나의 코스 목록</h3>
 					</div>
                     <div class="step">
                     	<!-- 여기서부터 이제 데이터 받아서 보여줄 코딩 필요. -->
@@ -113,7 +124,7 @@
 	                                                    <span class="tooltip-item"><i class="icon_set_1_icon-83"></i></span>
 	                                                    <div class="tooltip-content">
 	                                                        <h4><strong>일정</strong></h4>
-	                                                        ${course.schedule} 코스	                                                        
+	                                                        ${course.schedule} 코스
 	                                                    </div>
 	                                                </div>
 	                                            </li>
@@ -163,7 +174,7 @@
 	                                                        ${course.theme}
 	                                                    </div>
 	                                                </div>
-	                                            </li>	                                            
+	                                            </li>
 	                                        </ul>
 	                                    </div>
 	                                </div>
@@ -175,7 +186,7 @@
 	                                            <p><a href="course_edit.do?memberId=${sessionScope.memberId}&_id=${course._id}" class="btn btn-success btn-sm">편집하기</a>
 	                                            </p>
 	                                        </div>
-	
+
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -227,7 +238,7 @@
 	<script>
 		$('#cat_nav').mobileMenu();
 	</script>
-	
+
 </body>
 
 </html>

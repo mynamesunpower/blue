@@ -26,7 +26,7 @@
 	<link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
 	<link href="../../css/vendors.css" rel="stylesheet">
-	
+
 	<!-- CUSTOM CSS -->
 	<link href="../../css/custom.css" rel="stylesheet">
 	 <style>
@@ -56,6 +56,14 @@
 .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58% !important;
+		margin: 0 auto;
+	} 
+
+}
 </style>
 </head>
 
@@ -73,13 +81,13 @@
 
 	<%@ include file="../../../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="data:image/jpg;base64,${restaurantVO.images.get(0)}" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="data:image/jpg;base64,${restaurantVO.images.get(0)}" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">
 						<h1>${restaurantVO.title}</h1>
-						<span>${restaurantVO.address}</span>						
+						<span>${restaurantVO.address}</span>
 						<div class="rating">
 						<c:forEach begin="1" end="${scores[4]}">
 							<i class="icon-star voted"></i>
@@ -89,7 +97,7 @@
 						</c:forEach>
 						<small>(${restaurantVO.reviews.size()})</small>
 						</div>
-					</div>					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -102,6 +110,9 @@
 				<ul>
 					<li><a href="../main.jsp">Home</a>
 					</li>
+					<!-- 로그인 세션이 있다면, Home 클릭 시 mainAfterLogin.jsp로 이동되게-->
+					<!-- <li><a href="mainAfterLogin.jsp">Home</a>
+					</li> -->
 					<li><a href="festival.jsp">축제</a>
 					</li>
 					<li><a href="restaurants_list.do">식당</a>
@@ -113,74 +124,74 @@
 
 		<div class="collapse show" id="collapseMap">
 
-						
+
 <!-- 지도표시 -->
 <p style="margin-top:-12px">
-   
+
 </p>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <ul id="category">
-        <li id="AT4" data-order="0"> 
+    <ul id="category" style="margin-left: 400px;">
+        <li id="AT4" data-order="0">
             <span class="category_bg bank"></span>
             관광명소
-        </li>       
-        <li id="MT1" data-order="1"> 
+        </li>
+        <li id="MT1" data-order="1">
             <span class="category_bg mart"></span>
             마트
-        </li>  
-        <li id="FD6" data-order="2"> 
+        </li>
+        <li id="FD6" data-order="2">
             <span class="category_bg pharmacy"></span>
             음식점
-        </li>  
-        <li id="AD5" data-order="3"> 
+        </li>
+        <li id="AD5" data-order="3">
             <span class="category_bg oil"></span>
             숙박
-        </li>  
-        <li id="CE7" data-order="4"> 
+        </li>
+        <li id="CE7" data-order="4">
             <span class="category_bg cafe"></span>
             카페
-        </li>  
-        <li id="CS2" data-order="5"> 
+        </li>
+        <li id="CS2" data-order="5">
             <span class="category_bg store"></span>
             편의점
-        </li>      
+        </li>
     </ul>
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b&libraries=services,clusterer,drawing"></script>
 <script>
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
-var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
-    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
+    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
     markers = [], // 마커를 담을 배열입니다
     currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
- 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(${restaurantVO.longitude}, ${restaurantVO.latitude}), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
-    };  
+    };
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+// 지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption);
 
 // 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places(map); 
+var ps = new kakao.maps.services.Places(map);
 
 // 지도에 idle 이벤트를 등록합니다
 kakao.maps.event.addListener(map, 'idle', searchPlaces);
 
-// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다
 contentNode.className = 'placeinfo_wrap';
 
 // 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
-// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다
 addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
 addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 
 // 커스텀 오버레이 컨텐츠를 설정합니다
-placeOverlay.setContent(contentNode);  
+placeOverlay.setContent(contentNode);
 
 // 각 카테고리에 클릭 이벤트를 등록합니다
 addCategoryClickEvent();
@@ -199,14 +210,14 @@ function searchPlaces() {
     if (!currCategory) {
         return;
     }
-    
-    // 커스텀 오버레이를 숨깁니다 
+
+    // 커스텀 오버레이를 숨깁니다
     placeOverlay.setMap(null);
 
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-    
-    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+
+    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true});
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -220,7 +231,7 @@ function placesSearchCB(data, status, pagination) {
 
     } else if (status === kakao.maps.services.Status.ERROR) {
         // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
-        
+
     }
 }
 
@@ -231,7 +242,7 @@ function displayPlaces(places) {
     // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
     var order = document.getElementById(currCategory).getAttribute('data-order');
 
-    
+
 
     for ( var i=0; i<places.length; i++ ) {
 
@@ -251,7 +262,7 @@ function displayPlaces(places) {
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, order) {
     //var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-    var imageSrc = 'img/login/test.png',  
+    var imageSrc = 'img/login/test.png',
     imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
         imgOptions =  {
             spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
@@ -261,7 +272,7 @@ function addMarker(position, order) {
         markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
             marker = new kakao.maps.Marker({
             position: position, // 마커의 위치
-            image: markerImage 
+            image: markerImage
         });
 
     marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -274,29 +285,29 @@ function addMarker(position, order) {
 function removeMarker() {
     for ( var i = 0; i < markers.length; i++ ) {
         markers[i].setMap(null);
-    }   
+    }
     markers = [];
 }
 
 // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 function displayPlaceInfo (place) {
     var content = '<div class="placeinfo">' +
-                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';
 
     if (place.road_address_name) {
         content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
                     '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
     }  else {
         content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
-    }                
-   
-    content += '    <span class="tel">' + place.phone + '</span>' + 
-                '</div>' + 
+    }
+
+    content += '    <span class="tel">' + place.phone + '</span>' +
+                '</div>' +
                 '<div class="after"></div>';
 
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-    placeOverlay.setMap(map);  
+    placeOverlay.setMap(map);
 }
 
 
@@ -340,10 +351,10 @@ function changeCategoryClass(el) {
 
     if (el) {
         el.className = 'on';
-    } 
-} 
+    }
+}
 
-var markerPosition  = new kakao.maps.LatLng(${restaurantVO.longitude} , ${restaurantVO.latitude}); 
+var markerPosition  = new kakao.maps.LatLng(${restaurantVO.longitude} , ${restaurantVO.latitude});
 
 //마커를 생성합니다
 var marker = new kakao.maps.Marker({
@@ -357,8 +368,8 @@ marker.setMap(map);
 
 
 <!-- 지표 -->
-			
-			
+
+
 		</div>
 		<!-- End Map -->
 
@@ -366,10 +377,10 @@ marker.setMap(map);
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
 
-					
+
 
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="지도 숨기기" data-text-original="지도 열기">지도 열기</a>
-					</p>					
+					</p>
 					<!-- Map button for tablets/mobiles -->
 
 					<div id="Img_carousel" class="slider-pro">
@@ -402,7 +413,7 @@ marker.setMap(map);
 
 					<div class="row">
 						<div class="col-lg-3">
-							<h3>후기 </h3> 
+							<h3>후기 </h3>
 							<c:if test="${sessionScope.memberId ne null}">
 								<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">후기 남기기</a>
 							</c:if>
@@ -471,7 +482,7 @@ marker.setMap(map);
 							</div>
 							<!-- End row -->
 							<hr>
-							
+
 							<!-- 리뷰들 들어갑니다 -->
 							<c:forEach items="${restaurantVO.reviews}" var="review">
 								<div class="review_strip_single rating_summary">
@@ -533,9 +544,9 @@ marker.setMap(map);
 										</div>
 									</div>
 								</div>
-								
+
 							</c:forEach> <!-- 리뷰 반복문 종료 -->
-							
+
 						</div>
 					</div>
 				</div>
@@ -564,15 +575,15 @@ marker.setMap(map);
 			<!--End row -->
 		</div>
 		<!--End container -->
-        
+
         <div id="overlay"></div>
 		<!-- Mask on input focus -->
-    
+
 	</main>
 	<!-- End main -->
 
 	<%@ include file="../../../footer.jsp" %>
-	
+
 	<!-- Common scripts -->
 	<script src="../../js/jquery-3.5.1.min.js"></script>
 	<script src="../../js/common_scripts_min.js"></script>
@@ -656,7 +667,7 @@ marker.setMap(map);
 							</div>
 						</div>
 						<!-- End row -->
-						<!-- 
+						<!--
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
@@ -736,9 +747,9 @@ marker.setMap(map);
 	<!-- End modal review -->
 
 	<!-- Date and time pickers -->
-	<!-- 
+	<!--
 	<script src="../../js/bootstrap-datepicker.js"></script>
-	<script src="../../js/bootstrap-timepicker.js"></script>	
+	<script src="../../js/bootstrap-timepicker.js"></script>
 	-->
 	<script>
 		$('input.date-pick').datepicker('setDate', 'today');
@@ -749,7 +760,7 @@ marker.setMap(map);
 	</script>
 	<!-- Carousel -->
 	<script src="../../js/jquery.sliderPro.min.js"></script>
-	
+
 	<!-- 리뷰 남기기 -->
 	<script type="text/javascript">
 		$(document).ready(function ($) {
@@ -767,39 +778,39 @@ marker.setMap(map);
 				thumbnailArrows: true,
 				autoplay: false
 			});
-			
+
 			// 시간 format 변환
 			function getTimeStamp() {
 			  var d = new Date();
-			
+
 			  var s =
 			    leadingZeros(d.getFullYear(), 4) + '-' +
 			    leadingZeros(d.getMonth() + 1, 2) + '-' +
 			    leadingZeros(d.getDate(), 2) + ' ' +
-			
+
 			    leadingZeros(d.getHours(), 2) + ':' +
 			    leadingZeros(d.getMinutes(), 2) + ':' +
 			    leadingZeros(d.getSeconds(), 2);
-			
+
 			  return s;
 			}
-			
+
 			function leadingZeros(n, digits) {
 			  var zero = '';
 			  n = n.toString();
-			
+
 			  if (n.length < digits) {
 			    for (i = 0; i < digits - n.length; i++)
 			      zero += '0';
 			  }
 			  return zero + n;
 			}
-			
+
 			$('#submit-review').on('click', function() {
-				
+
 				var date = getTimeStamp();
 				const id = $('#review_userId').val();
-				
+
 				const review = {
 					'id' : id,
 					'date': date,
@@ -809,12 +820,12 @@ marker.setMap(map);
         			'price': $('#price_review').val(),
         			'quality': $('#quality_review').val()
 				}
-				
+
 				const _id =	$('#_id').val()
-				
+
 				console.log(_id)
 				console.log(review['id'] + '/' + review['content'] + '/' + review['food'] + '/' + review['service'] + '/' + review['price'] + '/' + review['quality'])
-				
+
 				$.ajax({
 					type : 'post',
 	        		async : true,
@@ -825,13 +836,13 @@ marker.setMap(map);
 	     				'review': review
 	        		},
 					success: function(result) {
-						
+
 						$('#review_text').val("")
 						$('#food_review').val(""),
         				$('#service_review').val(""),
         				$('#price_review').val(""),
         				$('#quality_review').val("")
-						
+
 						if ( result == 1 ) {
 							alert('리뷰가 등록되었습니다.');
 							$('.close').trigger('click');
@@ -845,11 +856,11 @@ marker.setMap(map);
 						console.log('에러' + error)
 					}
 				})
-				
+
 			})
 		});
 	</script>
-	
+
 	 <!-- 로그인 -->
 	<script src="../../js/login.js"></script>
 
@@ -857,12 +868,12 @@ marker.setMap(map);
 	<script src="../../assets/validate.js"></script>
 
 	<!-- Map -->
-	<!--  
-	<script src="http://maps.googleapis.com/maps/api/js"></script>                                   
+	<!--
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="../../js/map_single_restaurant.js"></script>
 	<script src="../../js/infobox.js"></script>
 	-->
-	
+
 	<!-- 내 코스에 저장 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
@@ -890,7 +901,7 @@ marker.setMap(map);
 						"image" : img
 				}
 				coursePath_arr.push(data)
-					
+
 				// 콘솔로 확인
 				console.log(coursePath_arr)
 				// 각 코스마다의 _id
@@ -910,7 +921,7 @@ marker.setMap(map);
 					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
 					data : jsonData,
-					dataType : "json",					
+					dataType : "json",
 					success : function (result) {
 						alert("코스에 담기 완료")
 					},
@@ -922,26 +933,26 @@ marker.setMap(map);
 			}) // end of $(document).on("click", "#choice", function()
 		}) // end of jQuery.
 	</script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			// 코스 저장하기 클릭 시 나오는 팝업창에 내가 가진 코스명 리스트 띄워놓기
 			<c:forEach items="${clist}" var="name">
 				$("#courseList").append(
-					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"
 				);
 				// 코스 _id 써먹어야해서 필요
 				$("#courseList").append(
-					"<input type='hidden' value='${name._id}'>"		
+					"<input type='hidden' value='${name._id}'>"
 				);
 			</c:forEach>
-			
+
 			// '추가' 클릭 시
 			$("#addNewcourse").on('click', function(){
 				var courseName = $("#addcourseName").val();
 				// 팝업창에 입력한 코스명으로 행이 추가 되고
 				$("#courseList").append(
-					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"
 				);
 				// 창 닫히고
 				$('#back').trigger('click');
@@ -959,7 +970,7 @@ marker.setMap(map);
 					url : "addMycourse.do",
 					contentType : 'application/json;charset=UTF-8',
 					data : jsonData,
-					dataType : "json",					
+					dataType : "json",
 					success : function (result) {
 						alert("코스 생성 완료");
 						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
@@ -970,7 +981,7 @@ marker.setMap(map);
 							data : data,
 							success : function(data){
 								$("#courseList").append(
-									"<input type='hidden' value="+data+">"		
+									"<input type='hidden' value="+data+">"
 								);
 							},
 							error : function(err){
@@ -987,7 +998,7 @@ marker.setMap(map);
 			}) // end of $("#addNewcourse").on('click', function(){}).
 		}) // end of jQuery.
 	</script>
-	
+
 </body>
 
 </html>

@@ -17,6 +17,8 @@
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/view/"/> <!-- setPrefix() -->
         <beans:property name="suffix" value=".jsp"/>
+        
+     
     </beans:bean>
  
     <!-- jackson 객체 생성 -->

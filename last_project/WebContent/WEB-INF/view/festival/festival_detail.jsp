@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 축제 Detail</title>
+    <title>축제로 - 축제 Detail</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -45,6 +45,8 @@
 .category .ico_coffee {background-position:-10px 0;}  
 .category .ico_store {background-position:-10px -36px;}   
 .category .ico_carpark {background-position:-10px -72px;} 
+
+
 <!--주변 지도-->
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap {position:relative;width:100%;height:350px;}
@@ -72,7 +74,10 @@
 .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+
+
 <!--선그리기-->
+
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
@@ -81,6 +86,19 @@
 .distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
 .distanceInfo .label {display:inline-block;width:50px;}
 .distanceInfo:after {content:none;}
+
+
+@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}
+
+
 </style>
 	
 	
@@ -101,8 +119,11 @@
 	<!-- End Preload -->
 
 	<%@ include file="../../../header.jsp" %>
-
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
+<c:forEach items="${list}" var="list">
+<c:forEach items="${list.images}" var="image" begin="1" end="1" >
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
+	</c:forEach>
+	</c:forEach>
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -112,7 +133,15 @@
 						
 						<h1>${list.title }</h1>
 						<span class='fesaddress'>${list.address}</span>
-						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+						<div class="rating">
+							<c:forEach begin="1" end="${scores[4]}">
+								<i class="icon-star voted"></i>
+							</c:forEach>
+							<c:forEach begin="1" end="${5 - scores[4]}">
+								<i class=" icon-star-empty"></i>
+							</c:forEach>
+							<small>(${list.reviews.size()})</small>						
+							</div>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
@@ -150,9 +179,9 @@
        <!--  <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>--> 
     </em>
 </p>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <ul id="category">
+<div class="map_wrap" >
+    <div id="map" style="height:100%;position:relative;overflow:hidden;"></div>
+    <ul id="category" style="margin-left: 400px;">
         <li id="AT4" data-order="0"> 
             <span class="category_bg bank"></span>
             관광명소
@@ -193,22 +222,30 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         center: new kakao.maps.LatLng(${list.latitude}, ${list.longitude}), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };  
+
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
+
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map); 
+
 // 지도에 idle 이벤트를 등록합니다
 kakao.maps.event.addListener(map, 'idle', searchPlaces);
+
 // 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
 contentNode.className = 'placeinfo_wrap';
+
 // 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
 // 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
 addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
 addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
+
 // 커스텀 오버레이 컨텐츠를 설정합니다
 placeOverlay.setContent(contentNode);  
+
 // 각 카테고리에 클릭 이벤트를 등록합니다
 addCategoryClickEvent();
+
 // 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
 function addEventHandle(target, type, callback) {
     if (target.addEventListener) {
@@ -230,9 +267,11 @@ function searchPlaces() {
     
     ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
 }
+
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
+
         // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
         displayPlaces(data);
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
@@ -242,15 +281,21 @@ function placesSearchCB(data, status, pagination) {
         
     }
 }
+
 // 지도에 마커를 표출하는 함수입니다
 function displayPlaces(places) {
+
     // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
     // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
     var order = document.getElementById(currCategory).getAttribute('data-order');
+
     
+
     for ( var i=0; i<places.length; i++ ) {
+
             // 마커를 생성하고 지도에 표시합니다
             var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
+
             // 마커와 검색결과 항목을 클릭 했을 때
             // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
             (function(marker, place) {
@@ -278,10 +323,13 @@ function addMarker(position, order) {
             position: position, // 마커의 위치
             image: markerImage 
         });
+
     marker.setMap(map); // 지도 위에 마커를 표출합니다
     markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+
     return marker;
 }
+
 // 지도 위에 표시되고 있는 마커를 모두 제거합니다
 function removeMarker() {
     for ( var i = 0; i < markers.length; i++ ) {
@@ -307,6 +355,8 @@ function displayPlaceInfo (place) {
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
     placeOverlay.setMap(map);  
 }
+
+
 // 각 카테고리에 클릭 이벤트를 등록합니다
 function addCategoryClickEvent() {
     var category = document.getElementById('category'),
@@ -319,7 +369,9 @@ function addCategoryClickEvent() {
 function onClickCategory() {
     var id = this.id,
         className = this.className;
+
     placeOverlay.setMap(null);
+
     if (className === 'on') {
         currCategory = '';
         changeCategoryClass();
@@ -335,14 +387,19 @@ function changeCategoryClass(el) {
     var category = document.getElementById('category'),
         children = category.children,
         i;
+
     for ( i=0; i<children.length; i++ ) {
         children[i].className = '';
     }
+
     if (el) {
         el.className = 'on';
     } 
 } 
+
+
 var markerPosition  = new kakao.maps.LatLng(${list.latitude} , ${list.longitude}); 
+
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
     position: markerPosition
@@ -393,7 +450,7 @@ marker.setMap(map);
                         <div class="owl-carousel owl-theme">
                         <c:forEach items="${list.images}" var="image" >
 			
-                            <div><img class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
+                            <div><img style="border-radius: 10px;" class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
                                 <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.0)">
                                     <div class="container">
                                         <div class="row justify-content-center justify-content-md-start">
@@ -455,33 +512,44 @@ marker.setMap(map);
 
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"></script> -->
 <script>
+
+
 var mapContainer = document.getElementById('maps'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(${list.latitude} , ${list.longitude}), // 지도의 중심좌표
         level: 4, // 지도의 확대 레벨
         mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
     }; 
+
 // 지도를 생성한다 
 var maps = new kakao.maps.Map(mapContainer, mapOption); 
+
 var markerPosition  = new kakao.maps.LatLng(${list.latitude} , ${list.longitude}); 
+
 //마커를 생성합니다
 var marker = new kakao.maps.Marker({
  position: markerPosition
 });
+
 //마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(maps);
+
 var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
 var moveLine; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
 var clickLine // 마우스로 클릭한 좌표로 그려질 선 객체입니다
 var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
 var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
+
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
 kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
+
     // 마우스로 클릭한 위치입니다 
     var clickPosition = mouseEvent.latLng;
+
     // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
     if (!drawingFlag) {
+
         // 상태를 true로, 선이 그리고있는 상태로 변경합니다
         drawingFlag = true;
         
@@ -513,10 +581,13 @@ kakao.maps.event.addListener(maps, 'click', function(mouseEvent) {
     
         // 클릭한 지점에 대한 정보를 지도에 표시합니다
         displayCircleDot(clickPosition, 0);
+
             
     } else { // 선이 그려지고 있는 상태이면
+
         // 그려지고 있는 선의 좌표 배열을 얻어옵니다
         var path = clickLine.getPath();
+
         // 좌표 배열에 클릭한 위치를 추가합니다
         path.push(clickPosition);
         
@@ -550,9 +621,11 @@ kakao.maps.event.addListener(maps, 'mousemove', function (mouseEvent) {
         showDistance(content, mousePosition);   
     }             
 });                 
+
 // 지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
 // 선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
 kakao.maps.event.addListener(maps, 'rightclick', function (mouseEvent) {
+
     // 지도 오른쪽 클릭 이벤트가 발생했는데 선을 그리고있는 상태이면
     if (drawingFlag) {
         
@@ -626,17 +699,21 @@ function deleteDistnce () {
         distanceOverlay = null;
     }
 }
+
 // 선이 그려지고 있는 상태일 때 지도를 클릭하면 호출하여 
 // 클릭 지점에 대한 정보 (동그라미와 클릭 지점까지의 총거리)를 표출하는 함수입니다
 function displayCircleDot(position, distance) {
+
     // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
     var circleOverlay = new kakao.maps.CustomOverlay({
         content: '<span class="dot"></span>',
         position: position,
         zIndex: 1
     });
+
     // 지도에 표시합니다
     circleOverlay.setMap(maps);
+
     if (distance > 0) {
         // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
         var distanceOverlay = new kakao.maps.CustomOverlay({
@@ -645,15 +722,19 @@ function displayCircleDot(position, distance) {
             yAnchor: 1,
             zIndex: 2
         });
+
         // 지도에 표시합니다
         distanceOverlay.setMap(maps);
     }
+
     // 배열에 추가합니다
     dots.push({circle:circleOverlay, distance: distanceOverlay});
 }
+
 // 클릭 지점에 대한 정보 (동그라미와 클릭 지점까지의 총거리)를 지도에서 모두 제거하는 함수입니다
 function deleteCircleDot() {
     var i;
+
     for ( i = 0; i < dots.length; i++ ){
         if (dots[i].circle) { 
             dots[i].circle.setMap(null);
@@ -662,23 +743,29 @@ function deleteCircleDot() {
             dots[i].distance.setMap(null);
         }
     }
+
     dots = [];
 }
+
 // 마우스 우클릭 하여 선 그리기가 종료됐을 때 호출하여 
 // 그려진 선의 총거리 정보와 거리에 대한 도보, 자전거 시간을 계산하여
 // HTML Content를 만들어 리턴하는 함수입니다
 function getTimeHTML(distance) {
+
     // 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
     var walkkTime = distance / 67 | 0;
     var walkHour = '', walkMin = '';
+
     // 계산한 도보 시간이 60분 보다 크면 시간으로 표시합니다
     if (walkkTime > 60) {
         walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + '</span>시간 '
     }
     walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
+
     // 자전거의 평균 시속은 16km/h 이고 이것을 기준으로 자전거의 분속은 267m/min입니다
     var bycicleTime = distance / 227 | 0;
     var bycicleHour = '', bycicleMin = '';
+
     // 계산한 자전거 시간이 60분 보다 크면 시간으로 표출합니다
     if (bycicleTime > 60) {
         bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
@@ -696,8 +783,10 @@ function getTimeHTML(distance) {
     content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
     content += '    </li>';
     content += '</ul>'
+
     return content;
 }
+
 </script>
     
 </c:forEach>
@@ -705,32 +794,64 @@ function getTimeHTML(distance) {
 					</div>
 
 					<hr>
-                    
+                      <c:if test="${detail_instar.size() ne 0 }">
                     <div class="row">
 						<div class="col-lg-12">
-                            <h4>인스타그램 사진</h4>
-                            <table>
-                            
-                            </table>
+                                                 
+                               
+                            <div class="container margin_60" id="instarss">
+
+			<div class="main_title">
+			<c:forEach items='${detail_instar}' var='instar'>
+			
+			             <h2><span>ㅣ</span>${instar.title} 인스타그램 사진</h2>
+          </c:forEach>
+			</div>
+		
+			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
+		
+		<c:forEach items='${detail_instar}' var='instar'>
+		<c:forEach items="${instar.images}" var="image" >
+                <div class="item">
+                    <div class="tour_container">
+                        <div class="img_container">
+                            <a href="single_tour.html">
+                                <img style="border-radius: 20px;" src="data:image/jpg;base64,${image}" width="100" height="100" class="img-fluid" alt="image">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End box tour -->
+                </div>
+             
+                <!-- /item -->
+        </c:forEach>
+        </c:forEach>
+            </div>
+            <!-- /carousel -->
+		
+		
+       </div>
+          
 						</div>
 					</div>
+					<hr>
+					  
                     <div class="row">
 						<div class="col-lg-12">
-                            <h4>연관된 키워드</h4>
+                           <div class="main_title">
+			<c:forEach items='${detail_instar}' var='instar'>
+			
+			             <h2><span>ㅣ</span>연관된 키워드</h2>
+			             <br/>
+			              <h2><span>${instar.tag_list}</span></h2>
+			             
+          </c:forEach>
+			</div>
 						</div>
 					</div>
                     <hr>
-                    <!-- 메이트 빠이.... 사요나라~
-                    <div class="row">
-						<div class="col-lg-12">
-                            <h4>함께 축제에 갈 사람이 필요한가요?</h4>
-                            <div class="basic_button">
-                                <button class="btn btn-warning basic_button">메이트 찾기</button>
-                            </div>
-						</div>
-					</div>
-                    <hr>
-                     --> 
+                     </c:if>
+                 
 										<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
@@ -894,12 +1015,12 @@ function getTimeHTML(distance) {
 						<h3 class="inner">주변 식당</h3>
                         
                         <!-- 식당 1 -->
-                        <c:forEach items="${reslist}" var="res">
+                        <c:forEach items="${reslist}" var="res" varStatus="var">
                         <div class="row near-place">
                                             
                             <div class="col-12 near-place-image">
                             		 <c:forEach items="${res[0].images}" var="image" begin="0" end="0">
-                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img style="border-radius: 10px;" class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
                                		 </c:forEach>
                                 </a>
                             </div>
@@ -912,7 +1033,7 @@ function getTimeHTML(distance) {
                                 ${res[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>4.2<span class="near-place-tel">${res[0].tel }</span>
+								<span class="star">★</span>${res[0].averageScore}<span class="near-place-tel">${res[0].tel }</span>
 								</div>
 								
                                 <div class="col-12" class="near-place-text">
@@ -938,7 +1059,7 @@ function getTimeHTML(distance) {
                         <div class="row near-place">
                             <div class="col-12 near-place-image">
                             <c:forEach items="${accom[0].images}" var="image" begin="0" end="0">
-                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img style="border-radius: 10px;" class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
                                  </c:forEach>
                                 </a>
                             </div>
@@ -951,7 +1072,7 @@ function getTimeHTML(distance) {
                              ${accom[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>1.5<span class="near-place-tel">${accom[0].tel}</span>
+								<span class="star">★</span>${accom[0].averageScore}<span class="near-place-tel">${accom[0].tel}</span>
 								</div>
                                 <div class="col-12" class="near-place-text">
                                   <c:set var="num1" value="${accom[0].range }" />
@@ -1310,6 +1431,7 @@ function getTimeHTML(distance) {
 					"_id" : cId,
 					"writer" : "${sessionScope.memberId}",
 					"courseName" : courseName,
+					"reviews": new Array(),
 					"coursePath" : coursePath_arr
 				}
 				// 직렬화
@@ -1361,6 +1483,7 @@ function getTimeHTML(distance) {
 				var data = {
 					"writer" : "${sessionScope.memberId}",
 					"courseName" : courseName,
+					"reviews": new Array(),
 					"share" : "NO"
 				}
 				var jsonData = JSON.stringify(data)

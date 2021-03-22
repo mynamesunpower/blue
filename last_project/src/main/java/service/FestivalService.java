@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
-
+import main.java.vo.AccomVO;
 import main.java.vo.FestivalVO;
 import main.java.vo.InstarVO;
 
@@ -14,7 +14,7 @@ public interface FestivalService {
 
 	public List<FestivalVO> test();
 	public List<FestivalVO> month(String month);
-	public List<FestivalVO> recommand();
+
 	public List<FestivalVO> detail(int tel);
 	public List<FestivalVO> months();
 	List<FestivalVO> near(ObjectId objectId);
@@ -22,18 +22,23 @@ public interface FestivalService {
 	public int updateRestaurantReview(ArrayList<HashMap<String, String>> reviews, String _id);
 	public List<FestivalVO> search(String word);
 	public long festivalcount();
-	
+
 	public List<InstarVO> instar();
 	public List<InstarVO> detail_instar(int tel);
-	
+	public List<FestivalVO> selectPageList(int pageNumber);
+	public List<FestivalVO> getRegionData(String region, int pageNumber);
+	public List<HashMap> groupRegion();
+
 	//관리자에서
 	public FestivalVO insert_festival(FestivalVO vo);
 	public FestivalVO modify_festival(FestivalVO vo);
 	public FestivalVO delete_festival(FestivalVO vo);
-	
-	
 
-	
-	
-	
+
+
+
+
+
+
+
 }
