@@ -104,7 +104,7 @@
 			<div class="row">
 
 
-				<div class="col-lg-9">
+				<div class="col-lg-10 offset-lg-1">
 
 					<div id="tools">
 						<div class="row">

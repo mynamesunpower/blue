@@ -171,7 +171,7 @@
 <!--<p><em>지도를 클릭해주세요!</em></p>--> 
 <div id="clickLatlng"></div>
         <div class="main_title">
-            <h2>근처 축제: <span> 지도를 클릭해주세요! </span></h2>
+            <h2>근처 축제 <span><div id="ppp" >지도를 클릭해주세요! </div></span></h2>
             
            <!--  <a href="#" class="btn_1">자세히 보기</a> -->
         </div>
@@ -201,7 +201,7 @@
                             <h3><strong class="nearname1">꼴뚜기 투어</strong></h3>
                             <div class="rating" id="rating1">
                             
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><small>(75)</small>
+                               
                             </div>
                             <!-- end rating -->
                             
@@ -234,7 +234,7 @@
                         <div class="tour_title" style="height:75px;">
                             <h3><strong class="nearname2">매운탕 투어</strong></h3>
                             <div class="rating" id="rating2">
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
+                              
                             </div>
                             <!-- end rating -->
                            
@@ -266,7 +266,7 @@
                         <div class="tour_title" style="height:75px;">
                             <h3><strong class="nearname3">매운탕 투어</strong></h3>
                             <div class="rating" id="rating3">
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
+                              
                             </div>
                             <!-- end rating -->
                             

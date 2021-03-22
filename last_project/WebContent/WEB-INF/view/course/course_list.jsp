@@ -33,7 +33,7 @@
 	@media screen and (min-width: 769px) { 
 
 	.carousel_parallax, div#position, div#map {
-		width: 58%;
+		width: 58% !important;
 		margin: 0 auto;
 	} 
 
@@ -59,7 +59,7 @@
 
 	 <%@ include file="/../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="../img/main/main_course.png" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="../img/main/main_course.png" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>나의 코스 목록</h1>

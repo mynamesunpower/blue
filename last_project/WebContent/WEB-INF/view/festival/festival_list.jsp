@@ -93,7 +93,7 @@
 			<div class="row">
 
 
-				<div class="col-lg-9">
+				<div class="offset-lg-1 col-lg-10">
 
 					<div id="tools">
 						<div class="row">

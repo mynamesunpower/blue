@@ -132,7 +132,7 @@
 			</p> -->
 			<div class="map_wrap">
 			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-			    <ul id="category">
+			    <ul id="category" style="margin-left: 400px;">
 			        <li id="AT4" data-order="0">
 			            <span class="category_bg bank"></span>
 			            관광명소

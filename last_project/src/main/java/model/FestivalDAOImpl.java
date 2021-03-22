@@ -206,8 +206,8 @@ public class FestivalDAOImpl implements FestivalDAO {
 
 	        update.set("address", vo.getAddress());
 	        update.set("host", vo.getHost());
-	        update.set("startDate", vo.getStartDate());
-	        update.set("endDate", vo.getEndDate());
+	        //update.set("startDate", vo.getStartDate());
+	        //update.set("endDate", vo.getEndDate());
 	        update.set("fee", vo.getFee());
 	        update.set("tel", vo.getTel());
 	        update.set("homepage", vo.getHomepage());
