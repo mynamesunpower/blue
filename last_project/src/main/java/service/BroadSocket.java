@@ -11,9 +11,12 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import main.java.admin.AdminCSController;
+
 // 일반 유저에서 서버간의 웹 소켓 url
 @ServerEndpoint("/broadsocket")
 public class BroadSocket {
+	
 	// searchUser 함수의 filter 표현식을 위한 인터페이스
 	private interface SearchExpression {
 		// 람다식을 위한 함수
@@ -102,6 +105,7 @@ public class BroadSocket {
 		if (user != null) {
 			// 운영자 Client에 유저 key로 접속 종료를 알린다.
 			AdminChat.bye(user.key);
+			System.out.println("유저 종료");
 			// 위 유저 접속 리스트에서 유저를 삭제한다.
 			sessionUsers.remove(user);
 		}

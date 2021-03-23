@@ -11,7 +11,7 @@
 
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>축축빵빵 - Mypage</title>
+	<title>축제로 - Mypage</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -22,15 +22,25 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	
+
 	<!-- COMMON CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<link href="css/vendors.css" rel="stylesheet">
-	
+
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
 	<link href="css/realtime_inquire.css" rel="stylesheet">
+	<style>
+	@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+}
+	</style>
 </head>
 
 <body>
@@ -47,11 +57,11 @@
 
 	<%@ include file="../../../header.jsp" %>
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/restaurant_top.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="img/restaurant_top2.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>마이 페이지에용~</h1>
-				<p>이 부분 없으면 페이지가 이상해지네용~</p>
+				<h1>마이페이지</h1>
+				<p></p>
 			</div>
 		</div>
 	</section>
@@ -71,9 +81,7 @@
 								</li>
 								<li><a href="#lostArea"><i class="icon_set_1_icon-42"></i>분실물 제보 게시판</a>
 								</li>
-								<li><a href="#inquireArea"><i class="icon_set_1_icon-57"></i>문의하기</a>
-								</li>
-								<li><a href="#inquire2Area"><i class="icon_set_1_icon-85"></i>실시간 1:1 문의 </a>
+								<li><a href="#inquire2Area"><i class="icon_set_1_icon-85"></i>1:1 문의 </a>
 								</li>
 							</ul>
 						</div>
@@ -106,7 +114,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>전화번호</label>
-											<input type="text" id="telephone" name="telephone" class="form-control" value="${vo.tel}">
+											<input type="text" id="tel" name="telephone" class="form-control" value="${vo.tel}">
 											<div style="text-align: right;">
 												<button type="button" class="btn btn-success btn-sm" id="changePhoneNumber">전화번호 변경</button>
 											</div>
@@ -123,7 +131,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-sm-6">									
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label>주소 </label>
 											<input type="text" id="addr" class="form-control" value="${vo.address}" style="width:100%;">
@@ -172,18 +180,6 @@
 											</div>
 											</div>
 										</div>
-										<div class="card">
-											<div class="card-header">
-												<h4>
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#collapseThree_faq">게임업계 개발자 연봉이 올랐대여<i class="indicator icon-plus float-right"></i></a>
-												</h4>
-											</div>
-											<div id="collapseThree_faq" class="collapse" data-parent="#faq">
-												<div class="card-body">
-													대박대박
-												</div>
-											</div>
-										</div>
 									</div>
 									<!--End FAQ -->
 								</div>
@@ -195,7 +191,7 @@
 					<!-- 분실물 start-->
 					<div class="col-lg-12 add_bottom_15">
 						<div class="form_title">
-							<h3><strong class="icon_set_1_icon-42"></strong>분실물 제보 게시판</h3>
+							<h3><strong class="icon_set_1_icon-42"></strong>분실물 제보 게시판 (미구현)</h3>
 						</div>
 						<div id="lostArea">
 							<div class="step">
@@ -279,6 +275,7 @@
 					</div><!-- 분실물 end-->
 					<hr>
 					<!-- 문의 start-->
+					<!-- 
 					<div class="col-lg-12 add_bottom_15">
 						<div class="form_title">
 							<h3><strong class="icon_set_1_icon-57"></strong>문의하기</h3>
@@ -287,7 +284,7 @@
 							<div class="step">
 								<div class="billing-details">
 									<div class="shop-form">
-										<form method="post">  <!-- 주문 양식 따온거라 form으로 묶여져있네-->
+										<form method="post">
 											<div class="row">
 												<div class="form-group col-md-6 col-sm-6 col-xs-12">
 													<label>이름 <sup>*</sup>
@@ -313,7 +310,7 @@
 														<option value="2">정보 오류 수정 </option>
 														<option value="3">기타</option>
 													</select>
-												</div>											
+												</div>
 												<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 													<label>문의 내역</label>
 													<textarea id="cs_detail" placeholder="문의 사항을 상세히 기재해주세요." class="form-control"></textarea>
@@ -326,59 +323,59 @@
 										</form>
 									</div>
 								</div>
-							</div>
-							<!--End step -->
+							</div>  
+
 						</div>
-					</div>
+					</div> -->
 					<!--End 문의하기-->
 					<hr>
 					<!-- 1:1 문의 start-->
 					<div class="col-lg-12 add_bottom_15">
 						<div class="form_title">
-							<h3><strong class="icon_set_1_icon-85"></strong>실시간 1:1 문의</h3>
+							<h3><strong class="icon_set_1_icon-85"></strong>1:1 문의</h3>
 							<a class="memberChat" href="#">관리자와 채팅</a>
 						</div>
 						<div id="inquire2Area">
 							<div class="step">
-								<section class="msger">																  
+								<section class="msger">
 									<main class="msger-chat">
 									  <div class="msg left-msg">
 										<div
 										 class="msg-img"
 										 style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
 										></div>
-								  
+
 										<div class="msg-bubble">
 										  <div class="msg-info">
-											<div class="msg-info-name">BOT</div>
+											<div class="msg-info-name">미구현 봇</div>
 											<div class="msg-info-time">12:45</div>
 										  </div>
-								  
+
 										  <div class="msg-text">
-											안녕하세요, 무엇을 도와드릴까요? 😄
+											묻지 말아 주세요 😄
 										  </div>
 										</div>
 									  </div>
-								  
+
 									  <!-- <div class="msg right-msg">
 										<div
 										 class="msg-img"
 										 style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
 										></div>
-								  
+
 										<div class="msg-bubble">
 										  <div class="msg-info">
 											<div class="msg-info-name">YOU</div>
 											<div class="msg-info-time">12:46</div>
 										  </div>
-								  
+
 										  <div class="msg-text">
 											You can change your name in JS section!
 										  </div>
 										</div>
 									  </div> -->
 									</main>
-								  
+
 									<form class="msger-inputarea">
 									  <input type="text" class="msger-input" placeholder="메시지를 입력해주세요.">
 									  <button type="submit" class="msger-send-btn">전송</button>
@@ -394,7 +391,7 @@
 		</div>
 		<!-- End container -->
 		<form name="frmData" id="frmData" method="post">
-			<input type="hidden" name="name" id="mem_name" value="${vo.name}" /> 
+			<input type="hidden" name="name" id="mem_name" value="${vo.name}" />
 			<input type="hidden" name="id" id="mem_id" value="${vo.id}" />
 		</form>
 
@@ -407,6 +404,36 @@
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
+	<script>
+	$(document).ready(function() {
+		
+		$('#changePhoneNumber').on('click', function() {
+			$.ajax({
+				type: 'post',
+				url: '/member/memberModify.do',
+				data: {
+					'id': $('#mem_id').val(),
+					'name': $('#name').val(),
+					'tel': $('#tel').val(),
+					'email': $('#email').val(),
+					'address': $('#addr').val()
+				},
+				contentType:'application/x-www-form-urlencoded;charset=euc-kr',
+				success: function(result) {
+					console.log(result)
+					if (result == 1) {
+						alert('정보 수정 완료')
+					}
+				},
+				error: function(err) {
+					console.log('에러' + err)
+				}
+			})		
+		})
+	})
+	
+	</script>
+
 
 	<!-- Specific scripts -->
 	<!-- 주소 찾기 기능-->
@@ -443,22 +470,22 @@
 			}
 			return zero + n;
 		}
-		
+
 		function openPop() {
 
-			var url = "../CustomerService/memberChat.do";
+			var url = "../CustomerService/memberChat.do?memberId="+$('#mem_id').val();
 			var pop_title = "관리자와 대화하기";
-			var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+			var option = "width = 350, height = 650, top = 100, left = 200, location = no";
 
 			window.open(url, pop_title, option);
 		}
 
 		$('.memberChat').on('click', function() {
-			
-			
+
+
 			var date = getTimeStamp();
 			console.log(date)
-			
+
 			$.ajax({
 				type: 'post',
 				url: '../admin/admin_customer_chat.do',
@@ -477,12 +504,12 @@
 				},
 				complete: function(complete) {
 					console.log('끝나따')
-					
+
 					// 채팅창 열기!
 					openPop();
 				}
 			})
-			
+
 		});
 
 		jQuery('#sidebar').theiaStickySidebar({
@@ -491,7 +518,7 @@
 	</script>
 	<script>
 	$('#faq_box a[href^="#"]').click(function() {
-		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
 			|| location.hostname == this.hostname) {
 			var target = $(this.hash);
 			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
@@ -504,7 +531,7 @@
 		}
 	});
 	</script>
-	
+
 	<script src="js/realtime_inquire.js"></script>
 	<!-- Cat nav mobile -->  <!--모바일 화면에서 메뉴 접어서 보여주는거-->
 	<!-- <script src="js/cat_nav_mobile.js"></script>
@@ -516,7 +543,7 @@
 	<!-- <script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/map_restaurants.js"></script>
 	<script src="js/infobox.js"></script> -->
-	
+
 	<!-- Check box and radio style iCheck -->
 	<!-- <script>
 		$('input').iCheck({
@@ -524,7 +551,7 @@
 		   radioClass: 'iradio_square-grey'
 		 });
 	</script> -->
-	
+
 </body>
 
 </html>

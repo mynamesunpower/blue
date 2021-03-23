@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -31,29 +35,11 @@ import main.java.vo.FestivalVO;
 
 
 @Controller
-@RequestMapping(value = "course/")
+@RequestMapping
 public class CourseController {
 	
 	@Autowired
 	private CourseService courseService;
-
-	// DB내용 가져오기 테스트용
-	@RequestMapping(value = "mongoCourse.do")
-	public String coursetest(Model model) {
-		List<CourseVO> list = courseService.test();
-		/*
-		for(CourseVO vo : list) {
-			ArrayList<String> imageList = new ArrayList<String>();
-			for(Binary img : vo.getImage()) {
-				String image = Base64.getEncoder().encodeToString(img.getData());
-				imageList.add(image);
-			}
-			vo.setCoursePath(imageList);
-		}
-		*/
-		model.addAttribute("list", list);
-		return "course/mongoCourse";
-	}
 	
 	// 코스 메인 진입 
 	@RequestMapping(value = "course_main.do")
@@ -65,118 +51,163 @@ public class CourseController {
 	
 	// 코스 상세보기 진입
 	@RequestMapping(value = "courseSelect.do")
-	public String courseDetail(CourseVO vo, Model model, @RequestParam String _id) {
-		System.out.println("course id:"+_id);
-		CourseVO cvo = courseService.courseSelect(vo, _id);
-		model.addAttribute("detail", cvo);
+	public String courseDetail(Model model, HttpSession session, @RequestParam String _id) {
+		CourseVO vo = courseService.courseSelect(_id);
+		model.addAttribute("detail", vo);
+		
+		ArrayList<HashMap<String, String>> reviews = vo.getReviews();
+		model.addAttribute("scores", scoresAverage(reviews, "position"));
+		
+		// '코스 저장하기' 눌렀을 때, 팝업창에 내가 가진 코스명 리스트 띄워놓기 위해 필요.
+		String memberId = (String) session.getAttribute("memberId");
+		List<CourseVO> list = courseService.viewMycourse(memberId);
+		// 코스 데이터가 없는 유저의 경우 list에 아무것도 없기 때문에 model.addAttribute("list", list); 를 해줄수가 없음. 그래서 list가 null이 아닌 경우에만 model.addAttribute("list", list);를 해주게 함.
+		if (list != null) {
+			model.addAttribute("list", list);
+		}
 		return "course/course_detail";
 	}
 	
 	// 나의 코스 목록 진입
 	@RequestMapping(value = "course_list.do")
-	public String courseList(CourseVO vo, Model model, HttpSession session) {
+	public String courseList(Model model, HttpSession session) {
 		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("memberId:"+memberId);
-		List<CourseVO> list = courseService.viewMycourse(vo, memberId);
+		List<CourseVO> list = courseService.viewMycourse(memberId);		
 		model.addAttribute("list", list);
 		return "course/course_list";
 	}
 	
-	// 코스 편집하기 진입
+	// 코스 편집하기 페이지 진입
 	@RequestMapping(value = "course_edit.do")
-	public String courseEdit(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
-		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요
+	public String courseEditpage(CourseVO vo, Model model, HttpSession session, @RequestParam String _id) {
+		// 일반 로그인 회원.  _ 카카오 or 네이버 로그인 회원 id 받는 것도 필요   __ 회원 id 받는게 필요한가 ? 나중에 점검.
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("memberId:"+memberId);
-		System.out.println("course id:"+_id);
 		CourseVO cvo = courseService.courseEdit(vo, memberId, _id);
 		model.addAttribute("detail", cvo);
 		return "course/course_edit";
 	}
 	
-	// 다른 사람이 만든 코스를 내 코스에 담기
-	@PostMapping("addMycourse.do")
+	// 코스 만들기
+	@RequestMapping(value = "addMycourse.do", method = RequestMethod.POST)
 	@ResponseBody
-	public CourseVO addMycourse(CourseVO vo, HttpSession session, HttpServletRequest req/*, @RequestBody String jsonData*/){
+	public int addMycourse(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
 		// 접속 유저 id
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println("id:"+memberId);
-		// 키워드 가져오는거 확인용
-		String[] temp = req.getParameterValues("keyword");
-		for(String keyword : temp) {
-			System.out.println("keyword:"+keyword);
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
+			courseService.addMycourse(vo);
+		} catch(Exception e) {
+			System.out.println("error:"+e);
 		}
+		response.setContentType("text/html; charset=UTF-8");
 		
-		/*List<Map<String, Object>> resultMap = new ArrayList<Map<String,Object>>();
-		resultMap = JSONArray.fromObject(jsonData);
-		
-		for (Map<String, Object> map : resultMap) {
-			System.out.println(map.get("title") + "/" + map.get("address"));
-		}
-		*/
-		CourseVO cvo = courseService.addMycourse(vo);
-		return cvo;		
+		return 0;
 	}
-		
-	// 축제_ 코스에 담기
-	@PostMapping("addMycourse_festival.do")
+	// 코스 경로 추가
+	@RequestMapping(value = "pushCoursePath.do", method = RequestMethod.POST)
 	@ResponseBody
-	public CourseVO addFestival(CourseVO vo, @RequestBody String jsonData) {
-		
-		/*
-		Gson gson = new Gson();
-		List<Map<String, Object>> myPushList = null;
-		String jsonArray = jsonData;
-		myPushList = gson.fromJson(jsonArray, new TypeToken<List<Map<String, Object>>>() {}.getType());
-		
-		System.out.println(myPushList.toString());
-		*/
-		/*
-		Map<String, Object> result = new HashMap<String, Object>();
-		 
-	    Map<String, Object> paramMap = new HashMap<String, Object>();
-		
-		JSONArray array = JSONArray.fromObject(jsonData);
-		List<Map<String, Object>> resendList = new ArrayList<Map<String, Object>>();
-		for(int i=0;i<array.size();i++) {
-			JSONObject obj = (JSONObject) array.get(i);
-			
-			Map<String, Object> resendMap = new HashMap<String, Object>();
-			resendMap.put("title", obj.get("title"));
-			resendMap.put("address", obj.get("address"));
-			resendMap.put("startDate", obj.get("startDate"));
-			resendMap.put("endDate", obj.get("endDate"));
-			resendMap.put("fee", obj.get("fee"));
-			resendMap.put("festel", obj.get("festel"));
-			resendMap.put("host", obj.get("host"));
-			
-			resendList.add(resendMap);
+	public int pushCoursePath(HttpSession session, @RequestBody String jsonData, HttpServletResponse response){
+		// 접속 유저 id
+		String memberId = (String) session.getAttribute("memberId");
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
+			courseService.pushCoursePath(vo, vo.get_id());
+		} catch(Exception e) {
+			System.out.println("error:"+e);
 		}
-		vo.setCoursePath(resendList);
-		*/
-		/*
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("writer", vo.getWriter());
-		map.put("courseName", vo.getCourseName());
-		map.put("", vo.get)
-		*/
-		CourseVO cvo = courseService.addMycourse(vo);
-		return cvo;
+		response.setContentType("text/html; charset=UTF-8");
+		
+		return 0;
 	}
 	
-	// 코스 지우기  _ a 태그에 .do 를 걸어서 그런가 return이 안 먹힘. 
+	// 코스 경로에서 빼기
+	@RequestMapping(value = "pullCoursePath.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void pullCoursePath(HttpSession session, @RequestParam(value="cId") String cId, @RequestParam(value="p_id") String p_id) {
+		String memberId = (String) session.getAttribute("memberId");		
+		courseService.pullCoursePath(cId, p_id);
+	}
+	
+	// 코스 지우기
 	@RequestMapping(value = "deleteCourse.do")
-	public String deleteCourse(@RequestParam String _id) {
+	public String deleteCourse(@RequestParam String _id, HttpSession session) {
+		// 접속 유저 id
+		String memberId = (String) session.getAttribute("memberId");
 		courseService.deleteCourse(_id);
-		return "course/course_list";
+		return "redirect:course_list.do?memberId="+memberId;
 	}
 	
 	// 코스 편집
-	@RequestMapping(value = "editCourse.do")
+	@RequestMapping(value = "editCourse.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String editCourse(@RequestBody CourseVO vo, @RequestParam String _id) {
-		courseService.editCourse(vo, _id);
-		return "course/course_list";
+	public int editCourse(@RequestBody String jsonData, HttpServletResponse response, HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			CourseVO vo = (CourseVO)mapper.readValue(jsonData, new TypeReference<CourseVO>() {});
+			courseService.editCourse(vo, vo.get_id());
+		} catch(Exception e) {
+			System.out.println("error:"+e);
+		}
+		response.setContentType("text/html; charset=UTF-8");
+		
+		return 0;
+	}
+	
+	// 코스에 담는 창에서, 방금 생성한 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기 위해 필요
+	@RequestMapping(value = "cId.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String cId(CourseVO vo) {
+		CourseVO cvo = courseService.cId(vo.getWriter(), vo.getCourseName());
+		return cvo.get_id().toString();
+	}
+	
+	// 리뷰 입력
+	@RequestMapping(value = "insert_course_review.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int insertCourseReview(CourseVO vo, String _id) {
+		HashMap<String, String> review = vo.getReview();
+		String id = review.get("id");
+		System.out.println(id + "/" + review.get("content"));
+		
+		// 현재 데이터의 리뷰 List 가져오기
+		ArrayList<HashMap<String, String>> reviews = courseService.getReviews(_id);
+		// List에 review를 추가.
+		reviews.add(review);
+		// 바뀐 list로 update 쿼리 실행
+		int result = courseService.updateCourseReview(reviews, _id);
+		System.out.println("업데이트가 " + result +"개 되었습니당.");
+		return result;
+	}
+	
+	
+	public int[] scoresAverage(ArrayList<HashMap<String, String>> reviews, String firstScoreName) {
+
+		int[] scores = new int[5];
+		int[] scoresAvg = new int[5];
+
+		// 리뷰가 없을 경우엔
+		if (reviews.size() > 0) {
+
+			for (HashMap<String, String> review : reviews) {
+
+				scores[0] += Integer.parseInt(review.get(firstScoreName));
+				scores[1] += Integer.parseInt(review.get("fun"));
+				scores[2] += Integer.parseInt(review.get("price"));
+				scores[3] += Integer.parseInt(review.get("recommend"));
+				scores[4] = (scores[0] + scores[1] + scores[2] + scores[3]) / 4;
+
+			}
+
+			for (int i = 0; i < scoresAvg.length; i++) {
+				scoresAvg[i] = scores[i]/reviews.size();
+			}
+
+		}
+
+		return scoresAvg;
 	}
 }

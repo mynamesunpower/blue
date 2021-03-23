@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>축축빵빵 - 축제 Detail</title>
+    <title>축제로 - 축제 Detail</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/logo_img.PNG" type="image/x-icon">
@@ -88,6 +88,17 @@
 .distanceInfo:after {content:none;}
 
 
+@media screen and (min-width: 769px) { 
+
+	.carousel_parallax, div#position, div#map {
+		width: 58%;
+		margin: 0 auto;
+	} 
+
+
+}
+
+
 </style>
 	
 	
@@ -108,8 +119,11 @@
 	<!-- End Preload -->
 
 	<%@ include file="../../../header.jsp" %>
-
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/main/main_festa.jpg" data-natural-width="700" data-natural-height="470">
+<c:forEach items="${list}" var="list">
+<c:forEach items="${list.images}" var="image" begin="1" end="1" >
+	<section class="parallax-window carousel_parallax" data-parallax="scroll" data-image-src="data:image/jpg;base64,${image}" data-natural-width="700" data-natural-height="470">
+	</c:forEach>
+	</c:forEach>
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -119,7 +133,15 @@
 						
 						<h1>${list.title }</h1>
 						<span class='fesaddress'>${list.address}</span>
-						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+						<div class="rating">
+							<c:forEach begin="1" end="${scores[4]}">
+								<i class="icon-star voted"></i>
+							</c:forEach>
+							<c:forEach begin="1" end="${5 - scores[4]}">
+								<i class=" icon-star-empty"></i>
+							</c:forEach>
+							<small>(${list.reviews.size()})</small>						
+							</div>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
@@ -157,9 +179,9 @@
        <!--  <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>--> 
     </em>
 </p>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <ul id="category">
+<div class="map_wrap" >
+    <div id="map" style="height:100%;position:relative;overflow:hidden;"></div>
+    <ul id="category" style="margin-left: 400px;">
         <li id="AT4" data-order="0"> 
             <span class="category_bg bank"></span>
             관광명소
@@ -428,7 +450,7 @@ marker.setMap(map);
                         <div class="owl-carousel owl-theme">
                         <c:forEach items="${list.images}" var="image" >
 			
-                            <div><img class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
+                            <div><img style="border-radius: 10px;" class="owl-slide cover" src="data:image/jpg;base64,${image}"/>
                                 <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.0)">
                                     <div class="container">
                                         <div class="row justify-content-center justify-content-md-start">
@@ -772,33 +794,64 @@ function getTimeHTML(distance) {
 					</div>
 
 					<hr>
-                    
+                      <c:if test="${detail_instar.size() ne 0 }">
                     <div class="row">
 						<div class="col-lg-12">
-                            <h4>인스타그램 사진</h4>
-                            <table>
-                            
-                            </table>
-						</div>
-					</div>
-                    <div class="row">
-						<div class="col-lg-12">
-                            <h4>연관된 키워드</h4>
-						</div>
-					</div>
-                    <hr>
-                    <div class="row">
-						<div class="col-lg-12">
-                            <h4>함께 축제에 갈 사람이 필요한가요?</h4>
-                            <div class="basic_button">
-								<!-- 메이트서비스 아닌 회원은 mate_index_default -->
-                                <!-- 메이트서비스 회원은 mate_index -->
-                                <button class="btn btn-warning basic_button">메이트 찾기</button>
-                            </div>
-						</div>
-					</div>
-                    <hr>
+                                                 
+                               
+                            <div class="container margin_60" id="instarss">
 
+			<div class="main_title">
+			<c:forEach items='${detail_instar}' var='instar'>
+			
+			             <h2><span>ㅣ</span>${instar.title} 인스타그램 사진</h2>
+          </c:forEach>
+			</div>
+		
+			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
+		
+		<c:forEach items='${detail_instar}' var='instar'>
+		<c:forEach items="${instar.images}" var="image" >
+                <div class="item">
+                    <div class="tour_container">
+                        <div class="img_container">
+                            <a href="single_tour.html">
+                                <img style="border-radius: 20px;" src="data:image/jpg;base64,${image}" width="100" height="100" class="img-fluid" alt="image">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End box tour -->
+                </div>
+             
+                <!-- /item -->
+        </c:forEach>
+        </c:forEach>
+            </div>
+            <!-- /carousel -->
+		
+		
+       </div>
+          
+						</div>
+					</div>
+					<hr>
+					  
+                    <div class="row">
+						<div class="col-lg-12">
+                           <div class="main_title">
+			<c:forEach items='${detail_instar}' var='instar'>
+			
+			             <h2><span>ㅣ</span>연관된 키워드</h2>
+			             <br/>
+			              <h2><span>${instar.tag_list}</span></h2>
+			             
+          </c:forEach>
+			</div>
+						</div>
+					</div>
+                    <hr>
+                     </c:if>
+                 
 										<div class="row">
 						<div class="col-lg-3">
 							<h3>후기 </h3>
@@ -950,7 +1003,7 @@ function getTimeHTML(distance) {
 					</p> <!-- 지도 끝 -->
                     <!-- 코스에 담기 -->
                     <p>
-                        <a href="#" class="btn_map" data-toggle="modal" data-target="#put_into_course">코스에 담기</a>
+                        <a href="#" class="btn_map" data-toggle="modal" data-target="#put_into_course" id="saveCourse">코스에 담기</a>
                     </p> <!-- 코스에 담기 끝 -->
                     <!-- 티켓 구매하기 -->
                    <!-- <p>
@@ -967,7 +1020,7 @@ function getTimeHTML(distance) {
                                             
                             <div class="col-12 near-place-image">
                             		 <c:forEach items="${res[0].images}" var="image" begin="0" end="0">
-                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                                <a href="restaurant_detail.do?_id=${res[0]._id}"><img style="border-radius: 10px;" class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
                                		 </c:forEach>
                                 </a>
                             </div>
@@ -1006,7 +1059,7 @@ function getTimeHTML(distance) {
                         <div class="row near-place">
                             <div class="col-12 near-place-image">
                             <c:forEach items="${accom[0].images}" var="image" begin="0" end="0">
-                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
+                                <a href="accommodations_detail.do?_id=${accom[0]._id}"><img style="border-radius: 10px;" class="img-fluid" src='data:image/jpg;base64,${image}' alt="맞춰넣으세요">
                                  </c:forEach>
                                 </a>
                             </div>
@@ -1019,7 +1072,7 @@ function getTimeHTML(distance) {
                              ${accom[0].address}
                                 </div>
                                 <div class="near-place-score">
-								<span class="star">★</span>1.5<span class="near-place-tel">${accom[0].tel}</span>
+								<span class="star">★</span>${accom[0].averageScore}<span class="near-place-tel">${accom[0].tel}</span>
 								</div>
                                 <div class="col-12" class="near-place-text">
                                   <c:set var="num1" value="${accom[0].range }" />
@@ -1057,29 +1110,45 @@ function getTimeHTML(distance) {
 	<!-- End main -->
 
 	<%@ include file="../../../footer.jsp" %>
+	
+	<!-- Common scripts -->
+	<script src="/../js/jquery-3.5.1.min.js"></script>
+	<script src="/../js/common_scripts_min.js"></script>
+	<script src="/../js/functions.js"></script>
 
-	<!-- Modal put_into_course-->
-	<div class="modal fade" id="put_into_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div>
-						<h4>- <input type="text" style="width:35%;" id="courseName" value="내 코스 1">
-							<!-- 선택을 누르면 해당 코스로 컨텐츠(축제, 숙소, 식당..)가 들어가야 함.-->
-							<span style="padding-left: 70px;"><input type="button" value="선택" class="btn_1" id="choice"></span>
-						</h4>
-					</div>
-					<div style="text-align: center;">
-						<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+	<!-- 비로그인 상태에서 코스에 담기 누르면, 로그인하라고 안내.. 팝업 띄우기는..어렵귀찮네?-->
+	<c:choose>
+		<c:when test="${sessionScope.memberId ne null}">
+			<!-- Modal put_into_course-->
+			<div class="modal fade" id="put_into_course" tabindex="1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myReviewLabel">코스에 담기</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body" style="text-align: center;">
+							<div id="courseList">
+							</div>
+							<div style="text-align: center;">
+								<input type="button" value="새 코스 추가" class="btn btn-success" data-toggle="modal" data-target="#add_course">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div> <!-- End of Modal put_into_course-->
+		 	<!-- End of Modal put_into_course-->
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#saveCourse").on('click', function(){
+						alert("로그인 후 이용해주세요.")
+					})
+				})
+			</script>
+		</c:otherwise>
+	</c:choose>
 
 	<!-- Modal add_course-->
 	<div class="modal fade" id="add_course" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -1087,16 +1156,16 @@ function getTimeHTML(distance) {
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myReviewLabel">새 코스 추가</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span id="back" aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div id="message-review">
 					</div>
 					<div class="form-group">
-						<input type="text" placeholder="코스명을 입력해주세요.">
+						<input type="text" placeholder="코스명을 입력해주세요." id="addcourseName">
 					</div>
 					<div style="text-align: center;">
-						<input type="button" value="추가" class="btn btn-success">
+						<input type="button" value="추가" class="btn btn-success" id="addNewcourse">
 						<!-- 추가 누르면 창이 닫히고, 입력한 코스명으로 부모 페이지에 코스가 추가 입력 되어져야함.-->
 					</div>
 				</div>
@@ -1203,11 +1272,7 @@ function getTimeHTML(distance) {
 		</div>
 	</div>
 	<!-- End modal review -->
-
-	<!-- Common scripts -->
-	<script src="js/jquery-3.5.1.min.js"></script>
-	<script src="js/common_scripts_min.js"></script>
-	<script src="js/functions.js"></script>
+	
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27dd1029a97d2def3071ef14738a120b"></script>-->
 	<!-- Date and time pickers -->
 	
@@ -1231,8 +1296,8 @@ function getTimeHTML(distance) {
 	<script src="js/infobox.js"></script>
 	-->
 
-	<!-- NOTIFY BUBBLES  -->
-	<script src="js/notify_func.js"></script>	
+	<!-- NOTIFY BUBBLES  
+	<script src="js/notify_func.js"></script> -->	
 	
 	<!-- 추가 script -->
 	<!-- 축제 정보 불러오기 -->
@@ -1326,58 +1391,134 @@ function getTimeHTML(distance) {
 	</script>
 	<!-- 로그인 -->
 	<script src="../../js/login.js"></script>
-	<!-- 코스 -->
+	
+	<!-- 내 코스에 저장 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			<c:forEach items="${list}" var="fes">
-				var title = "${fes.title}"
-				var address = "${fes.address}"
-				var startDate = ${fes.startDate}
-				var endDate = ${fes.endDate}
-				var fee = "${fes.fee}"
-				var festel = "${fes.tel}"
-				var host = "${fes.host}"
-			</c:forEach>
-			$("#choice").on('click', function () {
-				var fesInfo = [];
-				fesInfo.push({
-					"title" : title,
-					"address" : address,
-					"startDate" : startDate,
-					"endDate" : endDate,
-					"fee" : fee,
-					"festel" : festel,
-					"host" : host
-				})
-				console.log(typeof(fesInfo))
-				console.log(fesInfo);
-				
-				var jsonData = JSON.stringify(fesInfo)
-				console.log(typeof(jsonData))
-				console.log(jsonData)
+			// '선택' 클릭
+			$(document).on("click", "#choice", function(){
+				// 코스명
+				var courseName = $(this).parent().prev().val();
+				// 코스 경로 배열 생성.
+				var coursePath_arr = new Array();
+				<c:forEach items="${list}" var="fes">
+					// 첫 번째 이미지 가져오기
+					<c:forEach items="${fes.images}" var="image" begin="0" end="0">
+						var img = "data:image/jpg;base64,${image}"
+					</c:forEach>
+					var data = {
+							"p_id" : "${fes._id}",
+							"postcode" : ${fes.postcode},
+							"title" : "${fes.title}",
+							"host" : "${fes.host}",
+							"address" : "${fes.address}",
+							"tel" : "${fes.tel}",
+							"latitude" : ${fes.latitude},
+							"longitude" : ${fes.longitude},
+							"startDate" : ${fes.startDate},
+							"endDate" : ${fes.endDate},
+							"image" : img
+//							"fee" : "${fes.fee}", // fee안에 태그랑 "" 있는 경우있어서 오류 뜸.
+					}
+					coursePath_arr.push(data)
+				</c:forEach>
+				// 콘솔로 확인
+				console.log(coursePath_arr)
+				// 각 코스마다의 _id
+				var cId = $(this).parent().parent().next().val()
+				// 코스 collection에 넣을 데이터.
+				var info = {
+					"_id" : cId,
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName,
+					"reviews": new Array(),
+					"coursePath" : coursePath_arr
+				}
+				// 직렬화
+				var jsonData = JSON.stringify(info)
 				$.ajax({
-					type : "post",
-					async : true,
-					url : "addMycourse_festival.do",
-					contentType: 'application/json; charset=utf-8', // 한글처리
+					type : "POST",
+					url : "pushCoursePath.do",
+					contentType: 'application/json;charset=UTF-8',
 					traditional : true,
-					data : {
-						"writer" : "${sessionScope.memberId}",
-						"courseName" : $('#courseName').val(),
-						"jsonData" : jsonData					
-					},
+					data : jsonData,
 					dataType : "json",					
-					success : function (data) {
-						alert("완료")
+					success : function (result) {
+						alert("코스에 담기 완료")
 					},
 					error : function (err) {
-						alert("에러가 발생했습니다");
-						console.log(err)
+						alert("에러가 발생했습니다: festival_detail.jsp --- 코스 담기 에러");
+						console.log("err:"+err)
+					}
+				})  // end of ajax.
+			}) // end of $(document).on("click", "#choice", function()
+		}) // end of jQuery.
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 코스 저장하기 클릭 시 나오는 팝업창에 내가 가진 코스명 리스트 띄워놓기
+			<c:forEach items="${clist}" var="name">
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='${name.courseName}'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 코스 _id 써먹어야해서 필요
+				$("#courseList").append(
+					"<input type='hidden' value='${name._id}'>"		
+				);
+			</c:forEach>
+			
+			// '추가' 클릭 시
+			$("#addNewcourse").on('click', function(){
+				var courseName = $("#addcourseName").val();
+				// 팝업창에 입력한 코스명으로 행이 추가 되고
+				$("#courseList").append(
+					"<h4>- <input type='text' style='width:35%;' value='"+courseName+"'><span style='padding-left: 70px;'><input type='button' value='선택' class='btn_1' id='choice'></span></h4>"		
+				);
+				// 창 닫히고
+				$('#back').trigger('click');
+				// 초기화
+				$("#addcourseName").val("");
+				// DB 코스 컬렉션에 document 생성
+				var data = {
+					"writer" : "${sessionScope.memberId}",
+					"courseName" : courseName,
+					"reviews": new Array(),
+					"share" : "NO"
+				}
+				var jsonData = JSON.stringify(data)
+				$.ajax({
+					type : "POST",
+					url : "addMycourse.do",
+					contentType : 'application/json;charset=UTF-8',
+					data : jsonData,
+					dataType : "json",					
+					success : function (result) {
+						alert("코스 생성 완료");
+						// 방금 생긴 코스 document의 _id를 가져와서 히든 인풋을 하나 만들어주기.
+						$.ajax({
+							type : "POST",
+							url : "cId.do",
+							contentType : 'application/x-www-form-urlencoded;charset=utf-8', // 한글처리
+							data : data,
+							success : function(data){
+								$("#courseList").append(
+									"<input type='hidden' value="+data+">"		
+								);
+							},
+							error : function(err){
+								alert("에러가 발생했습니다: festival_detail.jsp --- 히든 인풋 만들기 에러")
+								alert("err:"+err)
+							}
+						}) // end of ajax.
+					},
+					error : function (err) {
+						alert("에러가 발생했습니다: festival_detail.jsp --- 코스 생성 에러");
+						console.log("err:"+err)
 					}
 				}) // end of ajax.
-			})
-			
-		})
+			}) // end of $("#addNewcourse").on('click', function(){}).
+		}) // end of jQuery.
 	</script>
 </body>
 

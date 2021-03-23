@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<style>
+</style>
 </head>
 <body>
     <footer class="revealed">
@@ -16,11 +17,13 @@
                     <a href="mailto:help@citytours.com" id="email_footer">help@festi.bbang</a>
                 </div>
                 <div class="col-md-4">
-                    <h3>축축빵빵</h3>
+                    <h3>축제로</h3>
                     <ul>
-                        <li><a href="#">축축빵빵은요!</a></li>
+                        <li><a href="#">축제로는요!</a></li>
                         <li><a href="#">FAQ</a></li>
-                        <li><a href="#sign-in-dialog">로그인</a></li>
+                        <c:if test="${sessionScope.memberId eq null}">
+                     		<li><a href="#sign-in-dialog" id="access_link">로그인</a></li>
+                     	</c:if>
                         <li><a href="member/memberJoin.do">회원가입</a></li>
                          <li><a href="#">이용 약관</a></li>
                     </ul>
@@ -60,7 +63,7 @@
 	<!-- Search Menu -->
 	<div class="search-overlay-menu">
 		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-		<form role="search" id="searchform" method="get">
+		<form action="/search.do" role="search" id="searchform" method="get">
 			<input value="" name="q" type="search" placeholder="Search..." />
 			<button type="submit"><i class="icon_set_1_icon-78"></i>
 			</button>
@@ -85,7 +88,7 @@
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
 					<label>ID</label>
-					<input type="text" class="form-control" name="loginId" id="loginId">
+					<input type="text" class="form-control" name="loginId" id="loginId" autofocus="">
 					<i class="icon_pencil"></i>
 				</div>
 				<div class="form-group">
@@ -101,7 +104,7 @@
 					<div class="float-right"><a id="forgot" href="javascript:void(0);">비밀번호를 잊어버리셨나요?</a></div>
 				</div>
 				<div class="text-center">
-                    <input type="button" value="로그인" class="btn_login">
+                    <input type="button" value="로그인" class="btn_login" id="btn_login">
                     <!-- <a type="button" class="btn_login">로그인</a> -->
                 </div>
 				<div class="text-center">

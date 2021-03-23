@@ -14,17 +14,17 @@ public class MyPageController {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@RequestMapping("mypage.do")
 	public String helloMyPage(@RequestParam String user_id, Model model) {
-		
+
 		MemberVO vo = memberService.selectOne(user_id);
 		System.out.println(vo.getId());
 
-		
+
 		model.addAttribute("vo", vo);
-		
+
 		return "member/mypage";
 	}
-	
+
 }

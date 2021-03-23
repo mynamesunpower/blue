@@ -1,11 +1,12 @@
 $(document).ready(function(){
 			$('.btn_login').on('click', login);
-			$('#password').on('keydown', function(evt) {
-				//evt.preventDefault();
-				//evt.stopPropagation();
-				if (evt.KeyCode == 13) {
-					login();
-				}
+			
+			var input = document.getElementById("password");
+			input.addEventListener("keyup", function(event) {
+			  if (event.keyCode === 13) {
+			    event.preventDefault();
+			    document.getElementById("btn_login").click();
+			  }
 			});
 			
 			$('#findPassBtn').off().on('click', function(evt) {
@@ -38,7 +39,7 @@ $(document).ready(function(){
 		});
 
 		function login() {
-			alert('로그인 버튼 클릭')
+//			alert('로그인 버튼 클릭')
 
 			if($.trim($('#loginId').val())==''){
         		alert('아이디를 입력해 주세요');
@@ -76,7 +77,7 @@ $(document).ready(function(){
 	        				location.replace(document.location.href);
 	        			}
 	        			else if(result=="admin") {
-	        				location.replace('../admin_index.jsp')
+	        				location.replace('http://localhost:8080/admin/admin_member.do')
 	        			}
 	        			else {
 	        				$("#loginId").val("");

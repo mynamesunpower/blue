@@ -19,6 +19,7 @@ public class FestivalVO {
 	private int startDate;
 	private int endDate;
 	private String address;
+	private String address_detail;
 	private String fee;
 	private String tel;
 	private String homepage;
@@ -38,6 +39,10 @@ public class FestivalVO {
 	public void setViews(int views) {
 		this.views = views;
 	}
+	private int[] score;
+	
+	
+	
 	public int getEndDate() {
 		return endDate;
 	}
@@ -149,7 +154,22 @@ public class FestivalVO {
 	public int getStartDate() {
 		return startDate;
 	}
+	public String getAddress_detail() {
+		return address_detail;
+	}
+	public void setAddress_detail(String address_detail) {
+		this.address_detail = address_detail;
+	}
+	
+	
+	public int[] getScore() {
+		return score;
+	}
+	public void setScore(int[] score) {
+		this.score = score;
+	}
 
+	
 
 	
 	

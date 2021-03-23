@@ -88,4 +88,13 @@
 	WHERE id = #{user_id}
 </select>
 
+<!-- 마이페이지에서 정보변경 -->
+<update id="memberUpdateMypage" parameterType="member">
+    UPDATE MEMBER
+    SET tel = #{tel},
+	    email = #{email},
+	    address = #{address}
+	WHERE id = #{id}
+</update>
+
 </mapper>

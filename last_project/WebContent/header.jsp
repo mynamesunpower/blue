@@ -30,21 +30,21 @@
                             		<%if((kakaonickname ==null)&& (navernickname ==null)){ %>
               										 <li><span style="color: blue;">${sessionScope.memberId}</span>님 환영합니다</li>
               										 <li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			               <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+              			               <li><a id="wishlist_link" href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
               			               <li><a href="member/logout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
 
               									<%if(kakaonickname !=null){ %>
               										<li><span style="color: blue;"><%=kakaonickname %></span>님 환영합니다
               										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a id="wishlist_link" href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
               			              <li><a href="kakaologout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
 
               									<%if(navernickname !=null){ %>
               										<li><span style="color: blue;"><%=navernickname %></span>님 환영합니다
               										<li><a href="mypage.do?user_id=${sessionScope.memberId}" id="mypage" class="icon-key-4">myPage</a></li>
-              			              <li><a href="course_list.do" id="wishlist_link">나의 코스 목록</a></li>
+              			              <li><a id="wishlist_link" href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
               			              <li><a href="naverlogout.do" class="icon-logout">로그아웃</a></li>
               									<%} %>
                             	</c:when>
@@ -75,7 +75,7 @@
                                 <a href="main.jsp" class="show-submenu" style="font-size: large;">홈<i class="icon-home"></i></a>
                             </li>
                             <li class="submenu">
-                                <a href="festival.jsp" class="show-submenu" style="font-size: large;">축제<i class=""></i></a>
+                                <a href="festival.do" class="show-submenu" style="font-size: large;">축제<i class=""></i></a>
                             </li>
                             <li class="submenu">
                                 <a href="restaurants_list.do" class="show-submenu" style="font-size: large;">식당<i class=""></i></a>
@@ -84,13 +84,13 @@
                                 <a href="accommodations_list.do" class="show-submenu" style="font-size: large;">숙박<i class=""></i></a>
                             </li>
                             <li class="submenu">
-                                <a href="#" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a> <!--클릭하면 코스 메인 페이지로 이동하게-->
+                                <a href="javascript:void(0);" class="show-submenu" style="font-size: large;">코스 <i class="icon-down-open-mini"></i></a>
                                 <ul>
-                                    <li><a href="course/course_main.do">코스 자랑 마당</a></li>
+                                    <li><a href="course_main.do">코스 자랑 마당</a></li>
                                     <!-- 나의 코스 목록은 로그인 세션 있을 때만 접근 가능. 없으면 로그인하게-->
                                     <c:choose>
                                     	<c:when test="${sessionScope.memberId ne null}">
-                                    		<li><a href="course/course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
+                                    		<li><a href="course_list.do?memberId=${sessionScope.memberId}">나의 코스 목록</a></li>
                                     	</c:when>
                                     	<c:otherwise>
                                     		<li><a href="#sign-in-dialog" id="access_link2">나의 코스 목록</a></li>
@@ -98,6 +98,7 @@
                                     </c:choose>
                                 </ul>
                             </li>
+
                         </ul>
                     </div>
                     <!-- End main-menu -->
@@ -107,35 +108,7 @@
                         <li>
                             <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
                         </li>
-                        <!-- 즐겨찾기.. 장바구니처럼 넣는 거 하느냐 마느냐~ 고민쓰-->
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#" data-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-                                <ul class="dropdown-menu" id="cart_items">
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
-                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div>Total: <span>$120.00</span></div>
-                                        <a href="cart.jsp" class="button_drop">Go to cart</a>
-                                        <a href="payment.jsp" class="button_drop outline">Check out</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- End dropdown-cart-->
-                        </li>
+
                         </ul>
                 </nav>
             </div>
