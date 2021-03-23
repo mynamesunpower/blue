@@ -204,8 +204,10 @@ public class FestivalController {
 					}
 					vo.setImages(imageList);
 				}
-
+				
+				
 		System.out.println("위도"+list.get(0).getLatitude());
+		System.out.println("경도"+list.get(0).getLongitude());
 
 
 
@@ -221,7 +223,7 @@ public class FestivalController {
 
 		for(RestaurantVO vo : lists) {
 
-			//식당 위도 경도 지정 (식당은 DB에 위도 경도가 바껴있음)
+		
 			double res_latitudes = vo.getLongitude();
 			double res_longitudes = vo.getLatitude();
 
@@ -246,7 +248,7 @@ public class FestivalController {
 		        for(int i=0; i<=2; i++) {
 		        	System.out.println("<><<><><><><><식당><>"+(map.get(keys.get(i))));
 		        	System.out.println("넌뭐니"+keys.get(i));
-		        	
+		        	// 식당이랑 똑같아야대지?같은코드 아 여기도 위경도없네
 		        	res= restaurantService.selectnear(map.get(keys.get(i)));
 		        	
 		    
@@ -299,9 +301,9 @@ public class FestivalController {
 		      List<Double> keySets = new ArrayList<>(accommap.keySet());
 		      
 		        List<Double> keys2 = new ArrayList<>(accommap.keySet());
-		        Collections.sort(keySets);
+		        Collections.sort(keys2);
 		        System.out.println("숙박이야>>>>>>>>>>>>>>"+keySets);
-		     
+		        
 	
 		     
 		      
@@ -309,9 +311,10 @@ public class FestivalController {
 		      List<List<AccomVO>> result2 = new ArrayList<>();
 		        
 		        for(int a=0; a<=2; a++) {
-		        	
-		        	acc = AccomService.selectOne(accommap.get(keySets.get(a)));
-		        	//System.out.println("여기는"+acc);
+		        	//왜 여기 에러지
+		        	System.out.println(accommap.get(keys2.get(a)));
+		        	acc = AccomService.selectOne(accommap.get(keys2.get(a)));
+		        	System.out.println("여기는"+acc);
 		        	
 		        	for (AccomVO vo : acc) {
 
@@ -322,8 +325,9 @@ public class FestivalController {
 		    			}
 		    			vo.setImages(imageList);
 		    			//숙박 거리
-		    			vo.setRange(keySets.get(a));
-		    			
+		    			vo.setRange(keys2.get(a));
+		    			System.out.println(">>>>>>>dd");
+		    			// 
 		    		}
 		        	result2.add(acc);
 		        	

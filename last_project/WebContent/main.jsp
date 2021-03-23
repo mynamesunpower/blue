@@ -51,6 +51,7 @@
 			border-radius: 0 0 0 0px
 		}
 
+
 		.tp-caption.News-Subtitle,
 		.News-Subtitle {
 			color: rgba(255, 255, 255, 1.00);
