@@ -89,7 +89,7 @@ public class MemberController {
 		int rand = (int) (Math.random() * 899999) + 100000;
 
 		// 인증 코드를 데이터베이스에 저장하는 코드는 생략
-		String message = "[축축빵빵] 본인 확인 인증번호 [" + rand + "]를 화면에 입력해주세요.";
+		String message = "[축제로] 본인 확인 인증번호 [" + rand + "]를 화면에 입력해주세요.";
 
 		// 문자 보내기
 		String hostname = "api.bluehouselab.com";
@@ -177,10 +177,10 @@ public class MemberController {
 		// 회원가입
 		int result = memberService.memberInsert(vo);
 
-		String title = "[축축빵빵] " + vo.getName() + " 님의 회원가입을 환영합니다.";
+		String title = "[축제로] " + vo.getName() + " 님의 회원가입을 환영합니다.";
 		String mailTxt = "";
         mailTxt += "안녕하세요. 전 국민 페스티벌 플랫폼!\n";
-        mailTxt += "!! 축축빵빵 !! 입니다. \n";
+        mailTxt += "!! 축제로 !! 입니다. \n";
         mailTxt += "회원가입을 축하드리며, 즐거운 축제 잘 다녀오시길 바랍니다. \n";
         mailTxt += "감사합니다. 즐거운 하루 되세요.\n";
 
@@ -298,10 +298,10 @@ public class MemberController {
         member.setPassword(passwordEncoder.encode(password));
         memberService.memberUpdate(member);
 
-        String title = "[축축빵빵] " + member.getName() + "님의 비밀번호 재설정 안내";
+        String title = "[축제로] " + member.getName() + "님의 비밀번호 재설정 안내";
         String mailTxt = "";
         mailTxt += "안녕하세요. 전 국민 페스티벌 플랫폼!\n";
-        mailTxt += "!! 축축빵빵 !! 입니다. \n";
+        mailTxt += "!! 축제로 !! 입니다. \n";
         mailTxt += member.getName() + " 회원님의 비밀번호는 \n";
         mailTxt += password + "로 초기화되었습니다. \n";
         mailTxt += "변경된 비밀번호로 로그인하시고, 새로운 비밀번호로 변경을 부탁드립니다. \n";

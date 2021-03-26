@@ -190,8 +190,8 @@
 			</div>
 
 			<div class="owl-carousel owl-theme list_carousel add_bottom_30 ">
-			<c:forEach items="${list}" var="list" begin="2" end="6">
-			<c:forEach items="${list.images}" var="image" begin="1" end="1">
+			<c:forEach items="${list}" var="list" >
+			<c:forEach items="${list.images}" var="image" >
                 <div class="item">
                     <div class="tour_container">
                         <div class="img_container">
@@ -392,7 +392,7 @@
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
                     <div class="feature_home">
                         <i class="pe-7s-graph1"></i>
-                        <h3><span>+10 </span> 코스 추천</h3>
+                        <h3><span>+4 </span> 코스 추천</h3>
                         <p>
                             프로계획러들의 코스 추천
                         </p>

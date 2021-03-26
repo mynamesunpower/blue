@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="302cac1f-cb2f-49dd-a4cf-0c2e711c7009" name="Default Changelist" comment="">
+    <list default="true" id="61567a2a-81a5-45c3-8067-11ff3e83f319" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/festival/festival_list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/view/member/memberJoin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/view/member/memberJoin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/festival.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/admin/AdminPlt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/admin/AdminPlt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/py/admin_plt.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/py/admin_plt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MemberController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1pukC0KiSnxAsUORJLHETtuKd7q" />
+  <component name="ProjectId" id="1q5heqvWOjVsnNV2CQLNx5Lp8Th" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,13 +25,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\blue\last_project\WebContent\py" />
-    </key>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../python/blue" />
   </component>
   <component name="RunManager">
     <configuration name="admin_plt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -69,12 +59,15 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="302cac1f-cb2f-49dd-a4cf-0c2e711c7009" name="Default Changelist" comment="" />
-      <created>1616040230745</created>
+      <changelist id="61567a2a-81a5-45c3-8067-11ff3e83f319" name="Default Changelist" comment="" />
+      <created>1616375458903</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1616040230745</updated>
-      <workItem from="1616040231837" duration="1476000" />
+      <updated>1616375458903</updated>
+      <workItem from="1616375460087" duration="3108000" />
+      <workItem from="1616463584277" duration="1024000" />
+      <workItem from="1616491332027" duration="1014000" />
+      <workItem from="1616498757958" duration="1124000" />
     </task>
     <servers />
   </component>
@@ -82,17 +75,9 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/last_project$admin_plt.coverage" NAME="admin_plt Coverage Results" MODIFIED="1616045710598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/WebContent/py" />
+    <SUITE FILE_PATH="coverage/last_project$admin_plt.coverage" NAME="admin_plt Coverage Results" MODIFIED="1616499260126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/WebContent/py" />
   </component>
 </project>
