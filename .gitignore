@@ -13,8 +13,9 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+Servers/
 last_project/target/
-
+*.class
 # External tool builders
 .externalToolBuilders/
 
@@ -56,3 +57,5 @@ last_project/target/
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
+*.class
+last_project/.classpath

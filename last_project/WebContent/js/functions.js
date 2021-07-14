@@ -251,6 +251,18 @@ $('#access_link').magnificPopup({
 	mainClass: 'my-mfp-zoom-in'
 });
 
+$('#access_link2').magnificPopup({
+	type: 'inline',
+	fixedContentPos: true,
+	fixedBgPos: true,
+	overflowY: 'auto',
+	closeBtnInside: true,
+	preloader: false,
+	midClick: true,
+	removalDelay: 300,
+	mainClass: 'my-mfp-zoom-in'
+});
+
 /* Show Password */
 $('#password').hidePassword('focus', {
 	toggle: {
@@ -299,6 +311,7 @@ const $owlCarousel = $("#carousel-home .owl-carousel").owlCarousel({
         }
     }
 });
+
 
 $owlCarousel.on("changed.owl.carousel", function(e) {
     $(".owl-slide-animated").removeClass("is-transitioned");
